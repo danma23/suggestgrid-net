@@ -2,7 +2,7 @@
 <!--
  - SuggestGrid.PCL
  -
- - This file was automatically generated for SuggestGrid by APIMATIC v2.0 ( https://apimatic.io ) on 05/26/2016
+ - This file was automatically generated for SuggestGrid by APIMATIC v2.0 ( https://apimatic.io ) on 05/30/2016
 -->
 <Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
@@ -10,7 +10,7 @@
     <AssemblyName>SuggestGrid.PCL</AssemblyName>
     <OutputType>Library</OutputType>
     <OutputPath>bin/DEBUG/</OutputPath>
-    <ProjectGuid>{3eca052c-b2e5-4ef1-8eb9-de4b5117e0a4}</ProjectGuid>
+    <ProjectGuid>{7deac3a6-b5d3-4b9d-858c-020379df8622}</ProjectGuid>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
     <MinimumVisualStudioVersion>11.0</MinimumVisualStudioVersion>
     <NuGetPackageImportStamp>ee2bb91c</NuGetPackageImportStamp>
@@ -87,16 +87,17 @@
     <Compile Include="Models\GetTypeResponse.cs" />
     <Compile Include="Models\BulkSchemaErrorResponse.cs" />
     <Compile Include="Models\SchemaErrorResponse.cs" />
+    <Compile Include="Models\MetadataInformationResponse.cs" />
     <Compile Include="Models\UsersResponse.cs" />
     <Compile Include="Models\ItemsResponse.cs" />
     <Compile Include="Models\PredictionResponse.cs" />
     <Compile Include="Models\UserSimilarityResponse.cs" />
     <Compile Include="Models\ItemSimilarityResponse.cs" />
-    <Compile Include="Controllers\TypeController.cs" />
     <Compile Include="Controllers\ActionController.cs" />
     <Compile Include="Controllers\MetadataController.cs" />
     <Compile Include="Controllers\RecommendationController.cs" />
     <Compile Include="Controllers\SimilarityController.cs" />
+    <Compile Include="Controllers\TypeController.cs" />
     <Compile Include="Http\Client\IHTTPClient.cs" />
     <Compile Include="Http\Client\UnirestClient.cs" />
     <Compile Include="Http\Client\HttpEventHandlers.cs" />

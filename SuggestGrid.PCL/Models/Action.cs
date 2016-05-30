@@ -1,7 +1,7 @@
 /*
  * SuggestGrid.PCL
  *
- * This file was automatically generated for SuggestGrid by APIMATIC v2.0 ( https://apimatic.io ) on 05/26/2016
+ * This file was automatically generated for SuggestGrid by APIMATIC v2.0 ( https://apimatic.io ) on 05/30/2016
  */
 using System;
 using System.IO;
@@ -17,7 +17,7 @@ using SuggestGrid;
 
 namespace SuggestGrid.Models
 {
-    public class ActionModel : INotifyPropertyChanged
+    public class Action : INotifyPropertyChanged 
     {
         // These fields hold the values for the public properties.
         private string itemId;
@@ -28,13 +28,13 @@ namespace SuggestGrid.Models
         /// TODO: Write general description for this method
         /// </summary>
         [JsonProperty("item_id")]
-        public string ItemId
-        {
-            get
+        public string ItemId 
+        { 
+            get 
             {
-                return this.itemId;
-            }
-            set
+                return this.itemId; 
+            } 
+            set 
             {
                 this.itemId = value;
                 onPropertyChanged("ItemId");
@@ -45,13 +45,13 @@ namespace SuggestGrid.Models
         /// TODO: Write general description for this method
         /// </summary>
         [JsonProperty("rating")]
-        public double? Rating
-        {
-            get
+        public double? Rating 
+        { 
+            get 
             {
-                return this.rating;
-            }
-            set
+                return this.rating; 
+            } 
+            set 
             {
                 this.rating = value;
                 onPropertyChanged("Rating");
@@ -62,13 +62,13 @@ namespace SuggestGrid.Models
         /// TODO: Write general description for this method
         /// </summary>
         [JsonProperty("user_id")]
-        public string UserId
-        {
-            get
+        public string UserId 
+        { 
+            get 
             {
-                return this.userId;
-            }
-            set
+                return this.userId; 
+            } 
+            set 
             {
                 this.userId = value;
                 onPropertyChanged("UserId");
@@ -92,4 +92,4 @@ namespace SuggestGrid.Models
             }
         }
     }
-}
+} 

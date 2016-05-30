@@ -1,7 +1,7 @@
 /*
  * SuggestGrid.PCL
  *
- * This file was automatically generated for SuggestGrid by APIMATIC v2.0 ( https://apimatic.io ) on 05/26/2016
+ * This file was automatically generated for SuggestGrid by APIMATIC v2.0 ( https://apimatic.io ) on 05/30/2016
  */
 using System;
 using SuggestGrid.Controllers;
@@ -11,17 +11,6 @@ namespace SuggestGrid
 {
     public partial class SuggestGridClient
     {
-
-        /// <summary>
-        /// Singleton access to Type controller
-        /// </summary>
-        public TypeController Type
-        {
-            get
-            {
-                return TypeController.Instance;
-            }
-        }
 
         /// <summary>
         /// Singleton access to Action controller
@@ -68,6 +57,17 @@ namespace SuggestGrid
         }
 
         /// <summary>
+        /// Singleton access to Type controller
+        /// </summary>
+        public TypeController Type
+        {
+            get
+            {
+                return TypeController.Instance;
+            }
+        }
+
+        /// <summary>
         /// The shared http client to use for all API calls
         /// </summary>
         public IHttpClient SharedHttpClient
@@ -79,9 +79,9 @@ namespace SuggestGrid
             set
             {
                 BaseController.ClientInstance = value;
-            }
+            }        
         }
-
+        
         /// <summary>
         /// Default constructor
         /// </summary>
@@ -90,24 +90,10 @@ namespace SuggestGrid
         /// <summary>
         /// Client initialization constructor
         /// </summary>
-        public SuggestGridClient(String uri)
+        public SuggestGridClient(string basicAuthUserName, string basicAuthPassword)
         {
-            var url = new Uri(uri);
-            String baseUri = url.Scheme + "://" + url.Host + ":" + url.Port;
-
-            if (url.AbsolutePath != "/") {
-                baseUri += url.AbsolutePath;
-            }
-
-            Configuration.BaseUri = baseUri;
-
-            string userInfo = url.UserInfo;
-
-            if (!String.IsNullOrEmpty(userInfo)) {
-                string[] userInfoA = userInfo.Split (':');
-                Configuration.BasicAuthUserName = userInfoA[0];
-                Configuration.BasicAuthPassword = userInfoA[1];
-            }
+            Configuration.BasicAuthUserName = basicAuthUserName;
+            Configuration.BasicAuthPassword = basicAuthPassword;
         }
     }
 }

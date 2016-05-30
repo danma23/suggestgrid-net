@@ -1,7 +1,7 @@
 /*
  * SuggestGrid.PCL
  *
- * This file was automatically generated for SuggestGrid by APIMATIC v2.0 ( https://apimatic.io ) on 05/26/2016
+ * This file was automatically generated for SuggestGrid by APIMATIC v2.0 ( https://apimatic.io ) on 05/30/2016
  */
 using System;
 using System.Collections.Generic;
@@ -16,7 +16,6 @@ using SuggestGrid.Http.Request;
 using SuggestGrid.Http.Response;
 using SuggestGrid.Http.Client;
 using SuggestGrid.Models;
-using Newtonsoft.Json;
 
 namespace SuggestGrid.Controllers
 {
@@ -54,7 +53,7 @@ namespace SuggestGrid.Controllers
         /// <param name="body">Required parameter: Example: </param>
         /// <param name="type">Required parameter: Example: </param>
         /// <return>Returns the MessageResponse response from the API call</return>
-        public MessageResponse CreateAction(ActionModel body, string type)
+        public MessageResponse CreateAction(Action body, string type)
         {
             Task<MessageResponse> t = CreateActionAsync(body, type);
             Task.WaitAll(t);
@@ -67,7 +66,7 @@ namespace SuggestGrid.Controllers
         /// <param name="body">Required parameter: Example: </param>
         /// <param name="type">Required parameter: Example: </param>
         /// <return>Returns the MessageResponse response from the API call</return>
-        public async Task<MessageResponse> CreateActionAsync(ActionModel body, string type)
+        public async Task<MessageResponse> CreateActionAsync(Action body, string type)
         {
             //the base uri for api requestss
             string _baseUri = Configuration.BaseUri;
@@ -215,15 +214,9 @@ namespace SuggestGrid.Controllers
         /// <param name="body">Required parameter: Example: </param>
         /// <param name="type">Required parameter: Example: </param>
         /// <return>Returns the MessageResponse response from the API call</return>
-        public MessageResponse PostBulkActions(List<ActionModel> actions, string type)
+        public MessageResponse PostBulkActions(string body, string type)
         {
-            StringBuilder sb = new StringBuilder();
-            foreach (ActionModel action in actions)
-            {
-                sb.Append(JsonConvert.SerializeObject(action, Formatting.None));
-                sb.Append(Environment.NewLine);
-            }
-            Task<MessageResponse> t = PostBulkActionsAsync(sb.ToString(), type);
+            Task<MessageResponse> t = PostBulkActionsAsync(body, type);
             Task.WaitAll(t);
             return t.Result;
         }
@@ -234,7 +227,7 @@ namespace SuggestGrid.Controllers
         /// <param name="body">Required parameter: Example: </param>
         /// <param name="type">Required parameter: Example: </param>
         /// <return>Returns the MessageResponse response from the API call</return>
-        private async Task<MessageResponse> PostBulkActionsAsync(string body, string type)
+        public async Task<MessageResponse> PostBulkActionsAsync(string body, string type)
         {
             //the base uri for api requestss
             string _baseUri = Configuration.BaseUri;
@@ -294,4 +287,4 @@ namespace SuggestGrid.Controllers
         }
 
     }
-}
+} 

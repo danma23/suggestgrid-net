@@ -17,43 +17,25 @@ using SuggestGrid;
 
 namespace SuggestGrid.Models
 {
-    public class GetTypesResponse : INotifyPropertyChanged 
+    public class MetadataInformationResponse : INotifyPropertyChanged 
     {
         // These fields hold the values for the public properties.
-        private int? status;
-        private List<string> types;
+        private long? count;
 
         /// <summary>
-        /// Status code of the response. It is not 2XX.
+        /// The number of users or items with metadata.
         /// </summary>
-        [JsonProperty("status")]
-        public int? Status 
+        [JsonProperty("count")]
+        public long? Count 
         { 
             get 
             {
-                return this.status; 
+                return this.count; 
             } 
             set 
             {
-                this.status = value;
-                onPropertyChanged("Status");
-            }
-        }
-
-        /// <summary>
-        /// The list of type names
-        /// </summary>
-        [JsonProperty("types")]
-        public List<string> Types 
-        { 
-            get 
-            {
-                return this.types; 
-            } 
-            set 
-            {
-                this.types = value;
-                onPropertyChanged("Types");
+                this.count = value;
+                onPropertyChanged("Count");
             }
         }
 
