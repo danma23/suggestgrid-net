@@ -5,10 +5,10 @@ This file was automatically generated for SuggestGrid by APIMATIC v2.0 ( https:/
 -->
 <package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
   <metadata>
-    <id>SuggestGrid.PCL</id>
-    <version>1.0</version>
-    <title>SuggestGrid.PCL</title>
-    <authors>APIMATIC 2.0</authors>
+    <id>SuggestGrid</id>
+    <version>0.1.10</version>
+    <title>SuggestGrid</title>
+    <authors>SuggestGrid</authors>
     <iconUrl>https://nuget.org/Content/Images/packageDefaultIcon-50x50.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>SuggestGrid is an recommendation and personalization service.</description>
@@ -21,6 +21,6 @@ This file was automatically generated for SuggestGrid by APIMATIC v2.0 ( https:/
         </dependencies>
   </metadata>
   <files>
-    <file src="bin\Release\SuggestGrid.PCL.dll" target="lib\SuggestGrid.PCL.dll" />
+    <file src="bin/Release/SuggestGrid.PCL.dll" target="lib/net40" />
   </files>
 </package>

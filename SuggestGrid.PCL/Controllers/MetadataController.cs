@@ -16,6 +16,7 @@ using SuggestGrid.Http.Request;
 using SuggestGrid.Http.Response;
 using SuggestGrid.Http.Client;
 using SuggestGrid.Models;
+using Newtonsoft.Json;
 
 namespace SuggestGrid.Controllers
 {
@@ -53,7 +54,7 @@ namespace SuggestGrid.Controllers
         /// <param name="metadata">Required parameter: Example: </param>
         /// <param name="userId">Required parameter: The user_id to delete its metadata.</param>
         /// <return>Returns the MessageResponse response from the API call</return>
-        public MessageResponse CreateAUserMetadata(Metadata metadata, string userId)
+        public MessageResponse CreateAUserMetadata(Metadata<string,object> metadata, string userId)
         {
             Task<MessageResponse> t = CreateAUserMetadataAsync(metadata, userId);
             Task.WaitAll(t);
@@ -66,7 +67,7 @@ namespace SuggestGrid.Controllers
         /// <param name="metadata">Required parameter: Example: </param>
         /// <param name="userId">Required parameter: The user_id to delete its metadata.</param>
         /// <return>Returns the MessageResponse response from the API call</return>
-        public async Task<MessageResponse> CreateAUserMetadataAsync(Metadata metadata, string userId)
+        public async Task<MessageResponse> CreateAUserMetadataAsync(Metadata<string,object> metadata, string userId)
         {
             //the base uri for api requestss
             string _baseUri = Configuration.BaseUri;
@@ -326,7 +327,7 @@ namespace SuggestGrid.Controllers
         /// <param name="body">Required parameter: Example: </param>
         /// <param name="itemId">Required parameter: The item_id to delete its metadata.</param>
         /// <return>Returns the MessageResponse response from the API call</return>
-        public MessageResponse CreateAnItemMetadata(Metadata body, string itemId)
+        public MessageResponse CreateAnItemMetadata(Metadata<string,object> body, string itemId)
         {
             Task<MessageResponse> t = CreateAnItemMetadataAsync(body, itemId);
             Task.WaitAll(t);
@@ -339,7 +340,7 @@ namespace SuggestGrid.Controllers
         /// <param name="body">Required parameter: Example: </param>
         /// <param name="itemId">Required parameter: The item_id to delete its metadata.</param>
         /// <return>Returns the MessageResponse response from the API call</return>
-        public async Task<MessageResponse> CreateAnItemMetadataAsync(Metadata body, string itemId)
+        public async Task<MessageResponse> CreateAnItemMetadataAsync(Metadata<string,object> body, string itemId)
         {
             //the base uri for api requestss
             string _baseUri = Configuration.BaseUri;
@@ -598,9 +599,15 @@ namespace SuggestGrid.Controllers
         /// </summary>
         /// <param name="body">Required parameter: Example: </param>
         /// <return>Returns the MessageResponse response from the API call</return>
-        public MessageResponse PostBulkUserMetadata(string body)
+        public MessageResponse PostBulkUserMetadata(List<Metadata<string, object>> metas)
         {
-            Task<MessageResponse> t = PostBulkUserMetadataAsync(body);
+            StringBuilder sb = new StringBuilder();
+            foreach (Metadata<string, object> meta in metas)
+            {
+                sb.Append(JsonConvert.SerializeObject(meta, Formatting.None));
+                sb.Append(Environment.NewLine);
+            }
+            Task<MessageResponse> t = PostBulkUserMetadataAsync(sb.ToString());
             Task.WaitAll(t);
             return t.Result;
         }
@@ -610,7 +617,7 @@ namespace SuggestGrid.Controllers
         /// </summary>
         /// <param name="body">Required parameter: Example: </param>
         /// <return>Returns the MessageResponse response from the API call</return>
-        public async Task<MessageResponse> PostBulkUserMetadataAsync(string body)
+        private async Task<MessageResponse> PostBulkUserMetadataAsync(string body)
         {
             //the base uri for api requestss
             string _baseUri = Configuration.BaseUri;
@@ -668,9 +675,15 @@ namespace SuggestGrid.Controllers
         /// </summary>
         /// <param name="body">Required parameter: Example: </param>
         /// <return>Returns the MessageResponse response from the API call</return>
-        public MessageResponse PostBulkItemMetadata(string body)
+        public MessageResponse PostBulkItemMetadata(List<Metadata<string, object>> metas)
         {
-            Task<MessageResponse> t = PostBulkItemMetadataAsync(body);
+            StringBuilder sb = new StringBuilder();
+            foreach (Metadata<string, object> meta in metas)
+            {
+                sb.Append(JsonConvert.SerializeObject(meta, Formatting.None));
+                sb.Append(Environment.NewLine);
+            }
+            Task<MessageResponse> t = PostBulkItemMetadataAsync(sb.ToString());
             Task.WaitAll(t);
             return t.Result;
         }
@@ -680,7 +693,7 @@ namespace SuggestGrid.Controllers
         /// </summary>
         /// <param name="body">Required parameter: Example: </param>
         /// <return>Returns the MessageResponse response from the API call</return>
-        public async Task<MessageResponse> PostBulkItemMetadataAsync(string body)
+        private async Task<MessageResponse> PostBulkItemMetadataAsync(string body)
         {
             //the base uri for api requestss
             string _baseUri = Configuration.BaseUri;
@@ -734,4 +747,4 @@ namespace SuggestGrid.Controllers
         }
 
     }
-} 
+}
