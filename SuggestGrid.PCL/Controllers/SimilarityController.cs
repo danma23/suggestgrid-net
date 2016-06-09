@@ -1,7 +1,7 @@
 /*
  * SuggestGrid.PCL
  *
- * This file was automatically generated for SuggestGrid by APIMATIC v2.0 ( https://apimatic.io ) on 05/30/2016
+ * This file was automatically generated for SuggestGrid by APIMATIC v2.0 ( https://apimatic.io ) on 06/09/2016
  */
 using System;
 using System.Collections.Generic;
@@ -129,13 +129,13 @@ namespace SuggestGrid.Controllers
         /// <summary>
         /// Get similarity of two items.
         /// </summary>
+        /// <param name="type">Required parameter: Example: </param>
         /// <param name="itemId1">Required parameter: Example: </param>
         /// <param name="itemId2">Required parameter: Example: </param>
-        /// <param name="type">Required parameter: Example: </param>
         /// <return>Returns the ItemSimilarityResponse response from the API call</return>
-        public ItemSimilarityResponse GetItemSimilarity(string itemId1, string itemId2, string type)
+        public ItemSimilarityResponse GetItemSimilarity(string type, string itemId1, string itemId2)
         {
-            Task<ItemSimilarityResponse> t = GetItemSimilarityAsync(itemId1, itemId2, type);
+            Task<ItemSimilarityResponse> t = GetItemSimilarityAsync(type, itemId1, itemId2);
             Task.WaitAll(t);
             return t.Result;
         }
@@ -143,11 +143,11 @@ namespace SuggestGrid.Controllers
         /// <summary>
         /// Get similarity of two items.
         /// </summary>
+        /// <param name="type">Required parameter: Example: </param>
         /// <param name="itemId1">Required parameter: Example: </param>
         /// <param name="itemId2">Required parameter: Example: </param>
-        /// <param name="type">Required parameter: Example: </param>
         /// <return>Returns the ItemSimilarityResponse response from the API call</return>
-        public async Task<ItemSimilarityResponse> GetItemSimilarityAsync(string itemId1, string itemId2, string type)
+        public async Task<ItemSimilarityResponse> GetItemSimilarityAsync(string type, string itemId1, string itemId2)
         {
             //the base uri for api requestss
             string _baseUri = Configuration.BaseUri;
@@ -159,9 +159,9 @@ namespace SuggestGrid.Controllers
             //process optional template parameters
             APIHelper.AppendUrlWithTemplateParameters(_queryBuilder, new Dictionary<string, object>()
             {
+                { "type", type },
                 { "item_id1", itemId1 },
-                { "item_id2", itemId2 },
-                { "type", type }
+                { "item_id2", itemId2 }
             });
 
 
@@ -208,13 +208,13 @@ namespace SuggestGrid.Controllers
         /// <summary>
         /// Get similar users to a user.
         /// </summary>
-        /// <param name="body">Required parameter: Example: </param>
         /// <param name="type">Required parameter: Example: </param>
         /// <param name="userId">Required parameter: Example: </param>
+        /// <param name="body">Required parameter: Example: </param>
         /// <return>Returns the UsersResponse response from the API call</return>
-        public UsersResponse GetSimilarUsers(SimilarUsersBody body, string type, string userId)
+        public UsersResponse GetSimilarUsers(string type, string userId, SimilarUsersBody body)
         {
-            Task<UsersResponse> t = GetSimilarUsersAsync(body, type, userId);
+            Task<UsersResponse> t = GetSimilarUsersAsync(type, userId, body);
             Task.WaitAll(t);
             return t.Result;
         }
@@ -222,11 +222,11 @@ namespace SuggestGrid.Controllers
         /// <summary>
         /// Get similar users to a user.
         /// </summary>
-        /// <param name="body">Required parameter: Example: </param>
         /// <param name="type">Required parameter: Example: </param>
         /// <param name="userId">Required parameter: Example: </param>
+        /// <param name="body">Required parameter: Example: </param>
         /// <return>Returns the UsersResponse response from the API call</return>
-        public async Task<UsersResponse> GetSimilarUsersAsync(SimilarUsersBody body, string type, string userId)
+        public async Task<UsersResponse> GetSimilarUsersAsync(string type, string userId, SimilarUsersBody body)
         {
             //the base uri for api requestss
             string _baseUri = Configuration.BaseUri;
@@ -290,13 +290,13 @@ namespace SuggestGrid.Controllers
         /// <summary>
         /// Get similar items to an item.
         /// </summary>
-        /// <param name="body">Required parameter: Example: </param>
-        /// <param name="itemId">Required parameter: Example: </param>
         /// <param name="type">Required parameter: Example: </param>
+        /// <param name="itemId">Required parameter: Example: </param>
+        /// <param name="body">Required parameter: Example: </param>
         /// <return>Returns the ItemsResponse response from the API call</return>
-        public ItemsResponse GetSimilarItems(SimilarItemsBody body, string itemId, string type)
+        public ItemsResponse GetSimilarItems(string type, string itemId, SimilarItemsBody body)
         {
-            Task<ItemsResponse> t = GetSimilarItemsAsync(body, itemId, type);
+            Task<ItemsResponse> t = GetSimilarItemsAsync(type, itemId, body);
             Task.WaitAll(t);
             return t.Result;
         }
@@ -304,11 +304,11 @@ namespace SuggestGrid.Controllers
         /// <summary>
         /// Get similar items to an item.
         /// </summary>
-        /// <param name="body">Required parameter: Example: </param>
-        /// <param name="itemId">Required parameter: Example: </param>
         /// <param name="type">Required parameter: Example: </param>
+        /// <param name="itemId">Required parameter: Example: </param>
+        /// <param name="body">Required parameter: Example: </param>
         /// <return>Returns the ItemsResponse response from the API call</return>
-        public async Task<ItemsResponse> GetSimilarItemsAsync(SimilarItemsBody body, string itemId, string type)
+        public async Task<ItemsResponse> GetSimilarItemsAsync(string type, string itemId, SimilarItemsBody body)
         {
             //the base uri for api requestss
             string _baseUri = Configuration.BaseUri;
@@ -320,8 +320,8 @@ namespace SuggestGrid.Controllers
             //process optional template parameters
             APIHelper.AppendUrlWithTemplateParameters(_queryBuilder, new Dictionary<string, object>()
             {
-                { "item_id", itemId },
-                { "type", type }
+                { "type", type },
+                { "item_id", itemId }
             });
 
 

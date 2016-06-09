@@ -1,7 +1,7 @@
 /*
  * SuggestGrid.PCL
  *
- * This file was automatically generated for SuggestGrid by APIMATIC v2.0 ( https://apimatic.io ) on 05/30/2016
+ * This file was automatically generated for SuggestGrid by APIMATIC v2.0 ( https://apimatic.io ) on 06/09/2016
  */
 using System;
 using System.Collections.Generic;
@@ -49,14 +49,103 @@ namespace SuggestGrid.Controllers
         #endregion Singleton Pattern
 
         /// <summary>
+        /// Returns actions count.
+        /// </summary>
+        /// <param name="type">Optional parameter: Example: </param>
+        /// <param name="userId">Optional parameter: Example: </param>
+        /// <param name="itemId">Optional parameter: Example: </param>
+        /// <param name="olderThan">Optional parameter: Delete all actions of a type older than the given timestamp or time. Valid times are 1s, 1m, 1h, 1d, 1M, 1y, or unix timestamp (like 1443798195).</param>
+        /// <return>Returns the MessageResponse response from the API call</return>
+        public MessageResponse GetActionsCount(
+                string type = null,
+                string userId = null,
+                string itemId = null,
+                string olderThan = null)
+        {
+            Task<MessageResponse> t = GetActionsCountAsync(type, userId, itemId, olderThan);
+            Task.WaitAll(t);
+            return t.Result;
+        }
+
+        /// <summary>
+        /// Returns actions count.
+        /// </summary>
+        /// <param name="type">Optional parameter: Example: </param>
+        /// <param name="userId">Optional parameter: Example: </param>
+        /// <param name="itemId">Optional parameter: Example: </param>
+        /// <param name="olderThan">Optional parameter: Delete all actions of a type older than the given timestamp or time. Valid times are 1s, 1m, 1h, 1d, 1M, 1y, or unix timestamp (like 1443798195).</param>
+        /// <return>Returns the MessageResponse response from the API call</return>
+        public async Task<MessageResponse> GetActionsCountAsync(
+                string type = null,
+                string userId = null,
+                string itemId = null,
+                string olderThan = null)
+        {
+            //the base uri for api requestss
+            string _baseUri = Configuration.BaseUri;
+
+            //prepare query string for API call
+            StringBuilder _queryBuilder = new StringBuilder(_baseUri);
+            _queryBuilder.Append("/v1/actions");
+
+            //process optional query parameters
+            APIHelper.AppendUrlWithQueryParameters(_queryBuilder, new Dictionary<string, object>()
+            {
+                { "type", type },
+                { "user_id", userId },
+                { "item_id", itemId },
+                { "older_than", olderThan }
+            });
+
+
+            //validate and preprocess url
+            string _queryUrl = APIHelper.CleanUrl(_queryBuilder);
+
+            //append request with appropriate headers and parameters
+            var _headers = new Dictionary<string,string>()
+            {
+                { "user-agent", "SUGGESTGRID" },
+                { "accept", "application/json" }
+            };
+
+            //prepare the API call request to fetch the response
+            HttpRequest _request = ClientInstance.Get(_queryUrl,_headers, Configuration.BasicAuthUserName, Configuration.BasicAuthPassword);
+
+            //invoke request and get response
+            HttpStringResponse _response = (HttpStringResponse) await ClientInstance.ExecuteAsStringAsync(_request);
+            HttpContext _context = new HttpContext(_request,_response);
+
+            //Error handling using HTTP status codes
+            if (_response.StatusCode == 400)
+                throw new APIException(@"Required `user_id` or `item_id` parameters are missing from the request body.", _context);
+
+            else if (_response.StatusCode == 429)
+                throw new APIException(@"Too many requests.", _context);
+
+            else if (_response.StatusCode == 500)
+                throw new APIException(@"Unexpected internal error.", _context);
+
+            //handle errors defined at the API level
+            base.ValidateResponse(_response, _context);
+
+            try
+            {
+                return APIHelper.JsonDeserialize<MessageResponse>(_response.Body);
+            }
+            catch (Exception _ex)
+            {
+                throw new APIException("Failed to parse the response: " + _ex.Message, _context);
+            }
+        }
+
+        /// <summary>
         /// Create an action.
         /// </summary>
         /// <param name="body">Required parameter: Example: </param>
-        /// <param name="type">Required parameter: Example: </param>
         /// <return>Returns the MessageResponse response from the API call</return>
-        public MessageResponse CreateAction(ActionModel body, string type)
+        public MessageResponse CreateAction(ActionModel body)
         {
-            Task<MessageResponse> t = CreateActionAsync(body, type);
+            Task<MessageResponse> t = CreateActionAsync(body);
             Task.WaitAll(t);
             return t.Result;
         }
@@ -65,22 +154,15 @@ namespace SuggestGrid.Controllers
         /// Create an action.
         /// </summary>
         /// <param name="body">Required parameter: Example: </param>
-        /// <param name="type">Required parameter: Example: </param>
         /// <return>Returns the MessageResponse response from the API call</return>
-        public async Task<MessageResponse> CreateActionAsync(ActionModel body, string type)
+        public async Task<MessageResponse> CreateActionAsync(ActionModel body)
         {
             //the base uri for api requestss
             string _baseUri = Configuration.BaseUri;
 
             //prepare query string for API call
             StringBuilder _queryBuilder = new StringBuilder(_baseUri);
-            _queryBuilder.Append("/v1/actions/{type}");
-
-            //process optional template parameters
-            APIHelper.AppendUrlWithTemplateParameters(_queryBuilder, new Dictionary<string, object>()
-            {
-                { "type", type }
-            });
+            _queryBuilder.Append("/v1/actions");
 
 
             //validate and preprocess url
@@ -111,6 +193,9 @@ namespace SuggestGrid.Controllers
             else if (_response.StatusCode == 402)
                 throw new APIException(@"Action limit exceeded.", _context);
 
+            else if (_response.StatusCode == 404)
+                throw new APIException(@"Type does not exists.", _context);
+
             else if (_response.StatusCode == 429)
                 throw new APIException(@"Too many requests.", _context);
 
@@ -133,12 +218,18 @@ namespace SuggestGrid.Controllers
         /// <summary>
         /// Deletes actions.
         /// </summary>
-        /// <param name="actionsQuery">Required parameter: Example: </param>
         /// <param name="type">Required parameter: Example: </param>
+        /// <param name="userId">Optional parameter: Example: </param>
+        /// <param name="itemId">Optional parameter: Example: </param>
+        /// <param name="olderThan">Optional parameter: Delete all actions of a type older than the given timestamp or time. Valid times are 1s, 1m, 1h, 1d, 1M, 1y, or unix timestamp (like 1443798195).</param>
         /// <return>Returns the MessageResponse response from the API call</return>
-        public MessageResponse DeleteActions(ActionsQuery actionsQuery, string type)
+        public MessageResponse DeleteActions(
+                string type,
+                string userId = null,
+                string itemId = null,
+                string olderThan = null)
         {
-            Task<MessageResponse> t = DeleteActionsAsync(actionsQuery, type);
+            Task<MessageResponse> t = DeleteActionsAsync(type, userId, itemId, olderThan);
             Task.WaitAll(t);
             return t.Result;
         }
@@ -146,22 +237,31 @@ namespace SuggestGrid.Controllers
         /// <summary>
         /// Deletes actions.
         /// </summary>
-        /// <param name="actionsQuery">Required parameter: Example: </param>
         /// <param name="type">Required parameter: Example: </param>
+        /// <param name="userId">Optional parameter: Example: </param>
+        /// <param name="itemId">Optional parameter: Example: </param>
+        /// <param name="olderThan">Optional parameter: Delete all actions of a type older than the given timestamp or time. Valid times are 1s, 1m, 1h, 1d, 1M, 1y, or unix timestamp (like 1443798195).</param>
         /// <return>Returns the MessageResponse response from the API call</return>
-        public async Task<MessageResponse> DeleteActionsAsync(ActionsQuery actionsQuery, string type)
+        public async Task<MessageResponse> DeleteActionsAsync(
+                string type,
+                string userId = null,
+                string itemId = null,
+                string olderThan = null)
         {
             //the base uri for api requestss
             string _baseUri = Configuration.BaseUri;
 
             //prepare query string for API call
             StringBuilder _queryBuilder = new StringBuilder(_baseUri);
-            _queryBuilder.Append("/v1/actions/{type}");
+            _queryBuilder.Append("/v1/actions");
 
-            //process optional template parameters
-            APIHelper.AppendUrlWithTemplateParameters(_queryBuilder, new Dictionary<string, object>()
+            //process optional query parameters
+            APIHelper.AppendUrlWithQueryParameters(_queryBuilder, new Dictionary<string, object>()
             {
-                { "type", type }
+                { "type", type },
+                { "user_id", userId },
+                { "item_id", itemId },
+                { "older_than", olderThan }
             });
 
 
@@ -172,15 +272,11 @@ namespace SuggestGrid.Controllers
             var _headers = new Dictionary<string,string>()
             {
                 { "user-agent", "SUGGESTGRID" },
-                { "accept", "application/json" },
-                { "content-type", "application/json; charset=utf-8" }
+                { "accept", "application/json" }
             };
 
-            //append body params
-            var _body = APIHelper.JsonSerialize(actionsQuery);
-
             //prepare the API call request to fetch the response
-            HttpRequest _request = ClientInstance.DeleteBody(_queryUrl, _headers, _body, Configuration.BasicAuthUserName, Configuration.BasicAuthPassword);
+            HttpRequest _request = ClientInstance.Delete(_queryUrl, _headers, null, Configuration.BasicAuthUserName, Configuration.BasicAuthPassword);
 
             //invoke request and get response
             HttpStringResponse _response = (HttpStringResponse) await ClientInstance.ExecuteAsStringAsync(_request);
@@ -189,6 +285,12 @@ namespace SuggestGrid.Controllers
             //Error handling using HTTP status codes
             if (_response.StatusCode == 400)
                 throw new APIException(@"Required `user_id` or `item_id` parameters are missing from the request body.", _context);
+
+            else if (_response.StatusCode == 404)
+                throw new APIException(@"Type does not exists.", _context);
+
+            else if (_response.StatusCode == 422)
+                throw new APIException(@"No query parameter (`user_id`, `item_id`, or `older_than`) is given.  In order to delete all actionsdelete the type.", _context);
 
             else if (_response.StatusCode == 429)
                 throw new APIException(@"Too many requests.", _context);
