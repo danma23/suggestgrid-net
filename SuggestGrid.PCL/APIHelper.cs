@@ -1,7 +1,7 @@
 /*
  * SuggestGrid.PCL
  *
- * This file was automatically generated for SuggestGrid by APIMATIC v2.0 ( https://apimatic.io ) on 06/09/2016
+ * This file was automatically generated for SuggestGrid by APIMATIC v2.0 ( https://apimatic.io ) on 06/16/2016
  */
 using System;
 using System.Collections;
@@ -15,6 +15,7 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Linq;
 using unirest_net.request;
 
 namespace SuggestGrid
@@ -22,7 +23,7 @@ namespace SuggestGrid
     public static class APIHelper
     {
         //DateTime format to use for parsing and converting dates
-        public static string DateTimeFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ";
+        public static string DateTimeFormat = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// JSON Serialization of a given object.
@@ -31,9 +32,9 @@ namespace SuggestGrid
         /// <returns>The serialized Json string representation of the given object</returns>
         public static string JsonSerialize(object obj)
         {
-            if(null == obj)
+            if (null == obj)
                 return null;
-                
+
             return JsonConvert.SerializeObject(obj, Formatting.None,
                  new IsoDateTimeConverter() { DateTimeFormat = DateTimeFormat });
         }
@@ -69,7 +70,7 @@ namespace SuggestGrid
                 return;
 
             //iterate and replace parameters
-            foreach(KeyValuePair<string, object> pair in parameters)
+            foreach (KeyValuePair<string, object> pair in parameters)
             {
                 string replaceValue = string.Empty;
 
@@ -101,13 +102,13 @@ namespace SuggestGrid
             //perform parameter validation
             if (null == queryBuilder)
                 throw new ArgumentNullException("queryBuilder");
-                
+
             if (null == parameters)
                 return;
 
             //does the query string already has parameters
             bool hasParams = (indexOf(queryBuilder, "?") > 0);
-            
+
             //iterate and append parameters
             foreach (KeyValuePair<string, object> pair in parameters)
             {
@@ -117,7 +118,7 @@ namespace SuggestGrid
 
                 //if already has parameters, use the &amp; to append new parameters
                 queryBuilder.Append((hasParams) ? '&' : '?');
-                
+
                 //indicate that now the query has some params
                 hasParams = true;
 
@@ -130,7 +131,7 @@ namespace SuggestGrid
                     paramKeyValPair = string.Format("{0}={1}", Uri.EscapeUriString(pair.Key), ((DateTime)pair.Value).ToString(DateTimeFormat));
                 else
                     paramKeyValPair = string.Format("{0}={1}", Uri.EscapeUriString(pair.Key), Uri.EscapeUriString(pair.Value.ToString()));
-                
+
                 //append keyval pair for current parameter
                 queryBuilder.Append(paramKeyValPair);
             }
@@ -161,8 +162,8 @@ namespace SuggestGrid
                         (matchCounter < strCheck.Length)
                         && (inputCounter + matchCounter < stringBuilder.Length)
                         && (stringBuilder[inputCounter + matchCounter] == strCheck[matchCounter]);
-                    matchCounter++); 
-                
+                    matchCounter++) ;
+
                 //verify the match
                 if (matchCounter == strCheck.Length)
                     return inputCounter;
@@ -217,7 +218,7 @@ namespace SuggestGrid
                     elemValue = ((DateTime)element).ToString(DateTimeFormat);
                 else
                     elemValue = element.ToString();
-                    
+
                 if (urlEncode)
                     elemValue = Uri.EscapeUriString(elemValue);
 
@@ -247,23 +248,38 @@ namespace SuggestGrid
             {
                 return keys;
             }
-            if (value is Stream)
+            else if (value is Stream)
             {
                 keys[name] = value;
                 return keys;
             }
-            if (value is IList)
+            else if (value is JObject)
+            {
+                var valueAccept = (value as Newtonsoft.Json.Linq.JObject);
+                foreach (var property in valueAccept.Properties())
+                {
+                    string pKey = property.Name;
+                    object pValue = property.Value;
+                    var fullSubName = name + '[' + pKey + ']';
+                    PrepareFormFieldsFromObject(fullSubName, pValue, keys);
+                }
+            }
+            else if (value is IList)
             {
                 int i = 0;
                 var enumerator = ((IEnumerable)value).GetEnumerator();
                 while (enumerator.MoveNext())
                 {
                     var subValue = enumerator.Current;
-                    if(subValue == null) continue;
+                    if (subValue == null) continue;
                     var fullSubName = name + '[' + i + ']';
                     PrepareFormFieldsFromObject(fullSubName, subValue, keys);
                     i++;
                 }
+            }
+            else if (value is JToken)
+            {
+                keys[name] = value.ToString();
             }
             else if (value is Enum)
             {
@@ -280,7 +296,7 @@ namespace SuggestGrid
                 {
                     //this enum has an associated helper, use that to load the value
                     MethodInfo enumHelperMethod = enumHelperType.GetMethod("ToValue", new[] { value.GetType() });
-                    if(enumHelperMethod != null)
+                    if (enumHelperMethod != null)
                         enumValue = enumHelperMethod.Invoke(null, new object[] { value });
                 }
 
@@ -288,7 +304,7 @@ namespace SuggestGrid
             }
             else if (value is IDictionary)
             {
-                var obj = (IDictionary) value;
+                var obj = (IDictionary)value;
                 foreach (var sName in obj.Keys)
                 {
                     var subName = sName.ToString();
@@ -307,10 +323,10 @@ namespace SuggestGrid
                 {
                     pInfo = enumerator.Current as PropertyInfo;
 
-                    var jsonProperty = (JsonPropertyAttribute) pInfo.GetCustomAttributes(t, true).FirstOrDefault();
+                    var jsonProperty = (JsonPropertyAttribute)pInfo.GetCustomAttributes(t, true).FirstOrDefault();
                     var subName = (jsonProperty != null) ? jsonProperty.PropertyName : pInfo.Name;
                     string fullSubName = string.IsNullOrWhiteSpace(name) ? subName : name + '[' + subName + ']';
-                    var subValue = pInfo.GetValue(value,null);
+                    var subValue = pInfo.GetValue(value, null);
                     PrepareFormFieldsFromObject(fullSubName, subValue, keys);
                 }
             }
@@ -330,7 +346,7 @@ namespace SuggestGrid
         /// </summary>
         /// <param name="dictionary"></param>
         /// <param name="dictionary2"></param>
-        public static void Add(this Dictionary<string, object> dictionary, Dictionary<string, object> dictionary2 )
+        public static void Add(this Dictionary<string, object> dictionary, Dictionary<string, object> dictionary2)
         {
             foreach (var kvp in dictionary2)
             {

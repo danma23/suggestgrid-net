@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.21005.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SuggestGrid.PCL", "SuggestGrid.PCL/SuggestGrid.PCL.csproj", "{d73e416f-a2a8-4a9c-8940-96fbd8ba3cbb}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SuggestGrid.PCL", "SuggestGrid.PCL/SuggestGrid.PCL.csproj", "{77749c35-50d9-47d6-a071-f188f48f8db2}"
 EndProject
 Global
     GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,10 +11,10 @@ Global
         Release|Any CPU = Release|Any CPU
     EndGlobalSection
     GlobalSection(ProjectConfigurationPlatforms) = postSolution
-        {d73e416f-a2a8-4a9c-8940-96fbd8ba3cbb}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-        {d73e416f-a2a8-4a9c-8940-96fbd8ba3cbb}.Debug|Any CPU.Build.0 = Debug|Any CPU
-        {d73e416f-a2a8-4a9c-8940-96fbd8ba3cbb}.Release|Any CPU.ActiveCfg = Release|Any CPU
-        {d73e416f-a2a8-4a9c-8940-96fbd8ba3cbb}.Release|Any CPU.Build.0 = Release|Any CPU
+        {77749c35-50d9-47d6-a071-f188f48f8db2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+        {77749c35-50d9-47d6-a071-f188f48f8db2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+        {77749c35-50d9-47d6-a071-f188f48f8db2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+        {77749c35-50d9-47d6-a071-f188f48f8db2}.Release|Any CPU.Build.0 = Release|Any CPU
     EndGlobalSection
     GlobalSection(SolutionProperties) = preSolution
         HideSolutionNode = FALSE

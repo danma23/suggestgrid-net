@@ -23,7 +23,7 @@ namespace SuggestGrid.Http.Client
         /// </summary>
         /// <param name="request">The http request in the current context</param>
         /// <param name="response">The http response in the current context</param>
-		public HttpContext(HttpRequest request, HttpResponse response)
+        public HttpContext(HttpRequest request, HttpResponse response)
         {
             Request = request;
             Response = response;
