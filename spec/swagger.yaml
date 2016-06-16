@@ -1,1 +1,1160 @@
+swagger: '2.0'
 
+info:
+  title: SuggestGrid
+  version: 0.1.15-SNAPSHOT
+  description: SuggestGrid is an recommendation and personalization service.
+  x-codegen-settings:
+    appendContentHeaders: true
+    generateAsyncCode: true
+    useMethodPrefix: false
+    useModelPostfix: false
+    useControllerPostfix: false
+    useEnumPostfix: false
+    useConstructorsForConfig: false
+    iOSUseAppInfoPlist: true
+    androidUseAppManifest: true
+    collectParameters: false
+    csharpDefaultNamespace: SuggestGrid
+    javaDefaultPackageName: com.suggestgrid
+    brandLabel: SuggestGrid
+    userAgent: SUGGESTGRID
+    projectName: SuggestGrid
+    enableAdditionalModelProperties: false
+    preserveParameterOrder: true
+
+host: localhost:9090
+
+schemes:
+  - http
+
+securityDefinitions:
+  basicAuth:
+    type: basic
+    description: HTTP Basic Authentication. Works over `HTTP`
+
+security:
+  - basicAuth: []
+
+consumes:
+  - application/json
+
+produces:
+  - application/json
+
+tags:
+  - name: action
+    description: Action operations
+  - name: metadata
+    description: Metadata operations
+  - name: recommendation
+    description: Recommnedation operations
+  - name: similarity
+    description: Similarity operations
+  - name: type
+    description: Type operations
+
+definitions:
+  Action:
+    type: object
+    description: |
+    properties:
+      user_id:
+        type: string
+        description: |
+      item_id:
+        type: string
+        description: |
+      rating:
+        type: number
+        description: |
+    required:
+      - user_id
+      - item_id
+  Filter:
+    type: object
+    description: |
+    additionalProperties:
+      type:
+        - string
+        - integer
+        - number
+        - boolean
+  Metadata:
+    type: object
+    description: |
+    properties:
+      id:
+        type: string
+        description: |
+    additionalProperties:
+      type:
+        - string
+        - integer
+        - number
+        - boolean
+  # Request Bodies
+  TypeRequestBody:
+    type: object
+    description: |
+    properties:
+      rating:
+        type: string
+        description:  |-
+          Could be "explicit" or "implicit"
+          The default is "implicit".
+  RecommendUsersBody:
+    type: object
+    description: |
+    properties:
+      type:
+        type: string
+        description: |
+      item_id:
+        type: string
+        description: |
+      item_ids:
+        type: array
+        description: |
+        items:
+          type: string
+      filter:
+        $ref: '#/definitions/Filter'
+      size:
+        type: integer
+        description: |
+      similar_user_id:
+        type: string
+        description: |
+      except:
+        type: array
+        items:
+          type: string
+        description: |
+          These ids will not be included in the response.
+    required:
+      - type
+  RecommendItemsBody:
+    type: object
+    description: |
+    properties:
+      type:
+        type: string
+        description: |
+      user_id:
+        type: string
+        description: |
+      user_ids:
+        type: array
+        description: |
+        items:
+          type: string
+      filter:
+        $ref: '#/definitions/Filter'
+      size:
+        type: integer
+        description: |
+      similar_item_id:
+        type: string
+        description: |
+      except:
+        type: array
+        items:
+          type: string
+        description: |
+          These ids will not be included in the response.
+    required:
+      - type
+  SimilarUsersBody:
+    type: object
+    description: |
+    properties:
+      type:
+        type: string
+        description: |
+      user_id:
+        type: string
+        description: |
+      size:
+        type: integer
+        description: |
+      except:
+        type: array
+        items:
+          type: string
+        description: |
+          These ids will not be included in the response.
+    required:
+      - type
+      - user_id
+  SimilarItemsBody:
+    type: object
+    description: |
+    properties:
+      type:
+        type: string
+        description: |
+      item_id:
+        type: string
+        description: |
+      size:
+        type: integer
+        description: |
+      except:
+        type: array
+        items:
+          type: string
+        description: |
+          These ids will not be included in the response.
+    required:
+      - type
+      - item_id
+  # Responses
+  MessageResponse:
+    type: object
+    description: |
+    properties:
+      message:
+        type: string
+        description: Message of the response.
+  ErrorResponse:
+    type: object
+    description: |
+    properties:
+      message:
+        type: string
+        description: Message of the response.
+      status:
+        type: integer
+        format: int32
+        description: Status code of the response. It is not 2XX.
+  GetTypesResponse:
+    type: object
+    description: |
+    properties:
+      types:
+        type: array
+        description: The list of type names
+        items:
+          type: string
+      status:
+        type: integer
+        format: int32
+        description: Status code of the response. It is not 2XX.
+  GetTypeResponse:
+    type: object
+    description: |
+    properties:
+      rating:
+        type: string
+        description: Either 'implicit' or 'explicit'
+  BulkSchemaErrorResponse:
+    type: object
+    description: |
+    properties:
+      message:
+        type: string
+        description: Message of the response.
+      errors:
+        type: array
+        items:
+          $ref: '#/definitions/SchemaErrorResponse'
+  SchemaErrorResponse:
+    type: object
+    description: Error response returned due to Schema validations.
+    properties:
+      message:
+        type: string
+        description: Message of the response.
+      value:
+        type: object
+        description: The cause of the error.
+      error:
+        type: object
+        description: Programatic description of the error.
+  MetadataInformationResponse:
+    type: object
+    description: |
+    properties:
+      count:
+        type: integer
+        format: int64
+        description: The number of users or items with metadata.
+  UsersResponse:
+    type: object
+    description: |
+    properties:
+      count:
+        type: integer
+        format: int64
+        description: The number of users in the response.
+      users:
+        type: array
+        items:
+          $ref: '#/definitions/Metadata'
+  ItemsResponse:
+    type: object
+    description: |
+    properties:
+      count:
+        type: integer
+        format: int64
+        description: The number of items in the response.
+      items:
+        type: array
+        items:
+          $ref: '#/definitions/Metadata'
+  UserSimilarityResponse:
+    type: object
+    description: |
+    properties:
+      similarity:
+        type: number
+        format: double
+        description: |
+  ItemSimilarityResponse:
+    type: object
+    description: |
+    properties:
+      similarity:
+        type: number
+        format: double
+        description: |
+
+paths:
+  # Action Paths
+  /v1/actions:
+    post:
+      operationId: CreateAction
+      summary: Create an action.
+      description: |
+      tags:
+        - action
+      parameters:
+        - name: body
+          in: body
+          description: |
+          required: true
+          schema:
+            $ref: '#/definitions/Action'
+      responses:
+        200:
+          description: Action created.
+          schema:
+            $ref: '#/definitions/MessageResponse'
+        400:
+          description: Required `user_id` or `item_id` parameters are missing from the request body.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        402:
+          description: Action limit exceeded.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        404:
+          description: Type does not exists.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        429:
+          description: Too many requests.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        default:
+          description: Unexpected internal error.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+    get:
+      parameters:
+        - name: type
+          in: query
+          description: |
+          required: false
+          type: string
+          format: id
+        - name: user_id
+          in: query
+          description: |
+          required: false
+          type: string
+          format: id
+        - name: item_id
+          in: query
+          description: |
+          required: false
+          type: string
+          format: id
+        - name: older_than
+          in: query
+          description: |
+                       Delete all actions of a type older than the given timestamp or time.
+                       Valid times are 1s, 1m, 1h, 1d, 1M, 1y, or unix timestamp (like 1443798195).
+          required: false
+          type: string
+          format: id
+      operationId: GetActionsCount
+      summary: Returns actions count.
+      description: |
+                   If `type` is not provided, it'll return the total number of actions.
+                   Otherwise when `type` is provided
+                   * If both `user_id` and `item_id` are supplied it returns the count of the corresponding actions.
+                   * If only `user_id` is provided, it returns the count of all the action of the given user.
+                   * If only `user_id` is provided, it returns the count of all the action of the given item.
+                   * If only `older_than` is provided, it returns the count of actions older than the given timestamp.
+                   * If a few of these parameters are provided, it returns the count of the intersection of these parameters.
+                   * If none of these are provided, it returns the count of the whole type.
+      tags:
+        - action
+      responses:
+        200:
+          description: Successfully deleted actions.
+          schema:
+            $ref: '#/definitions/MessageResponse'
+        400:
+          description: Required `user_id` or `item_id` parameters are missing from the request body.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        429:
+          description: Too many requests.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        default:
+          description: Unexpected internal error.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+    delete:
+      parameters:
+        - name: type
+          in: query
+          description: |
+          required: true
+          type: string
+          format: id
+        - name: user_id
+          in: query
+          description: |
+          required: false
+          type: string
+          format: id
+        - name: item_id
+          in: query
+          description: |
+          required: false
+          type: string
+          format: id
+        - name: older_than
+          in: query
+          description: |
+                       Delete all actions of a type older than the given timestamp or time.
+                       Valid times are 1s, 1m, 1h, 1d, 1M, 1y, or unix timestamp (like 1443798195).
+          required: false
+          type: string
+          format: id
+      operationId: DeleteActions
+      summary: Deletes actions.
+      description: |
+                   `type` must be provided.
+                   If both `user_id` and `item_id` are supplied it deletes the corresponding actions.
+                   If only `user_id` is provided, it deletes all the action of the given user.
+                   If only `user_id` is provided, it deletes all the action of the given item.
+                   If only `older_than` is provided, it deletes actions older than the given timestamp.
+                   If a few of these parameters are provided, it deletes the intersection of these parameters.
+                   If none of these are provided, then returns an error.
+      tags:
+        - action
+      responses:
+        200:
+          description: Successfully deleted actions.
+          schema:
+            $ref: '#/definitions/MessageResponse'
+        400:
+          description: Required `user_id` or `item_id` parameters are missing from the request body.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        404:
+          description: Type does not exists.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        422:
+          description: No query parameter (`user_id`, `item_id`, or `older_than`) is given.  In order to delete all actionsdelete the type.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        429:
+          description: Too many requests.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        default:
+          description: Unexpected internal error.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+  /v1/actions/{type}/_bulk:
+    parameters:
+      - name: type
+        in: path
+        description: |
+        required: true
+        type: string
+        format: id
+    post:
+      operationId: PostBulkActions
+      summary: Post bulk actions.
+      description: |
+      tags:
+        - action
+      parameters:
+        - name: body
+          in: body
+          description: |
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: Bulk action request executed.
+          schema:
+            $ref: '#/definitions/MessageResponse'
+        402:
+          description: Action limit exceeded.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        429:
+          description: Too many requests.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        default:
+          description: Unexpected internal error.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+  # Metadata Paths
+  /v1/users/{user_id}:
+    parameters:
+      - name: user_id
+        in: path
+        description: The user_id to delete its metadata.
+        required: true
+        type: string
+        format: id
+    put:
+         operationId: CreateAUserMetadata
+         summary: Create a user metadata.
+         description: |
+         tags:
+           - metadata
+         parameters:
+           - name: metadata
+             in: body
+             description: |
+             required: true
+             schema:
+               $ref: '#/definitions/Metadata'
+         responses:
+           200:
+             description: Posted a user metadata.
+             schema:
+               $ref: '#/definitions/MessageResponse'
+           400:
+             description: Metadata is invalid.
+             schema:
+               $ref: '#/definitions/SchemaErrorResponse'
+           429:
+             description: Too many requests.
+             schema:
+               $ref: '#/definitions/ErrorResponse'
+           default:
+             description: Unexpected internal error.
+             schema:
+               $ref: '#/definitions/ErrorResponse'
+    delete:
+      operationId: DeleteAUserMetadata
+      summary: Delete a user metadata.
+      description: Delete a user metadata with the given user_id.
+      tags:
+        - metadata
+      responses:
+        200:
+          description: Deleted a user metadata.
+          schema:
+            $ref: '#/definitions/MessageResponse'
+        429:
+          description: Too many requests.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        default:
+          description: Unexpected internal error.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+  /v1/users:
+    get:
+      operationId: GetUsers
+      summary: Get information about users.
+      description: |
+      tags:
+        - metadata
+      responses:
+        200:
+          description: Information on users.
+          schema:
+            $ref: '#/definitions/MetadataInformationResponse'
+        429:
+          description: Too many requests.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        default:
+          description: Unexpected internal error.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+    delete:
+      operationId: DeleteAllUserMetadata
+      summary: Delete all user metadata.
+      description: |
+      tags:
+        - metadata
+      responses:
+        200:
+          description: Deleted all user metadata.
+          schema:
+            $ref: '#/definitions/MessageResponse'
+        429:
+          description: Too many requests.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        default:
+          description: Unexpected internal error.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+  /v1/items/{item_id}:
+    parameters:
+    - name: item_id
+      in: path
+      description: The item_id to delete its metadata.
+      required: true
+      type: string
+      format: id
+    put:
+      operationId: CreateAnItemMetadata
+      summary: Create an item metadata.
+      description: |
+      tags:
+        - metadata
+      parameters:
+        - name: body
+          in: body
+          description: |
+          required: true
+          schema:
+            $ref: '#/definitions/Metadata'
+      responses:
+        200:
+          description: Posted an item metadata.
+          schema:
+            $ref: '#/definitions/MessageResponse'
+        400:
+          description: Metadata is invalid.
+          schema:
+            $ref: '#/definitions/SchemaErrorResponse'
+        429:
+          description: Too many requests.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        default:
+          description: Unexpected internal error.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+    delete:
+      operationId: DeleteAnItemMetadata
+      summary: Delete an item metadata.
+      description: Delete an item metadata with the given item_id.
+      tags:
+        - metadata
+      responses:
+        200:
+          description: Deleted an item metadata.
+          schema:
+            $ref: '#/definitions/MessageResponse'
+        429:
+          description: Too many requests.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        default:
+          description: Unexpected internal error.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+  /v1/items:
+    get:
+      operationId: GetItems
+      summary: Get information about items.
+      description: |
+      tags:
+        - metadata
+      responses:
+        200:
+          description: Information on items.
+          schema:
+            $ref: '#/definitions/MetadataInformationResponse'
+        429:
+          description: Too many requests.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        default:
+          description: Unexpected internal error.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+    delete:
+      operationId: DeleteAllItemMetadata
+      summary: Delete all item metadata.
+      description: |
+      tags:
+        - metadata
+      responses:
+        200:
+          description: Deleted all item metadata.
+          schema:
+            $ref: '#/definitions/MessageResponse'
+        429:
+          description: Too many requests.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        default:
+          description: Unexpected internal error.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+  /v1/users/_bulk:
+    post:
+      operationId: PostBulkUserMetadata
+      summary: Post bulk user metadata.
+      description: |
+      tags:
+        - metadata
+      parameters:
+        - name: body
+          in: body
+          description: |
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: Bulk user metadata request executed.
+          schema:
+            $ref: '#/definitions/MessageResponse'
+        207:
+          description: Some metadata is not uploaded successfully.
+          schema:
+            $ref: '#/definitions/BulkSchemaErrorResponse'
+        429:
+          description: Too many requests.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        default:
+          description: Unexpected internal error.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+  /v1/items/_bulk:
+    post:
+      operationId: PostBulkItemMetadata
+      summary: Post bulk item metadata.
+      description: |
+      tags:
+        - metadata
+      parameters:
+        - name: body
+          in: body
+          description: |
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: Bulk item metadata request executed.
+          schema:
+            $ref: '#/definitions/MessageResponse'
+        207:
+          description: Some metadata is not uploaded successfully.
+          schema:
+            $ref: '#/definitions/BulkSchemaErrorResponse'
+        429:
+          description: Too many requests.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        default:
+          description: Unexpected internal error.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+  # Recommendation Paths
+  /v1/recommend/users:
+    parameters:
+      - name: body
+        in: body
+        description: |
+        required: true
+        schema:
+          $ref: '#/definitions/RecommendUsersBody'
+    post:
+      operationId: RecommendUsers
+      description: Recommend users for the given body parameters.
+      tags:
+       - recommendation
+      responses:
+        200:
+          description: |
+          schema:
+            $ref: '#/definitions/UsersResponse'
+        400:
+          description: Request body is missing.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        422:
+          description: No `item_id` or `item_ids` are provided.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        429:
+          description: Too many requests.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        555:
+          description: Recommendation model is not found for the given type.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        default:
+          description: Unexpected internal error.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+  /v1/recommend/items:
+    parameters:
+      - name: body
+        in: body
+        description: |
+        required: true
+        schema:
+          $ref: '#/definitions/RecommendItemsBody'
+    post:
+      operationId: RecommendItems
+      description: Recommend items for the given body parameters.
+      tags:
+       - recommendation
+      responses:
+        200:
+          description: |
+          schema:
+            $ref: '#/definitions/ItemsResponse'
+        400:
+          description: Request body is missing.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        422:
+          description: No `user_id` or `user_ids` are provided.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        429:
+          description: Too many requests.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        555:
+          description: Recommendation model is not found for the given type.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        default:
+          description: Unexpected internal error.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+  # Similarity Paths
+  /v1/{type}/_similarity/_users/{user_id1}/{user_id2}:
+    parameters:
+      - name: type
+        in: path
+        description: |
+        required: true
+        type: string
+        format: id
+      - name: user_id1
+        in: path
+        description: |
+        required: true
+        type: string
+        format: id
+      - name: user_id2
+        in: path
+        description: |
+        required: true
+        type: string
+        format: id
+    get:
+      operationId: GetUserSimilarity
+      summary: Get similarity of two users.
+      description: |
+      tags:
+        - similarity
+      responses:
+        200:
+          description: |
+          schema:
+            $ref: '#/definitions/UserSimilarityResponse'
+        429:
+          description: Too many requests.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        555:
+          description: Recommendation model is not found for the given type.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        default:
+          description: Unexpected internal error.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+  /v1/{type}/_similarity/_items/{item_id1}/{item_id2}:
+    parameters:
+      - name: type
+        in: path
+        description: |
+        required: true
+        type: string
+        format: id
+      - name: item_id1
+        in: path
+        description: |
+        required: true
+        type: string
+        format: id
+      - name: item_id2
+        in: path
+        description: |
+        required: true
+        type: string
+        format: id
+    get:
+      operationId: GetItemSimilarity
+      summary: Get similarity of two items.
+      description: |
+      tags:
+        - similarity
+      responses:
+        200:
+          description: |
+          schema:
+            $ref: '#/definitions/ItemSimilarityResponse'
+        429:
+          description: Too many requests.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        555:
+          description: Recommendation model is not found for the given type.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        default:
+          description: Unexpected internal error.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+  /v1/{type}/_similar/_users/{user_id}:
+    parameters:
+      - name: type
+        in: path
+        description: |
+        required: true
+        type: string
+        format: id
+      - name: user_id
+        in: path
+        description: |
+        required: true
+        type: string
+        format: id
+      - name: body
+        in: body
+        description: |
+        required: true
+        schema:
+          $ref: '#/definitions/SimilarUsersBody'
+    post:
+      operationId: GetSimilarUsers
+      summary: Get similar users to a user.
+      description: |
+      tags:
+        - similarity
+      responses:
+        200:
+          description: |
+          schema:
+            $ref: '#/definitions/UsersResponse'
+        429:
+          description: Too many requests.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        555:
+          description: Recommendation model is not found for the given type.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        default:
+          description: Unexpected internal error.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+  /v1/{type}/_similar/_items/{item_id}:
+    parameters:
+      - name: type
+        in: path
+        description: |
+        required: true
+        type: string
+        format: id
+      - name: item_id
+        in: path
+        description: |
+        required: true
+        type: string
+        format: id
+      - name: body
+        in: body
+        description: |
+        required: true
+        schema:
+          $ref: '#/definitions/SimilarItemsBody'
+    post:
+      operationId: GetSimilarItems
+      summary: Get similar items to an item.
+      description: |
+      tags:
+        - similarity
+      responses:
+        200:
+          description: |
+          schema:
+            $ref: '#/definitions/ItemsResponse'
+        429:
+          description: Too many requests.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        500:
+          description: |
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        default:
+          description: Unexpected internal error.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+  # Type Paths
+  /v1/types:
+    get:
+      operationId: GetAllTypes
+      summary: Get all types
+      description: Get all type names in an array named types.
+      tags:
+        - type
+      responses:
+        200:
+          description: Get types response.
+          schema:
+            $ref: '#/definitions/GetTypesResponse'
+        429:
+          description: Too many requests.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        default:
+          description: Unexpected internal error.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+    delete:
+      operationId: DeleteAllTypes
+      summary: Delete all types
+      description: Deletes ALL types and ALL actions.
+      tags:
+        - type
+      responses:
+        200:
+          description: Get types response.
+          schema:
+            $ref: '#/definitions/GetTypesResponse'
+        429:
+          description: Too many requests.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        default:
+          description: Unexpected internal error.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+  /v1/types/{type}:
+    parameters:
+      - name: type
+        in: path
+        description: |
+        required: true
+        type: string
+        format: id
+    get:
+      operationId: GetType
+      summary: Get properties of a type
+      description: |
+                   Get the options of a type. Has rating parameter.
+      tags:
+        - type
+      responses:
+        200:
+          description: Get type response.
+          schema:
+            $ref: '#/definitions/GetTypeResponse'
+        429:
+          description: Too many requests.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        default:
+          description: Unexpected internal error.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+    put:
+      operationId: CreateType
+      summary: Create a new type.
+      description: |
+                   Creates a new implicit or explicit type.
+      tags:
+        - type
+      parameters:
+        - name: body
+          in: body
+          description: Optional body for explicit parameter.
+          required: false
+          schema:
+            $ref: '#/definitions/TypeRequestBody'
+      responses:
+        200:
+          description: Type is created.
+          schema:
+            $ref: '#/definitions/MessageResponse'
+        402:
+          description: Type limit reached.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        409:
+          description: Type already exists.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        422:
+          description: Rating type is not `implicit` or `explicit`.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        429:
+          description: Too many requests.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        default:
+          description: Unexpected internal error.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+    delete:
+      operationId: DeleteType
+      summary: Deletes a type ALL of its actions.
+      description: |
+      tags:
+        - type
+      responses:
+        200:
+          description: Type is deleted
+          schema:
+            $ref: '#/definitions/MessageResponse'
+        404:
+          description: Type does not exists.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        429:
+          description: Too many requests.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        default:
+          description: Unexpected internal error.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
