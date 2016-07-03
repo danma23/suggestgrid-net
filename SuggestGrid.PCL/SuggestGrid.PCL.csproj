@@ -2,7 +2,7 @@
 <!--
  - SuggestGrid.PCL
  -
- - This file was automatically generated for SuggestGrid by APIMATIC v2.0 ( https://apimatic.io ) on 06/16/2016
+ - This file was automatically generated for SuggestGrid by APIMATIC v2.0 ( https://apimatic.io ) on 07/03/2016
 -->
 <Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
@@ -10,7 +10,7 @@
     <AssemblyName>SuggestGrid.PCL</AssemblyName>
     <OutputType>Library</OutputType>
     <OutputPath>bin/DEBUG/</OutputPath>
-    <ProjectGuid>{77749c35-50d9-47d6-a071-f188f48f8db2}</ProjectGuid>
+    <ProjectGuid>{cd56a3e2-ce14-47a1-8a8c-f31d65d4c5af}</ProjectGuid>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
     <MinimumVisualStudioVersion>11.0</MinimumVisualStudioVersion>
     <NuGetPackageImportStamp>ee2bb91c</NuGetPackageImportStamp>
@@ -48,7 +48,7 @@
       <HintPath>..\packages\Microsoft.Bcl.Async.1.0.168\lib\portable-net40+sl4+win8+wp71+wpa81\Microsoft.Threading.Tasks.Extensions.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json">
-      <HintPath>..\packages\Newtonsoft.Json.8.0.3\lib\portable-net40+sl5+wp80+win8+wpa81\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\portable-net40+sl5+wp80+win8+wpa81\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System.IO">
       <HintPath>..\packages\Microsoft.Bcl.1.1.10\lib\portable-net40+win8+wp8+wpa81\System.IO.dll</HintPath>
@@ -69,7 +69,7 @@
       <HintPath>..\packages\Microsoft.Bcl.1.1.10\lib\portable-net40+win8+wp8+wpa81\System.Threading.Tasks.dll</HintPath>
     </Reference>
     <Reference Include="unirest-net">
-      <HintPath>..\packages\Unirest-APIMATIC.1.0.1.22\lib\portable-net40+sl5+wp80+win8+wpa81\unirest-net.dll</HintPath>
+      <HintPath>..\packages\Unirest-APIMATIC.1.0.1.23\lib\portable-net40+sl5+wp80+win8+wpa81\unirest-net.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

@@ -1,7 +1,7 @@
 /*
  * SuggestGrid.PCL
  *
- * This file was automatically generated for SuggestGrid by APIMATIC v2.0 ( https://apimatic.io ) on 06/16/2016
+ * This file was automatically generated for SuggestGrid by APIMATIC v2.0 ( https://apimatic.io ) on 07/03/2016
  */
 using System;
 using System.Collections.Generic;
@@ -49,25 +49,25 @@ namespace SuggestGrid.Controllers
         #endregion Singleton Pattern
 
         /// <summary>
-        /// Create a user metadata.
+        /// Posts a user metadata.
         /// </summary>
         /// <param name="metadata">Required parameter: Example: </param>
         /// <param name="userId">Required parameter: The user_id to delete its metadata.</param>
         /// <return>Returns the MessageResponse response from the API call</return>
-        public MessageResponse CreateAUserMetadata(Metadata<string,object> metadata, string userId)
+        public MessageResponse PostUserMetadata(Metadata<string,object> metadata, string userId)
         {
-            Task<MessageResponse> t = CreateAUserMetadataAsync(metadata, userId);
+            Task<MessageResponse> t = PostUserMetadataAsync(metadata, userId);
             Task.WaitAll(t);
             return t.Result;
         }
 
         /// <summary>
-        /// Create a user metadata.
+        /// Posts a user metadata.
         /// </summary>
         /// <param name="metadata">Required parameter: Example: </param>
         /// <param name="userId">Required parameter: The user_id to delete its metadata.</param>
         /// <return>Returns the MessageResponse response from the API call</return>
-        public async Task<MessageResponse> CreateAUserMetadataAsync(Metadata<string,object> metadata, string userId)
+        public async Task<MessageResponse> PostUserMetadataAsync(Metadata<string,object> metadata, string userId)
         {
             //the base uri for api requestss
             string _baseUri = Configuration.BaseUri;
@@ -322,25 +322,25 @@ namespace SuggestGrid.Controllers
         }
 
         /// <summary>
-        /// Create an item metadata.
+        /// Posts an item metadata.
         /// </summary>
         /// <param name="body">Required parameter: Example: </param>
         /// <param name="itemId">Required parameter: The item_id to delete its metadata.</param>
         /// <return>Returns the MessageResponse response from the API call</return>
-        public MessageResponse CreateAnItemMetadata(Metadata<string,object> body, string itemId)
+        public MessageResponse PostItemMetadata(Metadata<string,object> body, string itemId)
         {
-            Task<MessageResponse> t = CreateAnItemMetadataAsync(body, itemId);
+            Task<MessageResponse> t = PostItemMetadataAsync(body, itemId);
             Task.WaitAll(t);
             return t.Result;
         }
 
         /// <summary>
-        /// Create an item metadata.
+        /// Posts an item metadata.
         /// </summary>
         /// <param name="body">Required parameter: Example: </param>
         /// <param name="itemId">Required parameter: The item_id to delete its metadata.</param>
         /// <return>Returns the MessageResponse response from the API call</return>
-        public async Task<MessageResponse> CreateAnItemMetadataAsync(Metadata<string,object> body, string itemId)
+        public async Task<MessageResponse> PostItemMetadataAsync(Metadata<string,object> body, string itemId)
         {
             //the base uri for api requestss
             string _baseUri = Configuration.BaseUri;

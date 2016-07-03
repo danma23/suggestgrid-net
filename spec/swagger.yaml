@@ -325,8 +325,8 @@ paths:
   # Action Paths
   /v1/actions:
     post:
-      operationId: CreateAction
-      summary: Create an action.
+      operationId: PostAction
+      summary: Post an action.
       description: |
       tags:
         - action
@@ -339,7 +339,7 @@ paths:
             $ref: '#/definitions/Action'
       responses:
         200:
-          description: Action created.
+          description: Action posted.
           schema:
             $ref: '#/definitions/MessageResponse'
         400:
@@ -533,8 +533,8 @@ paths:
         type: string
         format: id
     put:
-         operationId: CreateAUserMetadata
-         summary: Create a user metadata.
+         operationId: PostUserMetadata
+         summary: Posts a user metadata.
          description: |
          tags:
            - metadata
@@ -629,8 +629,8 @@ paths:
       type: string
       format: id
     put:
-      operationId: CreateAnItemMetadata
-      summary: Create an item metadata.
+      operationId: PostItemMetadata
+      summary: Posts an item metadata.
       description: |
       tags:
         - metadata

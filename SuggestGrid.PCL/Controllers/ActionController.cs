@@ -1,7 +1,7 @@
 /*
  * SuggestGrid.PCL
  *
- * This file was automatically generated for SuggestGrid by APIMATIC v2.0 ( https://apimatic.io ) on 06/16/2016
+ * This file was automatically generated for SuggestGrid by APIMATIC v2.0 ( https://apimatic.io ) on 07/03/2016
  */
 using System;
 using System.Collections.Generic;
@@ -139,23 +139,23 @@ namespace SuggestGrid.Controllers
         }
 
         /// <summary>
-        /// Create an action.
+        /// Post an action.
         /// </summary>
         /// <param name="body">Required parameter: Example: </param>
         /// <return>Returns the MessageResponse response from the API call</return>
-        public MessageResponse CreateAction(ActionModel body)
+        public MessageResponse PostAction(ActionModel body)
         {
-            Task<MessageResponse> t = CreateActionAsync(body);
+            Task<MessageResponse> t = PostActionAsync(body);
             Task.WaitAll(t);
             return t.Result;
         }
 
         /// <summary>
-        /// Create an action.
+        /// Post an action.
         /// </summary>
         /// <param name="body">Required parameter: Example: </param>
         /// <return>Returns the MessageResponse response from the API call</return>
-        public async Task<MessageResponse> CreateActionAsync(ActionModel body)
+        public async Task<MessageResponse> PostActionAsync(ActionModel body)
         {
             //the base uri for api requestss
             string _baseUri = Configuration.BaseUri;
