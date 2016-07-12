@@ -50,12 +50,11 @@ namespace SuggestGrid.Controllers
         /// <summary>
         /// Get Similar Users
         /// </summary>
-        /// <param name="type">Required parameter: The type for similar users method.</param>
         /// <param name="body">Required parameter: Similar users method parameters.</param>
         /// <return>Returns the UsersResponse response from the API call</return>
-        public UsersResponse GetSimilarUsers(string type, GetSimilarUsersBody body)
+        public UsersResponse GetSimilarUsers(GetSimilarUsersBody body)
         {
-            Task<UsersResponse> t = GetSimilarUsersAsync(type, body);
+            Task<UsersResponse> t = GetSimilarUsersAsync(body);
             Task.WaitAll(t);
             return t.Result;
         }
@@ -63,23 +62,16 @@ namespace SuggestGrid.Controllers
         /// <summary>
         /// Get Similar Users
         /// </summary>
-        /// <param name="type">Required parameter: The type for similar users method.</param>
         /// <param name="body">Required parameter: Similar users method parameters.</param>
         /// <return>Returns the UsersResponse response from the API call</return>
-        public async Task<UsersResponse> GetSimilarUsersAsync(string type, GetSimilarUsersBody body)
+        public async Task<UsersResponse> GetSimilarUsersAsync(GetSimilarUsersBody body)
         {
             //the base uri for api requestss
             string _baseUri = Configuration.BaseUri;
 
             //prepare query string for API call
             StringBuilder _queryBuilder = new StringBuilder(_baseUri);
-            _queryBuilder.Append("/v1/{type}/similar/users");
-
-            //process optional template parameters
-            APIHelper.AppendUrlWithTemplateParameters(_queryBuilder, new Dictionary<string, object>()
-            {
-                { "type", type }
-            });
+            _queryBuilder.Append("/v1/similar/users");
 
 
             //validate and preprocess url
@@ -135,12 +127,11 @@ namespace SuggestGrid.Controllers
         /// <summary>
         /// Get Similar Items
         /// </summary>
-        /// <param name="type">Required parameter: The type for similar items method.</param>
         /// <param name="body">Required parameter: Similar items method parameter.</param>
         /// <return>Returns the ItemsResponse response from the API call</return>
-        public ItemsResponse GetSimilarItems(string type, GetSimilarItemsBody body)
+        public ItemsResponse GetSimilarItems(GetSimilarItemsBody body)
         {
-            Task<ItemsResponse> t = GetSimilarItemsAsync(type, body);
+            Task<ItemsResponse> t = GetSimilarItemsAsync(body);
             Task.WaitAll(t);
             return t.Result;
         }
@@ -148,23 +139,16 @@ namespace SuggestGrid.Controllers
         /// <summary>
         /// Get Similar Items
         /// </summary>
-        /// <param name="type">Required parameter: The type for similar items method.</param>
         /// <param name="body">Required parameter: Similar items method parameter.</param>
         /// <return>Returns the ItemsResponse response from the API call</return>
-        public async Task<ItemsResponse> GetSimilarItemsAsync(string type, GetSimilarItemsBody body)
+        public async Task<ItemsResponse> GetSimilarItemsAsync(GetSimilarItemsBody body)
         {
             //the base uri for api requestss
             string _baseUri = Configuration.BaseUri;
 
             //prepare query string for API call
             StringBuilder _queryBuilder = new StringBuilder(_baseUri);
-            _queryBuilder.Append("/v1/{type}/similar/items");
-
-            //process optional template parameters
-            APIHelper.AppendUrlWithTemplateParameters(_queryBuilder, new Dictionary<string, object>()
-            {
-                { "type", type }
-            });
+            _queryBuilder.Append("/v1/similar/items");
 
 
             //validate and preprocess url

@@ -1064,7 +1064,7 @@ paths:
           schema:
             $ref: '#/definitions/ErrorResponse'
   # Similarity Paths
-  /v1/{type}/similar/users:
+  /v1/similar/users:
     post:
       tags:
         - similarity
@@ -1072,12 +1072,6 @@ paths:
       summary: Get Similar Users
       description: Get similar users to a user.
       parameters:
-        - name: type
-          in: path
-          description: The type for similar users method.
-          required: true
-          type: string
-          format: id
         - name: body
           in: body
           description: Similar users method parameters.
@@ -1109,7 +1103,7 @@ paths:
           description: Unexpected internal error.
           schema:
             $ref: '#/definitions/ErrorResponse'
-  /v1/{type}/similar/items:
+  /v1/similar/items:
     post:
       tags:
         - similarity
@@ -1117,12 +1111,6 @@ paths:
       summary: Get Similar Items
       description: Get similar items to an item.
       parameters:
-        - name: type
-          in: path
-          description: The type for similar items method.
-          required: true
-          type: string
-          format: id
         - name: body
           in: body
           description: Similar items method parameter.
