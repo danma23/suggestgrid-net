@@ -1,7 +1,7 @@
 /*
  * SuggestGrid.PCL
  *
- * This file was automatically generated for SuggestGrid by APIMATIC v2.0 ( https://apimatic.io ) on 07/03/2016
+ * This file was automatically generated for SuggestGrid by APIMATIC v2.0 ( https://apimatic.io ) on 07/12/2016
  */
 using System;
 using System.Collections.Generic;
@@ -48,23 +48,23 @@ namespace SuggestGrid.Controllers
         #endregion Singleton Pattern
 
         /// <summary>
-        /// Recommend users for the given body parameters.
+        /// Get Recommended Users
         /// </summary>
-        /// <param name="body">Required parameter: Example: </param>
+        /// <param name="body">Required parameter: Parameters for recommend users method.</param>
         /// <return>Returns the UsersResponse response from the API call</return>
-        public UsersResponse RecommendUsers(RecommendUsersBody body)
+        public UsersResponse GetRecommendedUsers(GetRecommendedUsersBody body)
         {
-            Task<UsersResponse> t = RecommendUsersAsync(body);
+            Task<UsersResponse> t = GetRecommendedUsersAsync(body);
             Task.WaitAll(t);
             return t.Result;
         }
 
         /// <summary>
-        /// Recommend users for the given body parameters.
+        /// Get Recommended Users
         /// </summary>
-        /// <param name="body">Required parameter: Example: </param>
+        /// <param name="body">Required parameter: Parameters for recommend users method.</param>
         /// <return>Returns the UsersResponse response from the API call</return>
-        public async Task<UsersResponse> RecommendUsersAsync(RecommendUsersBody body)
+        public async Task<UsersResponse> GetRecommendedUsersAsync(GetRecommendedUsersBody body)
         {
             //the base uri for api requestss
             string _baseUri = Configuration.BaseUri;
@@ -125,23 +125,23 @@ namespace SuggestGrid.Controllers
         }
 
         /// <summary>
-        /// Recommend items for the given body parameters.
+        /// Get Recommended Items
         /// </summary>
-        /// <param name="body">Required parameter: Example: </param>
+        /// <param name="body">Required parameter: Parameters for recommend items method.</param>
         /// <return>Returns the ItemsResponse response from the API call</return>
-        public ItemsResponse RecommendItems(RecommendItemsBody body)
+        public ItemsResponse GetRecommendedItems(GetRecommendedItemsBody body)
         {
-            Task<ItemsResponse> t = RecommendItemsAsync(body);
+            Task<ItemsResponse> t = GetRecommendedItemsAsync(body);
             Task.WaitAll(t);
             return t.Result;
         }
 
         /// <summary>
-        /// Recommend items for the given body parameters.
+        /// Get Recommended Items
         /// </summary>
-        /// <param name="body">Required parameter: Example: </param>
+        /// <param name="body">Required parameter: Parameters for recommend items method.</param>
         /// <return>Returns the ItemsResponse response from the API call</return>
-        public async Task<ItemsResponse> RecommendItemsAsync(RecommendItemsBody body)
+        public async Task<ItemsResponse> GetRecommendedItemsAsync(GetRecommendedItemsBody body)
         {
             //the base uri for api requestss
             string _baseUri = Configuration.BaseUri;

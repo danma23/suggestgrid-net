@@ -1,7 +1,7 @@
 /*
  * SuggestGrid.PCL
  *
- * This file was automatically generated for SuggestGrid by APIMATIC v2.0 ( https://apimatic.io ) on 07/03/2016
+ * This file was automatically generated for SuggestGrid by APIMATIC v2.0 ( https://apimatic.io ) on 07/12/2016
  */
 using System;
 using System.IO;
@@ -17,16 +17,13 @@ using SuggestGrid;
 
 namespace SuggestGrid.Models
 {
-    public class RecommendItemsBody : INotifyPropertyChanged 
+    public class GetSimilarItemsBody : INotifyPropertyChanged 
     {
         // These fields hold the values for the public properties.
         private List<string> except;
-        private object filter;
-        private string similarItemId;
+        private string itemId;
         private int? size;
         private string type;
-        private string userId;
-        private List<string> userIds;
 
         /// <summary>
         /// These ids will not be included in the response.
@@ -48,34 +45,17 @@ namespace SuggestGrid.Models
         /// <summary>
         /// TODO: Write general description for this method
         /// </summary>
-        [JsonProperty("filter")]
-        public object Filter 
+        [JsonProperty("item_id")]
+        public string ItemId 
         { 
             get 
             {
-                return this.filter; 
+                return this.itemId; 
             } 
             set 
             {
-                this.filter = value;
-                onPropertyChanged("Filter");
-            }
-        }
-
-        /// <summary>
-        /// TODO: Write general description for this method
-        /// </summary>
-        [JsonProperty("similar_item_id")]
-        public string SimilarItemId 
-        { 
-            get 
-            {
-                return this.similarItemId; 
-            } 
-            set 
-            {
-                this.similarItemId = value;
-                onPropertyChanged("SimilarItemId");
+                this.itemId = value;
+                onPropertyChanged("ItemId");
             }
         }
 
@@ -110,40 +90,6 @@ namespace SuggestGrid.Models
             {
                 this.type = value;
                 onPropertyChanged("Type");
-            }
-        }
-
-        /// <summary>
-        /// TODO: Write general description for this method
-        /// </summary>
-        [JsonProperty("user_id")]
-        public string UserId 
-        { 
-            get 
-            {
-                return this.userId; 
-            } 
-            set 
-            {
-                this.userId = value;
-                onPropertyChanged("UserId");
-            }
-        }
-
-        /// <summary>
-        /// TODO: Write general description for this method
-        /// </summary>
-        [JsonProperty("user_ids")]
-        public List<string> UserIds 
-        { 
-            get 
-            {
-                return this.userIds; 
-            } 
-            set 
-            {
-                this.userIds = value;
-                onPropertyChanged("UserIds");
             }
         }
 

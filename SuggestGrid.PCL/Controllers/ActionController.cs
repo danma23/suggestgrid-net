@@ -1,7 +1,7 @@
 /*
  * SuggestGrid.PCL
  *
- * This file was automatically generated for SuggestGrid by APIMATIC v2.0 ( https://apimatic.io ) on 07/03/2016
+ * This file was automatically generated for SuggestGrid by APIMATIC v2.0 ( https://apimatic.io ) on 07/12/2016
  */
 using System;
 using System.Collections.Generic;
@@ -49,33 +49,33 @@ namespace SuggestGrid.Controllers
         #endregion Singleton Pattern
 
         /// <summary>
-        /// Returns actions count.
+        /// Get Actions
         /// </summary>
-        /// <param name="type">Optional parameter: Example: </param>
-        /// <param name="userId">Optional parameter: Example: </param>
-        /// <param name="itemId">Optional parameter: Example: </param>
+        /// <param name="type">Optional parameter: The type of the actions. Will return count for all actions if not provided.</param>
+        /// <param name="userId">Optional parameter: The user id of the actions. Wll return count for all user ids if not provided.</param>
+        /// <param name="itemId">Optional parameter: The item id of the actions. Wll return count for all item ids if not provided.</param>
         /// <param name="olderThan">Optional parameter: Delete all actions of a type older than the given timestamp or time. Valid times are 1s, 1m, 1h, 1d, 1M, 1y, or unix timestamp (like 1443798195).</param>
         /// <return>Returns the MessageResponse response from the API call</return>
-        public MessageResponse GetActionsCount(
+        public MessageResponse GetActions(
                 string type = null,
                 string userId = null,
                 string itemId = null,
                 string olderThan = null)
         {
-            Task<MessageResponse> t = GetActionsCountAsync(type, userId, itemId, olderThan);
+            Task<MessageResponse> t = GetActionsAsync(type, userId, itemId, olderThan);
             Task.WaitAll(t);
             return t.Result;
         }
 
         /// <summary>
-        /// Returns actions count.
+        /// Get Actions
         /// </summary>
-        /// <param name="type">Optional parameter: Example: </param>
-        /// <param name="userId">Optional parameter: Example: </param>
-        /// <param name="itemId">Optional parameter: Example: </param>
+        /// <param name="type">Optional parameter: The type of the actions. Will return count for all actions if not provided.</param>
+        /// <param name="userId">Optional parameter: The user id of the actions. Wll return count for all user ids if not provided.</param>
+        /// <param name="itemId">Optional parameter: The item id of the actions. Wll return count for all item ids if not provided.</param>
         /// <param name="olderThan">Optional parameter: Delete all actions of a type older than the given timestamp or time. Valid times are 1s, 1m, 1h, 1d, 1M, 1y, or unix timestamp (like 1443798195).</param>
         /// <return>Returns the MessageResponse response from the API call</return>
-        public async Task<MessageResponse> GetActionsCountAsync(
+        public async Task<MessageResponse> GetActionsAsync(
                 string type = null,
                 string userId = null,
                 string itemId = null,
@@ -139,9 +139,9 @@ namespace SuggestGrid.Controllers
         }
 
         /// <summary>
-        /// Post an action.
+        /// Post an Action
         /// </summary>
-        /// <param name="body">Required parameter: Example: </param>
+        /// <param name="body">Required parameter: The action to be posted.</param>
         /// <return>Returns the MessageResponse response from the API call</return>
         public MessageResponse PostAction(ActionModel body)
         {
@@ -151,9 +151,9 @@ namespace SuggestGrid.Controllers
         }
 
         /// <summary>
-        /// Post an action.
+        /// Post an Action
         /// </summary>
-        /// <param name="body">Required parameter: Example: </param>
+        /// <param name="body">Required parameter: The action to be posted.</param>
         /// <return>Returns the MessageResponse response from the API call</return>
         public async Task<MessageResponse> PostActionAsync(ActionModel body)
         {
@@ -216,15 +216,15 @@ namespace SuggestGrid.Controllers
         }
 
         /// <summary>
-        /// Deletes actions.
+        /// Delete Actions
         /// </summary>
-        /// <param name="type">Required parameter: Example: </param>
-        /// <param name="userId">Optional parameter: Example: </param>
-        /// <param name="itemId">Optional parameter: Example: </param>
+        /// <param name="type">Optional parameter: The type of the actions. Will return count for all actions if not provided.</param>
+        /// <param name="userId">Optional parameter: The user id of the actions. Wll return count for all user ids if not provided.</param>
+        /// <param name="itemId">Optional parameter: The item id of the actions. Wll return count for all item ids if not provided.</param>
         /// <param name="olderThan">Optional parameter: Delete all actions of a type older than the given timestamp or time. Valid times are 1s, 1m, 1h, 1d, 1M, 1y, or unix timestamp (like 1443798195).</param>
         /// <return>Returns the MessageResponse response from the API call</return>
         public MessageResponse DeleteActions(
-                string type,
+                string type = null,
                 string userId = null,
                 string itemId = null,
                 string olderThan = null)
@@ -235,15 +235,15 @@ namespace SuggestGrid.Controllers
         }
 
         /// <summary>
-        /// Deletes actions.
+        /// Delete Actions
         /// </summary>
-        /// <param name="type">Required parameter: Example: </param>
-        /// <param name="userId">Optional parameter: Example: </param>
-        /// <param name="itemId">Optional parameter: Example: </param>
+        /// <param name="type">Optional parameter: The type of the actions. Will return count for all actions if not provided.</param>
+        /// <param name="userId">Optional parameter: The user id of the actions. Wll return count for all user ids if not provided.</param>
+        /// <param name="itemId">Optional parameter: The item id of the actions. Wll return count for all item ids if not provided.</param>
         /// <param name="olderThan">Optional parameter: Delete all actions of a type older than the given timestamp or time. Valid times are 1s, 1m, 1h, 1d, 1M, 1y, or unix timestamp (like 1443798195).</param>
         /// <return>Returns the MessageResponse response from the API call</return>
         public async Task<MessageResponse> DeleteActionsAsync(
-                string type,
+                string type = null,
                 string userId = null,
                 string itemId = null,
                 string olderThan = null)
@@ -312,12 +312,11 @@ namespace SuggestGrid.Controllers
         }
 
         /// <summary>
-        /// Post bulk actions.
+        /// Post Bulk Actions
         /// </summary>
-        /// <param name="body">Required parameter: Example: </param>
-        /// <param name="type">Required parameter: Example: </param>
+        /// <param name="body">Required parameter: A number of action objects separated with newlines. Note that this is not a valid JSON data structure. The body size is limited to 10 thousand lines.</param>
         /// <return>Returns the MessageResponse response from the API call</return>
-        public MessageResponse PostBulkActions(List<ActionModel> actions, string type)
+        public MessageResponse PostBulkActions(List<ActionModel> actions)
         {
             StringBuilder sb = new StringBuilder();
             foreach (ActionModel action in actions)
@@ -325,31 +324,24 @@ namespace SuggestGrid.Controllers
                 sb.Append(JsonConvert.SerializeObject(action, Formatting.None));
                 sb.Append(Environment.NewLine);
             }
-            Task<MessageResponse> t = PostBulkActionsAsync(sb.ToString(), type);
+            Task<MessageResponse> t = PostBulkActionsAsync(sb.ToString());
             Task.WaitAll(t);
             return t.Result;
         }
 
         /// <summary>
-        /// Post bulk actions.
+        /// Post Bulk Actions
         /// </summary>
-        /// <param name="body">Required parameter: Example: </param>
-        /// <param name="type">Required parameter: Example: </param>
+        /// <param name="body">Required parameter: A number of action objects separated with newlines. Note that this is not a valid JSON data structure. The body size is limited to 10 thousand lines.</param>
         /// <return>Returns the MessageResponse response from the API call</return>
-        private async Task<MessageResponse> PostBulkActionsAsync(string body, string type)
+        private async Task<MessageResponse> PostBulkActionsAsync(string body)
         {
             //the base uri for api requestss
             string _baseUri = Configuration.BaseUri;
 
             //prepare query string for API call
             StringBuilder _queryBuilder = new StringBuilder(_baseUri);
-            _queryBuilder.Append("/v1/actions/{type}/_bulk");
-
-            //process optional template parameters
-            APIHelper.AppendUrlWithTemplateParameters(_queryBuilder, new Dictionary<string, object>()
-            {
-                { "type", type }
-            });
+            _queryBuilder.Append("/v1/actions/_bulk");
 
 
             //validate and preprocess url

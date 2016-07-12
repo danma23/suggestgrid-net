@@ -1,7 +1,7 @@
 /*
  * SuggestGrid.PCL
  *
- * This file was automatically generated for SuggestGrid by APIMATIC v2.0 ( https://apimatic.io ) on 07/03/2016
+ * This file was automatically generated for SuggestGrid by APIMATIC v2.0 ( https://apimatic.io ) on 07/12/2016
  */
 using System;
 using System.Collections.Generic;
@@ -48,7 +48,7 @@ namespace SuggestGrid.Controllers
         #endregion Singleton Pattern
 
         /// <summary>
-        /// Get all types
+        /// Get All Types
         /// </summary>
         /// <return>Returns the GetTypesResponse response from the API call</return>
         public GetTypesResponse GetAllTypes()
@@ -59,7 +59,7 @@ namespace SuggestGrid.Controllers
         }
 
         /// <summary>
-        /// Get all types
+        /// Get All Types
         /// </summary>
         /// <return>Returns the GetTypesResponse response from the API call</return>
         public async Task<GetTypesResponse> GetAllTypesAsync()
@@ -110,7 +110,7 @@ namespace SuggestGrid.Controllers
         }
 
         /// <summary>
-        /// Delete all types
+        /// Delete All Types
         /// </summary>
         /// <return>Returns the GetTypesResponse response from the API call</return>
         public GetTypesResponse DeleteAllTypes()
@@ -121,7 +121,7 @@ namespace SuggestGrid.Controllers
         }
 
         /// <summary>
-        /// Delete all types
+        /// Delete All Types
         /// </summary>
         /// <return>Returns the GetTypesResponse response from the API call</return>
         public async Task<GetTypesResponse> DeleteAllTypesAsync()
@@ -172,9 +172,9 @@ namespace SuggestGrid.Controllers
         }
 
         /// <summary>
-        /// Get properties of a type
+        /// Get Properties of a Type
         /// </summary>
-        /// <param name="type">Required parameter: Example: </param>
+        /// <param name="type">Required parameter: The name of the type to get properties.</param>
         /// <return>Returns the GetTypeResponse response from the API call</return>
         public GetTypeResponse GetType(string type)
         {
@@ -184,9 +184,9 @@ namespace SuggestGrid.Controllers
         }
 
         /// <summary>
-        /// Get properties of a type
+        /// Get Properties of a Type
         /// </summary>
-        /// <param name="type">Required parameter: Example: </param>
+        /// <param name="type">Required parameter: The name of the type to get properties.</param>
         /// <return>Returns the GetTypeResponse response from the API call</return>
         public async Task<GetTypeResponse> GetTypeAsync(string type)
         {
@@ -242,10 +242,10 @@ namespace SuggestGrid.Controllers
         }
 
         /// <summary>
-        /// Create a new type.
+        /// Create a New Type
         /// </summary>
-        /// <param name="type">Required parameter: Example: </param>
-        /// <param name="body">Optional parameter: Optional body for explicit parameter.</param>
+        /// <param name="type">Required parameter: The name of the type to be created.</param>
+        /// <param name="body">Optional parameter: Optional body for the rating parameter.</param>
         /// <return>Returns the MessageResponse response from the API call</return>
         public MessageResponse CreateType(string type, TypeRequestBody body = null)
         {
@@ -255,10 +255,10 @@ namespace SuggestGrid.Controllers
         }
 
         /// <summary>
-        /// Create a new type.
+        /// Create a New Type
         /// </summary>
-        /// <param name="type">Required parameter: Example: </param>
-        /// <param name="body">Optional parameter: Optional body for explicit parameter.</param>
+        /// <param name="type">Required parameter: The name of the type to be created.</param>
+        /// <param name="body">Optional parameter: Optional body for the rating parameter.</param>
         /// <return>Returns the MessageResponse response from the API call</return>
         public async Task<MessageResponse> CreateTypeAsync(string type, TypeRequestBody body = null)
         {
@@ -327,9 +327,9 @@ namespace SuggestGrid.Controllers
         }
 
         /// <summary>
-        /// Deletes a type ALL of its actions.
+        /// Delete a Type
         /// </summary>
-        /// <param name="type">Required parameter: Example: </param>
+        /// <param name="type">Required parameter: The name of the type to be deleted.</param>
         /// <return>Returns the MessageResponse response from the API call</return>
         public MessageResponse DeleteType(string type)
         {
@@ -339,9 +339,9 @@ namespace SuggestGrid.Controllers
         }
 
         /// <summary>
-        /// Deletes a type ALL of its actions.
+        /// Delete a Type
         /// </summary>
-        /// <param name="type">Required parameter: Example: </param>
+        /// <param name="type">Required parameter: The name of the type to be deleted.</param>
         /// <return>Returns the MessageResponse response from the API call</return>
         public async Task<MessageResponse> DeleteTypeAsync(string type)
         {

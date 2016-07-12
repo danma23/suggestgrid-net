@@ -1,7 +1,7 @@
 /*
  * SuggestGrid.PCL
  *
- * This file was automatically generated for SuggestGrid by APIMATIC v2.0 ( https://apimatic.io ) on 07/03/2016
+ * This file was automatically generated for SuggestGrid by APIMATIC v2.0 ( https://apimatic.io ) on 07/12/2016
  */
 using System;
 using System.Collections.Generic;
@@ -49,25 +49,25 @@ namespace SuggestGrid.Controllers
         #endregion Singleton Pattern
 
         /// <summary>
-        /// Posts a user metadata.
+        /// Post a User
         /// </summary>
-        /// <param name="metadata">Required parameter: Example: </param>
-        /// <param name="userId">Required parameter: The user_id to delete its metadata.</param>
+        /// <param name="userId">Required parameter: The user id to associate with the metadata.</param>
+        /// <param name="metadata">Required parameter: The metadata to be saved. Metadata format has its restrictions.</param>
         /// <return>Returns the MessageResponse response from the API call</return>
-        public MessageResponse PostUserMetadata(Metadata<string,object> metadata, string userId)
+        public MessageResponse PostUser(string userId, Metadata<string,object> metadata)
         {
-            Task<MessageResponse> t = PostUserMetadataAsync(metadata, userId);
+            Task<MessageResponse> t = PostUserAsync(userId, metadata);
             Task.WaitAll(t);
             return t.Result;
         }
 
         /// <summary>
-        /// Posts a user metadata.
+        /// Post a User
         /// </summary>
-        /// <param name="metadata">Required parameter: Example: </param>
-        /// <param name="userId">Required parameter: The user_id to delete its metadata.</param>
+        /// <param name="userId">Required parameter: The user id to associate with the metadata.</param>
+        /// <param name="metadata">Required parameter: The metadata to be saved. Metadata format has its restrictions.</param>
         /// <return>Returns the MessageResponse response from the API call</return>
-        public async Task<MessageResponse> PostUserMetadataAsync(Metadata<string,object> metadata, string userId)
+        public async Task<MessageResponse> PostUserAsync(string userId, Metadata<string,object> metadata)
         {
             //the base uri for api requestss
             string _baseUri = Configuration.BaseUri;
@@ -128,23 +128,23 @@ namespace SuggestGrid.Controllers
         }
 
         /// <summary>
-        /// Delete a user metadata.
+        /// Delete a User
         /// </summary>
         /// <param name="userId">Required parameter: The user_id to delete its metadata.</param>
         /// <return>Returns the MessageResponse response from the API call</return>
-        public MessageResponse DeleteAUserMetadata(string userId)
+        public MessageResponse DeleteUser(string userId)
         {
-            Task<MessageResponse> t = DeleteAUserMetadataAsync(userId);
+            Task<MessageResponse> t = DeleteUserAsync(userId);
             Task.WaitAll(t);
             return t.Result;
         }
 
         /// <summary>
-        /// Delete a user metadata.
+        /// Delete a User
         /// </summary>
         /// <param name="userId">Required parameter: The user_id to delete its metadata.</param>
         /// <return>Returns the MessageResponse response from the API call</return>
-        public async Task<MessageResponse> DeleteAUserMetadataAsync(string userId)
+        public async Task<MessageResponse> DeleteUserAsync(string userId)
         {
             //the base uri for api requestss
             string _baseUri = Configuration.BaseUri;
@@ -198,7 +198,7 @@ namespace SuggestGrid.Controllers
         }
 
         /// <summary>
-        /// Get information about users.
+        /// Get Users
         /// </summary>
         /// <return>Returns the MetadataInformationResponse response from the API call</return>
         public MetadataInformationResponse GetUsers()
@@ -209,7 +209,7 @@ namespace SuggestGrid.Controllers
         }
 
         /// <summary>
-        /// Get information about users.
+        /// Get Users
         /// </summary>
         /// <return>Returns the MetadataInformationResponse response from the API call</return>
         public async Task<MetadataInformationResponse> GetUsersAsync()
@@ -260,21 +260,21 @@ namespace SuggestGrid.Controllers
         }
 
         /// <summary>
-        /// Delete all user metadata.
+        /// Delete All Users
         /// </summary>
         /// <return>Returns the MessageResponse response from the API call</return>
-        public MessageResponse DeleteAllUserMetadata()
+        public MessageResponse DeleteAllUsers()
         {
-            Task<MessageResponse> t = DeleteAllUserMetadataAsync();
+            Task<MessageResponse> t = DeleteAllUsersAsync();
             Task.WaitAll(t);
             return t.Result;
         }
 
         /// <summary>
-        /// Delete all user metadata.
+        /// Delete All Users
         /// </summary>
         /// <return>Returns the MessageResponse response from the API call</return>
-        public async Task<MessageResponse> DeleteAllUserMetadataAsync()
+        public async Task<MessageResponse> DeleteAllUsersAsync()
         {
             //the base uri for api requestss
             string _baseUri = Configuration.BaseUri;
@@ -322,25 +322,25 @@ namespace SuggestGrid.Controllers
         }
 
         /// <summary>
-        /// Posts an item metadata.
+        /// Post an Item
         /// </summary>
-        /// <param name="body">Required parameter: Example: </param>
-        /// <param name="itemId">Required parameter: The item_id to delete its metadata.</param>
+        /// <param name="itemId">Required parameter: The item id to associate with the metadata.</param>
+        /// <param name="body">Required parameter: The metadata to be saved. Metadata format has its restrictions.</param>
         /// <return>Returns the MessageResponse response from the API call</return>
-        public MessageResponse PostItemMetadata(Metadata<string,object> body, string itemId)
+        public MessageResponse PostItem(string itemId, Metadata<string,object> body)
         {
-            Task<MessageResponse> t = PostItemMetadataAsync(body, itemId);
+            Task<MessageResponse> t = PostItemAsync(itemId, body);
             Task.WaitAll(t);
             return t.Result;
         }
 
         /// <summary>
-        /// Posts an item metadata.
+        /// Post an Item
         /// </summary>
-        /// <param name="body">Required parameter: Example: </param>
-        /// <param name="itemId">Required parameter: The item_id to delete its metadata.</param>
+        /// <param name="itemId">Required parameter: The item id to associate with the metadata.</param>
+        /// <param name="body">Required parameter: The metadata to be saved. Metadata format has its restrictions.</param>
         /// <return>Returns the MessageResponse response from the API call</return>
-        public async Task<MessageResponse> PostItemMetadataAsync(Metadata<string,object> body, string itemId)
+        public async Task<MessageResponse> PostItemAsync(string itemId, Metadata<string,object> body)
         {
             //the base uri for api requestss
             string _baseUri = Configuration.BaseUri;
@@ -401,23 +401,23 @@ namespace SuggestGrid.Controllers
         }
 
         /// <summary>
-        /// Delete an item metadata.
+        /// Delete an Item
         /// </summary>
         /// <param name="itemId">Required parameter: The item_id to delete its metadata.</param>
         /// <return>Returns the MessageResponse response from the API call</return>
-        public MessageResponse DeleteAnItemMetadata(string itemId)
+        public MessageResponse DeleteItem(string itemId)
         {
-            Task<MessageResponse> t = DeleteAnItemMetadataAsync(itemId);
+            Task<MessageResponse> t = DeleteItemAsync(itemId);
             Task.WaitAll(t);
             return t.Result;
         }
 
         /// <summary>
-        /// Delete an item metadata.
+        /// Delete an Item
         /// </summary>
         /// <param name="itemId">Required parameter: The item_id to delete its metadata.</param>
         /// <return>Returns the MessageResponse response from the API call</return>
-        public async Task<MessageResponse> DeleteAnItemMetadataAsync(string itemId)
+        public async Task<MessageResponse> DeleteItemAsync(string itemId)
         {
             //the base uri for api requestss
             string _baseUri = Configuration.BaseUri;
@@ -471,7 +471,7 @@ namespace SuggestGrid.Controllers
         }
 
         /// <summary>
-        /// Get information about items.
+        /// Get Items
         /// </summary>
         /// <return>Returns the MetadataInformationResponse response from the API call</return>
         public MetadataInformationResponse GetItems()
@@ -482,7 +482,7 @@ namespace SuggestGrid.Controllers
         }
 
         /// <summary>
-        /// Get information about items.
+        /// Get Items
         /// </summary>
         /// <return>Returns the MetadataInformationResponse response from the API call</return>
         public async Task<MetadataInformationResponse> GetItemsAsync()
@@ -533,21 +533,21 @@ namespace SuggestGrid.Controllers
         }
 
         /// <summary>
-        /// Delete all item metadata.
+        /// Delete All Items
         /// </summary>
         /// <return>Returns the MessageResponse response from the API call</return>
-        public MessageResponse DeleteAllItemMetadata()
+        public MessageResponse DeleteAllItems()
         {
-            Task<MessageResponse> t = DeleteAllItemMetadataAsync();
+            Task<MessageResponse> t = DeleteAllItemsAsync();
             Task.WaitAll(t);
             return t.Result;
         }
 
         /// <summary>
-        /// Delete all item metadata.
+        /// Delete All Items
         /// </summary>
         /// <return>Returns the MessageResponse response from the API call</return>
-        public async Task<MessageResponse> DeleteAllItemMetadataAsync()
+        public async Task<MessageResponse> DeleteAllItemsAsync()
         {
             //the base uri for api requestss
             string _baseUri = Configuration.BaseUri;
@@ -595,11 +595,11 @@ namespace SuggestGrid.Controllers
         }
 
         /// <summary>
-        /// Post bulk user metadata.
+        /// Post Bulk Users
         /// </summary>
-        /// <param name="body">Required parameter: Example: </param>
+        /// <param name="body">Required parameter: A number of user metadata objects separated with newlines. Each user metadata object must have its id field. Note that this is not a valid JSON data structure. The body size is limited to 10 thousand lines.</param>
         /// <return>Returns the MessageResponse response from the API call</return>
-        public MessageResponse PostBulkUserMetadata(List<Metadata<string, object>> metas)
+        public MessageResponse PostBulkUsers(List<Metadata<string, object>> metas)
         {
             StringBuilder sb = new StringBuilder();
             foreach (Metadata<string, object> meta in metas)
@@ -607,17 +607,17 @@ namespace SuggestGrid.Controllers
                 sb.Append(JsonConvert.SerializeObject(meta, Formatting.None));
                 sb.Append(Environment.NewLine);
             }
-            Task<MessageResponse> t = PostBulkUserMetadataAsync(sb.ToString());
+            Task<MessageResponse> t = PostBulkUsersAsync(sb.ToString());
             Task.WaitAll(t);
             return t.Result;
         }
 
         /// <summary>
-        /// Post bulk user metadata.
+        /// Post Bulk Users
         /// </summary>
-        /// <param name="body">Required parameter: Example: </param>
+        /// <param name="body">Required parameter: A number of user metadata objects separated with newlines. Each user metadata object must have its id field. Note that this is not a valid JSON data structure. The body size is limited to 10 thousand lines.</param>
         /// <return>Returns the MessageResponse response from the API call</return>
-        private async Task<MessageResponse> PostBulkUserMetadataAsync(string body)
+        private async Task<MessageResponse> PostBulkUsersAsync(string body)
         {
             //the base uri for api requestss
             string _baseUri = Configuration.BaseUri;
@@ -671,11 +671,11 @@ namespace SuggestGrid.Controllers
         }
 
         /// <summary>
-        /// Post bulk item metadata.
+        /// Post Bulk Items
         /// </summary>
-        /// <param name="body">Required parameter: Example: </param>
+        /// <param name="body">Required parameter: A number of item metadata objects separated with newlines. Each item metadata object must have its id field. Note that this is not a valid JSON data structure. The body size is limited to 10 thousand lines.</param>
         /// <return>Returns the MessageResponse response from the API call</return>
-        public MessageResponse PostBulkItemMetadata(List<Metadata<string, object>> metas)
+        public MessageResponse PostBulkItems(List<Metadata<string, object>> metas)
         {
             StringBuilder sb = new StringBuilder();
             foreach (Metadata<string, object> meta in metas)
@@ -683,17 +683,17 @@ namespace SuggestGrid.Controllers
                 sb.Append(JsonConvert.SerializeObject(meta, Formatting.None));
                 sb.Append(Environment.NewLine);
             }
-            Task<MessageResponse> t = PostBulkItemMetadataAsync(sb.ToString());
+            Task<MessageResponse> t = PostBulkItemsAsync(sb.ToString());
             Task.WaitAll(t);
             return t.Result;
         }
 
         /// <summary>
-        /// Post bulk item metadata.
+        /// Post Bulk Items
         /// </summary>
-        /// <param name="body">Required parameter: Example: </param>
+        /// <param name="body">Required parameter: A number of item metadata objects separated with newlines. Each item metadata object must have its id field. Note that this is not a valid JSON data structure. The body size is limited to 10 thousand lines.</param>
         /// <return>Returns the MessageResponse response from the API call</return>
-        private async Task<MessageResponse> PostBulkItemMetadataAsync(string body)
+        private async Task<MessageResponse> PostBulkItemsAsync(string body)
         {
             //the base uri for api requestss
             string _baseUri = Configuration.BaseUri;

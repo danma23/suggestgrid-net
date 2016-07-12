@@ -1,7 +1,7 @@
 /*
  * SuggestGrid.PCL
  *
- * This file was automatically generated for SuggestGrid by APIMATIC v2.0 ( https://apimatic.io ) on 07/03/2016
+ * This file was automatically generated for SuggestGrid by APIMATIC v2.0 ( https://apimatic.io ) on 07/12/2016
  */
 using System;
 using System.IO;
@@ -17,11 +17,14 @@ using SuggestGrid;
 
 namespace SuggestGrid.Models
 {
-    public class SimilarItemsBody : INotifyPropertyChanged 
+    public class GetRecommendedUsersBody : INotifyPropertyChanged 
     {
         // These fields hold the values for the public properties.
         private List<string> except;
+        private object filter;
         private string itemId;
+        private List<string> itemIds;
+        private string similarUserId;
         private int? size;
         private string type;
 
@@ -45,6 +48,23 @@ namespace SuggestGrid.Models
         /// <summary>
         /// TODO: Write general description for this method
         /// </summary>
+        [JsonProperty("filter")]
+        public object Filter 
+        { 
+            get 
+            {
+                return this.filter; 
+            } 
+            set 
+            {
+                this.filter = value;
+                onPropertyChanged("Filter");
+            }
+        }
+
+        /// <summary>
+        /// TODO: Write general description for this method
+        /// </summary>
         [JsonProperty("item_id")]
         public string ItemId 
         { 
@@ -56,6 +76,40 @@ namespace SuggestGrid.Models
             {
                 this.itemId = value;
                 onPropertyChanged("ItemId");
+            }
+        }
+
+        /// <summary>
+        /// TODO: Write general description for this method
+        /// </summary>
+        [JsonProperty("item_ids")]
+        public List<string> ItemIds 
+        { 
+            get 
+            {
+                return this.itemIds; 
+            } 
+            set 
+            {
+                this.itemIds = value;
+                onPropertyChanged("ItemIds");
+            }
+        }
+
+        /// <summary>
+        /// TODO: Write general description for this method
+        /// </summary>
+        [JsonProperty("similar_user_id")]
+        public string SimilarUserId 
+        { 
+            get 
+            {
+                return this.similarUserId; 
+            } 
+            set 
+            {
+                this.similarUserId = value;
+                onPropertyChanged("SimilarUserId");
             }
         }
 

@@ -1,7 +1,7 @@
 /*
  * SuggestGrid.PCL
  *
- * This file was automatically generated for SuggestGrid by APIMATIC v2.0 ( https://apimatic.io ) on 07/03/2016
+ * This file was automatically generated for SuggestGrid by APIMATIC v2.0 ( https://apimatic.io ) on 07/12/2016
  */
 using System;
 using SuggestGrid.Controllers;
@@ -11,6 +11,17 @@ namespace SuggestGrid
 {
     public partial class SuggestGridClient
     {
+
+        /// <summary>
+        /// Singleton access to Type controller
+        /// </summary>
+        public TypeController Type
+        {
+            get
+            {
+                return TypeController.Instance;
+            }
+        }
 
         /// <summary>
         /// Singleton access to Action controller
@@ -53,17 +64,6 @@ namespace SuggestGrid
             get
             {
                 return SimilarityController.Instance;
-            }
-        }
-
-        /// <summary>
-        /// Singleton access to Type controller
-        /// </summary>
-        public TypeController Type
-        {
-            get
-            {
-                return TypeController.Instance;
             }
         }
 

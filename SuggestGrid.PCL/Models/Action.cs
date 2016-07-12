@@ -1,7 +1,7 @@
 /*
  * SuggestGrid.PCL
  *
- * This file was automatically generated for SuggestGrid by APIMATIC v2.0 ( https://apimatic.io ) on 07/03/2016
+ * This file was automatically generated for SuggestGrid by APIMATIC v2.0 ( https://apimatic.io ) on 07/12/2016
  */
 using System;
 using System.IO;
@@ -22,10 +22,11 @@ namespace SuggestGrid.Models
         // These fields hold the values for the public properties.
         private string itemId;
         private double? rating;
+        private string type;
         private string userId;
 
         /// <summary>
-        /// TODO: Write general description for this method
+        /// The item id of the item the action is performed on.
         /// </summary>
         [JsonProperty("item_id")]
         public string ItemId
@@ -42,7 +43,7 @@ namespace SuggestGrid.Models
         }
 
         /// <summary>
-        /// TODO: Write general description for this method
+        /// The optional rating, if the type is explicit.
         /// </summary>
         [JsonProperty("rating")]
         public double? Rating
@@ -59,7 +60,24 @@ namespace SuggestGrid.Models
         }
 
         /// <summary>
-        /// TODO: Write general description for this method
+        /// The type that the action belongs to.
+        /// </summary>
+        [JsonProperty("type")]
+        public string Type
+        {
+            get
+            {
+                return this.type;
+            }
+            set
+            {
+                this.type = value;
+                onPropertyChanged("Type");
+            }
+        }
+
+        /// <summary>
+        /// The user id of the performer of the action.
         /// </summary>
         [JsonProperty("user_id")]
         public string UserId

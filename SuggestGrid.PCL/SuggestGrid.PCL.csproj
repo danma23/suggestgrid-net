@@ -2,7 +2,7 @@
 <!--
  - SuggestGrid.PCL
  -
- - This file was automatically generated for SuggestGrid by APIMATIC v2.0 ( https://apimatic.io ) on 07/03/2016
+ - This file was automatically generated for SuggestGrid by APIMATIC v2.0 ( https://apimatic.io ) on 07/12/2016
 -->
 <Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
@@ -10,7 +10,7 @@
     <AssemblyName>SuggestGrid.PCL</AssemblyName>
     <OutputType>Library</OutputType>
     <OutputPath>bin/DEBUG/</OutputPath>
-    <ProjectGuid>{cd56a3e2-ce14-47a1-8a8c-f31d65d4c5af}</ProjectGuid>
+    <ProjectGuid>{c6721483-d87e-4f70-bb60-8aa05fc0335c}</ProjectGuid>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
     <MinimumVisualStudioVersion>11.0</MinimumVisualStudioVersion>
     <NuGetPackageImportStamp>ee2bb91c</NuGetPackageImportStamp>
@@ -76,10 +76,10 @@
     <Compile Include="Models\Action.cs" />
     <Compile Include="Models\Metadata.cs" />
     <Compile Include="Models\TypeRequestBody.cs" />
-    <Compile Include="Models\RecommendUsersBody.cs" />
-    <Compile Include="Models\RecommendItemsBody.cs" />
-    <Compile Include="Models\SimilarUsersBody.cs" />
-    <Compile Include="Models\SimilarItemsBody.cs" />
+    <Compile Include="Models\GetRecommendedUsersBody.cs" />
+    <Compile Include="Models\GetRecommendedItemsBody.cs" />
+    <Compile Include="Models\GetSimilarUsersBody.cs" />
+    <Compile Include="Models\GetSimilarItemsBody.cs" />
     <Compile Include="Models\MessageResponse.cs" />
     <Compile Include="Models\ErrorResponse.cs" />
     <Compile Include="Models\GetTypesResponse.cs" />
@@ -89,13 +89,11 @@
     <Compile Include="Models\MetadataInformationResponse.cs" />
     <Compile Include="Models\UsersResponse.cs" />
     <Compile Include="Models\ItemsResponse.cs" />
-    <Compile Include="Models\UserSimilarityResponse.cs" />
-    <Compile Include="Models\ItemSimilarityResponse.cs" />
+    <Compile Include="Controllers\TypeController.cs" />
     <Compile Include="Controllers\ActionController.cs" />
     <Compile Include="Controllers\MetadataController.cs" />
     <Compile Include="Controllers\RecommendationController.cs" />
     <Compile Include="Controllers\SimilarityController.cs" />
-    <Compile Include="Controllers\TypeController.cs" />
     <Compile Include="Http\Client\IHTTPClient.cs" />
     <Compile Include="Http\Client\UnirestClient.cs" />
     <Compile Include="Http\Client\HttpEventHandlers.cs" />

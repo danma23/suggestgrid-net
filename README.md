@@ -35,8 +35,6 @@ It is very convenient to configure SuggestGrid by setting an authenticated `SUGG
 
 `http://{user}:{pass}@{app-uuid}.{region}.suggestgrid.space`
 
-If [SuggestGrid Heroku add-on](https://devcenter.heroku.com/articles/suggestgrid) is installed, `SUGGESTGRID_URL` is set automatically.
-
 You can authenticate your application using `SUGGESTGRID_URL` environment variable like the example below:
 
 ```
@@ -80,3 +78,9 @@ Once the first model generated for 'views' type, recommendations could be get us
 ```
 to be documented
 ```
+
+
+
+
+## Further Reference
+For the client reference please refer to the [SuggestGrid .NET Client Documentation](https://suggestgrid.com/docs/net/api)
