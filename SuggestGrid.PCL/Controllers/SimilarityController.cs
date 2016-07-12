@@ -104,7 +104,13 @@ namespace SuggestGrid.Controllers
             HttpContext _context = new HttpContext(_request,_response);
 
             //Error handling using HTTP status codes
-            if (_response.StatusCode == 429)
+            if (_response.StatusCode == 400)
+                throw new APIException(@"Request body is missing.", _context);
+
+            else if (_response.StatusCode == 422)
+                throw new APIException(@"Required parameters are missing.", _context);
+
+            else if (_response.StatusCode == 429)
                 throw new APIException(@"Too many requests.", _context);
 
             else if (_response.StatusCode == 555)
@@ -183,11 +189,20 @@ namespace SuggestGrid.Controllers
             HttpContext _context = new HttpContext(_request,_response);
 
             //Error handling using HTTP status codes
-            if (_response.StatusCode == 429)
+            if (_response.StatusCode == 400)
+                throw new APIException(@"Request body is missing.", _context);
+
+            else if (_response.StatusCode == 422)
+                throw new APIException(@"Required parameters are missing.", _context);
+
+            else if (_response.StatusCode == 429)
                 throw new APIException(@"Too many requests.", _context);
 
+            else if (_response.StatusCode == 555)
+                throw new APIException(@"Recommendation model is not found for the given type.", _context);
+
             else if (_response.StatusCode == 500)
-                throw new APIException(@"", _context);
+                throw new APIException(@"Unexpected internal error.", _context);
 
             //handle errors defined at the API level
             base.ValidateResponse(_response, _context);

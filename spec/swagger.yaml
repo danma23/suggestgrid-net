@@ -1008,7 +1008,7 @@ paths:
           schema:
             $ref: '#/definitions/ErrorResponse'
         422:
-          description: No `item_id` or `item_ids` are provided.
+          description: Required parameters are missing.
           schema:
             $ref: '#/definitions/ErrorResponse'
         429:
@@ -1048,7 +1048,7 @@ paths:
           schema:
             $ref: '#/definitions/ErrorResponse'
         422:
-          description: No `user_id` or `user_ids` are provided.
+          description: Required parameters are missing.
           schema:
             $ref: '#/definitions/ErrorResponse'
         429:
@@ -1089,6 +1089,14 @@ paths:
           description: Similar users response.
           schema:
             $ref: '#/definitions/UsersResponse'
+        400:
+          description: Request body is missing.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        422:
+          description: Required parameters are missing.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
         429:
           description: Too many requests.
           schema:
@@ -1126,12 +1134,20 @@ paths:
           description: |
           schema:
             $ref: '#/definitions/ItemsResponse'
+        400:
+          description: Request body is missing.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        422:
+          description: Required parameters are missing.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
         429:
           description: Too many requests.
           schema:
             $ref: '#/definitions/ErrorResponse'
-        500:
-          description: |
+        555:
+          description: Recommendation model is not found for the given type.
           schema:
             $ref: '#/definitions/ErrorResponse'
         default:

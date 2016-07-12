@@ -100,7 +100,7 @@ namespace SuggestGrid.Controllers
                 throw new APIException(@"Request body is missing.", _context);
 
             else if (_response.StatusCode == 422)
-                throw new APIException(@"No `item_id` or `item_ids` are provided.", _context);
+                throw new APIException(@"Required parameters are missing.", _context);
 
             else if (_response.StatusCode == 429)
                 throw new APIException(@"Too many requests.", _context);
@@ -177,7 +177,7 @@ namespace SuggestGrid.Controllers
                 throw new APIException(@"Request body is missing.", _context);
 
             else if (_response.StatusCode == 422)
-                throw new APIException(@"No `user_id` or `user_ids` are provided.", _context);
+                throw new APIException(@"Required parameters are missing.", _context);
 
             else if (_response.StatusCode == 429)
                 throw new APIException(@"Too many requests.", _context);
