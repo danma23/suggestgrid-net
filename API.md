@@ -120,9 +120,9 @@ Recommend items for the given body parameters.
 
 
 
-## Similars Methods
-Similars methods are for getting similar items or users responses from SuggestGrid.
-For more information on similars, refer to [Introduction to Similars](www.suggestgrid.com/docs/intro/similars).
+## Similarity Methods
+Similarity methods are for getting similar items or users responses from SuggestGrid.
+For more information on similars, refer to [Introduction to Similarities](www.suggestgrid.com/docs/intro/similarities).
 
 ### Get Similar Users
 Get similar users to a user.

@@ -1,7 +1,7 @@
 /*
  * SuggestGrid.PCL
  *
- * This file was automatically generated for SuggestGrid by APIMATIC v2.0 ( https://apimatic.io ) on 07/12/2016
+ * This file was automatically generated for SuggestGrid by APIMATIC v2.0 ( https://apimatic.io ) on 07/19/2016
  */
 using System;
 using System.IO;
@@ -20,45 +20,29 @@ namespace SuggestGrid.Models
     public class GetRecommendedUsersBody : INotifyPropertyChanged 
     {
         // These fields hold the values for the public properties.
-        private List<string> except;
-        private object filter;
+        private string type;
         private string itemId;
         private List<string> itemIds;
-        private string similarUserId;
         private int? size;
-        private string type;
-
-        /// <summary>
-        /// These ids will not be included in the response.
-        /// </summary>
-        [JsonProperty("except")]
-        public List<string> Except 
-        { 
-            get 
-            {
-                return this.except; 
-            } 
-            set 
-            {
-                this.except = value;
-                onPropertyChanged("Except");
-            }
-        }
+        private string similarUserId;
+        private List<string> fields;
+        private object filter;
+        private List<string> except;
 
         /// <summary>
         /// TODO: Write general description for this method
         /// </summary>
-        [JsonProperty("filter")]
-        public object Filter 
+        [JsonProperty("type")]
+        public string Type 
         { 
             get 
             {
-                return this.filter; 
+                return this.type; 
             } 
             set 
             {
-                this.filter = value;
-                onPropertyChanged("Filter");
+                this.type = value;
+                onPropertyChanged("Type");
             }
         }
 
@@ -99,23 +83,6 @@ namespace SuggestGrid.Models
         /// <summary>
         /// TODO: Write general description for this method
         /// </summary>
-        [JsonProperty("similar_user_id")]
-        public string SimilarUserId 
-        { 
-            get 
-            {
-                return this.similarUserId; 
-            } 
-            set 
-            {
-                this.similarUserId = value;
-                onPropertyChanged("SimilarUserId");
-            }
-        }
-
-        /// <summary>
-        /// TODO: Write general description for this method
-        /// </summary>
         [JsonProperty("size")]
         public int? Size 
         { 
@@ -133,17 +100,68 @@ namespace SuggestGrid.Models
         /// <summary>
         /// TODO: Write general description for this method
         /// </summary>
-        [JsonProperty("type")]
-        public string Type 
+        [JsonProperty("similar_user_id")]
+        public string SimilarUserId 
         { 
             get 
             {
-                return this.type; 
+                return this.similarUserId; 
             } 
             set 
             {
-                this.type = value;
-                onPropertyChanged("Type");
+                this.similarUserId = value;
+                onPropertyChanged("SimilarUserId");
+            }
+        }
+
+        /// <summary>
+        /// TODO: Write general description for this method
+        /// </summary>
+        [JsonProperty("fields")]
+        public List<string> Fields 
+        { 
+            get 
+            {
+                return this.fields; 
+            } 
+            set 
+            {
+                this.fields = value;
+                onPropertyChanged("Fields");
+            }
+        }
+
+        /// <summary>
+        /// TODO: Write general description for this method
+        /// </summary>
+        [JsonProperty("filter")]
+        public object Filter 
+        { 
+            get 
+            {
+                return this.filter; 
+            } 
+            set 
+            {
+                this.filter = value;
+                onPropertyChanged("Filter");
+            }
+        }
+
+        /// <summary>
+        /// These ids will not be included in the response.
+        /// </summary>
+        [JsonProperty("except")]
+        public List<string> Except 
+        { 
+            get 
+            {
+                return this.except; 
+            } 
+            set 
+            {
+                this.except = value;
+                onPropertyChanged("Except");
             }
         }
 

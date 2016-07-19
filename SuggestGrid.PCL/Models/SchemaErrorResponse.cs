@@ -1,7 +1,7 @@
 /*
  * SuggestGrid.PCL
  *
- * This file was automatically generated for SuggestGrid by APIMATIC v2.0 ( https://apimatic.io ) on 07/12/2016
+ * This file was automatically generated for SuggestGrid by APIMATIC v2.0 ( https://apimatic.io ) on 07/19/2016
  */
 using System;
 using System.IO;
@@ -20,26 +20,9 @@ namespace SuggestGrid.Models
     public class SchemaErrorResponse : INotifyPropertyChanged 
     {
         // These fields hold the values for the public properties.
-        private object error;
         private string message;
         private object mvalue;
-
-        /// <summary>
-        /// Programatic description of the error.
-        /// </summary>
-        [JsonProperty("error")]
-        public object Error 
-        { 
-            get 
-            {
-                return this.error; 
-            } 
-            set 
-            {
-                this.error = value;
-                onPropertyChanged("Error");
-            }
-        }
+        private object error;
 
         /// <summary>
         /// Message of the response.
@@ -72,6 +55,23 @@ namespace SuggestGrid.Models
             {
                 this.mvalue = value;
                 onPropertyChanged("Value");
+            }
+        }
+
+        /// <summary>
+        /// Programatic description of the error.
+        /// </summary>
+        [JsonProperty("error")]
+        public object Error 
+        { 
+            get 
+            {
+                return this.error; 
+            } 
+            set 
+            {
+                this.error = value;
+                onPropertyChanged("Error");
             }
         }
 

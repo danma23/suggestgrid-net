@@ -1,7 +1,7 @@
 /*
  * SuggestGrid.PCL
  *
- * This file was automatically generated for SuggestGrid by APIMATIC v2.0 ( https://apimatic.io ) on 07/12/2016
+ * This file was automatically generated for SuggestGrid by APIMATIC v2.0 ( https://apimatic.io ) on 07/19/2016
  */
 using System;
 using System.IO;
@@ -20,25 +20,8 @@ namespace SuggestGrid.Models
     public class GetTypesResponse : INotifyPropertyChanged 
     {
         // These fields hold the values for the public properties.
-        private int? status;
         private List<string> types;
-
-        /// <summary>
-        /// Status code of the response. It is not 2XX.
-        /// </summary>
-        [JsonProperty("status")]
-        public int? Status 
-        { 
-            get 
-            {
-                return this.status; 
-            } 
-            set 
-            {
-                this.status = value;
-                onPropertyChanged("Status");
-            }
-        }
+        private int? status;
 
         /// <summary>
         /// The list of type names
@@ -54,6 +37,23 @@ namespace SuggestGrid.Models
             {
                 this.types = value;
                 onPropertyChanged("Types");
+            }
+        }
+
+        /// <summary>
+        /// Status code of the response. It is not 2XX.
+        /// </summary>
+        [JsonProperty("status")]
+        public int? Status 
+        { 
+            get 
+            {
+                return this.status; 
+            } 
+            set 
+            {
+                this.status = value;
+                onPropertyChanged("Status");
             }
         }
 

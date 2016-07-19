@@ -1,7 +1,7 @@
 /*
  * SuggestGrid.PCL
  *
- * This file was automatically generated for SuggestGrid by APIMATIC v2.0 ( https://apimatic.io ) on 07/12/2016
+ * This file was automatically generated for SuggestGrid by APIMATIC v2.0 ( https://apimatic.io ) on 07/19/2016
  */
 using System;
 using System.IO;
@@ -20,44 +20,10 @@ namespace SuggestGrid.Models
     public class ActionModel : INotifyPropertyChanged
     {
         // These fields hold the values for the public properties.
-        private string itemId;
-        private double? rating;
         private string type;
         private string userId;
-
-        /// <summary>
-        /// The item id of the item the action is performed on.
-        /// </summary>
-        [JsonProperty("item_id")]
-        public string ItemId
-        {
-            get
-            {
-                return this.itemId;
-            }
-            set
-            {
-                this.itemId = value;
-                onPropertyChanged("ItemId");
-            }
-        }
-
-        /// <summary>
-        /// The optional rating, if the type is explicit.
-        /// </summary>
-        [JsonProperty("rating")]
-        public double? Rating
-        {
-            get
-            {
-                return this.rating;
-            }
-            set
-            {
-                this.rating = value;
-                onPropertyChanged("Rating");
-            }
-        }
+        private string itemId;
+        private double? rating;
 
         /// <summary>
         /// The type that the action belongs to.
@@ -90,6 +56,40 @@ namespace SuggestGrid.Models
             {
                 this.userId = value;
                 onPropertyChanged("UserId");
+            }
+        }
+
+        /// <summary>
+        /// The item id of the item the action is performed on.
+        /// </summary>
+        [JsonProperty("item_id")]
+        public string ItemId
+        {
+            get
+            {
+                return this.itemId;
+            }
+            set
+            {
+                this.itemId = value;
+                onPropertyChanged("ItemId");
+            }
+        }
+
+        /// <summary>
+        /// The optional rating, if the type is explicit.
+        /// </summary>
+        [JsonProperty("rating")]
+        public double? Rating
+        {
+            get
+            {
+                return this.rating;
+            }
+            set
+            {
+                this.rating = value;
+                onPropertyChanged("Rating");
             }
         }
 

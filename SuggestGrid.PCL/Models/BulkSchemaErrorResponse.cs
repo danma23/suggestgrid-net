@@ -1,7 +1,7 @@
 /*
  * SuggestGrid.PCL
  *
- * This file was automatically generated for SuggestGrid by APIMATIC v2.0 ( https://apimatic.io ) on 07/12/2016
+ * This file was automatically generated for SuggestGrid by APIMATIC v2.0 ( https://apimatic.io ) on 07/19/2016
  */
 using System;
 using System.IO;
@@ -20,25 +20,8 @@ namespace SuggestGrid.Models
     public class BulkSchemaErrorResponse : INotifyPropertyChanged 
     {
         // These fields hold the values for the public properties.
-        private List<SchemaErrorResponse> errors;
         private string message;
-
-        /// <summary>
-        /// TODO: Write general description for this method
-        /// </summary>
-        [JsonProperty("errors")]
-        public List<SchemaErrorResponse> Errors 
-        { 
-            get 
-            {
-                return this.errors; 
-            } 
-            set 
-            {
-                this.errors = value;
-                onPropertyChanged("Errors");
-            }
-        }
+        private List<SchemaErrorResponse> errors;
 
         /// <summary>
         /// Message of the response.
@@ -54,6 +37,23 @@ namespace SuggestGrid.Models
             {
                 this.message = value;
                 onPropertyChanged("Message");
+            }
+        }
+
+        /// <summary>
+        /// TODO: Write general description for this method
+        /// </summary>
+        [JsonProperty("errors")]
+        public List<SchemaErrorResponse> Errors 
+        { 
+            get 
+            {
+                return this.errors; 
+            } 
+            set 
+            {
+                this.errors = value;
+                onPropertyChanged("Errors");
             }
         }
 
