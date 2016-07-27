@@ -1028,7 +1028,7 @@ paths:
           schema:
             $ref: '#/definitions/UsersResponse'
         400:
-          description: Request body is missing.
+          description: Request body is invalid.
           schema:
             $ref: '#/definitions/ErrorResponse'
         422:
@@ -1068,7 +1068,7 @@ paths:
           schema:
             $ref: '#/definitions/ItemsResponse'
         400:
-          description: Request body is missing.
+          description: Request body is invalid.
           schema:
             $ref: '#/definitions/ErrorResponse'
         422:
@@ -1108,7 +1108,7 @@ paths:
           schema:
             $ref: '#/definitions/UsersResponse'
         400:
-          description: Request body is missing.
+          description: Request body is invalid.
           schema:
             $ref: '#/definitions/ErrorResponse'
         422:
@@ -1147,7 +1147,7 @@ paths:
           schema:
             $ref: '#/definitions/ItemsResponse'
         400:
-          description: Request body is missing.
+          description: Request body is invalid.
           schema:
             $ref: '#/definitions/ErrorResponse'
         422:

@@ -1,7 +1,7 @@
 /*
  * SuggestGrid.PCL
  *
- * This file was automatically generated for SuggestGrid by APIMATIC v2.0 ( https://apimatic.io ) on 07/19/2016
+ * This file was automatically generated for SuggestGrid by APIMATIC v2.0 ( https://apimatic.io ) on 07/27/2016
  */
 using System;
 using System.Collections.Generic;
@@ -97,7 +97,7 @@ namespace SuggestGrid.Controllers
 
             //Error handling using HTTP status codes
             if (_response.StatusCode == 400)
-                throw new APIException(@"Request body is missing.", _context);
+                throw new APIException(@"Request body is invalid.", _context);
 
             else if (_response.StatusCode == 422)
                 throw new APIException(@"Required parameters are missing.", _context);
@@ -174,7 +174,7 @@ namespace SuggestGrid.Controllers
 
             //Error handling using HTTP status codes
             if (_response.StatusCode == 400)
-                throw new APIException(@"Request body is missing.", _context);
+                throw new APIException(@"Request body is invalid.", _context);
 
             else if (_response.StatusCode == 422)
                 throw new APIException(@"Required parameters are missing.", _context);
