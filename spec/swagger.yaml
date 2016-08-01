@@ -47,7 +47,7 @@ tags:
     description: Type Methods
     x-docs-text: |
       Type methods are used for managing SuggestGrid types.
-      For more information on types, refer to [Introduction to Types](www.suggestgrid.com/docs/intro/types).
+      For more information on types, refer to [Types concept documentation](http://www.suggestgrid.com/docs/concepts#types).
     x-methods:
       - create_type
       - get_type
@@ -58,7 +58,7 @@ tags:
     description: Action Methods
     x-docs-text: |
       Action methods are for posting and deleting actions.
-      For more information on actions, refer to [Introduction to Actions](www.suggestgrid.com/docs/intro/actions).
+      For more information on actions, refer to [Actions concept documentation](http://www.suggestgrid.com/docs/concepts#actions).
     x-methods:
       - post_action
       - post_bulk_actions
@@ -68,7 +68,7 @@ tags:
     description: Metadata Methods
     x-docs-text: |
       Metadata methods are for posting and deleting metadata.
-      For more information on metadata, refer to [Introduction to Metadata](www.suggestgrid.com/docs/intro/metadata).
+      For more information on metadata, refer to [Metadata concept documentation ](http://www.suggestgrid.com/docs/concepts#metadata).
     x-methods:
       - post_user
       - post_bulk_users
@@ -84,7 +84,7 @@ tags:
     description: Recommnedation Methods
     x-docs-text: |
       Recommnedation methods are for getting recommended items or users responses from SuggestGrid.
-      For more information on recommendations, refer to [Introduction to Recommendations](www.suggestgrid.com/docs/intro/recommendations).
+      For more information on recommendations, refer to [Recommendations concept documentation](http://www.suggestgrid.com/docs/concepts#recommendations).
     x-methods:
       - get_recommended_users
       - get_recommended_items
@@ -92,7 +92,7 @@ tags:
     description: Similarity Methods
     x-docs-text: |
       Similarity methods are for getting similar items or users responses from SuggestGrid.
-      For more information on similars, refer to [Introduction to Similarities](www.suggestgrid.com/docs/intro/similarities).
+      For more information on similars, refer to [Similarities concept documentation](http://www.suggestgrid.com/docs/concepts#similarities).
     x-methods:
       - get_similar_users
       - get_similar_items
@@ -232,6 +232,11 @@ definitions:
       user_id:
         type: string
         description: |
+      user_ids:
+        type: array
+        description: |
+        items:
+          type: string
       size:
         type: integer
         description: |
@@ -250,7 +255,6 @@ definitions:
           These ids will not be included in the response.
     required:
       - type
-      - user_id
   GetSimilarItemsBody:
     type: object
     description: |
@@ -261,6 +265,11 @@ definitions:
       item_id:
         type: string
         description: |
+      item_ids:
+        type: array
+        description: |
+        items:
+          type: string
       size:
         type: integer
         description: |
@@ -279,7 +288,6 @@ definitions:
           These ids will not be included in the response.
     required:
       - type
-      - item_id
   # Responses
   MessageResponse:
     type: object
@@ -957,7 +965,7 @@ paths:
           description: Bulk user metadata request executed.
           schema:
             $ref: '#/definitions/MessageResponse'
-        207:
+        209:
           description: Some metadata is not uploaded successfully.
           schema:
             $ref: '#/definitions/BulkSchemaErrorResponse'
@@ -994,7 +1002,7 @@ paths:
           description: Bulk item metadata request executed.
           schema:
             $ref: '#/definitions/MessageResponse'
-        207:
+        209:
           description: Some metadata is not uploaded successfully.
           schema:
             $ref: '#/definitions/BulkSchemaErrorResponse'
@@ -1039,10 +1047,6 @@ paths:
           description: Too many requests.
           schema:
             $ref: '#/definitions/ErrorResponse'
-        555:
-          description: Recommendation model is not found for the given type.
-          schema:
-            $ref: '#/definitions/ErrorResponse'
         default:
           description: Unexpected internal error.
           schema:
@@ -1077,10 +1081,6 @@ paths:
             $ref: '#/definitions/ErrorResponse'
         429:
           description: Too many requests.
-          schema:
-            $ref: '#/definitions/ErrorResponse'
-        555:
-          description: Recommendation model is not found for the given type.
           schema:
             $ref: '#/definitions/ErrorResponse'
         default:
@@ -1119,10 +1119,6 @@ paths:
           description: Too many requests.
           schema:
             $ref: '#/definitions/ErrorResponse'
-        555:
-          description: Recommendation model is not found for the given type.
-          schema:
-            $ref: '#/definitions/ErrorResponse'
         default:
           description: Unexpected internal error.
           schema:
@@ -1156,10 +1152,6 @@ paths:
             $ref: '#/definitions/ErrorResponse'
         429:
           description: Too many requests.
-          schema:
-            $ref: '#/definitions/ErrorResponse'
-        555:
-          description: Recommendation model is not found for the given type.
           schema:
             $ref: '#/definitions/ErrorResponse'
         default:

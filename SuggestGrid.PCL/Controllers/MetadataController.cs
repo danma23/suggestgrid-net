@@ -1,7 +1,7 @@
 /*
  * SuggestGrid.PCL
  *
- * This file was automatically generated for SuggestGrid by APIMATIC v2.0 ( https://apimatic.io ) on 07/27/2016
+ * This file was automatically generated for SuggestGrid by APIMATIC v2.0 ( https://apimatic.io ) on 08/01/2016
  */
 using System;
 using System.Collections.Generic;
@@ -648,7 +648,7 @@ namespace SuggestGrid.Controllers
             HttpContext _context = new HttpContext(_request,_response);
 
             //Error handling using HTTP status codes
-            if (_response.StatusCode == 207)
+            if (_response.StatusCode == 209)
                 throw new APIException(@"Some metadata is not uploaded successfully.", _context);
 
             else if (_response.StatusCode == 429)
@@ -724,7 +724,7 @@ namespace SuggestGrid.Controllers
             HttpContext _context = new HttpContext(_request,_response);
 
             //Error handling using HTTP status codes
-            if (_response.StatusCode == 207)
+            if (_response.StatusCode == 209)
                 throw new APIException(@"Some metadata is not uploaded successfully.", _context);
 
             else if (_response.StatusCode == 429)

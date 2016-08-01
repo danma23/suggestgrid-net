@@ -1,7 +1,7 @@
 /*
  * SuggestGrid.PCL
  *
- * This file was automatically generated for SuggestGrid by APIMATIC v2.0 ( https://apimatic.io ) on 07/27/2016
+ * This file was automatically generated for SuggestGrid by APIMATIC v2.0 ( https://apimatic.io ) on 08/01/2016
  */
 using System;
 using System.Collections.Generic;
@@ -105,9 +105,6 @@ namespace SuggestGrid.Controllers
             else if (_response.StatusCode == 429)
                 throw new APIException(@"Too many requests.", _context);
 
-            else if (_response.StatusCode == 555)
-                throw new APIException(@"Recommendation model is not found for the given type.", _context);
-
             else if (_response.StatusCode == 500)
                 throw new APIException(@"Unexpected internal error.", _context);
 
@@ -181,9 +178,6 @@ namespace SuggestGrid.Controllers
 
             else if (_response.StatusCode == 429)
                 throw new APIException(@"Too many requests.", _context);
-
-            else if (_response.StatusCode == 555)
-                throw new APIException(@"Recommendation model is not found for the given type.", _context);
 
             else if (_response.StatusCode == 500)
                 throw new APIException(@"Unexpected internal error.", _context);
