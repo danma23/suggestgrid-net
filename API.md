@@ -8,43 +8,38 @@ For more information on types, refer to [Types concept documentation](http://www
 Creates a new implicit or explicit type.
 
 #### Parameters
-##### type (`string`)
+##### URI/Query Parameters
 
-  * Required: `true`
+Name | Type |Required| Description
+--- | --- | --- | ---
+type|string|true|The name of the type to be created.
+##### Body Parameters
 
-The name of the type to be created.
+> TypeRequestBody (`object`)
 
-##### TypeRequestBody (`object`)
-
-  * ###### rating (`string`)
-
-    * Required: `false`
-
-  Could be "explicit" or "implicit"
-The default is "implicit".
-
+Name | Type |Required| Description
+--- | --- | --- | ---
+rating|string|false|Could be "explicit" or "implicit" The default is "implicit".
 ### Get Properties of a Type
 Get the options of a type. Has rating parameter.
 
 #### Parameters
-##### type (`string`)
+##### URI/Query Parameters
 
-  * Required: `true`
-
-The name of the type to get properties.
-
+Name | Type |Required| Description
+--- | --- | --- | ---
+type|string|true|The name of the type to get properties.
 ### Delete a Type
 Deletes a type with ALL of its actions and recommendation model.
 Do not use this if you will need the type.
 
 
 #### Parameters
-##### type (`string`)
+##### URI/Query Parameters
 
-  * Required: `true`
-
-The name of the type to be deleted.
-
+Name | Type |Required| Description
+--- | --- | --- | ---
+type|string|true|The name of the type to be deleted.
 ### Get All Types
 Get all type names in an array named types.
 
@@ -64,32 +59,16 @@ Rating is required for actions sent to an explicit type.
 
 
 #### Parameters
-##### Action (`object`)
+##### Body Parameters
 
-  * ###### type (`string`)
+> Action (`object`)
 
-    * Required: `true`
-
-  The type that the action belongs to.
-
-  * ###### rating (`number`)
-
-    * Required: `false`
-
-  The optional rating, if the type is explicit.
-
-  * ###### user_id (`string`)
-
-    * Required: `true`
-
-  The user id of the performer of the action.
-
-  * ###### item_id (`string`)
-
-    * Required: `true`
-
-  The item id of the item the action is performed on.
-
+Name | Type |Required| Description
+--- | --- | --- | ---
+item_id|string|true|The item id of the item the action is performed on.
+rating|number|false|The optional rating, if the type is explicit.
+type|string|true|The type that the action belongs to.
+user_id|string|true|The user id of the performer of the action.
 ### Post Bulk Actions
 Posts bulk actions to SuggestGrid.
 The recommended method for posting multiple actions at once.
@@ -97,8 +76,8 @@ The recommended method for posting multiple actions at once.
 
 #### Parameters
 ### Get Actions
-If `type` is not provided, it'll return the total number of actions.
-Otherwise when `type` is provided
+Type must be provided. Additionally,
+
 * If both `user_id` and `item_id` are supplied it returns the count of the corresponding actions.
 * If only `user_id` is provided, it returns the count of all the action of the given user.
 * If only `user_id` is provided, it returns the count of all the action of the given item.
@@ -108,54 +87,34 @@ Otherwise when `type` is provided
 
 
 #### Parameters
-##### type (`string`)
+##### URI/Query Parameters
 
-The type of the actions. Will return count for all actions if not provided.
-
-##### user_id (`string`)
-
-The user id of the actions. Wll return count for all user ids if not provided.
-
-##### item_id (`string`)
-
-The item id of the actions. Wll return count for all item ids if not provided.
-
-##### older_than (`string`)
-
-Delete all actions of a type older than the given timestamp or time.
-Valid times are 1s, 1m, 1h, 1d, 1M, 1y, or unix timestamp (like 1443798195).
-
-
+Name | Type |Required| Description
+--- | --- | --- | ---
+type|string||The type of the actions.
+user_id|string||The user id of the actions.
+item_id|string||The item id of the actions.
+older_than|string||Delete all actions of a type older than the given timestamp or time. Valid times are 1s, 1m, 1h, 1d, 1M, 1y, or unix timestamp (like 1443798195). 
 ### Delete Actions
-If `type` is not provided, it'll return the total number of actions.
-Otherwise when `type` is provided
-* If both `user_id` and `item_id` are supplied it returns the count of the corresponding actions.
-* If only `user_id` is provided, it returns the count of all the action of the given user.
-* If only `user_id` is provided, it returns the count of all the action of the given item.
-* If only `older_than` is provided, it returns the count of actions older than the given timestamp.
-* If a few of these parameters are provided, it returns the count of the intersection of these parameters.
-* If none of these are provided, it returns the count of the whole type.
+Type must be provided. Additionally,
+
+* If both user id and item id are supplied the user's actions on the item will be deleted.
+* If only user id is provided, all actions of the user will be deleted.
+* If only item id is provided, all actions on the item will be deleted.
+* If only older than is provided, all actions older than the timestamp or the duration will be deleted.
+* If a few of these parameters are provided, delete action will be executed within intersection of these parameters.
+* One of these parameters must be provided. In order to delete all actions, delete the type.
 
 
 #### Parameters
-##### type (`string`)
+##### URI/Query Parameters
 
-The type of the actions. Will return count for all actions if not provided.
-
-##### user_id (`string`)
-
-The user id of the actions. Wll return count for all user ids if not provided.
-
-##### item_id (`string`)
-
-The item id of the actions. Wll return count for all item ids if not provided.
-
-##### older_than (`string`)
-
-Delete all actions of a type older than the given timestamp or time.
-Valid times are 1s, 1m, 1h, 1d, 1M, 1y, or unix timestamp (like 1443798195).
-
-
+Name | Type |Required| Description
+--- | --- | --- | ---
+type|string||The type of the actions.
+user_id|string||The user id of the actions.
+item_id|string||The item id of the actions.
+older_than|string||Delete all actions of a type older than the given timestamp or time. Valid times are 1s, 1m, 1h, 1d, 1M, 1y, or unix timestamp (like 1443798195). 
 
 
 ## Metadata Methods
@@ -166,18 +125,18 @@ For more information on metadata, refer to [Metadata concept documentation ](htt
 Posts a user metadata.
 
 #### Parameters
-##### user_id (`string`)
+##### URI/Query Parameters
 
-  * Required: `true`
+Name | Type |Required| Description
+--- | --- | --- | ---
+user_id|string|true|The user id to associate with the metadata.
+##### Body Parameters
 
-The user id to associate with the metadata.
+> Metadata (`object`)
 
-##### Metadata (`object`)
-
-  * ###### id (`string`)
-
-    * Required: `false`
-
+Name | Type |Required| Description
+--- | --- | --- | ---
+id|string|false|
 ### Post Bulk Users
 Post user metadata in bulk.
 This metadata can be used to filter or to be included in recommendations and similars methods.
@@ -191,12 +150,11 @@ Get information about users. Only returns count at the moment.
 Delete a user metadata with the given user_id.
 
 #### Parameters
-##### user_id (`string`)
+##### URI/Query Parameters
 
-  * Required: `true`
-
-The user_id to delete its metadata.
-
+Name | Type |Required| Description
+--- | --- | --- | ---
+user_id|string|true|The user_id to delete its metadata.
 ### Delete All Users
 Deletes all user metadata from SuggestGrid.
 
@@ -206,18 +164,18 @@ This metadata can be used to filter or to be included in recommendations and sim
 
 
 #### Parameters
-##### item_id (`string`)
+##### URI/Query Parameters
 
-  * Required: `true`
+Name | Type |Required| Description
+--- | --- | --- | ---
+item_id|string|true|The item id to associate with the metadata.
+##### Body Parameters
 
-The item id to associate with the metadata.
+> Metadata (`object`)
 
-##### Metadata (`object`)
-
-  * ###### id (`string`)
-
-    * Required: `false`
-
+Name | Type |Required| Description
+--- | --- | --- | ---
+id|string|false|
 ### Post Bulk Items
 Post item metadata in bulk.
 This method is recommended for sharing stored data with SuggestGrid.
@@ -231,12 +189,11 @@ Get information about items. Only returns count at the moment.
 Delete an item metadata with the given item_id.
 
 #### Parameters
-##### item_id (`string`)
+##### URI/Query Parameters
 
-  * Required: `true`
-
-The item_id to delete its metadata.
-
+Name | Type |Required| Description
+--- | --- | --- | ---
+item_id|string|true|The item_id to delete its metadata.
 ### Delete All Items
 Delete all items metadata.
 This method would flush all items metadata on SuggestGrid.
@@ -252,84 +209,40 @@ For more information on recommendations, refer to [Recommendations concept docum
 Recommend users for the given body parameters.
 
 #### Parameters
-##### GetRecommendedUsersBody (`object`)
+##### Body Parameters
 
-  * ###### item_ids (`array`)
+> GetRecommendedUsersBody (`object`)
 
-    * Required: `false`
-
-  * ###### except (`array`)
-
-    * Required: `false`
-
-  These ids will not be included in the response.
-
-
-  * ###### type (`string`)
-
-    * Required: `true`
-
-  * ###### size (`integer`)
-
-    * Required: `false`
-
-  * ###### fields (`array`)
-
-    * Required: `false`
-
-  * ###### filter
-
-    * Required: `false`
-
-  * ###### similar_user_id (`string`)
-
-    * Required: `false`
-
-  * ###### item_id (`string`)
-
-    * Required: `false`
-
+Name | Type |Required| Description
+--- | --- | --- | ---
+except|array|false|These ids will not be included in the response. 
+size|integer|false|
+item_id|string|false|
+types|string|false|
+fields|array|false|
+type|string|false|
+filter||false|
+item_ids|array|false|
+similar_user_id|string|false|
 ### Get Recommended Items
 Recommend items for the given body parameters.
 
 #### Parameters
-##### GetRecommendedItemsBody (`object`)
+##### Body Parameters
 
-  * ###### except (`array`)
+> GetRecommendedItemsBody (`object`)
 
-    * Required: `false`
-
-  These ids will not be included in the response.
-
-
-  * ###### user_ids (`array`)
-
-    * Required: `false`
-
-  * ###### similar_item_id (`string`)
-
-    * Required: `false`
-
-  * ###### type (`string`)
-
-    * Required: `true`
-
-  * ###### size (`integer`)
-
-    * Required: `false`
-
-  * ###### fields (`array`)
-
-    * Required: `false`
-
-  * ###### user_id (`string`)
-
-    * Required: `false`
-
-  * ###### filter
-
-    * Required: `false`
-
+Name | Type |Required| Description
+--- | --- | --- | ---
+except|array|false|These ids will not be included in the response. 
+size|integer|false|
+types|string|false|
+fields|array|false|
+similar_item_id|string|false|
+type|string|false|
+filter||false|
+user_ids|array|false|
+user_id|string|false|
 
 
 ## Similarity Methods
@@ -340,73 +253,35 @@ For more information on similars, refer to [Similarities concept documentation](
 Get similar users to a user.
 
 #### Parameters
-##### GetSimilarUsersBody (`object`)
+##### Body Parameters
 
-  * ###### fields (`array`)
+> GetSimilarUsersBody (`object`)
 
-    * Required: `false`
-
-  * ###### user_id (`string`)
-
-    * Required: `false`
-
-  * ###### filter
-
-    * Required: `false`
-
-  * ###### user_ids (`array`)
-
-    * Required: `false`
-
-  * ###### type (`string`)
-
-    * Required: `true`
-
-  * ###### size (`integer`)
-
-    * Required: `false`
-
-  * ###### except (`array`)
-
-    * Required: `false`
-
-  These ids will not be included in the response.
-
-
+Name | Type |Required| Description
+--- | --- | --- | ---
+except|array|false|These ids will not be included in the response. 
+size|integer|false|
+types|string|false|
+fields|array|false|
+type|string|false|
+filter||false|
+user_ids|array|false|
+user_id|string|false|
 ### Get Similar Items
 Get similar items to an item.
 
 #### Parameters
-##### GetSimilarItemsBody (`object`)
+##### Body Parameters
 
-  * ###### fields (`array`)
+> GetSimilarItemsBody (`object`)
 
-    * Required: `false`
-
-  * ###### item_ids (`array`)
-
-    * Required: `false`
-
-  * ###### filter
-
-    * Required: `false`
-
-  * ###### type (`string`)
-
-    * Required: `true`
-
-  * ###### item_id (`string`)
-
-    * Required: `false`
-
-  * ###### size (`integer`)
-
-    * Required: `false`
-
-  * ###### except (`array`)
-
-    * Required: `false`
-
-  These ids will not be included in the response.
-
-
+Name | Type |Required| Description
+--- | --- | --- | ---
+except|array|false|These ids will not be included in the response. 
+size|integer|false|
+item_id|string|false|
+types|string|false|
+fields|array|false|
+type|string|false|
+filter||false|
+item_ids|array|false|

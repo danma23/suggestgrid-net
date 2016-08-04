@@ -1,7 +1,7 @@
 /*
  * SuggestGrid.PCL
  *
- * This file was automatically generated for SuggestGrid by APIMATIC v2.0 ( https://apimatic.io ) on 08/01/2016
+ * This file was automatically generated for SuggestGrid by APIMATIC v2.0 ( https://apimatic.io ) on 08/04/2016
  */
 using System;
 using System.IO;
@@ -21,6 +21,7 @@ namespace SuggestGrid.Models
     {
         // These fields hold the values for the public properties.
         private string type;
+        private string types;
         private string itemId;
         private List<string> itemIds;
         private int? size;
@@ -42,6 +43,23 @@ namespace SuggestGrid.Models
             {
                 this.type = value;
                 onPropertyChanged("Type");
+            }
+        }
+
+        /// <summary>
+        /// TODO: Write general description for this method
+        /// </summary>
+        [JsonProperty("types")]
+        public string Types 
+        { 
+            get 
+            {
+                return this.types; 
+            } 
+            set 
+            {
+                this.types = value;
+                onPropertyChanged("Types");
             }
         }
 

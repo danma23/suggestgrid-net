@@ -1,7 +1,7 @@
 /*
  * SuggestGrid.PCL
  *
- * This file was automatically generated for SuggestGrid by APIMATIC v2.0 ( https://apimatic.io ) on 08/01/2016
+ * This file was automatically generated for SuggestGrid by APIMATIC v2.0 ( https://apimatic.io ) on 08/04/2016
  */
 using System;
 using System.Collections.Generic;
@@ -51,9 +51,9 @@ namespace SuggestGrid.Controllers
         /// <summary>
         /// Get Actions
         /// </summary>
-        /// <param name="type">Optional parameter: The type of the actions. Will return count for all actions if not provided.</param>
-        /// <param name="userId">Optional parameter: The user id of the actions. Wll return count for all user ids if not provided.</param>
-        /// <param name="itemId">Optional parameter: The item id of the actions. Wll return count for all item ids if not provided.</param>
+        /// <param name="type">Optional parameter: The type of the actions.</param>
+        /// <param name="userId">Optional parameter: The user id of the actions.</param>
+        /// <param name="itemId">Optional parameter: The item id of the actions.</param>
         /// <param name="olderThan">Optional parameter: Delete all actions of a type older than the given timestamp or time. Valid times are 1s, 1m, 1h, 1d, 1M, 1y, or unix timestamp (like 1443798195).</param>
         /// <return>Returns the MessageResponse response from the API call</return>
         public MessageResponse GetActions(
@@ -70,9 +70,9 @@ namespace SuggestGrid.Controllers
         /// <summary>
         /// Get Actions
         /// </summary>
-        /// <param name="type">Optional parameter: The type of the actions. Will return count for all actions if not provided.</param>
-        /// <param name="userId">Optional parameter: The user id of the actions. Wll return count for all user ids if not provided.</param>
-        /// <param name="itemId">Optional parameter: The item id of the actions. Wll return count for all item ids if not provided.</param>
+        /// <param name="type">Optional parameter: The type of the actions.</param>
+        /// <param name="userId">Optional parameter: The user id of the actions.</param>
+        /// <param name="itemId">Optional parameter: The item id of the actions.</param>
         /// <param name="olderThan">Optional parameter: Delete all actions of a type older than the given timestamp or time. Valid times are 1s, 1m, 1h, 1d, 1M, 1y, or unix timestamp (like 1443798195).</param>
         /// <return>Returns the MessageResponse response from the API call</return>
         public async Task<MessageResponse> GetActionsAsync(
@@ -218,9 +218,9 @@ namespace SuggestGrid.Controllers
         /// <summary>
         /// Delete Actions
         /// </summary>
-        /// <param name="type">Optional parameter: The type of the actions. Will return count for all actions if not provided.</param>
-        /// <param name="userId">Optional parameter: The user id of the actions. Wll return count for all user ids if not provided.</param>
-        /// <param name="itemId">Optional parameter: The item id of the actions. Wll return count for all item ids if not provided.</param>
+        /// <param name="type">Optional parameter: The type of the actions.</param>
+        /// <param name="userId">Optional parameter: The user id of the actions.</param>
+        /// <param name="itemId">Optional parameter: The item id of the actions.</param>
         /// <param name="olderThan">Optional parameter: Delete all actions of a type older than the given timestamp or time. Valid times are 1s, 1m, 1h, 1d, 1M, 1y, or unix timestamp (like 1443798195).</param>
         /// <return>Returns the MessageResponse response from the API call</return>
         public MessageResponse DeleteActions(
@@ -237,9 +237,9 @@ namespace SuggestGrid.Controllers
         /// <summary>
         /// Delete Actions
         /// </summary>
-        /// <param name="type">Optional parameter: The type of the actions. Will return count for all actions if not provided.</param>
-        /// <param name="userId">Optional parameter: The user id of the actions. Wll return count for all user ids if not provided.</param>
-        /// <param name="itemId">Optional parameter: The item id of the actions. Wll return count for all item ids if not provided.</param>
+        /// <param name="type">Optional parameter: The type of the actions.</param>
+        /// <param name="userId">Optional parameter: The user id of the actions.</param>
+        /// <param name="itemId">Optional parameter: The item id of the actions.</param>
         /// <param name="olderThan">Optional parameter: Delete all actions of a type older than the given timestamp or time. Valid times are 1s, 1m, 1h, 1d, 1M, 1y, or unix timestamp (like 1443798195).</param>
         /// <return>Returns the MessageResponse response from the API call</return>
         public async Task<MessageResponse> DeleteActionsAsync(

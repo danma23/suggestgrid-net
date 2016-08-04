@@ -2,7 +2,7 @@
 
 We will walk through how to get started with SuggestGrid .NET Client in three steps:
     
-1. [Configure the client](#1-configure-the-client)
+1. [Configuration](#1-configuration)
     
 2. [Post actions](#2-post-actions)
     
@@ -11,21 +11,23 @@ We will walk through how to get started with SuggestGrid .NET Client in three st
 If you did not [sign up for SuggestGrid](https://dashboard.suggestgrid.com/users/sign_up), this is the right time.
 
 ## Getting Started
+
 In this guide we will demonstrate how to display personalized recommendations on an existing .NET Framework project.
 
 We have a movie catalog .NET Framework application, SuggestGridMovies, similar to IMDb.
 For logged in users we want to display movies that *similar people viewed* on movie pages.
 Let's implement this feature in five minutes with SuggestGrid!
 
-We are beginning the development by adding the client as a dependency:
+### 1. Configuration
 
+We are beginning the development by adding the client as a dependency:
 ```
 to be documented
 ```
 
 
-### 1. Configure the client
 Applications make their API requests to their dedicated sub-domain of `suggestgrid.space`.
+
 Most endpoints require a username and password for authentication.
 
 An initial user name and password is given on sign up.
@@ -52,6 +54,7 @@ to be documented
 
 
 ### 2. Post actions
+
 Once the type exists, let's start posting actions.
 We should invoke SuggestGrid client's SuggestGrid.Controllers.ActionController when an user views an item in our application.
 
@@ -66,6 +69,7 @@ The more actions SuggestGrid gets, more relevant and diverse its responses are.
 
 
 ### 3. Get recommendations
+
 Finally, let's show "movies similar users viewed" on movie pages.
 
 SuggestGrid needs *recommendation models* for returning recommendations.

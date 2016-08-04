@@ -157,6 +157,9 @@ definitions:
       type:
         type: string
         description: |
+      types:
+        type: string
+        description: |
       item_id:
         type: string
         description: |
@@ -184,13 +187,14 @@ definitions:
           type: string
         description: |
           These ids will not be included in the response.
-    required:
-      - type
   GetRecommendedItemsBody:
     type: object
     description: |
     properties:
       type:
+        type: string
+        description: |
+      types:
         type: string
         description: |
       user_id:
@@ -220,13 +224,14 @@ definitions:
           type: string
         description: |
           These ids will not be included in the response.
-    required:
-      - type
   GetSimilarUsersBody:
     type: object
     description: |
     properties:
       type:
+        type: string
+        description: |
+      types:
         type: string
         description: |
       user_id:
@@ -253,13 +258,14 @@ definitions:
           type: string
         description: |
           These ids will not be included in the response.
-    required:
-      - type
   GetSimilarItemsBody:
     type: object
     description: |
     properties:
       type:
+        type: string
+        description: |
+      types:
         type: string
         description: |
       item_id:
@@ -286,8 +292,6 @@ definitions:
           type: string
         description: |
           These ids will not be included in the response.
-    required:
-      - type
   # Responses
   MessageResponse:
     type: object
@@ -577,8 +581,8 @@ paths:
       operationId: get_actions
       summary: Get Actions
       description: |
-                   If `type` is not provided, it'll return the total number of actions.
-                   Otherwise when `type` is provided
+                   Type must be provided. Additionally,
+
                    * If both `user_id` and `item_id` are supplied it returns the count of the corresponding actions.
                    * If only `user_id` is provided, it returns the count of all the action of the given user.
                    * If only `user_id` is provided, it returns the count of all the action of the given item.
@@ -588,19 +592,19 @@ paths:
       parameters:
         - name: type
           in: query
-          description: The type of the actions. Will return count for all actions if not provided.
+          description: The type of the actions.
           required: false
           type: string
           format: id
         - name: user_id
           in: query
-          description: The user id of the actions. Wll return count for all user ids if not provided.
+          description: The user id of the actions.
           required: false
           type: string
           format: id
         - name: item_id
           in: query
-          description: The item id of the actions. Wll return count for all item ids if not provided.
+          description: The item id of the actions.
           required: false
           type: string
           format: id
@@ -635,30 +639,30 @@ paths:
       operationId: delete_actions
       summary: Delete Actions
       description: |
-                   If `type` is not provided, it'll return the total number of actions.
-                   Otherwise when `type` is provided
-                   * If both `user_id` and `item_id` are supplied it returns the count of the corresponding actions.
-                   * If only `user_id` is provided, it returns the count of all the action of the given user.
-                   * If only `user_id` is provided, it returns the count of all the action of the given item.
-                   * If only `older_than` is provided, it returns the count of actions older than the given timestamp.
-                   * If a few of these parameters are provided, it returns the count of the intersection of these parameters.
-                   * If none of these are provided, it returns the count of the whole type.
+                   Type must be provided. Additionally,
+
+                   * If both user id and item id are supplied the user's actions on the item will be deleted.
+                   * If only user id is provided, all actions of the user will be deleted.
+                   * If only item id is provided, all actions on the item will be deleted.
+                   * If only older than is provided, all actions older than the timestamp or the duration will be deleted.
+                   * If a few of these parameters are provided, delete action will be executed within intersection of these parameters.
+                   * One of these parameters must be provided. In order to delete all actions, delete the type.
       parameters:
         - name: type
           in: query
-          description: The type of the actions. Will return count for all actions if not provided.
+          description: The type of the actions.
           required: false
           type: string
           format: id
         - name: user_id
           in: query
-          description: The user id of the actions. Wll return count for all user ids if not provided.
+          description: The user id of the actions.
           required: false
           type: string
           format: id
         - name: item_id
           in: query
-          description: The item id of the actions. Wll return count for all item ids if not provided.
+          description: The item id of the actions.
           required: false
           type: string
           format: id
