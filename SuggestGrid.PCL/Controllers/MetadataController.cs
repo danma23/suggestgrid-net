@@ -1,7 +1,7 @@
 /*
  * SuggestGrid.PCL
  *
- * This file was automatically generated for SuggestGrid by APIMATIC v2.0 ( https://apimatic.io ) on 08/04/2016
+ * This file was automatically generated for SuggestGrid by APIMATIC v2.0 ( https://apimatic.io ) on 08/08/2016
  */
 using System;
 using System.Collections.Generic;
@@ -15,8 +15,8 @@ using SuggestGrid;
 using SuggestGrid.Http.Request;
 using SuggestGrid.Http.Response;
 using SuggestGrid.Http.Client;
+using SuggestGrid.Exceptions;
 using SuggestGrid.Models;
-using Newtonsoft.Json;
 
 namespace SuggestGrid.Controllers
 {
@@ -53,10 +53,10 @@ namespace SuggestGrid.Controllers
         /// </summary>
         /// <param name="userId">Required parameter: The user id to associate with the metadata.</param>
         /// <param name="metadata">Required parameter: The metadata to be saved. Metadata format has its restrictions.</param>
-        /// <return>Returns the MessageResponse response from the API call</return>
-        public MessageResponse PostUser(string userId, Metadata<string,object> metadata)
+        /// <return>Returns the ErrorResponse response from the API call</return>
+        public ErrorResponse PostUser(string userId, Metadata metadata)
         {
-            Task<MessageResponse> t = PostUserAsync(userId, metadata);
+            Task<ErrorResponse> t = PostUserAsync(userId, metadata);
             Task.WaitAll(t);
             return t.Result;
         }
@@ -66,8 +66,8 @@ namespace SuggestGrid.Controllers
         /// </summary>
         /// <param name="userId">Required parameter: The user id to associate with the metadata.</param>
         /// <param name="metadata">Required parameter: The metadata to be saved. Metadata format has its restrictions.</param>
-        /// <return>Returns the MessageResponse response from the API call</return>
-        public async Task<MessageResponse> PostUserAsync(string userId, Metadata<string,object> metadata)
+        /// <return>Returns the ErrorResponse response from the API call</return>
+        public async Task<ErrorResponse> PostUserAsync(string userId, Metadata metadata)
         {
             //the base uri for api requestss
             string _baseUri = Configuration.BaseUri;
@@ -119,7 +119,7 @@ namespace SuggestGrid.Controllers
 
             try
             {
-                return APIHelper.JsonDeserialize<MessageResponse>(_response.Body);
+                return APIHelper.JsonDeserialize<ErrorResponse>(_response.Body);
             }
             catch (Exception _ex)
             {
@@ -131,10 +131,10 @@ namespace SuggestGrid.Controllers
         /// Delete a User
         /// </summary>
         /// <param name="userId">Required parameter: The user_id to delete its metadata.</param>
-        /// <return>Returns the MessageResponse response from the API call</return>
-        public MessageResponse DeleteUser(string userId)
+        /// <return>Returns the ErrorResponse response from the API call</return>
+        public ErrorResponse DeleteUser(string userId)
         {
-            Task<MessageResponse> t = DeleteUserAsync(userId);
+            Task<ErrorResponse> t = DeleteUserAsync(userId);
             Task.WaitAll(t);
             return t.Result;
         }
@@ -143,8 +143,8 @@ namespace SuggestGrid.Controllers
         /// Delete a User
         /// </summary>
         /// <param name="userId">Required parameter: The user_id to delete its metadata.</param>
-        /// <return>Returns the MessageResponse response from the API call</return>
-        public async Task<MessageResponse> DeleteUserAsync(string userId)
+        /// <return>Returns the ErrorResponse response from the API call</return>
+        public async Task<ErrorResponse> DeleteUserAsync(string userId)
         {
             //the base uri for api requestss
             string _baseUri = Configuration.BaseUri;
@@ -189,7 +189,7 @@ namespace SuggestGrid.Controllers
 
             try
             {
-                return APIHelper.JsonDeserialize<MessageResponse>(_response.Body);
+                return APIHelper.JsonDeserialize<ErrorResponse>(_response.Body);
             }
             catch (Exception _ex)
             {
@@ -200,10 +200,10 @@ namespace SuggestGrid.Controllers
         /// <summary>
         /// Get Users
         /// </summary>
-        /// <return>Returns the MetadataInformationResponse response from the API call</return>
-        public MetadataInformationResponse GetUsers()
+        /// <return>Returns the ErrorResponse response from the API call</return>
+        public ErrorResponse GetUsers()
         {
-            Task<MetadataInformationResponse> t = GetUsersAsync();
+            Task<ErrorResponse> t = GetUsersAsync();
             Task.WaitAll(t);
             return t.Result;
         }
@@ -211,8 +211,8 @@ namespace SuggestGrid.Controllers
         /// <summary>
         /// Get Users
         /// </summary>
-        /// <return>Returns the MetadataInformationResponse response from the API call</return>
-        public async Task<MetadataInformationResponse> GetUsersAsync()
+        /// <return>Returns the ErrorResponse response from the API call</return>
+        public async Task<ErrorResponse> GetUsersAsync()
         {
             //the base uri for api requestss
             string _baseUri = Configuration.BaseUri;
@@ -251,7 +251,7 @@ namespace SuggestGrid.Controllers
 
             try
             {
-                return APIHelper.JsonDeserialize<MetadataInformationResponse>(_response.Body);
+                return APIHelper.JsonDeserialize<ErrorResponse>(_response.Body);
             }
             catch (Exception _ex)
             {
@@ -262,10 +262,10 @@ namespace SuggestGrid.Controllers
         /// <summary>
         /// Delete All Users
         /// </summary>
-        /// <return>Returns the MessageResponse response from the API call</return>
-        public MessageResponse DeleteAllUsers()
+        /// <return>Returns the ErrorResponse response from the API call</return>
+        public ErrorResponse DeleteAllUsers()
         {
-            Task<MessageResponse> t = DeleteAllUsersAsync();
+            Task<ErrorResponse> t = DeleteAllUsersAsync();
             Task.WaitAll(t);
             return t.Result;
         }
@@ -273,8 +273,8 @@ namespace SuggestGrid.Controllers
         /// <summary>
         /// Delete All Users
         /// </summary>
-        /// <return>Returns the MessageResponse response from the API call</return>
-        public async Task<MessageResponse> DeleteAllUsersAsync()
+        /// <return>Returns the ErrorResponse response from the API call</return>
+        public async Task<ErrorResponse> DeleteAllUsersAsync()
         {
             //the base uri for api requestss
             string _baseUri = Configuration.BaseUri;
@@ -313,7 +313,7 @@ namespace SuggestGrid.Controllers
 
             try
             {
-                return APIHelper.JsonDeserialize<MessageResponse>(_response.Body);
+                return APIHelper.JsonDeserialize<ErrorResponse>(_response.Body);
             }
             catch (Exception _ex)
             {
@@ -326,10 +326,10 @@ namespace SuggestGrid.Controllers
         /// </summary>
         /// <param name="itemId">Required parameter: The item id to associate with the metadata.</param>
         /// <param name="body">Required parameter: The metadata to be saved. Metadata format has its restrictions.</param>
-        /// <return>Returns the MessageResponse response from the API call</return>
-        public MessageResponse PostItem(string itemId, Metadata<string,object> body)
+        /// <return>Returns the ErrorResponse response from the API call</return>
+        public ErrorResponse PostItem(string itemId, Metadata body)
         {
-            Task<MessageResponse> t = PostItemAsync(itemId, body);
+            Task<ErrorResponse> t = PostItemAsync(itemId, body);
             Task.WaitAll(t);
             return t.Result;
         }
@@ -339,8 +339,8 @@ namespace SuggestGrid.Controllers
         /// </summary>
         /// <param name="itemId">Required parameter: The item id to associate with the metadata.</param>
         /// <param name="body">Required parameter: The metadata to be saved. Metadata format has its restrictions.</param>
-        /// <return>Returns the MessageResponse response from the API call</return>
-        public async Task<MessageResponse> PostItemAsync(string itemId, Metadata<string,object> body)
+        /// <return>Returns the ErrorResponse response from the API call</return>
+        public async Task<ErrorResponse> PostItemAsync(string itemId, Metadata body)
         {
             //the base uri for api requestss
             string _baseUri = Configuration.BaseUri;
@@ -392,7 +392,7 @@ namespace SuggestGrid.Controllers
 
             try
             {
-                return APIHelper.JsonDeserialize<MessageResponse>(_response.Body);
+                return APIHelper.JsonDeserialize<ErrorResponse>(_response.Body);
             }
             catch (Exception _ex)
             {
@@ -404,10 +404,10 @@ namespace SuggestGrid.Controllers
         /// Delete an Item
         /// </summary>
         /// <param name="itemId">Required parameter: The item_id to delete its metadata.</param>
-        /// <return>Returns the MessageResponse response from the API call</return>
-        public MessageResponse DeleteItem(string itemId)
+        /// <return>Returns the ErrorResponse response from the API call</return>
+        public ErrorResponse DeleteItem(string itemId)
         {
-            Task<MessageResponse> t = DeleteItemAsync(itemId);
+            Task<ErrorResponse> t = DeleteItemAsync(itemId);
             Task.WaitAll(t);
             return t.Result;
         }
@@ -416,8 +416,8 @@ namespace SuggestGrid.Controllers
         /// Delete an Item
         /// </summary>
         /// <param name="itemId">Required parameter: The item_id to delete its metadata.</param>
-        /// <return>Returns the MessageResponse response from the API call</return>
-        public async Task<MessageResponse> DeleteItemAsync(string itemId)
+        /// <return>Returns the ErrorResponse response from the API call</return>
+        public async Task<ErrorResponse> DeleteItemAsync(string itemId)
         {
             //the base uri for api requestss
             string _baseUri = Configuration.BaseUri;
@@ -462,7 +462,7 @@ namespace SuggestGrid.Controllers
 
             try
             {
-                return APIHelper.JsonDeserialize<MessageResponse>(_response.Body);
+                return APIHelper.JsonDeserialize<ErrorResponse>(_response.Body);
             }
             catch (Exception _ex)
             {
@@ -473,10 +473,10 @@ namespace SuggestGrid.Controllers
         /// <summary>
         /// Get Items
         /// </summary>
-        /// <return>Returns the MetadataInformationResponse response from the API call</return>
-        public MetadataInformationResponse GetItems()
+        /// <return>Returns the ErrorResponse response from the API call</return>
+        public ErrorResponse GetItems()
         {
-            Task<MetadataInformationResponse> t = GetItemsAsync();
+            Task<ErrorResponse> t = GetItemsAsync();
             Task.WaitAll(t);
             return t.Result;
         }
@@ -484,8 +484,8 @@ namespace SuggestGrid.Controllers
         /// <summary>
         /// Get Items
         /// </summary>
-        /// <return>Returns the MetadataInformationResponse response from the API call</return>
-        public async Task<MetadataInformationResponse> GetItemsAsync()
+        /// <return>Returns the ErrorResponse response from the API call</return>
+        public async Task<ErrorResponse> GetItemsAsync()
         {
             //the base uri for api requestss
             string _baseUri = Configuration.BaseUri;
@@ -524,7 +524,7 @@ namespace SuggestGrid.Controllers
 
             try
             {
-                return APIHelper.JsonDeserialize<MetadataInformationResponse>(_response.Body);
+                return APIHelper.JsonDeserialize<ErrorResponse>(_response.Body);
             }
             catch (Exception _ex)
             {
@@ -535,10 +535,10 @@ namespace SuggestGrid.Controllers
         /// <summary>
         /// Delete All Items
         /// </summary>
-        /// <return>Returns the MessageResponse response from the API call</return>
-        public MessageResponse DeleteAllItems()
+        /// <return>Returns the ErrorResponse response from the API call</return>
+        public ErrorResponse DeleteAllItems()
         {
-            Task<MessageResponse> t = DeleteAllItemsAsync();
+            Task<ErrorResponse> t = DeleteAllItemsAsync();
             Task.WaitAll(t);
             return t.Result;
         }
@@ -546,8 +546,8 @@ namespace SuggestGrid.Controllers
         /// <summary>
         /// Delete All Items
         /// </summary>
-        /// <return>Returns the MessageResponse response from the API call</return>
-        public async Task<MessageResponse> DeleteAllItemsAsync()
+        /// <return>Returns the ErrorResponse response from the API call</return>
+        public async Task<ErrorResponse> DeleteAllItemsAsync()
         {
             //the base uri for api requestss
             string _baseUri = Configuration.BaseUri;
@@ -586,7 +586,7 @@ namespace SuggestGrid.Controllers
 
             try
             {
-                return APIHelper.JsonDeserialize<MessageResponse>(_response.Body);
+                return APIHelper.JsonDeserialize<ErrorResponse>(_response.Body);
             }
             catch (Exception _ex)
             {
@@ -598,16 +598,10 @@ namespace SuggestGrid.Controllers
         /// Post Bulk Users
         /// </summary>
         /// <param name="body">Required parameter: A number of user metadata objects separated with newlines. Each user metadata object must have its id field. Note that this is not a valid JSON data structure. The body size is limited to 10 thousand lines.</param>
-        /// <return>Returns the MessageResponse response from the API call</return>
-        public MessageResponse PostBulkUsers(List<Metadata<string, object>> metas)
+        /// <return>Returns the ErrorResponse response from the API call</return>
+        public ErrorResponse PostBulkUsers(string body)
         {
-            StringBuilder sb = new StringBuilder();
-            foreach (Metadata<string, object> meta in metas)
-            {
-                sb.Append(JsonConvert.SerializeObject(meta, Formatting.None));
-                sb.Append(Environment.NewLine);
-            }
-            Task<MessageResponse> t = PostBulkUsersAsync(sb.ToString());
+            Task<ErrorResponse> t = PostBulkUsersAsync(body);
             Task.WaitAll(t);
             return t.Result;
         }
@@ -616,8 +610,8 @@ namespace SuggestGrid.Controllers
         /// Post Bulk Users
         /// </summary>
         /// <param name="body">Required parameter: A number of user metadata objects separated with newlines. Each user metadata object must have its id field. Note that this is not a valid JSON data structure. The body size is limited to 10 thousand lines.</param>
-        /// <return>Returns the MessageResponse response from the API call</return>
-        private async Task<MessageResponse> PostBulkUsersAsync(string body)
+        /// <return>Returns the ErrorResponse response from the API call</return>
+        public async Task<ErrorResponse> PostBulkUsersAsync(string body)
         {
             //the base uri for api requestss
             string _baseUri = Configuration.BaseUri;
@@ -662,7 +656,7 @@ namespace SuggestGrid.Controllers
 
             try
             {
-                return APIHelper.JsonDeserialize<MessageResponse>(_response.Body);
+                return APIHelper.JsonDeserialize<ErrorResponse>(_response.Body);
             }
             catch (Exception _ex)
             {
@@ -674,16 +668,10 @@ namespace SuggestGrid.Controllers
         /// Post Bulk Items
         /// </summary>
         /// <param name="body">Required parameter: A number of item metadata objects separated with newlines. Each item metadata object must have its id field. Note that this is not a valid JSON data structure. The body size is limited to 10 thousand lines.</param>
-        /// <return>Returns the MessageResponse response from the API call</return>
-        public MessageResponse PostBulkItems(List<Metadata<string, object>> metas)
+        /// <return>Returns the ErrorResponse response from the API call</return>
+        public ErrorResponse PostBulkItems(string body)
         {
-            StringBuilder sb = new StringBuilder();
-            foreach (Metadata<string, object> meta in metas)
-            {
-                sb.Append(JsonConvert.SerializeObject(meta, Formatting.None));
-                sb.Append(Environment.NewLine);
-            }
-            Task<MessageResponse> t = PostBulkItemsAsync(sb.ToString());
+            Task<ErrorResponse> t = PostBulkItemsAsync(body);
             Task.WaitAll(t);
             return t.Result;
         }
@@ -692,8 +680,8 @@ namespace SuggestGrid.Controllers
         /// Post Bulk Items
         /// </summary>
         /// <param name="body">Required parameter: A number of item metadata objects separated with newlines. Each item metadata object must have its id field. Note that this is not a valid JSON data structure. The body size is limited to 10 thousand lines.</param>
-        /// <return>Returns the MessageResponse response from the API call</return>
-        private async Task<MessageResponse> PostBulkItemsAsync(string body)
+        /// <return>Returns the ErrorResponse response from the API call</return>
+        public async Task<ErrorResponse> PostBulkItemsAsync(string body)
         {
             //the base uri for api requestss
             string _baseUri = Configuration.BaseUri;
@@ -738,7 +726,7 @@ namespace SuggestGrid.Controllers
 
             try
             {
-                return APIHelper.JsonDeserialize<MessageResponse>(_response.Body);
+                return APIHelper.JsonDeserialize<ErrorResponse>(_response.Body);
             }
             catch (Exception _ex)
             {
@@ -747,4 +735,4 @@ namespace SuggestGrid.Controllers
         }
 
     }
-}
+} 

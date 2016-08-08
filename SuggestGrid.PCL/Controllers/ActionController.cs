@@ -1,7 +1,7 @@
 /*
  * SuggestGrid.PCL
  *
- * This file was automatically generated for SuggestGrid by APIMATIC v2.0 ( https://apimatic.io ) on 08/04/2016
+ * This file was automatically generated for SuggestGrid by APIMATIC v2.0 ( https://apimatic.io ) on 08/08/2016
  */
 using System;
 using System.Collections.Generic;
@@ -15,8 +15,8 @@ using SuggestGrid;
 using SuggestGrid.Http.Request;
 using SuggestGrid.Http.Response;
 using SuggestGrid.Http.Client;
+using SuggestGrid.Exceptions;
 using SuggestGrid.Models;
-using Newtonsoft.Json;
 
 namespace SuggestGrid.Controllers
 {
@@ -55,14 +55,14 @@ namespace SuggestGrid.Controllers
         /// <param name="userId">Optional parameter: The user id of the actions.</param>
         /// <param name="itemId">Optional parameter: The item id of the actions.</param>
         /// <param name="olderThan">Optional parameter: Delete all actions of a type older than the given timestamp or time. Valid times are 1s, 1m, 1h, 1d, 1M, 1y, or unix timestamp (like 1443798195).</param>
-        /// <return>Returns the MessageResponse response from the API call</return>
-        public MessageResponse GetActions(
+        /// <return>Returns the ErrorResponse response from the API call</return>
+        public ErrorResponse GetActions(
                 string type = null,
                 string userId = null,
                 string itemId = null,
                 string olderThan = null)
         {
-            Task<MessageResponse> t = GetActionsAsync(type, userId, itemId, olderThan);
+            Task<ErrorResponse> t = GetActionsAsync(type, userId, itemId, olderThan);
             Task.WaitAll(t);
             return t.Result;
         }
@@ -74,8 +74,8 @@ namespace SuggestGrid.Controllers
         /// <param name="userId">Optional parameter: The user id of the actions.</param>
         /// <param name="itemId">Optional parameter: The item id of the actions.</param>
         /// <param name="olderThan">Optional parameter: Delete all actions of a type older than the given timestamp or time. Valid times are 1s, 1m, 1h, 1d, 1M, 1y, or unix timestamp (like 1443798195).</param>
-        /// <return>Returns the MessageResponse response from the API call</return>
-        public async Task<MessageResponse> GetActionsAsync(
+        /// <return>Returns the ErrorResponse response from the API call</return>
+        public async Task<ErrorResponse> GetActionsAsync(
                 string type = null,
                 string userId = null,
                 string itemId = null,
@@ -130,7 +130,7 @@ namespace SuggestGrid.Controllers
 
             try
             {
-                return APIHelper.JsonDeserialize<MessageResponse>(_response.Body);
+                return APIHelper.JsonDeserialize<ErrorResponse>(_response.Body);
             }
             catch (Exception _ex)
             {
@@ -142,10 +142,10 @@ namespace SuggestGrid.Controllers
         /// Post an Action
         /// </summary>
         /// <param name="body">Required parameter: The action to be posted.</param>
-        /// <return>Returns the MessageResponse response from the API call</return>
-        public MessageResponse PostAction(ActionModel body)
+        /// <return>Returns the ErrorResponse response from the API call</return>
+        public ErrorResponse PostAction(Action body)
         {
-            Task<MessageResponse> t = PostActionAsync(body);
+            Task<ErrorResponse> t = PostActionAsync(body);
             Task.WaitAll(t);
             return t.Result;
         }
@@ -154,8 +154,8 @@ namespace SuggestGrid.Controllers
         /// Post an Action
         /// </summary>
         /// <param name="body">Required parameter: The action to be posted.</param>
-        /// <return>Returns the MessageResponse response from the API call</return>
-        public async Task<MessageResponse> PostActionAsync(ActionModel body)
+        /// <return>Returns the ErrorResponse response from the API call</return>
+        public async Task<ErrorResponse> PostActionAsync(Action body)
         {
             //the base uri for api requestss
             string _baseUri = Configuration.BaseUri;
@@ -207,7 +207,7 @@ namespace SuggestGrid.Controllers
 
             try
             {
-                return APIHelper.JsonDeserialize<MessageResponse>(_response.Body);
+                return APIHelper.JsonDeserialize<ErrorResponse>(_response.Body);
             }
             catch (Exception _ex)
             {
@@ -222,14 +222,14 @@ namespace SuggestGrid.Controllers
         /// <param name="userId">Optional parameter: The user id of the actions.</param>
         /// <param name="itemId">Optional parameter: The item id of the actions.</param>
         /// <param name="olderThan">Optional parameter: Delete all actions of a type older than the given timestamp or time. Valid times are 1s, 1m, 1h, 1d, 1M, 1y, or unix timestamp (like 1443798195).</param>
-        /// <return>Returns the MessageResponse response from the API call</return>
-        public MessageResponse DeleteActions(
+        /// <return>Returns the ErrorResponse response from the API call</return>
+        public ErrorResponse DeleteActions(
                 string type = null,
                 string userId = null,
                 string itemId = null,
                 string olderThan = null)
         {
-            Task<MessageResponse> t = DeleteActionsAsync(type, userId, itemId, olderThan);
+            Task<ErrorResponse> t = DeleteActionsAsync(type, userId, itemId, olderThan);
             Task.WaitAll(t);
             return t.Result;
         }
@@ -241,8 +241,8 @@ namespace SuggestGrid.Controllers
         /// <param name="userId">Optional parameter: The user id of the actions.</param>
         /// <param name="itemId">Optional parameter: The item id of the actions.</param>
         /// <param name="olderThan">Optional parameter: Delete all actions of a type older than the given timestamp or time. Valid times are 1s, 1m, 1h, 1d, 1M, 1y, or unix timestamp (like 1443798195).</param>
-        /// <return>Returns the MessageResponse response from the API call</return>
-        public async Task<MessageResponse> DeleteActionsAsync(
+        /// <return>Returns the ErrorResponse response from the API call</return>
+        public async Task<ErrorResponse> DeleteActionsAsync(
                 string type = null,
                 string userId = null,
                 string itemId = null,
@@ -303,7 +303,7 @@ namespace SuggestGrid.Controllers
 
             try
             {
-                return APIHelper.JsonDeserialize<MessageResponse>(_response.Body);
+                return APIHelper.JsonDeserialize<ErrorResponse>(_response.Body);
             }
             catch (Exception _ex)
             {
@@ -315,16 +315,10 @@ namespace SuggestGrid.Controllers
         /// Post Bulk Actions
         /// </summary>
         /// <param name="body">Required parameter: A number of action objects separated with newlines. Note that this is not a valid JSON data structure. The body size is limited to 10 thousand lines.</param>
-        /// <return>Returns the MessageResponse response from the API call</return>
-        public MessageResponse PostBulkActions(List<ActionModel> actions)
+        /// <return>Returns the ErrorResponse response from the API call</return>
+        public ErrorResponse PostBulkActions(string body)
         {
-            StringBuilder sb = new StringBuilder();
-            foreach (ActionModel action in actions)
-            {
-                sb.Append(JsonConvert.SerializeObject(action, Formatting.None));
-                sb.Append(Environment.NewLine);
-            }
-            Task<MessageResponse> t = PostBulkActionsAsync(sb.ToString());
+            Task<ErrorResponse> t = PostBulkActionsAsync(body);
             Task.WaitAll(t);
             return t.Result;
         }
@@ -333,8 +327,8 @@ namespace SuggestGrid.Controllers
         /// Post Bulk Actions
         /// </summary>
         /// <param name="body">Required parameter: A number of action objects separated with newlines. Note that this is not a valid JSON data structure. The body size is limited to 10 thousand lines.</param>
-        /// <return>Returns the MessageResponse response from the API call</return>
-        private async Task<MessageResponse> PostBulkActionsAsync(string body)
+        /// <return>Returns the ErrorResponse response from the API call</return>
+        public async Task<ErrorResponse> PostBulkActionsAsync(string body)
         {
             //the base uri for api requestss
             string _baseUri = Configuration.BaseUri;
@@ -379,7 +373,7 @@ namespace SuggestGrid.Controllers
 
             try
             {
-                return APIHelper.JsonDeserialize<MessageResponse>(_response.Body);
+                return APIHelper.JsonDeserialize<ErrorResponse>(_response.Body);
             }
             catch (Exception _ex)
             {

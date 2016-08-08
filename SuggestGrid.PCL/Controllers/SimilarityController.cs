@@ -1,7 +1,7 @@
 /*
  * SuggestGrid.PCL
  *
- * This file was automatically generated for SuggestGrid by APIMATIC v2.0 ( https://apimatic.io ) on 08/04/2016
+ * This file was automatically generated for SuggestGrid by APIMATIC v2.0 ( https://apimatic.io ) on 08/08/2016
  */
 using System;
 using System.Collections.Generic;
@@ -15,6 +15,7 @@ using SuggestGrid;
 using SuggestGrid.Http.Request;
 using SuggestGrid.Http.Response;
 using SuggestGrid.Http.Client;
+using SuggestGrid.Exceptions;
 using SuggestGrid.Models;
 
 namespace SuggestGrid.Controllers
@@ -51,10 +52,10 @@ namespace SuggestGrid.Controllers
         /// Get Similar Users
         /// </summary>
         /// <param name="body">Required parameter: Similar users method parameters.</param>
-        /// <return>Returns the UsersResponse response from the API call</return>
-        public UsersResponse GetSimilarUsers(GetSimilarUsersBody body)
+        /// <return>Returns the ErrorResponse response from the API call</return>
+        public ErrorResponse GetSimilarUsers(GetSimilarUsersBody body)
         {
-            Task<UsersResponse> t = GetSimilarUsersAsync(body);
+            Task<ErrorResponse> t = GetSimilarUsersAsync(body);
             Task.WaitAll(t);
             return t.Result;
         }
@@ -63,8 +64,8 @@ namespace SuggestGrid.Controllers
         /// Get Similar Users
         /// </summary>
         /// <param name="body">Required parameter: Similar users method parameters.</param>
-        /// <return>Returns the UsersResponse response from the API call</return>
-        public async Task<UsersResponse> GetSimilarUsersAsync(GetSimilarUsersBody body)
+        /// <return>Returns the ErrorResponse response from the API call</return>
+        public async Task<ErrorResponse> GetSimilarUsersAsync(GetSimilarUsersBody body)
         {
             //the base uri for api requestss
             string _baseUri = Configuration.BaseUri;
@@ -113,7 +114,7 @@ namespace SuggestGrid.Controllers
 
             try
             {
-                return APIHelper.JsonDeserialize<UsersResponse>(_response.Body);
+                return APIHelper.JsonDeserialize<ErrorResponse>(_response.Body);
             }
             catch (Exception _ex)
             {
@@ -125,10 +126,10 @@ namespace SuggestGrid.Controllers
         /// Get Similar Items
         /// </summary>
         /// <param name="body">Required parameter: Similar items method parameter.</param>
-        /// <return>Returns the ItemsResponse response from the API call</return>
-        public ItemsResponse GetSimilarItems(GetSimilarItemsBody body)
+        /// <return>Returns the ErrorResponse response from the API call</return>
+        public ErrorResponse GetSimilarItems(GetSimilarItemsBody body)
         {
-            Task<ItemsResponse> t = GetSimilarItemsAsync(body);
+            Task<ErrorResponse> t = GetSimilarItemsAsync(body);
             Task.WaitAll(t);
             return t.Result;
         }
@@ -137,8 +138,8 @@ namespace SuggestGrid.Controllers
         /// Get Similar Items
         /// </summary>
         /// <param name="body">Required parameter: Similar items method parameter.</param>
-        /// <return>Returns the ItemsResponse response from the API call</return>
-        public async Task<ItemsResponse> GetSimilarItemsAsync(GetSimilarItemsBody body)
+        /// <return>Returns the ErrorResponse response from the API call</return>
+        public async Task<ErrorResponse> GetSimilarItemsAsync(GetSimilarItemsBody body)
         {
             //the base uri for api requestss
             string _baseUri = Configuration.BaseUri;
@@ -187,7 +188,7 @@ namespace SuggestGrid.Controllers
 
             try
             {
-                return APIHelper.JsonDeserialize<ItemsResponse>(_response.Body);
+                return APIHelper.JsonDeserialize<ErrorResponse>(_response.Body);
             }
             catch (Exception _ex)
             {

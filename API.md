@@ -65,10 +65,10 @@ Rating is required for actions sent to an explicit type.
 
 Name | Type |Required| Description
 --- | --- | --- | ---
-item_id|string|true|The item id of the item the action is performed on.
 rating|number|false|The optional rating, if the type is explicit.
 type|string|true|The type that the action belongs to.
 user_id|string|true|The user id of the performer of the action.
+item_id|string|true|The item id of the item the action is performed on.
 ### Post Bulk Actions
 Posts bulk actions to SuggestGrid.
 The recommended method for posting multiple actions at once.
@@ -215,14 +215,14 @@ Recommend users for the given body parameters.
 
 Name | Type |Required| Description
 --- | --- | --- | ---
-except|array|false|These ids will not be included in the response. 
-size|integer|false|
-item_id|string|false|
-types|string|false|
-fields|array|false|
-type|string|false|
-filter||false|
 item_ids|array|false|
+filter||false|
+size|integer|false|
+types|string|false|
+type|string|false|
+fields|array|false|
+item_id|string|false|
+except|array|false|These ids will not be included in the response. 
 similar_user_id|string|false|
 ### Get Recommended Items
 Recommend items for the given body parameters.
@@ -234,14 +234,14 @@ Recommend items for the given body parameters.
 
 Name | Type |Required| Description
 --- | --- | --- | ---
-except|array|false|These ids will not be included in the response. 
+similar_item_id|string|false|
+user_ids|array|false|
+filter||false|
 size|integer|false|
 types|string|false|
-fields|array|false|
-similar_item_id|string|false|
 type|string|false|
-filter||false|
-user_ids|array|false|
+fields|array|false|
+except|array|false|These ids will not be included in the response. 
 user_id|string|false|
 
 
@@ -259,13 +259,13 @@ Get similar users to a user.
 
 Name | Type |Required| Description
 --- | --- | --- | ---
-except|array|false|These ids will not be included in the response. 
+user_ids|array|false|
+filter||false|
 size|integer|false|
 types|string|false|
-fields|array|false|
 type|string|false|
-filter||false|
-user_ids|array|false|
+fields|array|false|
+except|array|false|These ids will not be included in the response. 
 user_id|string|false|
 ### Get Similar Items
 Get similar items to an item.
@@ -277,11 +277,11 @@ Get similar items to an item.
 
 Name | Type |Required| Description
 --- | --- | --- | ---
-except|array|false|These ids will not be included in the response. 
-size|integer|false|
-item_id|string|false|
-types|string|false|
-fields|array|false|
-type|string|false|
-filter||false|
 item_ids|array|false|
+filter||false|
+size|integer|false|
+types|string|false|
+type|string|false|
+fields|array|false|
+item_id|string|false|
+except|array|false|These ids will not be included in the response. 

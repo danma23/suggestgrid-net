@@ -1,7 +1,7 @@
 /*
  * SuggestGrid.PCL
  *
- * This file was automatically generated for SuggestGrid by APIMATIC v2.0 ( https://apimatic.io ) on 08/04/2016
+ * This file was automatically generated for SuggestGrid by APIMATIC v2.0 ( https://apimatic.io ) on 08/08/2016
  */
 using System;
 using System.Collections.Generic;
@@ -15,6 +15,7 @@ using SuggestGrid;
 using SuggestGrid.Http.Request;
 using SuggestGrid.Http.Response;
 using SuggestGrid.Http.Client;
+using SuggestGrid.Exceptions;
 using SuggestGrid.Models;
 
 namespace SuggestGrid.Controllers
@@ -51,10 +52,10 @@ namespace SuggestGrid.Controllers
         /// Get Recommended Users
         /// </summary>
         /// <param name="body">Required parameter: Parameters for recommend users method.</param>
-        /// <return>Returns the UsersResponse response from the API call</return>
-        public UsersResponse GetRecommendedUsers(GetRecommendedUsersBody body)
+        /// <return>Returns the ErrorResponse response from the API call</return>
+        public ErrorResponse GetRecommendedUsers(GetRecommendedUsersBody body)
         {
-            Task<UsersResponse> t = GetRecommendedUsersAsync(body);
+            Task<ErrorResponse> t = GetRecommendedUsersAsync(body);
             Task.WaitAll(t);
             return t.Result;
         }
@@ -63,8 +64,8 @@ namespace SuggestGrid.Controllers
         /// Get Recommended Users
         /// </summary>
         /// <param name="body">Required parameter: Parameters for recommend users method.</param>
-        /// <return>Returns the UsersResponse response from the API call</return>
-        public async Task<UsersResponse> GetRecommendedUsersAsync(GetRecommendedUsersBody body)
+        /// <return>Returns the ErrorResponse response from the API call</return>
+        public async Task<ErrorResponse> GetRecommendedUsersAsync(GetRecommendedUsersBody body)
         {
             //the base uri for api requestss
             string _baseUri = Configuration.BaseUri;
@@ -113,7 +114,7 @@ namespace SuggestGrid.Controllers
 
             try
             {
-                return APIHelper.JsonDeserialize<UsersResponse>(_response.Body);
+                return APIHelper.JsonDeserialize<ErrorResponse>(_response.Body);
             }
             catch (Exception _ex)
             {
@@ -125,10 +126,10 @@ namespace SuggestGrid.Controllers
         /// Get Recommended Items
         /// </summary>
         /// <param name="body">Required parameter: Parameters for recommend items method.</param>
-        /// <return>Returns the ItemsResponse response from the API call</return>
-        public ItemsResponse GetRecommendedItems(GetRecommendedItemsBody body)
+        /// <return>Returns the ErrorResponse response from the API call</return>
+        public ErrorResponse GetRecommendedItems(GetRecommendedItemsBody body)
         {
-            Task<ItemsResponse> t = GetRecommendedItemsAsync(body);
+            Task<ErrorResponse> t = GetRecommendedItemsAsync(body);
             Task.WaitAll(t);
             return t.Result;
         }
@@ -137,8 +138,8 @@ namespace SuggestGrid.Controllers
         /// Get Recommended Items
         /// </summary>
         /// <param name="body">Required parameter: Parameters for recommend items method.</param>
-        /// <return>Returns the ItemsResponse response from the API call</return>
-        public async Task<ItemsResponse> GetRecommendedItemsAsync(GetRecommendedItemsBody body)
+        /// <return>Returns the ErrorResponse response from the API call</return>
+        public async Task<ErrorResponse> GetRecommendedItemsAsync(GetRecommendedItemsBody body)
         {
             //the base uri for api requestss
             string _baseUri = Configuration.BaseUri;
@@ -187,7 +188,7 @@ namespace SuggestGrid.Controllers
 
             try
             {
-                return APIHelper.JsonDeserialize<ItemsResponse>(_response.Body);
+                return APIHelper.JsonDeserialize<ErrorResponse>(_response.Body);
             }
             catch (Exception _ex)
             {

@@ -2,7 +2,7 @@
 <!--
  - SuggestGrid.PCL
  -
- - This file was automatically generated for SuggestGrid by APIMATIC v2.0 ( https://apimatic.io ) on 08/04/2016
+ - This file was automatically generated for SuggestGrid by APIMATIC v2.0 ( https://apimatic.io ) on 08/08/2016
 -->
 <Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
@@ -10,7 +10,7 @@
     <AssemblyName>SuggestGrid.PCL</AssemblyName>
     <OutputType>Library</OutputType>
     <OutputPath>bin/DEBUG/</OutputPath>
-    <ProjectGuid>{b0d75473-448b-4fb7-832e-13e6c5331bcc}</ProjectGuid>
+    <ProjectGuid>{7509205b-d997-4958-b49b-76106fcd07fc}</ProjectGuid>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
     <MinimumVisualStudioVersion>11.0</MinimumVisualStudioVersion>
     <NuGetPackageImportStamp>ee2bb91c</NuGetPackageImportStamp>
@@ -74,20 +74,21 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Models\Action.cs" />
-    <Compile Include="Models\Metadata.cs" />
-    <Compile Include="Models\TypeRequestBody.cs" />
-    <Compile Include="Models\GetRecommendedUsersBody.cs" />
-    <Compile Include="Models\GetRecommendedItemsBody.cs" />
-    <Compile Include="Models\GetSimilarUsersBody.cs" />
-    <Compile Include="Models\GetSimilarItemsBody.cs" />
-    <Compile Include="Models\MessageResponse.cs" />
-    <Compile Include="Models\ErrorResponse.cs" />
-    <Compile Include="Models\GetTypesResponse.cs" />
-    <Compile Include="Models\GetTypeResponse.cs" />
-    <Compile Include="Models\BulkSchemaErrorResponse.cs" />
-    <Compile Include="Models\SchemaErrorResponse.cs" />
     <Compile Include="Models\MetadataInformationResponse.cs" />
+    <Compile Include="Models\SchemaErrorResponse.cs" />
+    <Compile Include="Models\BulkSchemaErrorResponse.cs" />
+    <Compile Include="Models\GetTypeResponse.cs" />
+    <Compile Include="Models\GetTypesResponse.cs" />
+    <Compile Include="Models\ErrorResponse.cs" />
     <Compile Include="Models\UsersResponse.cs" />
+    <Compile Include="Models\CountResponse.cs" />
+    <Compile Include="Models\GetSimilarItemsBody.cs" />
+    <Compile Include="Models\GetSimilarUsersBody.cs" />
+    <Compile Include="Models\GetRecommendedItemsBody.cs" />
+    <Compile Include="Models\GetRecommendedUsersBody.cs" />
+    <Compile Include="Models\TypeRequestBody.cs" />
+    <Compile Include="Models\Metadata.cs" />
+    <Compile Include="Models\MessageResponse.cs" />
     <Compile Include="Models\ItemsResponse.cs" />
     <Compile Include="Controllers\TypeController.cs" />
     <Compile Include="Controllers\ActionController.cs" />
@@ -106,7 +107,7 @@
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Configuration.cs" />
     <Compile Include="APIHelper.cs" />
-    <Compile Include="APIException.cs" />
+    <Compile Include="Exceptions\APIException.cs" />
     <Compile Include="SuggestGridClient.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <None Include="packages.config" />

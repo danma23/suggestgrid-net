@@ -16,43 +16,25 @@ using SuggestGrid;
 
 namespace SuggestGrid.Models
 {
-    public class GetTypesResponse : INotifyPropertyChanged 
+    public class CountResponse : INotifyPropertyChanged 
     {
         // These fields hold the values for the public properties.
-        private List<string> types;
-        private int? status;
+        private int? count;
 
         /// <summary>
-        /// The list of type names
+        /// TODO: Write general description for this method
         /// </summary>
-        [JsonProperty("types")]
-        public List<string> Types 
+        [JsonProperty("count")]
+        public int? Count 
         { 
             get 
             {
-                return this.types; 
+                return this.count; 
             } 
             set 
             {
-                this.types = value;
-                onPropertyChanged("Types");
-            }
-        }
-
-        /// <summary>
-        /// Status code of the response. It is not 2XX.
-        /// </summary>
-        [JsonProperty("status")]
-        public int? Status 
-        { 
-            get 
-            {
-                return this.status; 
-            } 
-            set 
-            {
-                this.status = value;
-                onPropertyChanged("Status");
+                this.count = value;
+                onPropertyChanged("Count");
             }
         }
 

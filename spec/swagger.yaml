@@ -300,6 +300,14 @@ definitions:
       message:
         type: string
         description: Message of the response.
+  CountResponse:
+    type: object
+    description: |
+    properties:
+      count:
+        type: integer
+        format: int32
+        description: |
   ErrorResponse:
     type: object
     description: |
@@ -620,7 +628,7 @@ paths:
         200:
           description: Successfully deleted actions.
           schema:
-            $ref: '#/definitions/MessageResponse'
+            $ref: '#/definitions/CountResponse'
         400:
           description: Required `user_id` or `item_id` parameters are missing from the request body.
           schema:
