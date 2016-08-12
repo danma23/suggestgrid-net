@@ -35,6 +35,17 @@ namespace SuggestGrid
         }
 
         /// <summary>
+        /// Singleton access to ActiV1Userson controller
+        /// </summary>
+        public ActiV1UsersonController ActiV1Userson
+        {
+            get
+            {
+                return ActiV1UsersonController.Instance;
+            }
+        }
+
+        /// <summary>
         /// Singleton access to Metadata controller
         /// </summary>
         public MetadataController Metadata

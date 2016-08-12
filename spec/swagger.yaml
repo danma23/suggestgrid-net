@@ -645,7 +645,7 @@ paths:
             $ref: '#/definitions/ErrorResponse'
     delete:
       tags:
-        - action
+        - acti/v1/userson
       operationId: delete_actions
       summary: Delete Actions
       description: |
@@ -748,37 +748,7 @@ paths:
           schema:
             $ref: '#/definitions/ErrorResponse'
   # Metadata Paths
-  /v1/users:
-    put:
-      tags:
-        - metadata
-      operationId: post_user
-      summary: Post a User
-      description: Posts a user metadata.
-      parameters:
-        - name: metadata
-          in: body
-          description: The metadata to be saved. Metadata format has its restrictions.
-          required: true
-          schema:
-            $ref: '#/definitions/Metadata'
-      responses:
-        200:
-          description: Posted a user metadata.
-          schema:
-            $ref: '#/definitions/MessageResponse'
-        400:
-          description: Metadata is invalid.
-          schema:
-            $ref: '#/definitions/SchemaErrorResponse'
-        429:
-          description: Too many requests.
-          schema:
-            $ref: '#/definitions/ErrorResponse'
-        default:
-          description: Unexpected internal error.
-          schema:
-            $ref: '#/definitions/ErrorResponse'
+  /v1/users/{user_id}:
     delete:
       tags:
         - metadata
@@ -806,6 +776,36 @@ paths:
           schema:
             $ref: '#/definitions/ErrorResponse'
   /v1/users:
+    post:
+        tags:
+          - metadata
+        operationId: post_user
+        summary: Post a User
+        description: Posts a user metadata.
+        parameters:
+          - name: metadata
+            in: body
+            description: The metadata to be saved. Metadata format has its restrictions.
+            required: true
+            schema:
+              $ref: '#/definitions/Metadata'
+        responses:
+          200:
+            description: Posted a user metadata.
+            schema:
+              $ref: '#/definitions/MessageResponse'
+          400:
+            description: Metadata is invalid.
+            schema:
+              $ref: '#/definitions/SchemaErrorResponse'
+          429:
+            description: Too many requests.
+            schema:
+              $ref: '#/definitions/ErrorResponse'
+          default:
+            description: Unexpected internal error.
+            schema:
+              $ref: '#/definitions/ErrorResponse'
     get:
       tags:
         - metadata
@@ -844,8 +844,35 @@ paths:
           description: Unexpected internal error.
           schema:
             $ref: '#/definitions/ErrorResponse'
+  /v1/items/{item_id}:
+    delete:
+      tags:
+        - metadata
+      operationId: delete_item
+      summary: Delete an Item
+      description: Delete an item metadata with the given item_id.
+      parameters:
+        - name: item_id
+          in: path
+          description: The item_id to delete its metadata.
+          required: true
+          type: string
+          format: id
+      responses:
+        200:
+          description: Deleted an item metadata.
+          schema:
+            $ref: '#/definitions/MessageResponse'
+        429:
+          description: Too many requests.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        default:
+          description: Unexpected internal error.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
   /v1/items:
-    put:
+    post:
       tags:
         - metadata
       operationId: post_item
@@ -877,33 +904,6 @@ paths:
           description: Unexpected internal error.
           schema:
             $ref: '#/definitions/ErrorResponse'
-    delete:
-      tags:
-        - metadata
-      operationId: delete_item
-      summary: Delete an Item
-      description: Delete an item metadata with the given item_id.
-      parameters:
-        - name: item_id
-          in: path
-          description: The item_id to delete its metadata.
-          required: true
-          type: string
-          format: id
-      responses:
-        200:
-          description: Deleted an item metadata.
-          schema:
-            $ref: '#/definitions/MessageResponse'
-        429:
-          description: Too many requests.
-          schema:
-            $ref: '#/definitions/ErrorResponse'
-        default:
-          description: Unexpected internal error.
-          schema:
-            $ref: '#/definitions/ErrorResponse'
-  /v1/items:
     get:
       tags:
         - metadata

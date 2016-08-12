@@ -10,7 +10,7 @@
     <AssemblyName>SuggestGrid.PCL</AssemblyName>
     <OutputType>Library</OutputType>
     <OutputPath>bin/DEBUG/</OutputPath>
-    <ProjectGuid>{f40157ea-4f2d-47a4-9a14-6e645df595ae}</ProjectGuid>
+    <ProjectGuid>{05157809-5e36-45f4-878c-c606ebab7163}</ProjectGuid>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
     <MinimumVisualStudioVersion>11.0</MinimumVisualStudioVersion>
     <NuGetPackageImportStamp>ee2bb91c</NuGetPackageImportStamp>
@@ -92,6 +92,7 @@
     <Compile Include="Models\ItemsResponse.cs" />
     <Compile Include="Controllers\TypeController.cs" />
     <Compile Include="Controllers\ActionController.cs" />
+    <Compile Include="Controllers\ActiV1UsersonController.cs" />
     <Compile Include="Controllers\MetadataController.cs" />
     <Compile Include="Controllers\RecommendationController.cs" />
     <Compile Include="Controllers\SimilarityController.cs" />

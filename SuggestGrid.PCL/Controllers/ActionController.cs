@@ -217,115 +217,13 @@ namespace SuggestGrid.Controllers
         }
 
         /// <summary>
-        /// Delete Actions
-        /// </summary>
-        /// <param name="type">Optional parameter: The type of the actions.</param>
-        /// <param name="userId">Optional parameter: The user id of the actions.</param>
-        /// <param name="itemId">Optional parameter: The item id of the actions.</param>
-        /// <param name="olderThan">Optional parameter: Delete all actions of a type older than the given timestamp or time. Valid times are 1s, 1m, 1h, 1d, 1M, 1y, or unix timestamp (like 1443798195).</param>
-        /// <return>Returns the ErrorResponse response from the API call</return>
-        public ErrorResponse DeleteActions(
-                string type = null,
-                string userId = null,
-                string itemId = null,
-                string olderThan = null)
-        {
-            Task<ErrorResponse> t = DeleteActionsAsync(type, userId, itemId, olderThan);
-            Task.WaitAll(t);
-            return t.Result;
-        }
-
-        /// <summary>
-        /// Delete Actions
-        /// </summary>
-        /// <param name="type">Optional parameter: The type of the actions.</param>
-        /// <param name="userId">Optional parameter: The user id of the actions.</param>
-        /// <param name="itemId">Optional parameter: The item id of the actions.</param>
-        /// <param name="olderThan">Optional parameter: Delete all actions of a type older than the given timestamp or time. Valid times are 1s, 1m, 1h, 1d, 1M, 1y, or unix timestamp (like 1443798195).</param>
-        /// <return>Returns the ErrorResponse response from the API call</return>
-        public async Task<ErrorResponse> DeleteActionsAsync(
-                string type = null,
-                string userId = null,
-                string itemId = null,
-                string olderThan = null)
-        {
-            //the base uri for api requestss
-            string _baseUri = Configuration.BaseUri;
-
-            //prepare query string for API call
-            StringBuilder _queryBuilder = new StringBuilder(_baseUri);
-            _queryBuilder.Append("/v1/actions");
-
-            //process optional query parameters
-            APIHelper.AppendUrlWithQueryParameters(_queryBuilder, new Dictionary<string, object>()
-            {
-                { "type", type },
-                { "user_id", userId },
-                { "item_id", itemId },
-                { "older_than", olderThan }
-            });
-
-
-            //validate and preprocess url
-            string _queryUrl = APIHelper.CleanUrl(_queryBuilder);
-
-            //append request with appropriate headers and parameters
-            var _headers = new Dictionary<string,string>()
-            {
-                { "user-agent", "SUGGESTGRID" },
-                { "accept", "application/json" }
-            };
-
-            //prepare the API call request to fetch the response
-            HttpRequest _request = ClientInstance.Delete(_queryUrl, _headers, null, Configuration.BasicAuthUserName, Configuration.BasicAuthPassword);
-
-            //invoke request and get response
-            HttpStringResponse _response = (HttpStringResponse) await ClientInstance.ExecuteAsStringAsync(_request);
-            HttpContext _context = new HttpContext(_request,_response);
-
-            //Error handling using HTTP status codes
-            if (_response.StatusCode == 400)
-                throw new APIException(@"Required `user_id` or `item_id` parameters are missing from the request body.", _context);
-
-            else if (_response.StatusCode == 404)
-                throw new APIException(@"Type does not exists.", _context);
-
-            else if (_response.StatusCode == 422)
-                throw new APIException(@"No query parameter (`user_id`, `item_id`, or `older_than`) is given.  In order to delete all actionsdelete the type.", _context);
-
-            else if (_response.StatusCode == 429)
-                throw new APIException(@"Too many requests.", _context);
-
-            else if (_response.StatusCode == 500)
-                throw new APIException(@"Unexpected internal error.", _context);
-
-            //handle errors defined at the API level
-            base.ValidateResponse(_response, _context);
-
-            try
-            {
-                return APIHelper.JsonDeserialize<ErrorResponse>(_response.Body);
-            }
-            catch (Exception _ex)
-            {
-                throw new APIException("Failed to parse the response: " + _ex.Message, _context);
-            }
-        }
-
-        /// <summary>
         /// Post Bulk Actions
         /// </summary>
         /// <param name="body">Required parameter: A number of action objects separated with newlines. Note that this is not a valid JSON data structure. The body size is limited to 10 thousand lines.</param>
         /// <return>Returns the ErrorResponse response from the API call</return>
-        public ErrorResponse PostBulkActions(List<ActionModel> actions)
+        public ErrorResponse PostBulkActions(string body)
         {
-            StringBuilder sb = new StringBuilder();
-            foreach (ActionModel action in actions)
-            {
-                sb.Append(JsonConvert.SerializeObject(action, Formatting.None));
-                sb.Append(Environment.NewLine);
-            }
-            Task<ErrorResponse> t = PostBulkActionsAsync(sb.ToString());
+            Task<ErrorResponse> t = PostBulkActionsAsync(body);
             Task.WaitAll(t);
             return t.Result;
         }
@@ -335,7 +233,7 @@ namespace SuggestGrid.Controllers
         /// </summary>
         /// <param name="body">Required parameter: A number of action objects separated with newlines. Note that this is not a valid JSON data structure. The body size is limited to 10 thousand lines.</param>
         /// <return>Returns the ErrorResponse response from the API call</return>
-        private async Task<ErrorResponse> PostBulkActionsAsync(string body)
+        public async Task<ErrorResponse> PostBulkActionsAsync(string body)
         {
             //the base uri for api requestss
             string _baseUri = Configuration.BaseUri;
