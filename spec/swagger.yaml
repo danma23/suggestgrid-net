@@ -140,6 +140,8 @@ definitions:
         - integer
         - number
         - boolean
+    required:
+      - id
   # Request Bodies
   TypeRequestBody:
     type: object
@@ -716,6 +718,8 @@ paths:
       description: |
         Posts bulk actions to SuggestGrid.
         The recommended method for posting multiple actions at once.
+      consumes:
+       - text/plain; charset=utf-8
       parameters:
         - name: body
           in: body
@@ -744,7 +748,7 @@ paths:
           schema:
             $ref: '#/definitions/ErrorResponse'
   # Metadata Paths
-  /v1/users/{user_id}:
+  /v1/users:
     put:
       tags:
         - metadata
@@ -752,12 +756,6 @@ paths:
       summary: Post a User
       description: Posts a user metadata.
       parameters:
-        - name: user_id
-          in: path
-          description: The user id to associate with the metadata.
-          required: true
-          type: string
-          format: id
         - name: metadata
           in: body
           description: The metadata to be saved. Metadata format has its restrictions.
@@ -846,7 +844,7 @@ paths:
           description: Unexpected internal error.
           schema:
             $ref: '#/definitions/ErrorResponse'
-  /v1/items/{item_id}:
+  /v1/items:
     put:
       tags:
         - metadata
@@ -856,12 +854,6 @@ paths:
         Posts an item metadata.
         This metadata can be used to filter or to be included in recommendations and similars methods.
       parameters:
-        - name: item_id
-          in: path
-          description: The item id to associate with the metadata.
-          required: true
-          type: string
-          format: id
         - name: body
           in: body
           description: The metadata to be saved. Metadata format has its restrictions.
@@ -961,6 +953,8 @@ paths:
       description: |
         Post user metadata in bulk.
         This metadata can be used to filter or to be included in recommendations and similars methods.
+      consumes:
+       - text/plain; charset=utf-8
       parameters:
         - name: body
           in: body
@@ -998,6 +992,8 @@ paths:
       description: |
         Post item metadata in bulk.
         This method is recommended for sharing stored data with SuggestGrid.
+      consumes:
+       - text/plain; charset=utf-8
       parameters:
         - name: body
           in: body

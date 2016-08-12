@@ -65,10 +65,10 @@ Rating is required for actions sent to an explicit type.
 
 Name | Type |Required| Description
 --- | --- | --- | ---
-rating|number|false|The optional rating, if the type is explicit.
-type|string|true|The type that the action belongs to.
 user_id|string|true|The user id of the performer of the action.
 item_id|string|true|The item id of the item the action is performed on.
+rating|number|false|The optional rating, if the type is explicit.
+type|string|true|The type that the action belongs to.
 ### Post Bulk Actions
 Posts bulk actions to SuggestGrid.
 The recommended method for posting multiple actions at once.
@@ -121,22 +121,6 @@ older_than|string||Delete all actions of a type older than the given timestamp o
 Metadata methods are for posting and deleting metadata.
 For more information on metadata, refer to [Metadata concept documentation ](http://www.suggestgrid.com/docs/concepts#metadata).
 
-### Post a User
-Posts a user metadata.
-
-#### Parameters
-##### URI/Query Parameters
-
-Name | Type |Required| Description
---- | --- | --- | ---
-user_id|string|true|The user id to associate with the metadata.
-##### Body Parameters
-
-> Metadata (`object`)
-
-Name | Type |Required| Description
---- | --- | --- | ---
-id|string|false|
 ### Post Bulk Users
 Post user metadata in bulk.
 This metadata can be used to filter or to be included in recommendations and similars methods.
@@ -146,36 +130,9 @@ This metadata can be used to filter or to be included in recommendations and sim
 ### Get Users
 Get information about users. Only returns count at the moment.
 
-### Delete a User
-Delete a user metadata with the given user_id.
-
-#### Parameters
-##### URI/Query Parameters
-
-Name | Type |Required| Description
---- | --- | --- | ---
-user_id|string|true|The user_id to delete its metadata.
 ### Delete All Users
 Deletes all user metadata from SuggestGrid.
 
-### Post an Item
-Posts an item metadata.
-This metadata can be used to filter or to be included in recommendations and similars methods.
-
-
-#### Parameters
-##### URI/Query Parameters
-
-Name | Type |Required| Description
---- | --- | --- | ---
-item_id|string|true|The item id to associate with the metadata.
-##### Body Parameters
-
-> Metadata (`object`)
-
-Name | Type |Required| Description
---- | --- | --- | ---
-id|string|false|
 ### Post Bulk Items
 Post item metadata in bulk.
 This method is recommended for sharing stored data with SuggestGrid.
@@ -185,15 +142,6 @@ This method is recommended for sharing stored data with SuggestGrid.
 ### Get Items
 Get information about items. Only returns count at the moment.
 
-### Delete an Item
-Delete an item metadata with the given item_id.
-
-#### Parameters
-##### URI/Query Parameters
-
-Name | Type |Required| Description
---- | --- | --- | ---
-item_id|string|true|The item_id to delete its metadata.
 ### Delete All Items
 Delete all items metadata.
 This method would flush all items metadata on SuggestGrid.
@@ -215,15 +163,15 @@ Recommend users for the given body parameters.
 
 Name | Type |Required| Description
 --- | --- | --- | ---
-item_ids|array|false|
+similar_user_id|string|false|
+fields|array|false|
+except|array|false|These ids will not be included in the response. 
+type|string|false|
 filter||false|
+item_id|string|false|
+item_ids|array|false|
 size|integer|false|
 types|string|false|
-type|string|false|
-fields|array|false|
-item_id|string|false|
-except|array|false|These ids will not be included in the response. 
-similar_user_id|string|false|
 ### Get Recommended Items
 Recommend items for the given body parameters.
 
@@ -234,15 +182,15 @@ Recommend items for the given body parameters.
 
 Name | Type |Required| Description
 --- | --- | --- | ---
-similar_item_id|string|false|
-user_ids|array|false|
-filter||false|
-size|integer|false|
-types|string|false|
-type|string|false|
 fields|array|false|
 except|array|false|These ids will not be included in the response. 
+type|string|false|
+filter||false|
 user_id|string|false|
+similar_item_id|string|false|
+size|integer|false|
+user_ids|array|false|
+types|string|false|
 
 
 ## Similarity Methods
@@ -259,14 +207,14 @@ Get similar users to a user.
 
 Name | Type |Required| Description
 --- | --- | --- | ---
-user_ids|array|false|
-filter||false|
-size|integer|false|
-types|string|false|
-type|string|false|
 fields|array|false|
 except|array|false|These ids will not be included in the response. 
+type|string|false|
+filter||false|
 user_id|string|false|
+size|integer|false|
+user_ids|array|false|
+types|string|false|
 ### Get Similar Items
 Get similar items to an item.
 
@@ -277,11 +225,11 @@ Get similar items to an item.
 
 Name | Type |Required| Description
 --- | --- | --- | ---
-item_ids|array|false|
+fields|array|false|
+except|array|false|These ids will not be included in the response. 
+type|string|false|
 filter||false|
+item_id|string|false|
+item_ids|array|false|
 size|integer|false|
 types|string|false|
-type|string|false|
-fields|array|false|
-item_id|string|false|
-except|array|false|These ids will not be included in the response. 
