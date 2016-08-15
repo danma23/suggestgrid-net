@@ -9,7 +9,6 @@ info:
     generateAsyncCode: true
     useMethodPrefix: false
     useModelPostfix: false
-    useControllerPostfix: false
     useEnumPostfix: false
     useConstructorsForConfig: false
     iOSUseAppInfoPlist: true
@@ -645,7 +644,7 @@ paths:
             $ref: '#/definitions/ErrorResponse'
     delete:
       tags:
-        - acti/v1/userson
+        - action
       operationId: delete_actions
       summary: Delete Actions
       description: |

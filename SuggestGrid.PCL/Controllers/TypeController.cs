@@ -1,7 +1,7 @@
 /*
  * SuggestGrid.PCL
  *
- * This file was automatically generated for SuggestGrid by APIMATIC v2.0 ( https://apimatic.io ) on 08/12/2016
+ * This file was automatically generated for SuggestGrid by APIMATIC v2.0 ( https://apimatic.io ) on 08/15/2016
  */
 using System;
 using System.Collections.Generic;
@@ -51,10 +51,10 @@ namespace SuggestGrid.Controllers
         /// <summary>
         /// Get All Types
         /// </summary>
-        /// <return>Returns the ErrorResponse response from the API call</return>
-        public ErrorResponse GetAllTypes()
+        /// <return>Returns the GetTypesResponse response from the API call</return>
+        public GetTypesResponse GetAllTypes()
         {
-            Task<ErrorResponse> t = GetAllTypesAsync();
+            Task<GetTypesResponse> t = GetAllTypesAsync();
             Task.WaitAll(t);
             return t.Result;
         }
@@ -62,8 +62,8 @@ namespace SuggestGrid.Controllers
         /// <summary>
         /// Get All Types
         /// </summary>
-        /// <return>Returns the ErrorResponse response from the API call</return>
-        public async Task<ErrorResponse> GetAllTypesAsync()
+        /// <return>Returns the GetTypesResponse response from the API call</return>
+        public async Task<GetTypesResponse> GetAllTypesAsync()
         {
             //the base uri for api requestss
             string _baseUri = Configuration.BaseUri;
@@ -102,7 +102,7 @@ namespace SuggestGrid.Controllers
 
             try
             {
-                return APIHelper.JsonDeserialize<ErrorResponse>(_response.Body);
+                return APIHelper.JsonDeserialize<GetTypesResponse>(_response.Body);
             }
             catch (Exception _ex)
             {
@@ -113,10 +113,10 @@ namespace SuggestGrid.Controllers
         /// <summary>
         /// Delete All Types
         /// </summary>
-        /// <return>Returns the ErrorResponse response from the API call</return>
-        public ErrorResponse DeleteAllTypes()
+        /// <return>Returns the GetTypesResponse response from the API call</return>
+        public GetTypesResponse DeleteAllTypes()
         {
-            Task<ErrorResponse> t = DeleteAllTypesAsync();
+            Task<GetTypesResponse> t = DeleteAllTypesAsync();
             Task.WaitAll(t);
             return t.Result;
         }
@@ -124,8 +124,8 @@ namespace SuggestGrid.Controllers
         /// <summary>
         /// Delete All Types
         /// </summary>
-        /// <return>Returns the ErrorResponse response from the API call</return>
-        public async Task<ErrorResponse> DeleteAllTypesAsync()
+        /// <return>Returns the GetTypesResponse response from the API call</return>
+        public async Task<GetTypesResponse> DeleteAllTypesAsync()
         {
             //the base uri for api requestss
             string _baseUri = Configuration.BaseUri;
@@ -164,7 +164,7 @@ namespace SuggestGrid.Controllers
 
             try
             {
-                return APIHelper.JsonDeserialize<ErrorResponse>(_response.Body);
+                return APIHelper.JsonDeserialize<GetTypesResponse>(_response.Body);
             }
             catch (Exception _ex)
             {
@@ -176,10 +176,10 @@ namespace SuggestGrid.Controllers
         /// Get Properties of a Type
         /// </summary>
         /// <param name="type">Required parameter: The name of the type to get properties.</param>
-        /// <return>Returns the ErrorResponse response from the API call</return>
-        public ErrorResponse GetType(string type)
+        /// <return>Returns the GetTypeResponse response from the API call</return>
+        public GetTypeResponse GetType(string type)
         {
-            Task<ErrorResponse> t = GetTypeAsync(type);
+            Task<GetTypeResponse> t = GetTypeAsync(type);
             Task.WaitAll(t);
             return t.Result;
         }
@@ -188,8 +188,8 @@ namespace SuggestGrid.Controllers
         /// Get Properties of a Type
         /// </summary>
         /// <param name="type">Required parameter: The name of the type to get properties.</param>
-        /// <return>Returns the ErrorResponse response from the API call</return>
-        public async Task<ErrorResponse> GetTypeAsync(string type)
+        /// <return>Returns the GetTypeResponse response from the API call</return>
+        public async Task<GetTypeResponse> GetTypeAsync(string type)
         {
             //the base uri for api requestss
             string _baseUri = Configuration.BaseUri;
@@ -234,7 +234,7 @@ namespace SuggestGrid.Controllers
 
             try
             {
-                return APIHelper.JsonDeserialize<ErrorResponse>(_response.Body);
+                return APIHelper.JsonDeserialize<GetTypeResponse>(_response.Body);
             }
             catch (Exception _ex)
             {
@@ -247,10 +247,10 @@ namespace SuggestGrid.Controllers
         /// </summary>
         /// <param name="type">Required parameter: The name of the type to be created.</param>
         /// <param name="body">Optional parameter: Optional body for the rating parameter.</param>
-        /// <return>Returns the ErrorResponse response from the API call</return>
-        public ErrorResponse CreateType(string type, TypeRequestBody body = null)
+        /// <return>Returns the MessageResponse response from the API call</return>
+        public MessageResponse CreateType(string type, TypeRequestBody body = null)
         {
-            Task<ErrorResponse> t = CreateTypeAsync(type, body);
+            Task<MessageResponse> t = CreateTypeAsync(type, body);
             Task.WaitAll(t);
             return t.Result;
         }
@@ -260,8 +260,8 @@ namespace SuggestGrid.Controllers
         /// </summary>
         /// <param name="type">Required parameter: The name of the type to be created.</param>
         /// <param name="body">Optional parameter: Optional body for the rating parameter.</param>
-        /// <return>Returns the ErrorResponse response from the API call</return>
-        public async Task<ErrorResponse> CreateTypeAsync(string type, TypeRequestBody body = null)
+        /// <return>Returns the MessageResponse response from the API call</return>
+        public async Task<MessageResponse> CreateTypeAsync(string type, TypeRequestBody body = null)
         {
             //the base uri for api requestss
             string _baseUri = Configuration.BaseUri;
@@ -319,7 +319,7 @@ namespace SuggestGrid.Controllers
 
             try
             {
-                return APIHelper.JsonDeserialize<ErrorResponse>(_response.Body);
+                return APIHelper.JsonDeserialize<MessageResponse>(_response.Body);
             }
             catch (Exception _ex)
             {
@@ -331,10 +331,10 @@ namespace SuggestGrid.Controllers
         /// Delete a Type
         /// </summary>
         /// <param name="type">Required parameter: The name of the type to be deleted.</param>
-        /// <return>Returns the ErrorResponse response from the API call</return>
-        public ErrorResponse DeleteType(string type)
+        /// <return>Returns the MessageResponse response from the API call</return>
+        public MessageResponse DeleteType(string type)
         {
-            Task<ErrorResponse> t = DeleteTypeAsync(type);
+            Task<MessageResponse> t = DeleteTypeAsync(type);
             Task.WaitAll(t);
             return t.Result;
         }
@@ -343,8 +343,8 @@ namespace SuggestGrid.Controllers
         /// Delete a Type
         /// </summary>
         /// <param name="type">Required parameter: The name of the type to be deleted.</param>
-        /// <return>Returns the ErrorResponse response from the API call</return>
-        public async Task<ErrorResponse> DeleteTypeAsync(string type)
+        /// <return>Returns the MessageResponse response from the API call</return>
+        public async Task<MessageResponse> DeleteTypeAsync(string type)
         {
             //the base uri for api requestss
             string _baseUri = Configuration.BaseUri;
@@ -392,7 +392,7 @@ namespace SuggestGrid.Controllers
 
             try
             {
-                return APIHelper.JsonDeserialize<ErrorResponse>(_response.Body);
+                return APIHelper.JsonDeserialize<MessageResponse>(_response.Body);
             }
             catch (Exception _ex)
             {

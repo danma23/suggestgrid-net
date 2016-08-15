@@ -1,7 +1,7 @@
 /*
  * SuggestGrid.PCL
  *
- * This file was automatically generated for SuggestGrid by APIMATIC v2.0 ( https://apimatic.io ) on 08/12/2016
+ * This file was automatically generated for SuggestGrid by APIMATIC v2.0 ( https://apimatic.io ) on 08/15/2016
  */
 using System;
 using System.IO;
@@ -16,8 +16,10 @@ using SuggestGrid;
 
 namespace SuggestGrid.Models
 {
-    public class Metadata : INotifyPropertyChanged 
+    public class Metadata<TKey, TValue> : Dictionary<string, object>, INotifyPropertyChanged
     {
+        public Metadata() : base(){}
+        public Metadata(int capacity) : base(capacity){}
         // These fields hold the values for the public properties.
         private string id;
 
@@ -25,15 +27,16 @@ namespace SuggestGrid.Models
         /// TODO: Write general description for this method
         /// </summary>
         [JsonProperty("id")]
-        public string Id 
-        { 
-            get 
+        public string Id
+        {
+            get
             {
-                return this.id; 
-            } 
-            set 
+                return this.id;
+            }
+            set
             {
                 this.id = value;
+                this.Add ("id", value);
                 onPropertyChanged("Id");
             }
         }
@@ -55,4 +58,4 @@ namespace SuggestGrid.Models
             }
         }
     }
-} 
+}
