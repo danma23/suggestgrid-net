@@ -1,7 +1,7 @@
 /*
  * SuggestGrid.PCL
  *
- * This file was automatically generated for SuggestGrid by APIMATIC v2.0 ( https://apimatic.io ) on 08/15/2016
+ * This file was automatically generated for SuggestGrid by APIMATIC v2.0 ( https://apimatic.io ) on 08/18/2016
  */
 using System;
 using System.IO;
@@ -63,7 +63,7 @@ namespace SuggestGrid.Models
         }
 
         /// <summary>
-        /// TODO: Write general description for this method
+        /// Get similar items to given item id. Either item id or item ids must be provided.
         /// </summary>
         [JsonProperty("item_id")]
         public string ItemId 
@@ -80,7 +80,7 @@ namespace SuggestGrid.Models
         }
 
         /// <summary>
-        /// TODO: Write general description for this method
+        /// Get similar items to given item ids. Either item id or item ids must be provided.
         /// </summary>
         [JsonProperty("item_ids")]
         public List<string> ItemIds 

@@ -1,7 +1,7 @@
 /*
  * SuggestGrid.PCL
  *
- * This file was automatically generated for SuggestGrid by APIMATIC v2.0 ( https://apimatic.io ) on 08/15/2016
+ * This file was automatically generated for SuggestGrid by APIMATIC v2.0 ( https://apimatic.io ) on 08/18/2016
  */
 using System;
 using System.Collections.Generic;
@@ -352,7 +352,8 @@ namespace SuggestGrid.Controllers
             var _headers = new Dictionary<string,string>()
             {
                 { "user-agent", "SUGGESTGRID" },
-                { "accept", "application/json" }
+                { "accept", "application/json" },
+                { "content-type", "text/plain; charset=utf-8" }
             };
 
             //append body params

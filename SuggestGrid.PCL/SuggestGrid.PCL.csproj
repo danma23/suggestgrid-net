@@ -2,7 +2,7 @@
 <!--
  - SuggestGrid.PCL
  -
- - This file was automatically generated for SuggestGrid by APIMATIC v2.0 ( https://apimatic.io ) on 08/15/2016
+ - This file was automatically generated for SuggestGrid by APIMATIC v2.0 ( https://apimatic.io ) on 08/18/2016
 -->
 <Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
@@ -10,7 +10,7 @@
     <AssemblyName>SuggestGrid.PCL</AssemblyName>
     <OutputType>Library</OutputType>
     <OutputPath>bin/DEBUG/</OutputPath>
-    <ProjectGuid>{d8adfa9a-0d9e-49a5-adc6-65cd9da89373}</ProjectGuid>
+    <ProjectGuid>{c5d74ce3-26e9-44e3-9d45-30e18ab760bb}</ProjectGuid>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
     <MinimumVisualStudioVersion>11.0</MinimumVisualStudioVersion>
     <NuGetPackageImportStamp>ee2bb91c</NuGetPackageImportStamp>

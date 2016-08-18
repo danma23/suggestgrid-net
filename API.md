@@ -66,9 +66,9 @@ Rating is required for actions sent to an explicit type.
 Name | Type |Required| Description
 --- | --- | --- | ---
 type|string|true|The type that the action belongs to.
-rating|number|false|The optional rating, if the type is explicit.
 item_id|string|true|The item id of the item the action is performed on.
 user_id|string|true|The user id of the performer of the action.
+rating|number|false|The optional rating, if the type is explicit.
 ### Post Bulk Actions
 Posts bulk actions to SuggestGrid.
 The recommended method for posting multiple actions at once.
@@ -205,15 +205,15 @@ Recommend users for the given body parameters.
 
 Name | Type |Required| Description
 --- | --- | --- | ---
-size|integer|false|
-item_id|string|false|
-fields|array|false|
-except|array|false|These ids will not be included in the response. 
-type|string|false|
-item_ids|array|false|
 similar_user_id|string|false|
+size|integer|false|
 types|string|false|
 filter||false|
+item_id|string|false|
+except|array|false|These ids will not be included in the response. 
+fields|array|false|
+type|string|false|
+item_ids|array|false|
 ### Get Recommended Items
 Recommend items for the given body parameters.
 
@@ -224,15 +224,15 @@ Recommend items for the given body parameters.
 
 Name | Type |Required| Description
 --- | --- | --- | ---
-size|integer|false|
-fields|array|false|
-user_id|string|false|
-user_ids|array|false|
-except|array|false|These ids will not be included in the response. 
-type|string|false|
 similar_item_id|string|false|
+size|integer|false|
 types|string|false|
 filter||false|
+user_ids|array|false|
+user_id|string|false|
+except|array|false|These ids will not be included in the response. 
+fields|array|false|
+type|string|false|
 
 
 ## Similarity Methods
@@ -250,13 +250,13 @@ Get similar users to a user.
 Name | Type |Required| Description
 --- | --- | --- | ---
 size|integer|false|
-fields|array|false|
-user_id|string|false|
-user_ids|array|false|
-except|array|false|These ids will not be included in the response. 
-type|string|false|
 types|string|false|
 filter||false|
+user_ids|array|false|
+user_id|string|false|
+except|array|false|These ids will not be included in the response. 
+fields|array|false|
+type|string|false|
 ### Get Similar Items
 Get similar items to an item.
 
@@ -268,10 +268,10 @@ Get similar items to an item.
 Name | Type |Required| Description
 --- | --- | --- | ---
 size|integer|false|
-item_id|string|false|
-fields|array|false|
-except|array|false|These ids will not be included in the response. 
-type|string|false|
-item_ids|array|false|
 types|string|false|
 filter||false|
+item_id|string|false|Get similar items to given item id. Either item id or item ids must be provided. 
+except|array|false|These ids will not be included in the response. 
+fields|array|false|
+type|string|false|
+item_ids|array|false|Get similar items to given item ids. Either item id or item ids must be provided. 

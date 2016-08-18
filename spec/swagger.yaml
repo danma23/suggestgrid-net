@@ -272,9 +272,11 @@ definitions:
       item_id:
         type: string
         description: |
+          Get similar items to given item id. Either item id or item ids must be provided.
       item_ids:
         type: array
         description: |
+          Get similar items to given item ids. Either item id or item ids must be provided.
         items:
           type: string
       size:
