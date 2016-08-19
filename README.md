@@ -22,9 +22,12 @@ Let's implement this feature in five minutes with SuggestGrid!
 
 We are beginning the development by adding the client as a dependency:
 
-```
-to be documented
-```
+
+From the package manager console inside visual studio
+
+PM> Install-Package SuggestGrid
+
+Or search in the Package Manager UI for SuggestGrid or manually add to your packages.config file.
 
 
 
@@ -40,8 +43,11 @@ It is very convenient to configure SuggestGrid by setting an authenticated `SUGG
 
 You can authenticate your application using `SUGGESTGRID_URL` environment variable like the example below:
 
-```
-to be documented
+```csharp
+suggestGridURL = System.Environment.GetEnvironmentVariable("SUGGESTGRID_URL");
+
+# Initialize the SuggestGrid client.
+var suggestGridClient = new SuggestGridClient(suggestGridURL);
 ```
 
 
@@ -49,8 +55,17 @@ Every recommendation logic needs to belong to a *type*.
 For this demonstration we can create an implicit type named as `views`.
 This could be done either from the dashboard or with a snippet like this:
 
-```
-to be documented
+```csharp
+try
+{
+    suggestGridClient.Type.GetType("views");
+}
+catch (Exception)
+{
+    var typeRequest = new TypeRequestBody();
+    typeRequest.Rating = "implicit";
+    suggestGridClient.Type.CreateType("views", typeRequest);
+}
 ```
 
 
@@ -58,12 +73,15 @@ to be documented
 ### 2. Post actions
 
 Once the type exists, let's start posting actions.
-We should invoke SuggestGrid client's SuggestGrid.Controllers.ActionController when an user views an item in our application.
+We should invoke SuggestGrid client's PostAction when an user views an item in our application.
 
 We can do this by putting the snippet below on the relevant point:
 
-```
-to be documented
+```csharp
+ActionModel suggestGridAction = new ActionModel();
+suggestGridAction.ItemId = "1";
+suggestGridAction.UserId = "2";
+suggestGridClient.Action.PostAction(suggestGridAction);
 ```
 
 
@@ -80,6 +98,7 @@ In addition, instant model generations can be triggered on the dashboard.
 
 Once the first model generated for 'views' type, recommendations could be get using a snippet like the following:
 
-```
-to be documented
+```csharp
+var recommendedItems = suggestGridClient.Recommendation.GetRecommendedItems(new GetRecommendedItemsBody { Type = "views", UserId = "2", Size = 2 });
+var items = recommendedItems.Items; // get items
 ```
