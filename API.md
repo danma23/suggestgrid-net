@@ -10,15 +10,11 @@ For more information on types, refer to [Types concept documentation](http://www
 Creates a new implicit or explicit type.
 
 ```csharp
-var typeRequest = new TypeRequestBody();
-typeRequest.Rating = "implicit";
-suggestGridClient.Type.CreateType("views", typeRequest);
+suggestGridClient.Type.CreateType("views", new TypeRequestBody { Rating = "implicit" });
 ```
 
 ```csharp
-var typeRequest = new TypeRequestBody();
-typeRequest.Rating = "explicit";
-suggestGridClient.Type.CreateType("views", typeRequest);
+suggestGridClient.Type.CreateType("views", new TypeRequestBody { Rating = "explicit" });
 ```
 
 #### Parameters
@@ -103,20 +99,11 @@ Rating is required for actions sent to an explicit type.
 
 
 ```csharp
-ActionModel suggestGridAction = new ActionModel();
-suggestGridAction.Type = "views";
-suggestGridAction.ItemId = "1";
-suggestGridAction.UserId = "2";
-suggestGridClient.Action.PostAction(suggestGridAction);
+suggestGridClient.Action.PostAction(new ActionModel { Type = "views", ItemId = "1", UserId = "2" });
 ```
 
 ```csharp
-ActionModel suggestGridAction = new ActionModel();
-suggestGridAction.Type = "views";
-suggestGridAction.ItemId = "1";
-suggestGridAction.UserId = "2";
-suggestGridAction.Rating = 10;
-suggestGridClient.Action.PostAction(suggestGridAction);
+suggestGridClient.Action.PostAction(new ActionModel { Type = "views", ItemId = "1", UserId = "2", Rating = 10 });
 ```
 
 #### Parameters
@@ -126,8 +113,8 @@ suggestGridClient.Action.PostAction(suggestGridAction);
 
 Name | Type |Required| Description
 --- | --- | --- | ---
-type|string|true|The type that the action belongs to.
 rating|number|false|The optional rating, if the type is explicit.
+type|string|true|The type that the action belongs to.
 user_id|string|true|The user id of the performer of the action.
 item_id|string|true|The item id of the item the action is performed on.
 ### Post Bulk Actions
@@ -496,7 +483,7 @@ var recommendedUsers = suggestGridClient.Recommendation.GetRecommendedUsers(new 
 var users = recommendedUsers.Users; // [{id:"11",name:"Robert"},{id:"848",name:"Mike"},{id:"2",name:"Jennifer"}]
 ```
 
-You can read [filters](/docs/concepts#filters) and [fields](/docs/concepts#fields) documentations for further reference.
+You can read [filters](/docs/concepts#filters-parameter) and [fields](/docs/concepts#fields-parameter) documentations for further reference.
 
 #### Parameters
 ##### Body Parameters
@@ -505,17 +492,17 @@ You can read [filters](/docs/concepts#filters) and [fields](/docs/concepts#field
 
 Name | Type |Required| Description
 --- | --- | --- | ---
-item_ids|array|false|
-type|string|false|
-similar_user_id|string|false|
-item_id|string|false|
 fields|array|false|
-filter||false|
-size|integer|false|
-except|array|false|These ids will not be included in the response. 
 types|string|false|
+item_ids|array|false|
+item_id|string|false|
+except|array|false|These ids will not be included in the response. 
+size|integer|false|
+filter||false|
+similar_user_id|string|false|
+type|string|false|
 ### Get Recommended Items
-> `get_recommended_items(body)`
+> `GetRecommendedItems(GetRecommendedItemsBody body)`
 
 Recommend items for the given body parameters.
 
@@ -577,7 +564,7 @@ var recommendedItems = suggestGridClient.Recommendation.GetRecommendedItems(new 
 var items = recommendedItems.Items; // [{id:"930",category:"notebook"},{id:"848",category:"keyboard"},{id:"102",category:"watch"}]
 ```
 
-You can read [filters](/docs/concepts#filters) and [fields](/docs/concepts#fields) documentations for further reference.
+You can read [filters](/docs/concepts#filters-parameter) and [fields](/docs/concepts#fields-parameter) documentations for further reference.
 
 #### Parameters
 ##### Body Parameters
@@ -586,15 +573,15 @@ You can read [filters](/docs/concepts#filters) and [fields](/docs/concepts#field
 
 Name | Type |Required| Description
 --- | --- | --- | ---
-type|string|false|
-types|string|false|
 similar_item_id|string|false|
-user_id|string|false|
 fields|array|false|
-filter||false|
-size|integer|false|
-except|array|false|These ids will not be included in the response. 
 user_ids|array|false|
+types|string|false|
+except|array|false|These ids will not be included in the response. 
+size|integer|false|
+filter||false|
+user_id|string|false|
+type|string|false|
 
 
 ## Similarity Methods
@@ -642,7 +629,7 @@ var similarUsers = suggestGridClient.Similarity.GetSimilarUsers(new GetSimilarUs
 var users = similarUsers.Users; // [{id:"400", name:"Jason"},{id:"132", name:"Scarlett"},{id:"503", name:"Amy"}]
 ```
 
-You can read [filters](/docs/concepts#filters) and [fields](/docs/concepts#fields) documentations for further reference.
+You can read [filters](/docs/concepts#filters-parameter) and [fields](/docs/concepts#fields-parameter) documentations for further reference.
 
 #### Parameters
 ##### Body Parameters
@@ -651,14 +638,14 @@ You can read [filters](/docs/concepts#filters) and [fields](/docs/concepts#field
 
 Name | Type |Required| Description
 --- | --- | --- | ---
-type|string|false|
-types|string|false|
-user_id|string|false|
 fields|array|false|
-filter||false|
-size|integer|false|
-except|array|false|These ids will not be included in the response. 
 user_ids|array|false|
+types|string|false|
+except|array|false|These ids will not be included in the response. 
+size|integer|false|
+filter||false|
+user_id|string|false|
+type|string|false|
 ### Get Similar Items
 > `GetSimilarItems(GetSimilarItemsBody body)`
 
@@ -700,7 +687,7 @@ var similarItems = suggestGridClient.Similarity.GetSimilarItems(new GetSimilarIt
 var items = similarItems.Items; // [{id:"451",category:"television"},{id:"656",category:"blu-ray-dvd-players"}]
 ```
 
-You can read [filters](/docs/concepts#filters) and [fields](/docs/concepts#fields) documentations for further reference.
+You can read [filters](/docs/concepts#filters-parameter) and [fields](/docs/concepts#fields-parameter) documentations for further reference.
 
 #### Parameters
 ##### Body Parameters
@@ -709,11 +696,11 @@ You can read [filters](/docs/concepts#filters) and [fields](/docs/concepts#field
 
 Name | Type |Required| Description
 --- | --- | --- | ---
-item_ids|array|false|Get similar items to given item ids. Either item id or item ids must be provided. 
-type|string|false|
-types|string|false|
-item_id|string|false|Get similar items to given item id. Either item id or item ids must be provided. 
 fields|array|false|
-filter||false|
-size|integer|false|
+types|string|false|
+item_ids|array|false|Get similar items to given item ids. Either item id or item ids must be provided. 
+item_id|string|false|Get similar items to given item id. Either item id or item ids must be provided. 
 except|array|false|These ids will not be included in the response. 
+size|integer|false|
+filter||false|
+type|string|false|

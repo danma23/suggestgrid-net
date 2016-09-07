@@ -39,7 +39,7 @@ An initial user name and password is given on sign up.
 
 It is very convenient to configure SuggestGrid by setting an authenticated `SUGGESTGRID_URL` environment variable in the format below:
 
-`http://{user}:{pass}@{app-uuid}.{region}.suggestgrid.space`
+`http://{user}:{pass}@{region}.suggestgrid.space/{app-uuid}`
 
 You can authenticate your application using `SUGGESTGRID_URL` environment variable like the example below:
 
@@ -62,9 +62,8 @@ try
 }
 catch (Exception)
 {
-    var typeRequest = new TypeRequestBody();
-    typeRequest.Rating = "implicit";
-    suggestGridClient.Type.CreateType("views", typeRequest);
+    suggestGridClient.Type.CreateType("views", new TypeRequestBody { Rating = "implicit" });
+
 }
 ```
 
@@ -78,10 +77,7 @@ We should invoke SuggestGrid client's PostAction when an user views an item in o
 We can do this by putting the snippet below on the relevant point:
 
 ```csharp
-ActionModel suggestGridAction = new ActionModel();
-suggestGridAction.ItemId = "1";
-suggestGridAction.UserId = "2";
-suggestGridClient.Action.PostAction(suggestGridAction);
+suggestGridClient.Action.PostAction(new ActionModel { ItemId = "1", UserId = "2" });
 ```
 
 
@@ -99,6 +95,12 @@ In addition, instant model generations can be triggered on the dashboard.
 Once the first model generated for 'views' type, recommendations could be get using a snippet like the following:
 
 ```csharp
-var recommendedItems = suggestGridClient.Recommendation.GetRecommendedItems(new GetRecommendedItemsBody { Type = "views", UserId = "2", Size = 2 });
+var recommendedItems = suggestGridClient.Recommendation.GetRecommendedItems(new GetRecommendedItemsBody
+{
+    Type = "views",
+    UserId = "2",
+    Size = 2
+});
+
 var items = recommendedItems.Items; // get items
 ```
