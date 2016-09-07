@@ -1,0 +1,6 @@
+nuget restore
+xbuild /p:Configuration=Release SuggestGrid.sln
+nuget pack SuggestGrid.PCL/SuggestGrid.PCL.nuspec
+
+PACKAGE=$(find . -name "*.nupkg")
+nuget push $PACKAGE $PACKAGE_MANAGER_API_KEY

@@ -113,10 +113,10 @@ suggestGridClient.Action.PostAction(new ActionModel { Type = "views", ItemId = "
 
 Name | Type |Required| Description
 --- | --- | --- | ---
-item_id|string|true|The item id of the item the action is performed on.
-rating|number|false|The optional rating, if the type is explicit.
 user_id|string|true|The user id of the performer of the action.
 type|string|true|The type that the action belongs to.
+rating|number|false|The optional rating, if the type is explicit.
+item_id|string|true|The item id of the item the action is performed on.
 ### Post Bulk Actions
 > `PostBulkActions(List<ActionModel> actions)`
 
@@ -492,15 +492,15 @@ You can read [filters](/docs/concepts#filters-parameter) and [fields](/docs/conc
 
 Name | Type |Required| Description
 --- | --- | --- | ---
-types|string|false|
-size|integer|false|
+type|string|false|
 except|array|false|These ids will not be included in the response. 
-filter||false|
 similar_user_id|string|false|
+filter||false|
+types|string|false|
 item_id|string|false|
+size|integer|false|
 fields|array|false|
 item_ids|array|false|
-type|string|false|
 ### Get Recommended Items
 > `GetRecommendedItems(GetRecommendedItemsBody body)`
 
@@ -573,15 +573,15 @@ You can read [filters](/docs/concepts#filters-parameter) and [fields](/docs/conc
 
 Name | Type |Required| Description
 --- | --- | --- | ---
-types|string|false|
-size|integer|false|
 except|array|false|These ids will not be included in the response. 
-filter||false|
-similar_item_id|string|false|
-fields|array|false|
 user_ids|array|false|
 user_id|string|false|
 type|string|false|
+filter||false|
+types|string|false|
+size|integer|false|
+fields|array|false|
+similar_item_id|string|false|
 
 
 ## Similarity Methods
@@ -638,14 +638,14 @@ You can read [filters](/docs/concepts#filters-parameter) and [fields](/docs/conc
 
 Name | Type |Required| Description
 --- | --- | --- | ---
-types|string|false|
-size|integer|false|
 except|array|false|These ids will not be included in the response. 
-filter||false|
-fields|array|false|
-user_ids|array|false|
 user_id|string|false|
 type|string|false|
+filter||false|
+types|string|false|
+size|integer|false|
+fields|array|false|
+user_ids|array|false|
 ### Get Similar Items
 > `GetSimilarItems(GetSimilarItemsBody body)`
 
@@ -696,11 +696,11 @@ You can read [filters](/docs/concepts#filters-parameter) and [fields](/docs/conc
 
 Name | Type |Required| Description
 --- | --- | --- | ---
-types|string|false|
-size|integer|false|
 except|array|false|These ids will not be included in the response. 
+type|string|false|
 filter||false|
+types|string|false|
 item_id|string|false|Get similar items to given item id. Either item id or item ids must be provided. 
+size|integer|false|
 fields|array|false|
 item_ids|array|false|Get similar items to given item ids. Either item id or item ids must be provided. 
-type|string|false|
