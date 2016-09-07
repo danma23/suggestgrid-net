@@ -5,6 +5,8 @@ machine:
     - sudo apt-get update
     - sudo apt-get -y install referenceassemblies-pcl
     - sudo apt-get install mono-complete
+    - sudo apt-get install nuget
+
 test:
   override:
     - echo "test"
@@ -13,4 +15,7 @@ deployment:
     branch: master
     owner: suggestgrid
     commands:
+      - nuget restore
+      - xbuild /p:Configuration=Release SuggestGrid.sln
+      - nuget pack SuggestGrid.PCL/SuggestGrid.PCL.nuspec
       - ./.deploy
