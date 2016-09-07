@@ -1,6 +1,8 @@
 machine:
   pre:
+    - sudo apt-add-repository ppa:referenceassemblies-pci/ppa
     - sudo apt-get update
+    - sudo apt-get -y install referenceassemblies-pci
     - sudo apt-get install mono-complete
 test:
   override:
