@@ -1,2 +1,3 @@
 PACKAGE=$(find . -name "*.nupkg")
-nuget push $PACKAGE $PACKAGE_MANAGER_API_KEY
+nuget setApiKey $PACKAGE_MANAGER_API_KEY
+nuget push $PACKAGE -ApiKey $PACKAGE_MANAGER_API_KEY

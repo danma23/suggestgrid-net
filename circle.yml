@@ -15,6 +15,7 @@ deployment:
     branch: master
     owner: suggestgrid
     commands:
+      # Set TERM to xterm-256color
       - nuget restore
       - xbuild /p:Configuration=Release SuggestGrid.sln
       - nuget pack SuggestGrid.PCL/SuggestGrid.PCL.nuspec
