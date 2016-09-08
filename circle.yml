@@ -19,4 +19,5 @@ deployment:
       - nuget restore
       - xbuild /p:Configuration=Release SuggestGrid.sln
       - nuget pack SuggestGrid.PCL/SuggestGrid.PCL.nuspec
-      - ./.deploy
+      - nuget setApiKey $PACKAGE_MANAGER_API_KEY
+      - nuget push *.nupkg

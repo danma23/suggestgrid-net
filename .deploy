@@ -1,6 +1,0 @@
-PACKAGE=$(find . -name "*.nupkg")
-
-nuget setApiKey $PACKAGE_MANAGER_API_KEY
-echo "The package path is: $PACKAGE"
-nuget push $PACKAGE
-nuget push *.nupkg
