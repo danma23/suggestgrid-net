@@ -1,7 +1,7 @@
 /*
  * SuggestGrid.PCL
  *
- * This file was automatically generated for SuggestGrid by APIMATIC v2.0 ( https://apimatic.io ) on 09/07/2016
+ * This file was automatically generated for SuggestGrid by APIMATIC v2.0 ( https://apimatic.io ) on 09/26/2016
  */
 using System;
 using System.Collections.Generic;
@@ -118,10 +118,10 @@ namespace SuggestGrid.Controllers
 
             //Error handling using HTTP status codes
             if (_response.StatusCode == 400)
-                throw new APIException(@"Required `user_id` or `item_id` parameters are missing from the request body.", _context);
+                throw new ErrorResponseException(@"Required `user_id` or `item_id` parameters are missing from the request body.", _context);
 
             else if (_response.StatusCode == 429)
-                throw new APIException(@"Too many requests.", _context);
+                throw new ErrorResponseException(@"Too many requests.", _context);
 
             else if (_response.StatusCode == 500)
                 throw new APIException(@"Unexpected internal error.", _context);
@@ -189,16 +189,16 @@ namespace SuggestGrid.Controllers
 
             //Error handling using HTTP status codes
             if (_response.StatusCode == 400)
-                throw new APIException(@"Required `user_id` or `item_id` parameters are missing from the request body.", _context);
+                throw new ErrorResponseException(@"Required `user_id` or `item_id` parameters are missing from the request body.", _context);
 
             else if (_response.StatusCode == 402)
-                throw new APIException(@"Action limit exceeded.", _context);
+                throw new ErrorResponseException(@"Action limit exceeded.", _context);
 
             else if (_response.StatusCode == 404)
-                throw new APIException(@"Type does not exists.", _context);
+                throw new ErrorResponseException(@"Type does not exists.", _context);
 
             else if (_response.StatusCode == 429)
-                throw new APIException(@"Too many requests.", _context);
+                throw new ErrorResponseException(@"Too many requests.", _context);
 
             else if (_response.StatusCode == 500)
                 throw new APIException(@"Unexpected internal error.", _context);
@@ -285,16 +285,16 @@ namespace SuggestGrid.Controllers
 
             //Error handling using HTTP status codes
             if (_response.StatusCode == 400)
-                throw new APIException(@"Required `user_id` or `item_id` parameters are missing from the request body.", _context);
+                throw new ErrorResponseException(@"Required `user_id` or `item_id` parameters are missing from the request body.", _context);
 
             else if (_response.StatusCode == 404)
-                throw new APIException(@"Type does not exists.", _context);
+                throw new ErrorResponseException(@"Type does not exists.", _context);
 
             else if (_response.StatusCode == 422)
-                throw new APIException(@"No query parameter (`user_id`, `item_id`, or `older_than`) is given.  In order to delete all actionsdelete the type.", _context);
+                throw new ErrorResponseException(@"No query parameter (`user_id`, `item_id`, or `older_than`) is given.  In order to delete all actionsdelete the type.", _context);
 
             else if (_response.StatusCode == 429)
-                throw new APIException(@"Too many requests.", _context);
+                throw new ErrorResponseException(@"Too many requests.", _context);
 
             else if (_response.StatusCode == 500)
                 throw new APIException(@"Unexpected internal error.", _context);
@@ -367,11 +367,14 @@ namespace SuggestGrid.Controllers
             HttpContext _context = new HttpContext(_request,_response);
 
             //Error handling using HTTP status codes
-            if (_response.StatusCode == 402)
-                throw new APIException(@"Action limit exceeded.", _context);
+            if (_response.StatusCode == 400)
+                throw new ErrorResponseException(@"Body is missing.", _context);
+
+            else if (_response.StatusCode == 402)
+                throw new ErrorResponseException(@"Action limit exceeded.", _context);
 
             else if (_response.StatusCode == 429)
-                throw new APIException(@"Too many requests.", _context);
+                throw new ErrorResponseException(@"Too many requests.", _context);
 
             else if (_response.StatusCode == 500)
                 throw new APIException(@"Unexpected internal error.", _context);

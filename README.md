@@ -20,12 +20,14 @@ Let's implement this feature in five minutes with SuggestGrid!
 
 ### 1. Configuration
 
-We are beginning the development by adding the client as a dependency:
+We are beginning the development by adding the client as a dependency.
 
 
-From the package manager console inside visual studio
+From the package manager console inside Visual Studio
 
+```
 PM> Install-Package SuggestGrid
+```
 
 Or search in the Package Manager UI for SuggestGrid or manually add to your packages.config file.
 

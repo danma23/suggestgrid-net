@@ -1,7 +1,7 @@
 /*
  * SuggestGrid.PCL
  *
- * This file was automatically generated for SuggestGrid by APIMATIC v2.0 ( https://apimatic.io ) on 09/07/2016
+ * This file was automatically generated for SuggestGrid by APIMATIC v2.0 ( https://apimatic.io ) on 09/26/2016
  */
 using System;
 using System.IO;
@@ -12,11 +12,14 @@ using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using SuggestGrid.Http.Client;
+
+using SuggestGrid.Models;
 using SuggestGrid;
 
-namespace SuggestGrid.Models
+namespace SuggestGrid.Exceptions
 {
-    public class BulkSchemaErrorResponse : INotifyPropertyChanged 
+    public class BulkSchemaErrorResponseException : APIException 
     {
         // These fields hold the values for the public properties.
         private string message;
@@ -32,10 +35,9 @@ namespace SuggestGrid.Models
             {
                 return this.message; 
             } 
-            set 
+            private set 
             {
                 this.message = value;
-                onPropertyChanged("Message");
             }
         }
 
@@ -49,28 +51,20 @@ namespace SuggestGrid.Models
             {
                 return this.errors; 
             } 
-            set 
+            private set 
             {
                 this.errors = value;
-                onPropertyChanged("Errors");
             }
         }
 
         /// <summary>
-        /// Property changed event for observer pattern
+        /// Initialization constructor
         /// </summary>
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        /// <summary>
-        /// Raises event when a property is changed
-        /// </summary>
-        /// <param name="propertyName">Name of the changed property</param>
-        protected void onPropertyChanged(String propertyName)
+        /// <param name="reason"> The reason for throwing exception </param>
+        /// <param name="context"> The HTTP context that encapsulates request and response objects </param>
+        public BulkSchemaErrorResponseException(string reason, HttpContext context)
+            : base(reason, context)
         {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-            }
         }
     }
 } 

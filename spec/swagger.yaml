@@ -736,6 +736,10 @@ paths:
           description: Bulk action request executed.
           schema:
             $ref: '#/definitions/MessageResponse'
+        400:
+          description: Body is missing.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
         402:
           description: Action limit exceeded.
           schema:
@@ -976,6 +980,10 @@ paths:
           description: Some metadata is not uploaded successfully.
           schema:
             $ref: '#/definitions/BulkSchemaErrorResponse'
+        400:
+          description: Body is missing.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
         429:
           description: Too many requests.
           schema:
@@ -1015,6 +1023,10 @@ paths:
           description: Some metadata is not uploaded successfully.
           schema:
             $ref: '#/definitions/BulkSchemaErrorResponse'
+        400:
+          description: Body is missing.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
         429:
           description: Too many requests.
           schema:

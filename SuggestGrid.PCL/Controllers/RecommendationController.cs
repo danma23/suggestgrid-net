@@ -1,7 +1,7 @@
 /*
  * SuggestGrid.PCL
  *
- * This file was automatically generated for SuggestGrid by APIMATIC v2.0 ( https://apimatic.io ) on 09/07/2016
+ * This file was automatically generated for SuggestGrid by APIMATIC v2.0 ( https://apimatic.io ) on 09/26/2016
  */
 using System;
 using System.Collections.Generic;
@@ -98,13 +98,13 @@ namespace SuggestGrid.Controllers
 
             //Error handling using HTTP status codes
             if (_response.StatusCode == 400)
-                throw new APIException(@"Request body is invalid.", _context);
+                throw new ErrorResponseException(@"Request body is invalid.", _context);
 
             else if (_response.StatusCode == 422)
-                throw new APIException(@"Required parameters are missing.", _context);
+                throw new ErrorResponseException(@"Required parameters are missing.", _context);
 
             else if (_response.StatusCode == 429)
-                throw new APIException(@"Too many requests.", _context);
+                throw new ErrorResponseException(@"Too many requests.", _context);
 
             else if (_response.StatusCode == 500)
                 throw new APIException(@"Unexpected internal error.", _context);
@@ -172,13 +172,13 @@ namespace SuggestGrid.Controllers
 
             //Error handling using HTTP status codes
             if (_response.StatusCode == 400)
-                throw new APIException(@"Request body is invalid.", _context);
+                throw new ErrorResponseException(@"Request body is invalid.", _context);
 
             else if (_response.StatusCode == 422)
-                throw new APIException(@"Required parameters are missing.", _context);
+                throw new ErrorResponseException(@"Required parameters are missing.", _context);
 
             else if (_response.StatusCode == 429)
-                throw new APIException(@"Too many requests.", _context);
+                throw new ErrorResponseException(@"Too many requests.", _context);
 
             else if (_response.StatusCode == 500)
                 throw new APIException(@"Unexpected internal error.", _context);
