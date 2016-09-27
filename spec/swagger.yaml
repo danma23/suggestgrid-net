@@ -120,6 +120,7 @@ definitions:
   Filter:
     type: object
     description: |
+      Contraints on the returned users or items. Filter structure is defined in [the filter parameter documentation](http://www.suggestgrid.com/docs/concepts#filters-parameter).
     additionalProperties:
       type:
         - string
