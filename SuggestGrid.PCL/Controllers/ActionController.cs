@@ -1,7 +1,7 @@
 /*
  * SuggestGrid.PCL
  *
- * This file was automatically generated for SuggestGrid by APIMATIC v2.0 ( https://apimatic.io ) on 09/27/2016
+ * This file was automatically generated for SuggestGrid by APIMATIC v2.0 ( https://apimatic.io ) on 09/28/2016
  */
 using System;
 using System.Collections.Generic;
@@ -142,11 +142,11 @@ namespace SuggestGrid.Controllers
         /// <summary>
         /// Post an Action
         /// </summary>
-        /// <param name="body">Required parameter: The action to be posted.</param>
+        /// <param name="action">Required parameter: The action to be posted.</param>
         /// <return>Returns the MessageResponse response from the API call</return>
-        public MessageResponse PostAction(ActionModel body)
+        public MessageResponse PostAction(ActionModel action)
         {
-            Task<MessageResponse> t = PostActionAsync(body);
+            Task<MessageResponse> t = PostActionAsync(action);
             Task.WaitAll(t);
             return t.Result;
         }
@@ -154,9 +154,9 @@ namespace SuggestGrid.Controllers
         /// <summary>
         /// Post an Action
         /// </summary>
-        /// <param name="body">Required parameter: The action to be posted.</param>
+        /// <param name="action">Required parameter: The action to be posted.</param>
         /// <return>Returns the MessageResponse response from the API call</return>
-        public async Task<MessageResponse> PostActionAsync(ActionModel body)
+        public async Task<MessageResponse> PostActionAsync(ActionModel action)
         {
             //the base uri for api requestss
             string _baseUri = Configuration.BaseUri;
@@ -178,7 +178,7 @@ namespace SuggestGrid.Controllers
             };
 
             //append body params
-            var _body = APIHelper.JsonSerialize(body);
+            var _body = APIHelper.JsonSerialize(action);
 
             //prepare the API call request to fetch the response
             HttpRequest _request = ClientInstance.PostBody(_queryUrl, _headers, _body, Configuration.BasicAuthUserName, Configuration.BasicAuthPassword);
@@ -315,7 +315,7 @@ namespace SuggestGrid.Controllers
         /// <summary>
         /// Post Bulk Actions
         /// </summary>
-        /// <param name="body">Required parameter: A number of action objects separated with newlines. Note that this is not a valid JSON data structure. The body size is limited to 10 thousand lines.</param>
+        /// <param name="actions">Required parameter: A number of action objects separated with newlines. Note that this is not a valid JSON data structure. The body size is limited to 10 thousand lines.</param>
         /// <return>Returns the MessageResponse response from the API call</return>
         public MessageResponse PostBulkActions(List<ActionModel> actions)
         {
@@ -333,9 +333,9 @@ namespace SuggestGrid.Controllers
         /// <summary>
         /// Post Bulk Actions
         /// </summary>
-        /// <param name="body">Required parameter: A number of action objects separated with newlines. Note that this is not a valid JSON data structure. The body size is limited to 10 thousand lines.</param>
+        /// <param name="actions">Required parameter: A number of action objects separated with newlines. Note that this is not a valid JSON data structure. The body size is limited to 10 thousand lines.</param>
         /// <return>Returns the MessageResponse response from the API call</return>
-        private async Task<MessageResponse> PostBulkActionsAsync(string body)
+        private async Task<MessageResponse> PostBulkActionsAsync(string actions)
         {
             //the base uri for api requestss
             string _baseUri = Configuration.BaseUri;
@@ -357,7 +357,7 @@ namespace SuggestGrid.Controllers
             };
 
             //append body params
-             var _body = body;
+             var _body = actions;
 
             //prepare the API call request to fetch the response
             HttpRequest _request = ClientInstance.PostBody(_queryUrl, _headers, _body, Configuration.BasicAuthUserName, Configuration.BasicAuthPassword);

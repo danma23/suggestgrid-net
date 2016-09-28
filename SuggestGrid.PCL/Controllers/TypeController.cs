@@ -1,7 +1,7 @@
 /*
  * SuggestGrid.PCL
  *
- * This file was automatically generated for SuggestGrid by APIMATIC v2.0 ( https://apimatic.io ) on 09/27/2016
+ * This file was automatically generated for SuggestGrid by APIMATIC v2.0 ( https://apimatic.io ) on 09/28/2016
  */
 using System;
 using System.Collections.Generic;
@@ -246,11 +246,11 @@ namespace SuggestGrid.Controllers
         /// Create a New Type
         /// </summary>
         /// <param name="type">Required parameter: The name of the type to be created.</param>
-        /// <param name="body">Optional parameter: Optional body for the rating parameter.</param>
+        /// <param name="settings">Optional parameter: Optional settings for the rating parameter.</param>
         /// <return>Returns the MessageResponse response from the API call</return>
-        public MessageResponse CreateType(string type, TypeRequestBody body = null)
+        public MessageResponse CreateType(string type, TypeRequestBody settings = null)
         {
-            Task<MessageResponse> t = CreateTypeAsync(type, body);
+            Task<MessageResponse> t = CreateTypeAsync(type, settings);
             Task.WaitAll(t);
             return t.Result;
         }
@@ -259,9 +259,9 @@ namespace SuggestGrid.Controllers
         /// Create a New Type
         /// </summary>
         /// <param name="type">Required parameter: The name of the type to be created.</param>
-        /// <param name="body">Optional parameter: Optional body for the rating parameter.</param>
+        /// <param name="settings">Optional parameter: Optional settings for the rating parameter.</param>
         /// <return>Returns the MessageResponse response from the API call</return>
-        public async Task<MessageResponse> CreateTypeAsync(string type, TypeRequestBody body = null)
+        public async Task<MessageResponse> CreateTypeAsync(string type, TypeRequestBody settings = null)
         {
             //the base uri for api requestss
             string _baseUri = Configuration.BaseUri;
@@ -289,7 +289,7 @@ namespace SuggestGrid.Controllers
             };
 
             //append body params
-            var _body = APIHelper.JsonSerialize(body);
+            var _body = APIHelper.JsonSerialize(settings);
 
             //prepare the API call request to fetch the response
             HttpRequest _request = ClientInstance.PutBody(_queryUrl, _headers, _body, Configuration.BasicAuthUserName, Configuration.BasicAuthPassword);

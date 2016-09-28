@@ -1,7 +1,7 @@
 /*
  * SuggestGrid.PCL
  *
- * This file was automatically generated for SuggestGrid by APIMATIC v2.0 ( https://apimatic.io ) on 09/27/2016
+ * This file was automatically generated for SuggestGrid by APIMATIC v2.0 ( https://apimatic.io ) on 09/28/2016
  */
 using System;
 using System.IO;
@@ -22,38 +22,55 @@ namespace SuggestGrid.Exceptions
     public class ErrorResponseException : APIException 
     {
         // These fields hold the values for the public properties.
-        private string message;
-        private int? status;
+        private string errorText;
+        private string errorDescription;
+        private string errorUri;
 
         /// <summary>
         /// Message of the response.
         /// </summary>
-        [JsonProperty("message")]
-        public string Message 
+        [JsonProperty("error_text")]
+        public string ErrorText 
         { 
             get 
             {
-                return this.message; 
+                return this.errorText; 
             } 
             private set 
             {
-                this.message = value;
+                this.errorText = value;
             }
         }
 
         /// <summary>
-        /// Status code of the response. It is not 2XX.
+        /// Description of the response.
         /// </summary>
-        [JsonProperty("status")]
-        public int? Status 
+        [JsonProperty("error_description")]
+        public string ErrorDescription 
         { 
             get 
             {
-                return this.status; 
+                return this.errorDescription; 
             } 
             private set 
             {
-                this.status = value;
+                this.errorDescription = value;
+            }
+        }
+
+        /// <summary>
+        /// URI of the response for more details.
+        /// </summary>
+        [JsonProperty("error_uri")]
+        public string ErrorUri 
+        { 
+            get 
+            {
+                return this.errorUri; 
+            } 
+            private set 
+            {
+                this.errorUri = value;
             }
         }
 

@@ -1,7 +1,7 @@
 /*
  * SuggestGrid.PCL
  *
- * This file was automatically generated for SuggestGrid by APIMATIC v2.0 ( https://apimatic.io ) on 09/27/2016
+ * This file was automatically generated for SuggestGrid by APIMATIC v2.0 ( https://apimatic.io ) on 09/28/2016
  */
 using System;
 using System.Collections.Generic;
@@ -51,11 +51,11 @@ namespace SuggestGrid.Controllers
         /// <summary>
         /// Get Similar Users
         /// </summary>
-        /// <param name="body">Required parameter: Similar users method parameters.</param>
+        /// <param name="query">Required parameter: The query for similar users.</param>
         /// <return>Returns the UsersResponse response from the API call</return>
-        public UsersResponse GetSimilarUsers(GetSimilarUsersBody body)
+        public UsersResponse GetSimilarUsers(GetSimilarUsersBody query)
         {
-            Task<UsersResponse> t = GetSimilarUsersAsync(body);
+            Task<UsersResponse> t = GetSimilarUsersAsync(query);
             Task.WaitAll(t);
             return t.Result;
         }
@@ -63,9 +63,9 @@ namespace SuggestGrid.Controllers
         /// <summary>
         /// Get Similar Users
         /// </summary>
-        /// <param name="body">Required parameter: Similar users method parameters.</param>
+        /// <param name="query">Required parameter: The query for similar users.</param>
         /// <return>Returns the UsersResponse response from the API call</return>
-        public async Task<UsersResponse> GetSimilarUsersAsync(GetSimilarUsersBody body)
+        public async Task<UsersResponse> GetSimilarUsersAsync(GetSimilarUsersBody query)
         {
             //the base uri for api requestss
             string _baseUri = Configuration.BaseUri;
@@ -87,7 +87,7 @@ namespace SuggestGrid.Controllers
             };
 
             //append body params
-            var _body = APIHelper.JsonSerialize(body);
+            var _body = APIHelper.JsonSerialize(query);
 
             //prepare the API call request to fetch the response
             HttpRequest _request = ClientInstance.PostBody(_queryUrl, _headers, _body, Configuration.BasicAuthUserName, Configuration.BasicAuthPassword);
@@ -125,11 +125,11 @@ namespace SuggestGrid.Controllers
         /// <summary>
         /// Get Similar Items
         /// </summary>
-        /// <param name="body">Required parameter: Similar items method parameter.</param>
+        /// <param name="query">Required parameter: The query for similar items.</param>
         /// <return>Returns the ItemsResponse response from the API call</return>
-        public ItemsResponse GetSimilarItems(GetSimilarItemsBody body)
+        public ItemsResponse GetSimilarItems(GetSimilarItemsBody query)
         {
-            Task<ItemsResponse> t = GetSimilarItemsAsync(body);
+            Task<ItemsResponse> t = GetSimilarItemsAsync(query);
             Task.WaitAll(t);
             return t.Result;
         }
@@ -137,9 +137,9 @@ namespace SuggestGrid.Controllers
         /// <summary>
         /// Get Similar Items
         /// </summary>
-        /// <param name="body">Required parameter: Similar items method parameter.</param>
+        /// <param name="query">Required parameter: The query for similar items.</param>
         /// <return>Returns the ItemsResponse response from the API call</return>
-        public async Task<ItemsResponse> GetSimilarItemsAsync(GetSimilarItemsBody body)
+        public async Task<ItemsResponse> GetSimilarItemsAsync(GetSimilarItemsBody query)
         {
             //the base uri for api requestss
             string _baseUri = Configuration.BaseUri;
@@ -161,7 +161,7 @@ namespace SuggestGrid.Controllers
             };
 
             //append body params
-            var _body = APIHelper.JsonSerialize(body);
+            var _body = APIHelper.JsonSerialize(query);
 
             //prepare the API call request to fetch the response
             HttpRequest _request = ClientInstance.PostBody(_queryUrl, _headers, _body, Configuration.BasicAuthUserName, Configuration.BasicAuthPassword);

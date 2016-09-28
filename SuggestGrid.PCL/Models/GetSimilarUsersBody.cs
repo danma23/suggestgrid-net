@@ -1,7 +1,7 @@
 /*
  * SuggestGrid.PCL
  *
- * This file was automatically generated for SuggestGrid by APIMATIC v2.0 ( https://apimatic.io ) on 09/27/2016
+ * This file was automatically generated for SuggestGrid by APIMATIC v2.0 ( https://apimatic.io ) on 09/28/2016
  */
 using System;
 using System.IO;
@@ -29,7 +29,7 @@ namespace SuggestGrid.Models
         private List<string> except;
 
         /// <summary>
-        /// TODO: Write general description for this method
+        /// The type of the query.
         /// </summary>
         [JsonProperty("type")]
         public string Type 
@@ -46,7 +46,7 @@ namespace SuggestGrid.Models
         }
 
         /// <summary>
-        /// TODO: Write general description for this method
+        /// The types of the query. Exactly one of type or types parameters must be provided.
         /// </summary>
         [JsonProperty("types")]
         public string Types 
@@ -63,7 +63,7 @@ namespace SuggestGrid.Models
         }
 
         /// <summary>
-        /// TODO: Write general description for this method
+        /// The user id of the query.
         /// </summary>
         [JsonProperty("user_id")]
         public string UserId 
@@ -80,7 +80,7 @@ namespace SuggestGrid.Models
         }
 
         /// <summary>
-        /// TODO: Write general description for this method
+        /// The user ids of the query. Exactly one of user id or user ids parameters must be provided.
         /// </summary>
         [JsonProperty("user_ids")]
         public List<string> UserIds 
@@ -97,7 +97,7 @@ namespace SuggestGrid.Models
         }
 
         /// <summary>
-        /// TODO: Write general description for this method
+        /// The number of users asked to return in the response.
         /// </summary>
         [JsonProperty("size")]
         public int? Size 
@@ -114,7 +114,7 @@ namespace SuggestGrid.Models
         }
 
         /// <summary>
-        /// TODO: Write general description for this method
+        /// The metadata fields that are to be included in returned users.
         /// </summary>
         [JsonProperty("fields")]
         public List<string> Fields 
@@ -131,7 +131,8 @@ namespace SuggestGrid.Models
         }
 
         /// <summary>
-        /// Contraints on the returned users or items. Filter structure is defined in [the filter parameter documentation](http://www.suggestgrid.com/docs/concepts#filters-parameter).
+        /// Contraints on the returned users or items. 
+        /// Filter structure is defined in [the filter parameter documentation](http://www.suggestgrid.com/docs/concepts#filters-parameter).
         /// </summary>
         [JsonProperty("filter")]
         public object Filter 
@@ -148,7 +149,7 @@ namespace SuggestGrid.Models
         }
 
         /// <summary>
-        /// These ids will not be included in the response.
+        /// These user ids that will not be included in the response.
         /// </summary>
         [JsonProperty("except")]
         public List<string> Except 

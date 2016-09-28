@@ -1,7 +1,7 @@
 /*
  * SuggestGrid.PCL
  *
- * This file was automatically generated for SuggestGrid by APIMATIC v2.0 ( https://apimatic.io ) on 09/27/2016
+ * This file was automatically generated for SuggestGrid by APIMATIC v2.0 ( https://apimatic.io ) on 09/28/2016
  */
 using System;
 using System.Collections.Generic;
@@ -51,11 +51,11 @@ namespace SuggestGrid.Controllers
         /// <summary>
         /// Get Recommended Users
         /// </summary>
-        /// <param name="body">Required parameter: Parameters for recommend users method.</param>
+        /// <param name="query">Required parameter: The query for recommended users.</param>
         /// <return>Returns the UsersResponse response from the API call</return>
-        public UsersResponse GetRecommendedUsers(GetRecommendedUsersBody body)
+        public UsersResponse GetRecommendedUsers(GetRecommendedUsersBody query)
         {
-            Task<UsersResponse> t = GetRecommendedUsersAsync(body);
+            Task<UsersResponse> t = GetRecommendedUsersAsync(query);
             Task.WaitAll(t);
             return t.Result;
         }
@@ -63,9 +63,9 @@ namespace SuggestGrid.Controllers
         /// <summary>
         /// Get Recommended Users
         /// </summary>
-        /// <param name="body">Required parameter: Parameters for recommend users method.</param>
+        /// <param name="query">Required parameter: The query for recommended users.</param>
         /// <return>Returns the UsersResponse response from the API call</return>
-        public async Task<UsersResponse> GetRecommendedUsersAsync(GetRecommendedUsersBody body)
+        public async Task<UsersResponse> GetRecommendedUsersAsync(GetRecommendedUsersBody query)
         {
             //the base uri for api requestss
             string _baseUri = Configuration.BaseUri;
@@ -87,7 +87,7 @@ namespace SuggestGrid.Controllers
             };
 
             //append body params
-            var _body = APIHelper.JsonSerialize(body);
+            var _body = APIHelper.JsonSerialize(query);
 
             //prepare the API call request to fetch the response
             HttpRequest _request = ClientInstance.PostBody(_queryUrl, _headers, _body, Configuration.BasicAuthUserName, Configuration.BasicAuthPassword);
@@ -125,11 +125,11 @@ namespace SuggestGrid.Controllers
         /// <summary>
         /// Get Recommended Items
         /// </summary>
-        /// <param name="body">Required parameter: Parameters for recommend items method.</param>
+        /// <param name="query">Required parameter: The query for recommended items.</param>
         /// <return>Returns the ItemsResponse response from the API call</return>
-        public ItemsResponse GetRecommendedItems(GetRecommendedItemsBody body)
+        public ItemsResponse GetRecommendedItems(GetRecommendedItemsBody query)
         {
-            Task<ItemsResponse> t = GetRecommendedItemsAsync(body);
+            Task<ItemsResponse> t = GetRecommendedItemsAsync(query);
             Task.WaitAll(t);
             return t.Result;
         }
@@ -137,9 +137,9 @@ namespace SuggestGrid.Controllers
         /// <summary>
         /// Get Recommended Items
         /// </summary>
-        /// <param name="body">Required parameter: Parameters for recommend items method.</param>
+        /// <param name="query">Required parameter: The query for recommended items.</param>
         /// <return>Returns the ItemsResponse response from the API call</return>
-        public async Task<ItemsResponse> GetRecommendedItemsAsync(GetRecommendedItemsBody body)
+        public async Task<ItemsResponse> GetRecommendedItemsAsync(GetRecommendedItemsBody query)
         {
             //the base uri for api requestss
             string _baseUri = Configuration.BaseUri;
@@ -161,7 +161,7 @@ namespace SuggestGrid.Controllers
             };
 
             //append body params
-            var _body = APIHelper.JsonSerialize(body);
+            var _body = APIHelper.JsonSerialize(query);
 
             //prepare the API call request to fetch the response
             HttpRequest _request = ClientInstance.PostBody(_queryUrl, _headers, _body, Configuration.BasicAuthUserName, Configuration.BasicAuthPassword);

@@ -1,7 +1,7 @@
 /*
  * SuggestGrid.PCL
  *
- * This file was automatically generated for SuggestGrid by APIMATIC v2.0 ( https://apimatic.io ) on 09/27/2016
+ * This file was automatically generated for SuggestGrid by APIMATIC v2.0 ( https://apimatic.io ) on 09/28/2016
  */
 using System;
 using System.IO;
@@ -22,7 +22,7 @@ namespace SuggestGrid.Models
         private int? count;
 
         /// <summary>
-        /// TODO: Write general description for this method
+        /// The count that is asked in the query.
         /// </summary>
         [JsonProperty("count")]
         public int? Count 

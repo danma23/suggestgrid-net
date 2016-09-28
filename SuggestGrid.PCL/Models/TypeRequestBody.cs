@@ -1,7 +1,7 @@
 /*
  * SuggestGrid.PCL
  *
- * This file was automatically generated for SuggestGrid by APIMATIC v2.0 ( https://apimatic.io ) on 09/27/2016
+ * This file was automatically generated for SuggestGrid by APIMATIC v2.0 ( https://apimatic.io ) on 09/28/2016
  */
 using System;
 using System.IO;
@@ -22,6 +22,7 @@ namespace SuggestGrid.Models
         private string rating;
 
         /// <summary>
+        /// The rating type of the type to be created.
         /// Could be "explicit" or "implicit"
         /// The default is "implicit".
         /// </summary>

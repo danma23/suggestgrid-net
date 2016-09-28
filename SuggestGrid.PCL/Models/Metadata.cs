@@ -1,7 +1,7 @@
 /*
  * SuggestGrid.PCL
  *
- * This file was automatically generated for SuggestGrid by APIMATIC v2.0 ( https://apimatic.io ) on 09/27/2016
+ * This file was automatically generated for SuggestGrid by APIMATIC v2.0 ( https://apimatic.io ) on 09/28/2016
  */
 using System;
 using System.IO;
@@ -24,7 +24,8 @@ namespace SuggestGrid.Models
         private string id;
 
         /// <summary>
-        /// TODO: Write general description for this method
+        /// The id of the user or the item that the metadata is associated with.
+        /// Id parameter is necessary for all metadata.
         /// </summary>
         [JsonProperty("id")]
         public string Id

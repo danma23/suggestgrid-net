@@ -3,7 +3,7 @@ swagger: '2.0'
 info:
   title: SuggestGrid
   version: 0.1.15-SNAPSHOT
-  description: SuggestGrid is an recommendation and personalization service.
+  description: SuggestGrid is a recommendation and personalization service.
   x-codegen-settings:
     appendContentHeaders: true
     generateAsyncCode: true
@@ -22,15 +22,13 @@ info:
     enableAdditionalModelProperties: false
     preserveParameterOrder: true
 
-host: localhost:9090
-
 schemes:
-  - http
+  - https
 
 securityDefinitions:
   basicAuth:
     type: basic
-    description: HTTP Basic Authentication. Works over `HTTP`
+    description: HTTP Basic Authentication.
 
 security:
   - basicAuth: []
@@ -99,7 +97,9 @@ tags:
 definitions:
   Action:
     type: object
-    description: An action object.
+    description: |
+      An action object represents a user's action on an item.
+      All actions belong to a type that gives meaning to actions.
     properties:
       type:
         type: string
@@ -112,7 +112,7 @@ definitions:
         description: The item id of the item the action is performed on.
       rating:
         type: number
-        description: The optional rating, if the type is explicit.
+        description: The optional rating given by the user, if the type is explicit.
     required:
       - type
       - user_id
@@ -120,7 +120,8 @@ definitions:
   Filter:
     type: object
     description: |
-      Contraints on the returned users or items. Filter structure is defined in [the filter parameter documentation](http://www.suggestgrid.com/docs/concepts#filters-parameter).
+      Contraints on the returned users or items. 
+      Filter structure is defined in [the filter parameter documentation](http://www.suggestgrid.com/docs/concepts#filters-parameter).
     additionalProperties:
       type:
         - string
@@ -129,11 +130,13 @@ definitions:
         - boolean
   Metadata:
     type: object
-    description: |
+    description: A metadata for a user or an item.
     properties:
       id:
         type: string
         description: |
+          The id of the user or the item that the metadata is associated with.
+          Id parameter is necessary for all metadata.
     additionalProperties:
       type:
         - string
@@ -145,187 +148,196 @@ definitions:
   # Request Bodies
   TypeRequestBody:
     type: object
-    description: |
+    description: Options for creating a type.
     properties:
       rating:
         type: string
-        description:  |-
+        description:  |
+          The rating type of the type to be created.
           Could be "explicit" or "implicit"
           The default is "implicit".
   GetRecommendedUsersBody:
     type: object
-    description: |
+    description: Query for recommended users.
     properties:
       type:
         type: string
-        description: |
+        description: The type of the query.
       types:
         type: string
-        description: |
+        description: The types of the query. Exactly one of type or types parameters must be provided.
       item_id:
         type: string
-        description: |
+        description: The item id of the query.
       item_ids:
         type: array
-        description: |
+        description: The item ids of the query. Exactly one of item id or item ids parameters must be provided.
         items:
           type: string
       size:
         type: integer
-        description: |
+        description: The number of users asked to return in the response.
       similar_user_id:
         type: string
+        description: Similar user that the response should be similar to.
+      similar_user_ids:
+        type: string
         description: |
+          Similar users that the response should be similar to.
+          At most one of similar user and similar users parameters can be provided.
       fields:
         type: array
         items:
           type: string
-        description: |
+        description: The metadata fields that are to be included in returned users.
       filter:
         $ref: '#/definitions/Filter'
       except:
         type: array
         items:
           type: string
-        description: |
-          These ids will not be included in the response.
+        description: These user ids that will not be included in the response.
   GetRecommendedItemsBody:
     type: object
-    description: |
+    description: Query for recommended items.
     properties:
       type:
         type: string
-        description: |
+        description: The type of the query.
       types:
         type: string
-        description: |
+        description: The types of the query. Exactly one of type or types parameters must be provided.
       user_id:
         type: string
-        description: |
+        description: The user id of the query.
       user_ids:
         type: array
-        description: |
+        description: The user ids of the query. Exactly one of user id or user ids parameters must be provided.
         items:
           type: string
       size:
         type: integer
-        description: |
+        description: The number of users asked to return in the response.
       similar_item_id:
         type: string
+        description: Similar item that the response should be similar to.
+      similar_item_ids:
+        type: string
         description: |
+          Similar items that the response should be similar to.
+          At most one of similar item and similar items parameters can be provided.
       fields:
         type: array
         items:
           type: string
-        description: |
+        description: The metadata fields that are to be included in returned users.
       filter:
         $ref: '#/definitions/Filter'
       except:
         type: array
         items:
           type: string
-        description: |
-          These ids will not be included in the response.
+        description: These user ids that will not be included in the response.
   GetSimilarUsersBody:
     type: object
-    description: |
+    description: The query for similar users.
     properties:
       type:
         type: string
-        description: |
+        description: The type of the query.
       types:
         type: string
-        description: |
+        description: The types of the query. Exactly one of type or types parameters must be provided.
       user_id:
         type: string
-        description: |
+        description: The user id of the query.
       user_ids:
         type: array
-        description: |
+        description: The user ids of the query. Exactly one of user id or user ids parameters must be provided.
         items:
           type: string
       size:
         type: integer
-        description: |
+        description: The number of users asked to return in the response.
       fields:
         type: array
         items:
           type: string
-        description: |
+        description: The metadata fields that are to be included in returned users.
       filter:
         $ref: '#/definitions/Filter'
       except:
         type: array
         items:
           type: string
-        description: |
-          These ids will not be included in the response.
+        description: These user ids that will not be included in the response.
   GetSimilarItemsBody:
     type: object
-    description: |
+    description: The query for similar items.
     properties:
       type:
         type: string
-        description: |
+        description: The type of the query.
       types:
         type: string
-        description: |
+        description: The types of the query. Exactly one of type or types parameters must be provided.
       item_id:
         type: string
-        description: |
+        description: The item id of the query.
           Get similar items to given item id. Either item id or item ids must be provided.
       item_ids:
         type: array
-        description: |
+        description: The item ids of the query. Exactly one of item id or item ids parameters must be provided.
           Get similar items to given item ids. Either item id or item ids must be provided.
         items:
           type: string
       size:
         type: integer
-        description: |
+        description: The number of users asked to return in the response.
       fields:
         type: array
         items:
           type: string
-        description: |
+        description: The metadata fields that are to be included in returned users.
       filter:
         $ref: '#/definitions/Filter'
       except:
         type: array
         items:
           type: string
-        description: |
-          These ids will not be included in the response.
+        description: These user ids that will not be included in the response.
   # Responses
   MessageResponse:
     type: object
-    description: |
+    description: A basic response.
     properties:
       message:
         type: string
         description: Message of the response.
   CountResponse:
     type: object
-    description: |
+    description: Count response.
     properties:
       count:
         type: integer
         format: int32
-        description: |
+        description: The count that is asked in the query.
   ErrorResponse:
     type: object
-    description: |
+    description: Error response.
     properties:
-      message:
+      error_text:
         type: string
         description: Message of the response.
-      status:
-        type: integer
-        format: int32
-        description: Status code of the response. It is not 2XX.
+      error_description:
+        type: string
+        description: Description of the response.
+      error_uri:
+        type: string
+        description: URI of the response for more details.
   GetTypesResponse:
     type: object
-    description: |
+    description: Type names response.
     properties:
       types:
         type: array
@@ -338,14 +350,16 @@ definitions:
         description: Status code of the response. It is not 2XX.
   GetTypeResponse:
     type: object
-    description: |
+    description: Get type details response.
     properties:
       rating:
         type: string
-        description: Either 'implicit' or 'explicit'
+        description: Rating type of the type that is either implicit or explicit.
   BulkSchemaErrorResponse:
     type: object
     description: |
+      Bulk error response.
+      Returned on bulk post requests with failures.
     properties:
       message:
         type: string
@@ -369,7 +383,7 @@ definitions:
         description: Programatic description of the error.
   MetadataInformationResponse:
     type: object
-    description: |
+    description: Metadata iformation response.
     properties:
       count:
         type: integer
@@ -377,7 +391,7 @@ definitions:
         description: The number of users or items with metadata.
   UsersResponse:
     type: object
-    description: |
+    description: Users response.
     properties:
       count:
         type: integer
@@ -389,7 +403,7 @@ definitions:
           $ref: '#/definitions/Metadata'
   ItemsResponse:
     type: object
-    description: |
+    description: Items response.
     properties:
       count:
         type: integer
@@ -408,7 +422,7 @@ paths:
         - type
       operationId: get_all_types
       summary: Get All Types
-      description: Get all type names in an array named types.
+      description: Returns all type names in an array named types.
       responses:
         200:
           description: Get types response.
@@ -427,7 +441,7 @@ paths:
         - type
       operationId: delete_all_types
       summary: Delete All Types
-      description: Deletes ALL types and ALL actions.
+      description: Deletes ALL the types and ALL the actions.
       responses:
         200:
           description: Get types response.
@@ -447,7 +461,7 @@ paths:
         - type
       operationId: get_type
       summary: Get Properties of a Type
-      description: Get the options of a type. Has rating parameter.
+      description: Returns the options of a type. The response rating parameter.
       parameters:
         - name: type
           in: path
@@ -473,7 +487,7 @@ paths:
         - type
       operationId: create_type
       summary: Create a New Type
-      description: Creates a new implicit or explicit type.
+      description: Creates a new type.
       parameters:
         - name: type
           in: path
@@ -481,9 +495,9 @@ paths:
           required: true
           type: string
           format: id
-        - name: body
+        - name: settings
           in: body
-          description: Optional body for the rating parameter.
+          description: Optional settings for the rating parameter.
           required: false
           schema:
             $ref: '#/definitions/TypeRequestBody'
@@ -556,7 +570,7 @@ paths:
         The body must have user id, item id and type.
         Rating is required for actions sent to an explicit type.
       parameters:
-        - name: body
+        - name: action
           in: body
           description: The action to be posted.
           required: true
@@ -593,14 +607,14 @@ paths:
       operationId: get_actions
       summary: Get Actions
       description: |
-                   Type must be provided. Additionally,
+        Type must be provided. Additionally,
 
-                   * If both `user_id` and `item_id` are supplied it returns the count of the corresponding actions.
-                   * If only `user_id` is provided, it returns the count of all the action of the given user.
-                   * If only `user_id` is provided, it returns the count of all the action of the given item.
-                   * If only `older_than` is provided, it returns the count of actions older than the given timestamp.
-                   * If a few of these parameters are provided, it returns the count of the intersection of these parameters.
-                   * If none of these are provided, it returns the count of the whole type.
+        * If both `user_id` and `item_id` are supplied it returns the count of the corresponding actions.
+        * If only `user_id` is provided, it returns the count of all the action of the given user.
+        * If only `user_id` is provided, it returns the count of all the action of the given item.
+        * If only `older_than` is provided, it returns the count of actions older than the given timestamp.
+        * If a few of these parameters are provided, it returns the count of the intersection of these parameters.
+        * If none of these are provided, it returns the count of the whole type.
       parameters:
         - name: type
           in: query
@@ -623,8 +637,8 @@ paths:
         - name: older_than
           in: query
           description: |
-                       Delete all actions of a type older than the given timestamp or time.
-                       Valid times are 1s, 1m, 1h, 1d, 1M, 1y, or unix timestamp (like 1443798195).
+            Delete all actions of a type older than the given timestamp or time.
+            Valid times are 1s, 1m, 1h, 1d, 1M, 1y, or unix timestamp (like 1443798195).
           required: false
           type: string
           format: id
@@ -651,14 +665,14 @@ paths:
       operationId: delete_actions
       summary: Delete Actions
       description: |
-                   Type must be provided. Additionally,
+        Type must be provided. Additionally,
 
-                   * If both user id and item id are supplied the user's actions on the item will be deleted.
-                   * If only user id is provided, all actions of the user will be deleted.
-                   * If only item id is provided, all actions on the item will be deleted.
-                   * If only older than is provided, all actions older than the timestamp or the duration will be deleted.
-                   * If a few of these parameters are provided, delete action will be executed within intersection of these parameters.
-                   * One of these parameters must be provided. In order to delete all actions, delete the type.
+        * If both user id and item id are supplied the user's actions on the item will be deleted.
+        * If only user id is provided, all actions of the user will be deleted.
+        * If only item id is provided, all actions on the item will be deleted.
+        * If only older than is provided, all actions older than the timestamp or the duration will be deleted.
+        * If a few of these parameters are provided, delete action will be executed within intersection of these parameters.
+        * One of these parameters must be provided. In order to delete all actions, delete the type.
       parameters:
         - name: type
           in: query
@@ -681,8 +695,8 @@ paths:
         - name: older_than
           in: query
           description: |
-                       Delete all actions of a type older than the given timestamp or time.
-                       Valid times are 1s, 1m, 1h, 1d, 1M, 1y, or unix timestamp (like 1443798195).
+            Delete all actions of a type older than the given timestamp or time.
+            Valid times are 1s, 1m, 1h, 1d, 1M, 1y, or unix timestamp (like 1443798195).
           required: false
           type: string
           format: id
@@ -723,7 +737,7 @@ paths:
       consumes:
        - text/plain; charset=utf-8
       parameters:
-        - name: body
+        - name: actions
           in: body
           description: |
             A number of action objects separated with newlines.
@@ -760,11 +774,11 @@ paths:
         - metadata
       operationId: delete_user
       summary: Delete a User
-      description: Delete a user metadata with the given user_id.
+      description: Deletes a user metadata with the given user id.
       parameters:
         - name: user_id
           in: path
-          description: The user_id to delete its metadata.
+          description: The user id to delete its metadata.
           required: true
           type: string
           format: id
@@ -789,7 +803,7 @@ paths:
         summary: Post a User
         description: Posts a user metadata.
         parameters:
-          - name: metadata
+          - name: user
             in: body
             description: The metadata to be saved. Metadata format has its restrictions.
             required: true
@@ -856,11 +870,11 @@ paths:
         - metadata
       operationId: delete_item
       summary: Delete an Item
-      description: Delete an item metadata with the given item_id.
+      description: Deletes an item metadata with the given item id.
       parameters:
         - name: item_id
           in: path
-          description: The item_id to delete its metadata.
+          description: The item id to delete its metadata.
           required: true
           type: string
           format: id
@@ -887,7 +901,7 @@ paths:
         Posts an item metadata.
         This metadata can be used to filter or to be included in recommendations and similars methods.
       parameters:
-        - name: body
+        - name: item
           in: body
           description: The metadata to be saved. Metadata format has its restrictions.
           required: true
@@ -962,7 +976,7 @@ paths:
       consumes:
        - text/plain; charset=utf-8
       parameters:
-        - name: body
+        - name: users
           in: body
           description:  |
             A number of user metadata objects separated with newlines.
@@ -1005,7 +1019,7 @@ paths:
       consumes:
        - text/plain; charset=utf-8
       parameters:
-        - name: body
+        - name: items
           in: body
           description:   |
             A number of item metadata objects separated with newlines.
@@ -1043,18 +1057,17 @@ paths:
         - recommendation
       operationId: get_recommended_users
       summary: Get Recommended Users
-      description: Recommend users for the given body parameters.
+      description: Returns recommended users for the given query.
       parameters:
-        - name: body
+        - name: query
           in: body
-          description: |
-            Parameters for recommend users method.
+          description: The query for recommended users.
           required: true
           schema:
             $ref: '#/definitions/GetRecommendedUsersBody'
       responses:
         200:
-          description: Similar users response.
+          description: Recommended users response.
           schema:
             $ref: '#/definitions/UsersResponse'
         400:
@@ -1079,18 +1092,17 @@ paths:
         - recommendation
       operationId: get_recommended_items
       summary: Get Recommended Items
-      description: Recommend items for the given body parameters.
+      description: Returns recommended items for the given query.
       parameters:
-        - name: body
+        - name: query
           in: body
-          description: |
-            Parameters for recommend items method.
+          description: The query for recommended items.
           required: true
           schema:
             $ref: '#/definitions/GetRecommendedItemsBody'
       responses:
         200:
-          description: |
+          description: Recommended items response.
           schema:
             $ref: '#/definitions/ItemsResponse'
         400:
@@ -1116,11 +1128,11 @@ paths:
         - similarity
       operationId: get_similar_users
       summary: Get Similar Users
-      description: Get similar users to a user.
+      description: Returns similar users for the query.
       parameters:
-        - name: body
+        - name: query
           in: body
-          description: Similar users method parameters.
+          description: The query for similar users.
           required: true
           schema:
             $ref: '#/definitions/GetSimilarUsersBody'
@@ -1151,17 +1163,17 @@ paths:
         - similarity
       operationId: get_similar_items
       summary: Get Similar Items
-      description: Get similar items to an item.
+      description: Returns similar items for the query.
       parameters:
-        - name: body
+        - name: query
           in: body
-          description: Similar items method parameter.
+          description: The query for similar items.
           required: true
           schema:
             $ref: '#/definitions/GetSimilarItemsBody'
       responses:
         200:
-          description: |
+          description: Similar items response.
           schema:
             $ref: '#/definitions/ItemsResponse'
         400:
