@@ -502,7 +502,7 @@ paths:
           schema:
             $ref: '#/definitions/TypeRequestBody'
       responses:
-        200:
+        201:
           description: Type is created.
           schema:
             $ref: '#/definitions/MessageResponse'
@@ -577,8 +577,8 @@ paths:
           schema:
             $ref: '#/definitions/Action'
       responses:
-        200:
-          description: Action posted.
+        201:
+          description: An action is created.
           schema:
             $ref: '#/definitions/MessageResponse'
         400:
@@ -747,10 +747,14 @@ paths:
           schema:
             type: string
       responses:
-        200:
+        201:
           description: Bulk action request executed.
           schema:
             $ref: '#/definitions/MessageResponse'
+        209:
+          description: Some metadata is not uploaded successfully.
+          schema:
+            $ref: '#/definitions/BulkSchemaErrorResponse'
         400:
           description: Body is missing.
           schema:
@@ -810,7 +814,7 @@ paths:
             schema:
               $ref: '#/definitions/Metadata'
         responses:
-          200:
+          201:
             description: Posted a user metadata.
             schema:
               $ref: '#/definitions/MessageResponse'
@@ -908,7 +912,7 @@ paths:
           schema:
             $ref: '#/definitions/Metadata'
       responses:
-        200:
+        201:
           description: Posted an item metadata.
           schema:
             $ref: '#/definitions/MessageResponse'
@@ -987,7 +991,7 @@ paths:
           schema:
             type: string
       responses:
-        200:
+        201:
           description: Bulk user metadata request executed.
           schema:
             $ref: '#/definitions/MessageResponse'
@@ -1030,7 +1034,7 @@ paths:
           schema:
             type: string
       responses:
-        200:
+        201:
           description: Bulk item metadata request executed.
           schema:
             $ref: '#/definitions/MessageResponse'

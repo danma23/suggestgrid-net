@@ -1,7 +1,7 @@
 /*
  * SuggestGrid.PCL
  *
- * This file was automatically generated for SuggestGrid by APIMATIC v2.0 ( https://apimatic.io ) on 09/28/2016
+ * This file was automatically generated for SuggestGrid by APIMATIC v2.0 ( https://apimatic.io ) on 09/29/2016
  */
 using System;
 using System.Collections.Generic;
@@ -367,7 +367,10 @@ namespace SuggestGrid.Controllers
             HttpContext _context = new HttpContext(_request,_response);
 
             //Error handling using HTTP status codes
-            if (_response.StatusCode == 400)
+            if (_response.StatusCode == 209)
+                throw new BulkSchemaErrorResponseException(@"Some metadata is not uploaded successfully.", _context);
+
+            else if (_response.StatusCode == 400)
                 throw new ErrorResponseException(@"Body is missing.", _context);
 
             else if (_response.StatusCode == 402)
