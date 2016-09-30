@@ -17,6 +17,7 @@ using SuggestGrid.Http.Response;
 using SuggestGrid.Http.Client;
 using SuggestGrid.Exceptions;
 using SuggestGrid.Models;
+using Newtonsoft.Json;
 
 namespace SuggestGrid.Controllers
 {
@@ -143,7 +144,7 @@ namespace SuggestGrid.Controllers
         /// </summary>
         /// <param name="action">Required parameter: The action to be posted.</param>
         /// <return>Returns the MessageResponse response from the API call</return>
-        public MessageResponse PostAction(Action action)
+        public MessageResponse PostAction(ActionModel action)
         {
             Task<MessageResponse> t = PostActionAsync(action);
             Task.WaitAll(t);
@@ -155,7 +156,7 @@ namespace SuggestGrid.Controllers
         /// </summary>
         /// <param name="action">Required parameter: The action to be posted.</param>
         /// <return>Returns the MessageResponse response from the API call</return>
-        public async Task<MessageResponse> PostActionAsync(Action action)
+        public async Task<MessageResponse> PostActionAsync(ActionModel action)
         {
             //the base uri for api requestss
             string _baseUri = Configuration.BaseUri;
@@ -319,9 +320,15 @@ namespace SuggestGrid.Controllers
         /// </summary>
         /// <param name="actions">Required parameter: A number of action objects separated with newlines. Note that this is not a valid JSON data structure. The body size is limited to 10 thousand lines.</param>
         /// <return>Returns the MessageResponse response from the API call</return>
-        public MessageResponse PostBulkActions(string actions)
+        public MessageResponse PostBulkActions(List<ActionModel> actions)
         {
-            Task<MessageResponse> t = PostBulkActionsAsync(actions);
+            StringBuilder sb = new StringBuilder();
+            foreach (ActionModel action in actions)
+            {
+                sb.Append(JsonConvert.SerializeObject(action, Formatting.None));
+                sb.Append(Environment.NewLine);
+            }
+            Task<MessageResponse> t = PostBulkActionsAsync(sb.ToString());
             Task.WaitAll(t);
             return t.Result;
         }
@@ -331,7 +338,7 @@ namespace SuggestGrid.Controllers
         /// </summary>
         /// <param name="actions">Required parameter: A number of action objects separated with newlines. Note that this is not a valid JSON data structure. The body size is limited to 10 thousand lines.</param>
         /// <return>Returns the MessageResponse response from the API call</return>
-        public async Task<MessageResponse> PostBulkActionsAsync(string actions)
+        private async Task<MessageResponse> PostBulkActionsAsync(string actions)
         {
             //the base uri for api requestss
             string _baseUri = Configuration.BaseUri;
@@ -392,4 +399,4 @@ namespace SuggestGrid.Controllers
         }
 
     }
-} 
+}

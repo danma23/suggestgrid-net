@@ -16,8 +16,10 @@ using SuggestGrid;
 
 namespace SuggestGrid.Models
 {
-    public class Metadata : INotifyPropertyChanged 
+    public class Metadata<TKey, TValue> : Dictionary<string, object>, INotifyPropertyChanged
     {
+        public Metadata() : base(){}
+        public Metadata(int capacity) : base(capacity){}
         // These fields hold the values for the public properties.
         private string id;
 
@@ -26,15 +28,16 @@ namespace SuggestGrid.Models
         /// Id parameter is necessary for all metadata.
         /// </summary>
         [JsonProperty("id")]
-        public string Id 
-        { 
-            get 
+        public string Id
+        {
+            get
             {
-                return this.id; 
-            } 
-            set 
+                return this.id;
+            }
+            set
             {
                 this.id = value;
+                this.Add ("id", value);
                 onPropertyChanged("Id");
             }
         }
@@ -56,4 +59,4 @@ namespace SuggestGrid.Models
             }
         }
     }
-} 
+}
