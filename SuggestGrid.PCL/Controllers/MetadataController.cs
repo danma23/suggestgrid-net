@@ -1,7 +1,7 @@
 /*
  * SuggestGrid.PCL
  *
- * This file was automatically generated for SuggestGrid by APIMATIC v2.0 ( https://apimatic.io ) on 09/29/2016
+ * This file was automatically generated for SuggestGrid by APIMATIC v2.0 ( https://apimatic.io ) on 09/30/2016
  */
 using System;
 using System.Collections.Generic;
@@ -231,7 +231,7 @@ namespace SuggestGrid.Controllers
 
             //Error handling using HTTP status codes
             if (_response.StatusCode == 400)
-                throw new SchemaErrorResponseException(@"Metadata is invalid.", _context);
+                throw new DetailedErrorResponseException(@"Metadata is invalid.", _context);
 
             else if (_response.StatusCode == 429)
                 throw new ErrorResponseException(@"Too many requests.", _context);
@@ -496,7 +496,7 @@ namespace SuggestGrid.Controllers
 
             //Error handling using HTTP status codes
             if (_response.StatusCode == 400)
-                throw new SchemaErrorResponseException(@"Metadata is invalid.", _context);
+                throw new DetailedErrorResponseException(@"Metadata is invalid.", _context);
 
             else if (_response.StatusCode == 429)
                 throw new ErrorResponseException(@"Too many requests.", _context);

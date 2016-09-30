@@ -19,12 +19,14 @@ using SuggestGrid;
 
 namespace SuggestGrid.Exceptions
 {
-    public class ErrorResponseException : APIException 
+    public class LimitExceededErrorResponseException : APIException 
     {
         // These fields hold the values for the public properties.
         private string errorText;
         private string errorDescription;
         private string errorUri;
+        private int? used;
+        private int? limit;
 
         /// <summary>
         /// Message of the response.
@@ -75,11 +77,43 @@ namespace SuggestGrid.Exceptions
         }
 
         /// <summary>
+        /// The quantity used by the account.
+        /// </summary>
+        [JsonProperty("used")]
+        public int? Used 
+        { 
+            get 
+            {
+                return this.used; 
+            } 
+            private set 
+            {
+                this.used = value;
+            }
+        }
+
+        /// <summary>
+        /// The limit quantity of the account.
+        /// </summary>
+        [JsonProperty("limit")]
+        public int? Limit 
+        { 
+            get 
+            {
+                return this.limit; 
+            } 
+            private set 
+            {
+                this.limit = value;
+            }
+        }
+
+        /// <summary>
         /// Initialization constructor
         /// </summary>
         /// <param name="reason"> The reason for throwing exception </param>
         /// <param name="context"> The HTTP context that encapsulates request and response objects </param>
-        public ErrorResponseException(string reason, HttpContext context)
+        public LimitExceededErrorResponseException(string reason, HttpContext context)
             : base(reason, context)
         {
         }

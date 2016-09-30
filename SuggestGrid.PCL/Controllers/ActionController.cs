@@ -1,7 +1,7 @@
 /*
  * SuggestGrid.PCL
  *
- * This file was automatically generated for SuggestGrid by APIMATIC v2.0 ( https://apimatic.io ) on 09/29/2016
+ * This file was automatically generated for SuggestGrid by APIMATIC v2.0 ( https://apimatic.io ) on 09/30/2016
  */
 using System;
 using System.Collections.Generic;
@@ -295,6 +295,9 @@ namespace SuggestGrid.Controllers
 
             else if (_response.StatusCode == 429)
                 throw new ErrorResponseException(@"Too many requests.", _context);
+
+            else if (_response.StatusCode == 505)
+                throw new ErrorResponseException(@"Request timed out.", _context);
 
             else if (_response.StatusCode == 500)
                 throw new APIException(@"Unexpected internal error.", _context);

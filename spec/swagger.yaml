@@ -2,7 +2,7 @@ swagger: '2.0'
 
 info:
   title: SuggestGrid
-  version: 0.1.15-SNAPSHOT
+  version: 0.1.17-SNAPSHOT
   description: SuggestGrid is a recommendation and personalization service.
   x-codegen-settings:
     appendContentHeaders: true
@@ -335,6 +335,87 @@ definitions:
       error_uri:
         type: string
         description: URI of the response for more details.
+  DetailedErrorResponse:
+    type: object
+    description: Error response.
+    properties:
+      error_text:
+        type: string
+        description: Message of the response.
+      error_description:
+        type: string
+        description: Description of the response.
+      error_uri:
+        type: string
+        description: URI of the response for more details.
+      error_details:
+        type: string
+        description: Specific details of the response.
+  LimitExceededErrorResponse:
+    type: object
+    description: Error response.
+    properties:
+      error_text:
+        type: string
+        description: Message of the response.
+      error_description:
+        type: string
+        description: Description of the response.
+      error_uri:
+        type: string
+        description: URI of the response for more details.
+      used:
+        type: integer
+        format: int32
+        description: The quantity used by the account.
+      limit:
+        type: integer
+        format: int32
+        description: The limit quantity of the account.
+  DeleteErrorResponse:
+    type: object
+    description: Error response with found, deleted, and failed parameters.
+    properties:
+      error_text:
+        type: string
+        description: Message of the response.
+      error_description:
+        type: string
+        description: Description of the response.
+      error_uri:
+        type: string
+        description: URI of the response for more details.
+      found:
+        type: integer
+        format: int32
+        description: The number of records found for the delete query.
+      deleted:
+        type: integer
+        format: int32
+        description: The number of records deleted for the delete query.
+      failed:
+        type: integer
+        format: int32
+        description: The number of records found but not deleted for the delete query.
+  DeleteSuccessResponse:
+    type: object
+    description: Successful delete response with found, deleted, and failed parameters.
+    properties:
+      message:
+        type: string
+        description: Message of the response.
+      found:
+        type: integer
+        format: int32
+        description: The number of records found for the delete query.
+      deleted:
+        type: integer
+        format: int32
+        description: The number of records deleted for the delete query.
+      failed:
+        type: integer
+        format: int32
+        description: The number of records found but not deleted for the delete query.
   GetTypesResponse:
     type: object
     description: Type names response.
@@ -509,7 +590,7 @@ paths:
         402:
           description: Type limit reached.
           schema:
-            $ref: '#/definitions/ErrorResponse'
+            $ref: '#/definitions/LimitExceededErrorResponse'
         409:
           description: Type already exists.
           schema:
@@ -721,6 +802,10 @@ paths:
           description: Too many requests.
           schema:
             $ref: '#/definitions/ErrorResponse'
+        505:
+          description: Request timed out.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
         default:
           description: Unexpected internal error.
           schema:
@@ -821,7 +906,7 @@ paths:
           400:
             description: Metadata is invalid.
             schema:
-              $ref: '#/definitions/SchemaErrorResponse'
+              $ref: '#/definitions/DetailedErrorResponse'
           429:
             description: Too many requests.
             schema:
@@ -919,7 +1004,7 @@ paths:
         400:
           description: Metadata is invalid.
           schema:
-            $ref: '#/definitions/SchemaErrorResponse'
+            $ref: '#/definitions/DetailedErrorResponse'
         429:
           description: Too many requests.
           schema:

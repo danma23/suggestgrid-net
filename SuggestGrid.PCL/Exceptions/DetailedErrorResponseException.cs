@@ -19,12 +19,13 @@ using SuggestGrid;
 
 namespace SuggestGrid.Exceptions
 {
-    public class ErrorResponseException : APIException 
+    public class DetailedErrorResponseException : APIException 
     {
         // These fields hold the values for the public properties.
         private string errorText;
         private string errorDescription;
         private string errorUri;
+        private string errorDetails;
 
         /// <summary>
         /// Message of the response.
@@ -75,11 +76,27 @@ namespace SuggestGrid.Exceptions
         }
 
         /// <summary>
+        /// Specific details of the response.
+        /// </summary>
+        [JsonProperty("error_details")]
+        public string ErrorDetails 
+        { 
+            get 
+            {
+                return this.errorDetails; 
+            } 
+            private set 
+            {
+                this.errorDetails = value;
+            }
+        }
+
+        /// <summary>
         /// Initialization constructor
         /// </summary>
         /// <param name="reason"> The reason for throwing exception </param>
         /// <param name="context"> The HTTP context that encapsulates request and response objects </param>
-        public ErrorResponseException(string reason, HttpContext context)
+        public DetailedErrorResponseException(string reason, HttpContext context)
             : base(reason, context)
         {
         }

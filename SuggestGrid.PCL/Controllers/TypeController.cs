@@ -1,7 +1,7 @@
 /*
  * SuggestGrid.PCL
  *
- * This file was automatically generated for SuggestGrid by APIMATIC v2.0 ( https://apimatic.io ) on 09/29/2016
+ * This file was automatically generated for SuggestGrid by APIMATIC v2.0 ( https://apimatic.io ) on 09/30/2016
  */
 using System;
 using System.Collections.Generic;
@@ -300,7 +300,7 @@ namespace SuggestGrid.Controllers
 
             //Error handling using HTTP status codes
             if (_response.StatusCode == 402)
-                throw new ErrorResponseException(@"Type limit reached.", _context);
+                throw new LimitExceededErrorResponseException(@"Type limit reached.", _context);
 
             else if (_response.StatusCode == 409)
                 throw new ErrorResponseException(@"Type already exists.", _context);
