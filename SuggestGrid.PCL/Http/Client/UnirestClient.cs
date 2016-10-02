@@ -19,6 +19,11 @@ namespace SuggestGrid.Http.Client
             SharedClient = new UnirestClient();
         }
 
+        public void setTimeout(TimeSpan Timeout)
+        {
+            Unirest.ConnectionTimeout = Timeout;
+        }
+
         #region Execute methods
 
         public HttpResponse ExecuteAsString(HttpRequest request)
