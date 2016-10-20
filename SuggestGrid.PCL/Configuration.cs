@@ -1,10 +1,3 @@
-/*
- * SuggestGrid.PCL
- *
- * This file was automatically generated for SuggestGrid by APIMATIC v2.0 ( https://apimatic.io ) on 10/18/2016
- */
-using System;
-
 namespace SuggestGrid
 {
     public partial class Configuration

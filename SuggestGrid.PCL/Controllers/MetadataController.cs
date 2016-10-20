@@ -1,7 +1,7 @@
 /*
  * SuggestGrid.PCL
  *
- * This file was automatically generated for SuggestGrid by APIMATIC v2.0 ( https://apimatic.io ) on 10/18/2016
+ * This file was automatically generated for SuggestGrid by APIMATIC v2.0 ( https://apimatic.io ) on 10/20/2016
  */
 using System;
 using System.Collections.Generic;
@@ -17,7 +17,6 @@ using SuggestGrid.Http.Response;
 using SuggestGrid.Http.Client;
 using SuggestGrid.Exceptions;
 using SuggestGrid.Models;
-using Newtonsoft.Json;
 
 namespace SuggestGrid.Controllers
 {
@@ -198,7 +197,7 @@ namespace SuggestGrid.Controllers
         /// </summary>
         /// <param name="user">Required parameter: The metadata to be saved. Metadata format has its restrictions.</param>
         /// <return>Returns the MessageResponse response from the API call</return>
-        public async Task<MessageResponse> PostUserAsync(Metadata<string,object> user)
+        public async Task<MessageResponse> PostUserAsync(Metadata user)
         {
             //the base uri for api requestss
             string _baseUri = Configuration.BaseUri;
@@ -463,7 +462,7 @@ namespace SuggestGrid.Controllers
         /// </summary>
         /// <param name="item">Required parameter: The metadata to be saved. Metadata format has its restrictions.</param>
         /// <return>Returns the MessageResponse response from the API call</return>
-        public async Task<MessageResponse> PostItemAsync(Metadata<string,object> item)
+        public async Task<MessageResponse> PostItemAsync(Metadata item)
         {
             //the base uri for api requestss
             string _baseUri = Configuration.BaseUri;
@@ -584,15 +583,9 @@ namespace SuggestGrid.Controllers
         /// </summary>
         /// <param name="users">Required parameter: A number of user metadata objects separated with newlines. Each user metadata object must have its id field. Note that this is not a valid JSON data structure. The body size is limited to 10 thousand lines.</param>
         /// <return>Returns the MessageResponse response from the API call</return>
-        public MessageResponse PostBulkUsers(List<Metadata<string, object>> users)
+        public MessageResponse PostBulkUsers(string users)
         {
-            StringBuilder sb = new StringBuilder();
-            foreach (Metadata<string, object> user in users)
-            {
-                sb.Append(JsonConvert.SerializeObject(user, Formatting.None));
-                sb.Append(Environment.NewLine);
-            }
-            Task<MessageResponse> t = PostBulkUsersAsync(sb.ToString());
+            Task<MessageResponse> t = PostBulkUsersAsync(users);
             Task.WaitAll(t);
             return t.Result;
         }
@@ -602,7 +595,7 @@ namespace SuggestGrid.Controllers
         /// </summary>
         /// <param name="users">Required parameter: A number of user metadata objects separated with newlines. Each user metadata object must have its id field. Note that this is not a valid JSON data structure. The body size is limited to 10 thousand lines.</param>
         /// <return>Returns the MessageResponse response from the API call</return>
-        private async Task<MessageResponse> PostBulkUsersAsync(string users)
+        public async Task<MessageResponse> PostBulkUsersAsync(string users)
         {
             //the base uri for api requestss
             string _baseUri = Configuration.BaseUri;
@@ -664,15 +657,9 @@ namespace SuggestGrid.Controllers
         /// </summary>
         /// <param name="items">Required parameter: A number of item metadata objects separated with newlines. Each item metadata object must have its id field. Note that this is not a valid JSON data structure. The body size is limited to 10 thousand lines.</param>
         /// <return>Returns the MessageResponse response from the API call</return>
-        public MessageResponse PostBulkItems(List<Metadata<string, object>> items)
+        public MessageResponse PostBulkItems(string items)
         {
-            StringBuilder sb = new StringBuilder();
-            foreach (Metadata<string, object> item in items)
-            {
-                sb.Append(JsonConvert.SerializeObject(item, Formatting.None));
-                sb.Append(Environment.NewLine);
-            }
-            Task<MessageResponse> t = PostBulkItemsAsync(sb.ToString());
+            Task<MessageResponse> t = PostBulkItemsAsync(items);
             Task.WaitAll(t);
             return t.Result;
         }
@@ -682,7 +669,7 @@ namespace SuggestGrid.Controllers
         /// </summary>
         /// <param name="items">Required parameter: A number of item metadata objects separated with newlines. Each item metadata object must have its id field. Note that this is not a valid JSON data structure. The body size is limited to 10 thousand lines.</param>
         /// <return>Returns the MessageResponse response from the API call</return>
-        private async Task<MessageResponse> PostBulkItemsAsync(string items)
+        public async Task<MessageResponse> PostBulkItemsAsync(string items)
         {
             //the base uri for api requestss
             string _baseUri = Configuration.BaseUri;
@@ -740,4 +727,4 @@ namespace SuggestGrid.Controllers
         }
 
     }
-}
+} 
