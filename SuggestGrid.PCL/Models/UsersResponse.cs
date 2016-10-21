@@ -1,7 +1,7 @@
 /*
  * SuggestGrid.PCL
  *
- * This file was automatically generated for SuggestGrid by APIMATIC v2.0 ( https://apimatic.io ) on 10/20/2016
+ * This file was automatically generated for SuggestGrid by APIMATIC v2.0 ( https://apimatic.io ) on 10/21/2016
  */
 using System;
 using System.IO;
@@ -16,23 +16,23 @@ using SuggestGrid;
 
 namespace SuggestGrid.Models
 {
-    public class UsersResponse : INotifyPropertyChanged 
+    public class UsersResponse : INotifyPropertyChanged
     {
         // These fields hold the values for the public properties.
         private long? count;
-        private List<Metadata> users;
+        private List<Metadata<string,object>> users;
 
         /// <summary>
         /// The number of users in the response.
         /// </summary>
         [JsonProperty("count")]
-        public long? Count 
-        { 
-            get 
+        public long? Count
+        {
+            get
             {
-                return this.count; 
-            } 
-            set 
+                return this.count;
+            }
+            set
             {
                 this.count = value;
                 onPropertyChanged("Count");
@@ -43,13 +43,13 @@ namespace SuggestGrid.Models
         /// TODO: Write general description for this method
         /// </summary>
         [JsonProperty("users")]
-        public List<Metadata> Users 
-        { 
-            get 
+        public List<Metadata<string,object>> Users
+        {
+            get
             {
-                return this.users; 
-            } 
-            set 
+                return this.users;
+            }
+            set
             {
                 this.users = value;
                 onPropertyChanged("Users");
@@ -73,4 +73,4 @@ namespace SuggestGrid.Models
             }
         }
     }
-} 
+}
