@@ -9,16 +9,15 @@ machine:
 
 test:
   override:
-    - echo "test"
+      # Set TERM to xterm-256color
+    - nuget restore
+    - xbuild /p:Configuration=Release SuggestGrid.sln
     
 deployment:
   release:
     tag: /[0-9]+(\.[0-9]+)+/
     owner: suggestgrid
     commands:
-      # Set TERM to xterm-256color
-      - nuget restore
-      - xbuild /p:Configuration=Release SuggestGrid.sln
       - nuget pack SuggestGrid.PCL/SuggestGrid.PCL.nuspec
       - nuget setApiKey $PACKAGE_MANAGER_API_KEY
       - nuget push *.nupkg

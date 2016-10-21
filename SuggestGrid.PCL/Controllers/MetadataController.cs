@@ -186,7 +186,7 @@ namespace SuggestGrid.Controllers
         /// </summary>
         /// <param name="user">Required parameter: The metadata to be saved. Metadata format has its restrictions.</param>
         /// <return>Returns the MessageResponse response from the API call</return>
-        public MessageResponse PostUser(Metadata user)
+        public MessageResponse PostUser(Metadata<string,object> user)
         {
             Task<MessageResponse> t = PostUserAsync(user);
             Task.WaitAll(t);
@@ -451,7 +451,7 @@ namespace SuggestGrid.Controllers
         /// </summary>
         /// <param name="item">Required parameter: The metadata to be saved. Metadata format has its restrictions.</param>
         /// <return>Returns the MessageResponse response from the API call</return>
-        public MessageResponse PostItem(Metadata item)
+        public MessageResponse PostItem(Metadata<string,object> item)
         {
             Task<MessageResponse> t = PostItemAsync(item);
             Task.WaitAll(t);
