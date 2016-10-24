@@ -10,7 +10,7 @@
     <AssemblyName>SuggestGrid.PCL</AssemblyName>
     <OutputType>Library</OutputType>
     <OutputPath>bin/DEBUG/</OutputPath>
-    <ProjectGuid>{8d4fb8b7-61d0-47e0-86f0-4dd2274bc945}</ProjectGuid>
+    <ProjectGuid>{aaf0c582-37b6-4151-9dd4-cedbe5cdd459}</ProjectGuid>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
     <MinimumVisualStudioVersion>11.0</MinimumVisualStudioVersion>
     <NuGetPackageImportStamp>ee2bb91c</NuGetPackageImportStamp>
