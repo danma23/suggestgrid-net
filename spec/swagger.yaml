@@ -2,7 +2,7 @@ swagger: '2.0'
 
 info:
   title: SuggestGrid
-  version: 0.1.19-SNAPSHOT
+  version: 0.1.20
   description: SuggestGrid is a recommendation and personalization service.
   x-codegen-settings:
     appendContentHeaders: true
