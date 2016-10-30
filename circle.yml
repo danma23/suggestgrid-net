@@ -14,11 +14,11 @@ test:
       # Set TERM to xterm-256color
     - nuget restore
     - xbuild /p:Configuration=Release SuggestGrid.sln
-    
+
 deployment:
   release:
     tag: /[0-9]+(\.[0-9]+)+/
     owner: suggestgrid
     commands:
       - nuget pack SuggestGrid/SuggestGrid.PCL.nuspec
-      - nuget push *.nupkg $PACKAGE_MANAGER_API_KEY -s nuget.org
+      - nuget push *.nupkg $PACKAGE_MANAGER_API_KEY
