@@ -12,18 +12,18 @@ using HttpMethod = SuggestGrid.Http.Request.HttpMethod;
 
 namespace SuggestGrid.Http.Client
 {
-    public class UnirestClient: IHttpClient
+    public class BasicClient: IHttpClient
     {
         public static IHttpClient SharedClient { get; set; }
-        public TimeSpan TimeOut = TimeSpan.FromSeconds(10);
+        private readonly HttpClient _client = new HttpClient();
 
-        static UnirestClient() {
-            SharedClient = new UnirestClient();
+        static BasicClient() {
+            SharedClient = new BasicClient();
         }
 
-        public void setTimeout(TimeSpan Timeout)
+        public void setTimeout(TimeSpan timeout)
         {
-            this.TimeOut = Timeout;
+            _client.Timeout = timeout;
         }
 
         #region Execute methods
@@ -38,7 +38,7 @@ namespace SuggestGrid.Http.Client
         public async Task<HttpResponse> ExecuteAsStringAsync(HttpRequest request)
         {
             //raise the on before request event
-            raiseOnBeforeHttpRequestEvent(request);
+            RaiseOnBeforeHttpRequestEvent(request);
 
             HttpResponseMessage responseMessage  = await HttpResponseMessage(request);
 
@@ -51,7 +51,7 @@ namespace SuggestGrid.Http.Client
             };
 
             //raise the on after response event
-            raiseOnAfterHttpResponseEvent(response);
+            RaiseOnAfterHttpResponseEvent(response);
             return response;
         }
 
@@ -65,7 +65,7 @@ namespace SuggestGrid.Http.Client
         public async Task<HttpResponse> ExecuteAsBinaryAsync(HttpRequest request)
         {
             //raise the on before request event
-            raiseOnBeforeHttpRequestEvent(request);
+            RaiseOnBeforeHttpRequestEvent(request);
 
             HttpResponseMessage responseMessage = await HttpResponseMessage(request);
 
@@ -77,7 +77,7 @@ namespace SuggestGrid.Http.Client
             };
 
             //raise the on after response event
-            raiseOnAfterHttpResponseEvent(response);
+            RaiseOnAfterHttpResponseEvent(response);
             return response;
         }
 
@@ -89,13 +89,13 @@ namespace SuggestGrid.Http.Client
         public event OnBeforeHttpRequestEventHandler OnBeforeHttpRequestEvent;
         public event OnAfterHttpResponseEventHandler OnAfterHttpResponseEvent;
 
-        private void raiseOnBeforeHttpRequestEvent(HttpRequest request)
+        private void RaiseOnBeforeHttpRequestEvent(HttpRequest request)
         {
             if ((null != OnBeforeHttpRequestEvent) && (null != request))
                 OnBeforeHttpRequestEvent(this, request);
         }
 
-        private void raiseOnAfterHttpResponseEvent(HttpResponse response)
+        private void RaiseOnAfterHttpResponseEvent(HttpResponse response)
         {
             if ((null != OnAfterHttpResponseEvent) && (null != response))
                 OnAfterHttpResponseEvent(this, response);
@@ -187,40 +187,35 @@ namespace SuggestGrid.Http.Client
         private async Task<HttpResponseMessage> HttpResponseMessage(HttpRequest request)
         {
             HttpResponseMessage responseMessage;
-            using (var client = new HttpClient())
-            {
                 if (!string.IsNullOrEmpty(request.Username))
                 {
                     var byteArray = Encoding.ASCII.GetBytes(request.Username + ":" + request.Password);
-                    client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic",
+                    _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic",
                         Convert.ToBase64String(byteArray));
                 }
-
-                client.Timeout = this.TimeOut;
 
                 if (request.HttpMethod.Equals(HttpMethod.POST))
                 {
                     var content = new StringContent(request.Body ?? string.Empty, Encoding.UTF8, "application/json");
-                    responseMessage = await client.PostAsync(request.QueryUrl, content);
+                    responseMessage = await _client.PostAsync(request.QueryUrl, content);
                 }
                 else if (request.HttpMethod.Equals(HttpMethod.GET))
                 {
-                    responseMessage = await client.GetAsync(request.QueryUrl);
+                    responseMessage = await _client.GetAsync(request.QueryUrl);
                 }
                 else if (request.HttpMethod.Equals(HttpMethod.DELETE))
                 {
-                    responseMessage = await client.DeleteAsync(request.QueryUrl);
+                    responseMessage = await _client.DeleteAsync(request.QueryUrl);
                 }
                 else if (request.HttpMethod.Equals(HttpMethod.PUT))
                 {
                     var content = new StringContent(request.Body ?? string.Empty, Encoding.UTF8, "application/json");
-                    responseMessage = await client.PutAsync(request.QueryUrl, content);
+                    responseMessage = await _client.PutAsync(request.QueryUrl, content);
                 }
                 else
                 {
                     throw new NotSupportedException("Requested HTTP method: " + request.HttpMethod + " is not supported");
                 }
-            }
             return responseMessage;
         }
 

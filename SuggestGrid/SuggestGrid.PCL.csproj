@@ -76,7 +76,7 @@
     <Compile Include="Controllers\RecommendationController.cs" />
     <Compile Include="Controllers\SimilarityController.cs" />
     <Compile Include="Http\Client\IHTTPClient.cs" />
-    <Compile Include="Http\Client\UnirestClient.cs" />
+    <Compile Include="Http\Client\BasicClient.cs" />
     <Compile Include="Http\Client\HttpEventHandlers.cs" />
     <Compile Include="Http\Client\HttpContext.cs" />
     <Compile Include="Http\Request\HttpRequest.cs" />

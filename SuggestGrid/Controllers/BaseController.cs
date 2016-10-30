@@ -25,7 +25,7 @@ namespace SuggestGrid.Controllers
                 {
                     if(null == clientInstance)
                     {
-                        clientInstance = new UnirestClient();
+                        clientInstance = new BasicClient();
                     }
                     return clientInstance;
                 }
@@ -54,4 +54,4 @@ namespace SuggestGrid.Controllers
                 throw new APIException(@"HTTP Response Not OK", _context);
         }
     }
-} 
+}
