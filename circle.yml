@@ -5,6 +5,8 @@ machine:
     - sudo apt-get update
     - sudo apt-get -y install referenceassemblies-pcl
     - sudo apt-get install mono-complete
+    - sudo apt-get install ca-certificates-mono
+    - sudo mozroots --import --sync
     - sudo apt-get install nuget
 
 test:
@@ -18,6 +20,5 @@ deployment:
     tag: /[0-9]+(\.[0-9]+)+/
     owner: suggestgrid
     commands:
-      - nuget pack SuggestGrid.PCL/SuggestGrid.PCL.nuspec
-      - nuget setApiKey $PACKAGE_MANAGER_API_KEY
-      - nuget push *.nupkg
+      - nuget pack SuggestGrid/SuggestGrid.PCL.nuspec
+      - nuget push *.nupkg $PACKAGE_MANAGER_API_KEY -s nuget.org
