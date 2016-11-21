@@ -6,7 +6,7 @@ This file was automatically generated for SuggestGrid by APIMATIC v2.0 ( https:/
 <package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
   <metadata>
     <id>SuggestGrid</id>
-    <version>0.22.3</version>
+    <version>0.1.22.4</version>
     <title>SuggestGrid</title>
     <authors>SuggestGrid</authors>
     <iconUrl>https://nuget.org/Content/Images/packageDefaultIcon-50x50.png</iconUrl>
