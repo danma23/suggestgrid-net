@@ -1,22 +1,21 @@
-
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.21005.1
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SuggestGrid", "SuggestGrid/SuggestGrid.PCL.csproj", "{fa508107-20f1-4d1d-a0d9-5a3a7897d825}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SuggestGrid.PCL", "SuggestGrid\SuggestGrid.PCL.csproj", "{FA508107-20F1-4D1D-A0D9-5A3A7897D825}"
 EndProject
 Global
-    GlobalSection(SolutionConfigurationPlatforms) = preSolution
-        Debug|Any CPU = Debug|Any CPU
-        Release|Any CPU = Release|Any CPU
-    EndGlobalSection
-    GlobalSection(ProjectConfigurationPlatforms) = postSolution
-        {fa508107-20f1-4d1d-a0d9-5a3a7897d825}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-        {fa508107-20f1-4d1d-a0d9-5a3a7897d825}.Debug|Any CPU.Build.0 = Debug|Any CPU
-        {fa508107-20f1-4d1d-a0d9-5a3a7897d825}.Release|Any CPU.ActiveCfg = Release|Any CPU
-        {fa508107-20f1-4d1d-a0d9-5a3a7897d825}.Release|Any CPU.Build.0 = Release|Any CPU
-    EndGlobalSection
-    GlobalSection(SolutionProperties) = preSolution
-        HideSolutionNode = FALSE
-    EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FA508107-20F1-4D1D-A0D9-5A3A7897D825}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FA508107-20F1-4D1D-A0D9-5A3A7897D825}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FA508107-20F1-4D1D-A0D9-5A3A7897D825}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FA508107-20F1-4D1D-A0D9-5A3A7897D825}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
 EndGlobal

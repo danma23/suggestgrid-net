@@ -1,0 +1,8 @@
+/Users/ferhat/Development/suggestgrid/suggestgrid-net/SuggestGrid/obj/Debug/.NETFramework,Version=v4.5.AssemblyAttribute.cs
+/Users/ferhat/Development/suggestgrid/suggestgrid-net/SuggestGrid/bin/Debug/SuggestGrid.dll.mdb
+/Users/ferhat/Development/suggestgrid/suggestgrid-net/SuggestGrid/bin/Debug/SuggestGrid.pdb
+/Users/ferhat/Development/suggestgrid/suggestgrid-net/SuggestGrid/bin/Debug/SuggestGrid.dll
+/Users/ferhat/Development/suggestgrid/suggestgrid-net/SuggestGrid/obj/Debug/SuggestGrid.dll
+/Users/ferhat/Development/suggestgrid/suggestgrid-net/SuggestGrid/obj/Debug/SuggestGrid.dll.mdb
+/Users/ferhat/Development/suggestgrid/suggestgrid-net/SuggestGrid/obj/Debug/SuggestGrid.pdb
+/Users/ferhat/Development/suggestgrid/suggestgrid-net/SuggestGrid/bin/Debug/Newtonsoft.Json.dll

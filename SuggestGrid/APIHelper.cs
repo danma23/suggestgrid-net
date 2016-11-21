@@ -36,7 +36,7 @@ namespace SuggestGrid
                 return null;
 
             return JsonConvert.SerializeObject(obj, Formatting.None,
-                 new IsoDateTimeConverter() { DateTimeFormat = DateTimeFormat });
+                 new JsonSerializerSettings {NullValueHandling = NullValueHandling.Ignore, Converters = new List<JsonConverter> {new IsoDateTimeConverter() { DateTimeFormat = DateTimeFormat } } });
         }
 
         /// <summary>
