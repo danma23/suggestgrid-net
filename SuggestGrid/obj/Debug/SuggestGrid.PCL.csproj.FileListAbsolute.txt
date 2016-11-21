@@ -1,7 +1,0 @@
-Z:\Development\suggestgrid\suggestgrid-net\SuggestGrid\bin\Debug\SuggestGrid.dll
-Z:\Development\suggestgrid\suggestgrid-net\SuggestGrid\bin\Debug\SuggestGrid.pdb
-Z:\Development\suggestgrid\suggestgrid-net\SuggestGrid\bin\Debug\Newtonsoft.Json.dll
-Z:\Development\suggestgrid\suggestgrid-net\SuggestGrid\bin\Debug\Newtonsoft.Json.xml
-Z:\Development\suggestgrid\suggestgrid-net\SuggestGrid\obj\Debug\SuggestGrid.PCL.csprojResolveAssemblyReference.cache
-Z:\Development\suggestgrid\suggestgrid-net\SuggestGrid\obj\Debug\SuggestGrid.dll
-Z:\Development\suggestgrid\suggestgrid-net\SuggestGrid\obj\Debug\SuggestGrid.pdb
