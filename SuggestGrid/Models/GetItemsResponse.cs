@@ -16,43 +16,61 @@ using SuggestGrid;
 
 namespace SuggestGrid.Models
 {
-    public class GetTypesResponse : INotifyPropertyChanged 
+    public class GetItemsResponse : INotifyPropertyChanged 
     {
         // These fields hold the values for the public properties.
-        private List<string> types;
-        private int? status;
+        private long? count;
+        private long? totalCount;
+        private List<Metadata> items;
 
         /// <summary>
-        /// The list of type names
+        /// The number of items in the response.
         /// </summary>
-        [JsonProperty("types")]
-        public List<string> Types 
+        [JsonProperty("count")]
+        public long? Count 
         { 
             get 
             {
-                return this.types; 
+                return this.count; 
             } 
             set 
             {
-                this.types = value;
-                onPropertyChanged("Types");
+                this.count = value;
+                onPropertyChanged("Count");
             }
         }
 
         /// <summary>
-        /// Status code of the response. It is not 2XX.
+        /// The total number of items.
         /// </summary>
-        [JsonProperty("status")]
-        public int? Status 
+        [JsonProperty("total_count")]
+        public long? TotalCount 
         { 
             get 
             {
-                return this.status; 
+                return this.totalCount; 
             } 
             set 
             {
-                this.status = value;
-                onPropertyChanged("Status");
+                this.totalCount = value;
+                onPropertyChanged("TotalCount");
+            }
+        }
+
+        /// <summary>
+        /// TODO: Write general description for this method
+        /// </summary>
+        [JsonProperty("items")]
+        public List<Metadata> Items 
+        { 
+            get 
+            {
+                return this.items; 
+            } 
+            set 
+            {
+                this.items = value;
+                onPropertyChanged("Items");
             }
         }
 

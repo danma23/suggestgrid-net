@@ -31,7 +31,7 @@ namespace SuggestGrid.Http.Client
         public HttpResponse ExecuteAsString(HttpRequest request)
         {
             Task<HttpResponse> t = ExecuteAsStringAsync(request);
-            Task.WaitAll(t);
+            APIHelper.RunTaskSynchronously(t);
             return t.Result;
         }
 
@@ -58,7 +58,7 @@ namespace SuggestGrid.Http.Client
         public HttpResponse ExecuteAsBinary(HttpRequest request)
         {
             Task<HttpResponse> t = ExecuteAsBinaryAsync(request);
-            Task.WaitAll(t);
+            APIHelper.RunTaskSynchronously(t);
             return t.Result;
         }
 

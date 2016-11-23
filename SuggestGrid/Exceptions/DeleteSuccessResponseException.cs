@@ -19,58 +19,75 @@ using SuggestGrid;
 
 namespace SuggestGrid.Exceptions
 {
-    public class ErrorResponseException : APIException 
+    public class DeleteSuccessResponseException : APIException 
     {
         // These fields hold the values for the public properties.
-        private string errorText;
-        private string errorDescription;
-        private string errorUri;
+        private string message;
+        private int? found;
+        private int? deleted;
+        private int? failed;
 
         /// <summary>
         /// Message of the response.
         /// </summary>
-        [JsonProperty("error_text")]
-        public string ErrorText 
+        [JsonProperty("message")]
+        public string Message 
         { 
             get 
             {
-                return this.errorText; 
+                return this.message; 
             } 
             private set 
             {
-                this.errorText = value;
+                this.message = value;
             }
         }
 
         /// <summary>
-        /// Description of the response.
+        /// The number of records found for the delete query.
         /// </summary>
-        [JsonProperty("error_description")]
-        public string ErrorDescription 
+        [JsonProperty("found")]
+        public int? Found 
         { 
             get 
             {
-                return this.errorDescription; 
+                return this.found; 
             } 
             private set 
             {
-                this.errorDescription = value;
+                this.found = value;
             }
         }
 
         /// <summary>
-        /// URI of the response for more details.
+        /// The number of records deleted for the delete query.
         /// </summary>
-        [JsonProperty("error_uri")]
-        public string ErrorUri 
+        [JsonProperty("deleted")]
+        public int? Deleted 
         { 
             get 
             {
-                return this.errorUri; 
+                return this.deleted; 
             } 
             private set 
             {
-                this.errorUri = value;
+                this.deleted = value;
+            }
+        }
+
+        /// <summary>
+        /// The number of records found but not deleted for the delete query.
+        /// </summary>
+        [JsonProperty("failed")]
+        public int? Failed 
+        { 
+            get 
+            {
+                return this.failed; 
+            } 
+            private set 
+            {
+                this.failed = value;
             }
         }
 
@@ -79,7 +96,7 @@ namespace SuggestGrid.Exceptions
         /// </summary>
         /// <param name="reason"> The reason for throwing exception </param>
         /// <param name="context"> The HTTP context that encapsulates request and response objects </param>
-        public ErrorResponseException(string reason, HttpContext context)
+        public DeleteSuccessResponseException(string reason, HttpContext context)
             : base(reason, context)
         {
         }

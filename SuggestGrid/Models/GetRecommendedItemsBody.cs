@@ -1,7 +1,7 @@
 /*
  * SuggestGrid.PCL
  *
- * This file was automatically generated for SuggestGrid by APIMATIC v2.0 ( https://apimatic.io ) on 10/30/2016
+ * This file was automatically generated for SuggestGrid by APIMATIC v2.0 ( https://apimatic.io ) on 11/23/2016
  */
 using System;
 using System.IO;
@@ -168,7 +168,7 @@ namespace SuggestGrid.Models
         }
 
         /// <summary>
-        /// Contraints on the returned users or items. 
+        /// Contraints on the returned users or items.
         /// Filter structure is defined in [the filter parameter documentation](http://www.suggestgrid.com/docs/concepts#filters-parameter).
         /// </summary>
         [JsonProperty("filter")]

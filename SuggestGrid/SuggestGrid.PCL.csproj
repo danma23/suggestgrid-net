@@ -2,13 +2,13 @@
 <!--
  - SuggestGrid.PCL
  -
- - This file was automatically generated for SuggestGrid by APIMATIC v2.0 ( https://apimatic.io ) on 10/30/2016
+ - This file was automatically generated for SuggestGrid by APIMATIC v2.0 ( https://apimatic.io ) on 11/23/2016
 -->
 <Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{fa508107-20f1-4d1d-a0d9-5a3a7897d825}</ProjectGuid>
+    <ProjectGuid>{e8d93e8e-a706-4c04-a4df-bef4d16dbd7f}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>SuggestGrid</RootNamespace>
@@ -50,24 +50,25 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Models\Action.cs" />
-    <Compile Include="Models\MetadataInformationResponse.cs" />
+    <Compile Include="Models\GetUsersResponse.cs" />
+    <Compile Include="Models\UsersResponse.cs" />
     <Compile Include="Models\SchemaErrorResponse.cs" />
     <Compile Include="Models\GetTypeResponse.cs" />
     <Compile Include="Models\GetTypesResponse.cs" />
-    <Compile Include="Models\DeleteSuccessResponse.cs" />
-    <Compile Include="Models\DeleteErrorResponse.cs" />
-    <Compile Include="Models\UsersResponse.cs" />
     <Compile Include="Models\ItemsResponse.cs" />
-    <Compile Include="Models\MessageResponse.cs" />
+    <Compile Include="Models\ActionsResponse.cs" />
+    <Compile Include="Models\GetItemsResponse.cs" />
     <Compile Include="Models\GetSimilarItemsBody.cs" />
     <Compile Include="Models\GetSimilarUsersBody.cs" />
     <Compile Include="Models\GetRecommendedItemsBody.cs" />
     <Compile Include="Models\GetRecommendedUsersBody.cs" />
     <Compile Include="Models\TypeRequestBody.cs" />
     <Compile Include="Models\Metadata.cs" />
-    <Compile Include="Models\CountResponse.cs" />
+    <Compile Include="Models\MessageResponse.cs" />
     <Compile Include="Exceptions\ErrorResponseException.cs" />
     <Compile Include="Exceptions\LimitExceededErrorResponseException.cs" />
+    <Compile Include="Exceptions\DeleteErrorResponseException.cs" />
+    <Compile Include="Exceptions\DeleteSuccessResponseException.cs" />
     <Compile Include="Exceptions\BulkSchemaErrorResponseException.cs" />
     <Compile Include="Exceptions\DetailedErrorResponseException.cs" />
     <Compile Include="Controllers\TypeController.cs" />

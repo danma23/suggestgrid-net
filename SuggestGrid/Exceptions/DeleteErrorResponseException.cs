@@ -1,7 +1,7 @@
 /*
  * SuggestGrid.PCL
  *
- * This file was automatically generated for SuggestGrid by APIMATIC v2.0 ( https://apimatic.io ) on 10/30/2016
+ * This file was automatically generated for SuggestGrid by APIMATIC v2.0 ( https://apimatic.io ) on 11/23/2016
  */
 using System;
 using System.IO;
@@ -12,14 +12,19 @@ using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using SuggestGrid.Http.Client;
+
+using SuggestGrid.Models;
 using SuggestGrid;
 
-namespace SuggestGrid.Models
+namespace SuggestGrid.Exceptions
 {
-    public class DeleteSuccessResponse : INotifyPropertyChanged 
+    public class DeleteErrorResponseException : APIException 
     {
         // These fields hold the values for the public properties.
-        private string message;
+        private string errorText;
+        private string errorDescription;
+        private string errorUri;
         private int? found;
         private int? deleted;
         private int? failed;
@@ -27,17 +32,48 @@ namespace SuggestGrid.Models
         /// <summary>
         /// Message of the response.
         /// </summary>
-        [JsonProperty("message")]
-        public string Message 
+        [JsonProperty("error_text")]
+        public string ErrorText 
         { 
             get 
             {
-                return this.message; 
+                return this.errorText; 
             } 
-            set 
+            private set 
             {
-                this.message = value;
-                onPropertyChanged("Message");
+                this.errorText = value;
+            }
+        }
+
+        /// <summary>
+        /// Description of the response.
+        /// </summary>
+        [JsonProperty("error_description")]
+        public string ErrorDescription 
+        { 
+            get 
+            {
+                return this.errorDescription; 
+            } 
+            private set 
+            {
+                this.errorDescription = value;
+            }
+        }
+
+        /// <summary>
+        /// URI of the response for more details.
+        /// </summary>
+        [JsonProperty("error_uri")]
+        public string ErrorUri 
+        { 
+            get 
+            {
+                return this.errorUri; 
+            } 
+            private set 
+            {
+                this.errorUri = value;
             }
         }
 
@@ -51,10 +87,9 @@ namespace SuggestGrid.Models
             {
                 return this.found; 
             } 
-            set 
+            private set 
             {
                 this.found = value;
-                onPropertyChanged("Found");
             }
         }
 
@@ -68,10 +103,9 @@ namespace SuggestGrid.Models
             {
                 return this.deleted; 
             } 
-            set 
+            private set 
             {
                 this.deleted = value;
-                onPropertyChanged("Deleted");
             }
         }
 
@@ -85,28 +119,20 @@ namespace SuggestGrid.Models
             {
                 return this.failed; 
             } 
-            set 
+            private set 
             {
                 this.failed = value;
-                onPropertyChanged("Failed");
             }
         }
 
         /// <summary>
-        /// Property changed event for observer pattern
+        /// Initialization constructor
         /// </summary>
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        /// <summary>
-        /// Raises event when a property is changed
-        /// </summary>
-        /// <param name="propertyName">Name of the changed property</param>
-        protected void onPropertyChanged(String propertyName)
+        /// <param name="reason"> The reason for throwing exception </param>
+        /// <param name="context"> The HTTP context that encapsulates request and response objects </param>
+        public DeleteErrorResponseException(string reason, HttpContext context)
+            : base(reason, context)
         {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-            }
         }
     }
 } 

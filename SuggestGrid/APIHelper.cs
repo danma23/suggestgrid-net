@@ -1,7 +1,7 @@
 /*
  * SuggestGrid.PCL
  *
- * This file was automatically generated for SuggestGrid by APIMATIC v2.0 ( https://apimatic.io ) on 10/30/2016
+ * This file was automatically generated for SuggestGrid by APIMATIC v2.0 ( https://apimatic.io ) on 11/23/2016
  */
 using System;
 using System.Collections;
@@ -36,7 +36,8 @@ namespace SuggestGrid
                 return null;
 
             return JsonConvert.SerializeObject(obj, Formatting.None,
-                 new JsonSerializerSettings {NullValueHandling = NullValueHandling.Ignore, Converters = new List<JsonConverter> {new IsoDateTimeConverter() { DateTimeFormat = DateTimeFormat } } });
+                 new JsonSerializerSettings {NullValueHandling = NullValueHandling.Ignore,
+                     Converters = new List<JsonConverter> {new IsoDateTimeConverter() { DateTimeFormat = DateTimeFormat } } });
         }
 
         /// <summary>
@@ -354,6 +355,24 @@ namespace SuggestGrid
             foreach (var kvp in dictionary2)
             {
                 dictionary[kvp.Key] = kvp.Value;
+            }
+        }
+        /// <summary>
+        /// Runs asynchronous tasks synchronously and throws the first caught exception
+        /// </summary>
+        /// <param name="t">The task to be run synchronously</param>
+        public static void RunTaskSynchronously(Task t)
+        {
+            try
+            {
+                Task.WaitAll(t);
+            }
+            catch (AggregateException e)
+            {
+                if (e.InnerExceptions.Count > 0)
+                    throw e.InnerExceptions[0];
+                else
+                    throw;
             }
         }
     }

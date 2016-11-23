@@ -1,7 +1,7 @@
 /*
  * SuggestGrid.PCL
  *
- * This file was automatically generated for SuggestGrid by APIMATIC v2.0 ( https://apimatic.io ) on 10/30/2016
+ * This file was automatically generated for SuggestGrid by APIMATIC v2.0 ( https://apimatic.io ) on 11/23/2016
  */
 using System;
 using System.Collections.Generic;
@@ -55,7 +55,7 @@ namespace SuggestGrid.Controllers
         public GetTypesResponse GetAllTypes()
         {
             Task<GetTypesResponse> t = GetAllTypesAsync();
-            Task.WaitAll(t);
+            APIHelper.RunTaskSynchronously(t);
             return t.Result;
         }
 
@@ -117,7 +117,7 @@ namespace SuggestGrid.Controllers
         public GetTypesResponse DeleteAllTypes()
         {
             Task<GetTypesResponse> t = DeleteAllTypesAsync();
-            Task.WaitAll(t);
+            APIHelper.RunTaskSynchronously(t);
             return t.Result;
         }
 
@@ -180,7 +180,7 @@ namespace SuggestGrid.Controllers
         public GetTypeResponse GetType(string type)
         {
             Task<GetTypeResponse> t = GetTypeAsync(type);
-            Task.WaitAll(t);
+            APIHelper.RunTaskSynchronously(t);
             return t.Result;
         }
 
@@ -251,7 +251,7 @@ namespace SuggestGrid.Controllers
         public MessageResponse CreateType(string type, TypeRequestBody settings = null)
         {
             Task<MessageResponse> t = CreateTypeAsync(type, settings);
-            Task.WaitAll(t);
+            APIHelper.RunTaskSynchronously(t);
             return t.Result;
         }
 
@@ -335,7 +335,7 @@ namespace SuggestGrid.Controllers
         public MessageResponse DeleteType(string type)
         {
             Task<MessageResponse> t = DeleteTypeAsync(type);
-            Task.WaitAll(t);
+            APIHelper.RunTaskSynchronously(t);
             return t.Result;
         }
 

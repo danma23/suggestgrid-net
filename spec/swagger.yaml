@@ -2,7 +2,7 @@ swagger: '2.0'
 
 info:
   title: SuggestGrid
-  version: 0.1.23-SNAPSHOT
+  version: 0.1.25-SNAPSHOT
   description: SuggestGrid is a recommendation and personalization service.
   x-codegen-settings:
     appendContentHeaders: true
@@ -69,11 +69,13 @@ tags:
     x-methods:
       - post_user
       - post_bulk_users
+      - get_user
       - get_users
       - delete_user
       - delete_all_users
       - post_item
       - post_bulk_items
+      - get_item
       - get_items
       - delete_item
       - delete_all_items
@@ -120,7 +122,7 @@ definitions:
   Filter:
     type: object
     description: |
-      Contraints on the returned users or items. 
+      Contraints on the returned users or items.
       Filter structure is defined in [the filter parameter documentation](http://www.suggestgrid.com/docs/concepts#filters-parameter).
     additionalProperties:
       type:
@@ -314,14 +316,22 @@ definitions:
       message:
         type: string
         description: Message of the response.
-  CountResponse:
+  ActionsResponse:
     type: object
-    description: Count response.
+    description: Paged actions response.
     properties:
       count:
         type: integer
-        format: int32
-        description: The count that is asked in the query.
+        format: int64
+        description: The number of actions in the response.
+      total_count:
+        type: integer
+        format: int64
+        description: The total number of actions.
+      actions:
+        type: array
+        items:
+          $ref: '#/definitions/Action'
   ErrorResponse:
     type: object
     description: Error response.
@@ -462,14 +472,6 @@ definitions:
       error:
         type: object
         description: Programatic description of the error.
-  MetadataInformationResponse:
-    type: object
-    description: Metadata iformation response.
-    properties:
-      count:
-        type: integer
-        format: int64
-        description: The number of users or items with metadata.
   UsersResponse:
     type: object
     description: Users response.
@@ -482,6 +484,22 @@ definitions:
         type: array
         items:
           $ref: '#/definitions/Metadata'
+  GetUsersResponse:
+    type: object
+    description: Get users response.
+    properties:
+      count:
+        type: integer
+        format: int64
+        description: The number of users in the response.
+      total_count:
+        type: integer
+        format: int64
+        description: The total number of users.
+      users:
+        type: array
+        items:
+          $ref: '#/definitions/Metadata'
   ItemsResponse:
     type: object
     description: Items response.
@@ -490,6 +508,22 @@ definitions:
         type: integer
         format: int64
         description: The number of items in the response.
+      items:
+        type: array
+        items:
+          $ref: '#/definitions/Metadata'
+  GetItemsResponse:
+    type: object
+    description: Get items response.
+    properties:
+      count:
+        type: integer
+        format: int64
+        description: The number of items in the response.
+      total_count:
+        type: integer
+        format: int64
+        description: The total number of items.
       items:
         type: array
         items:
@@ -688,14 +722,8 @@ paths:
       operationId: get_actions
       summary: Get Actions
       description: |
-        Type must be provided. Additionally,
-
-        * If both `user_id` and `item_id` are supplied it returns the count of the corresponding actions.
-        * If only `user_id` is provided, it returns the count of all the action of the given user.
-        * If only `user_id` is provided, it returns the count of all the action of the given item.
-        * If only `older_than` is provided, it returns the count of actions older than the given timestamp.
-        * If a few of these parameters are provided, it returns the count of the intersection of these parameters.
-        * If none of these are provided, it returns the count of the whole type.
+        Get actions. Defaut responses will be paged by 10 actios each.
+        Type, user id, item id, or older than parameters could be provided.
       parameters:
         - name: type
           in: query
@@ -718,20 +746,34 @@ paths:
         - name: older_than
           in: query
           description: |
-            Delete all actions of a type older than the given timestamp or time.
+            Maxium timestamp of the actions.
             Valid times are 1s, 1m, 1h, 1d, 1M, 1y, or unix timestamp (like 1443798195).
           required: false
           type: string
           format: id
+        - name: size
+          in: query
+          description: |
+            The number of the users response.
+            Defaults to 10. Must be between 1 and 10.000 inclusive.
+            This parameter must be string represetation of an integer like "1".
+          required: false
+          type: integer
+          format: int32
+        - name: from
+          in: query
+          description: |
+            The number of users to be skipped for response.
+            Defaults to 0. Must be bigger than or equal to 0.
+            This parameter must be string represetation of an integer like "1".
+          required: false
+          type: integer
+          format: int32
       responses:
         200:
-          description: Successfully deleted actions.
+          description: Paged actions response.
           schema:
-            $ref: '#/definitions/CountResponse'
-        400:
-          description: Required `user_id` or `item_id` parameters are missing from the request body.
-          schema:
-            $ref: '#/definitions/ErrorResponse'
+            $ref: '#/definitions/ActionsResponse'
         429:
           description: Too many requests.
           schema:
@@ -785,15 +827,19 @@ paths:
         200:
           description: Successfully deleted actions.
           schema:
-            $ref: '#/definitions/MessageResponse'
+            $ref: '#/definitions/DeleteSuccessResponse'
+        209:
+          description: Some actions are deleted successfully.
+          schema:
+            $ref: '#/definitions/DeleteSuccessResponse'
         400:
           description: Required `user_id` or `item_id` parameters are missing from the request body.
           schema:
             $ref: '#/definitions/ErrorResponse'
         404:
-          description: Type does not exists.
+          description: Delete actions not found.
           schema:
-            $ref: '#/definitions/ErrorResponse'
+            $ref: '#/definitions/DeleteErrorResponse'
         422:
           description: No query parameter (`user_id`, `item_id`, or `older_than`) is given.  In order to delete all actionsdelete the type.
           schema:
@@ -858,19 +904,38 @@ paths:
             $ref: '#/definitions/ErrorResponse'
   # Metadata Paths
   /v1/users/{user_id}:
+    parameters:
+      - name: user_id
+        in: path
+        description: The user id to delete its metadata.
+        required: true
+        type: string
+        format: id
+    get:
+      tags:
+        - metadata
+      operationId: get_user
+      summary: Get An User
+      description: Returns an user metadata if it exists.
+      responses:
+        200:
+          description: Returns an user metadata.
+          schema:
+            $ref: '#/definitions/Metadata'
+        404:
+          description: User not found.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        default:
+          description: Unexpected internal error.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
     delete:
       tags:
         - metadata
       operationId: delete_user
       summary: Delete a User
       description: Deletes a user metadata with the given user id.
-      parameters:
-        - name: user_id
-          in: path
-          description: The user id to delete its metadata.
-          required: true
-          type: string
-          format: id
       responses:
         200:
           description: Deleted a user metadata.
@@ -920,12 +985,33 @@ paths:
         - metadata
       operationId: get_users
       summary: Get Users
-      description: Get information about users. Only returns count at the moment.
+      description: |
+        Get items and total count of items.
+        Page and per-page parameters could be set.
+      parameters:
+        - name: size
+          in: query
+          description: |
+            The number of the users response.
+            Defaults to 10. Must be between 1 and 10.000 inclusive.
+            This parameter must be string represetation of an integer like "1".
+          required: false
+          type: integer
+          format: int32
+        - name: from
+          in: query
+          description: |
+            The number of users to be skipped for response.
+            Defaults to 0. Must be bigger than or equal to 0.
+            This parameter must be string represetation of an integer like "1".
+          required: false
+          type: integer
+          format: int32
       responses:
         200:
-          description: Information on users.
+          description: Get users response.
           schema:
-            $ref: '#/definitions/MetadataInformationResponse'
+            $ref: '#/definitions/GetUsersResponse'
         429:
           description: Too many requests.
           schema:
@@ -954,19 +1040,38 @@ paths:
           schema:
             $ref: '#/definitions/ErrorResponse'
   /v1/items/{item_id}:
+    parameters:
+      - name: item_id
+        in: path
+        description: The item id to delete its metadata.
+        required: true
+        type: string
+        format: id
+    get:
+      tags:
+        - metadata
+      operationId: get_item
+      summary: Get An Item
+      description: Returns an item metadata if it exists.
+      responses:
+        200:
+          description: Returns an item metadata.
+          schema:
+            $ref: '#/definitions/Metadata'
+        404:
+          description: Item not found.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        default:
+          description: Unexpected internal error.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
     delete:
       tags:
         - metadata
       operationId: delete_item
-      summary: Delete an Item
+      summary: Delete An Item
       description: Deletes an item metadata with the given item id.
-      parameters:
-        - name: item_id
-          in: path
-          description: The item id to delete its metadata.
-          required: true
-          type: string
-          format: id
       responses:
         200:
           description: Deleted an item metadata.
@@ -1018,12 +1123,33 @@ paths:
         - metadata
       operationId: get_items
       summary: Get Items
-      description: Get information about items. Only returns count at the moment.
+      description: |
+        Get items and total count of items.
+        Page and per-page parameters could be set.
+      parameters:
+        - name: size
+          in: query
+          description: |
+            The number of the users response.
+            Defaults to 10. Must be between 1 and 10.000 inclusive.
+            This parameter must be string represetation of an integer like "1".
+          required: false
+          type: integer
+          format: int32
+        - name: from
+          in: query
+          description: |
+            The number of users to be skipped for response.
+            Defaults to 0. Must be bigger than or equal to 0.
+            This parameter must be string represetation of an integer like "1".
+          required: false
+          type: integer
+          format: int32
       responses:
         200:
-          description: Information on items.
+          description: Get items response.
           schema:
-            $ref: '#/definitions/MetadataInformationResponse'
+            $ref: '#/definitions/GetItemsResponse'
         429:
           description: Too many requests.
           schema:

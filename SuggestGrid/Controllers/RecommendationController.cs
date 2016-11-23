@@ -1,7 +1,7 @@
 /*
  * SuggestGrid.PCL
  *
- * This file was automatically generated for SuggestGrid by APIMATIC v2.0 ( https://apimatic.io ) on 10/30/2016
+ * This file was automatically generated for SuggestGrid by APIMATIC v2.0 ( https://apimatic.io ) on 11/23/2016
  */
 using System;
 using System.Collections.Generic;
@@ -56,7 +56,7 @@ namespace SuggestGrid.Controllers
         public UsersResponse GetRecommendedUsers(GetRecommendedUsersBody query)
         {
             Task<UsersResponse> t = GetRecommendedUsersAsync(query);
-            Task.WaitAll(t);
+            APIHelper.RunTaskSynchronously(t);
             return t.Result;
         }
 
@@ -130,7 +130,7 @@ namespace SuggestGrid.Controllers
         public ItemsResponse GetRecommendedItems(GetRecommendedItemsBody query)
         {
             Task<ItemsResponse> t = GetRecommendedItemsAsync(query);
-            Task.WaitAll(t);
+            APIHelper.RunTaskSynchronously(t);
             return t.Result;
         }
 

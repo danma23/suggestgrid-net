@@ -1,7 +1,7 @@
 /*
  * SuggestGrid.PCL
  *
- * This file was automatically generated for SuggestGrid by APIMATIC v2.0 ( https://apimatic.io ) on 10/30/2016
+ * This file was automatically generated for SuggestGrid by APIMATIC v2.0 ( https://apimatic.io ) on 11/23/2016
  */
 using System;
 using SuggestGrid.Controllers;
@@ -19,7 +19,7 @@ namespace SuggestGrid
         {
             get
             {
-                return SuggestGrid.Controllers.TypeController.Instance;
+                return TypeController.Instance;
             }
         }
 
@@ -30,7 +30,7 @@ namespace SuggestGrid
         {
             get
             {
-                return SuggestGrid.Controllers.ActionController.Instance;
+                return ActionController.Instance;
             }
         }
 
@@ -41,7 +41,7 @@ namespace SuggestGrid
         {
             get
             {
-                return SuggestGrid.Controllers.MetadataController.Instance;
+                return MetadataController.Instance;
             }
         }
 
@@ -52,7 +52,7 @@ namespace SuggestGrid
         {
             get
             {
-                return SuggestGrid.Controllers.RecommendationController.Instance;
+                return RecommendationController.Instance;
             }
         }
 
@@ -63,10 +63,9 @@ namespace SuggestGrid
         {
             get
             {
-                return SuggestGrid.Controllers.SimilarityController.Instance;
+                return SimilarityController.Instance;
             }
         }
-
         /// <summary>
         /// The shared http client to use for all API calls
         /// </summary>

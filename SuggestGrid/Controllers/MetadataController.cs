@@ -1,7 +1,7 @@
 /*
  * SuggestGrid.PCL
  *
- * This file was automatically generated for SuggestGrid by APIMATIC v2.0 ( https://apimatic.io ) on 10/30/2016
+ * This file was automatically generated for SuggestGrid by APIMATIC v2.0 ( https://apimatic.io ) on 11/23/2016
  */
 using System;
 using System.Collections.Generic;
@@ -50,6 +50,76 @@ namespace SuggestGrid.Controllers
         #endregion Singleton Pattern
 
         /// <summary>
+        /// Get An User
+        /// </summary>
+        /// <param name="userId">Required parameter: The user id to delete its metadata.</param>
+        /// <return>Returns the Metadata response from the API call</return>
+        public Metadata GetUser(string userId)
+        {
+            Task<Metadata> t = GetUserAsync(userId);
+            APIHelper.RunTaskSynchronously(t);
+            return t.Result;
+        }
+
+        /// <summary>
+        /// Get An User
+        /// </summary>
+        /// <param name="userId">Required parameter: The user id to delete its metadata.</param>
+        /// <return>Returns the Metadata response from the API call</return>
+        public async Task<Metadata> GetUserAsync(string userId)
+        {
+            //the base uri for api requestss
+            string _baseUri = Configuration.BaseUri;
+
+            //prepare query string for API call
+            StringBuilder _queryBuilder = new StringBuilder(_baseUri);
+            _queryBuilder.Append("/v1/users/{user_id}");
+
+            //process optional template parameters
+            APIHelper.AppendUrlWithTemplateParameters(_queryBuilder, new Dictionary<string, object>()
+            {
+                { "user_id", userId }
+            });
+
+
+            //validate and preprocess url
+            string _queryUrl = APIHelper.CleanUrl(_queryBuilder);
+
+            //append request with appropriate headers and parameters
+            var _headers = new Dictionary<string,string>()
+            {
+                { "user-agent", "SUGGESTGRID" },
+                { "accept", "application/json" }
+            };
+
+            //prepare the API call request to fetch the response
+            HttpRequest _request = ClientInstance.Get(_queryUrl,_headers, Configuration.BasicAuthUserName, Configuration.BasicAuthPassword);
+
+            //invoke request and get response
+            HttpStringResponse _response = (HttpStringResponse) await ClientInstance.ExecuteAsStringAsync(_request);
+            HttpContext _context = new HttpContext(_request,_response);
+
+            //Error handling using HTTP status codes
+            if (_response.StatusCode == 404)
+                throw new ErrorResponseException(@"User not found.", _context);
+
+            else if (_response.StatusCode == 500)
+                throw new APIException(@"Unexpected internal error.", _context);
+
+            //handle errors defined at the API level
+            base.ValidateResponse(_response, _context);
+
+            try
+            {
+                return APIHelper.JsonDeserialize<Metadata>(_response.Body);
+            }
+            catch (Exception _ex)
+            {
+                throw new APIException("Failed to parse the response: " + _ex.Message, _context);
+            }
+        }
+
+        /// <summary>
         /// Delete a User
         /// </summary>
         /// <param name="userId">Required parameter: The user id to delete its metadata.</param>
@@ -57,7 +127,7 @@ namespace SuggestGrid.Controllers
         public MessageResponse DeleteUser(string userId)
         {
             Task<MessageResponse> t = DeleteUserAsync(userId);
-            Task.WaitAll(t);
+            APIHelper.RunTaskSynchronously(t);
             return t.Result;
         }
 
@@ -122,19 +192,23 @@ namespace SuggestGrid.Controllers
         /// <summary>
         /// Get Users
         /// </summary>
-        /// <return>Returns the MetadataInformationResponse response from the API call</return>
-        public MetadataInformationResponse GetUsers()
+        /// <param name="size">Optional parameter: The number of the users response. Defaults to 10. Must be between 1 and 10.000 inclusive. This parameter must be string represetation of an integer like "1".</param>
+        /// <param name="mfrom">Optional parameter: The number of users to be skipped for response. Defaults to 0. Must be bigger than or equal to 0. This parameter must be string represetation of an integer like "1".</param>
+        /// <return>Returns the GetUsersResponse response from the API call</return>
+        public GetUsersResponse GetUsers(int? size = null, int? mfrom = null)
         {
-            Task<MetadataInformationResponse> t = GetUsersAsync();
-            Task.WaitAll(t);
+            Task<GetUsersResponse> t = GetUsersAsync(size, mfrom);
+            APIHelper.RunTaskSynchronously(t);
             return t.Result;
         }
 
         /// <summary>
         /// Get Users
         /// </summary>
-        /// <return>Returns the MetadataInformationResponse response from the API call</return>
-        public async Task<MetadataInformationResponse> GetUsersAsync()
+        /// <param name="size">Optional parameter: The number of the users response. Defaults to 10. Must be between 1 and 10.000 inclusive. This parameter must be string represetation of an integer like "1".</param>
+        /// <param name="mfrom">Optional parameter: The number of users to be skipped for response. Defaults to 0. Must be bigger than or equal to 0. This parameter must be string represetation of an integer like "1".</param>
+        /// <return>Returns the GetUsersResponse response from the API call</return>
+        public async Task<GetUsersResponse> GetUsersAsync(int? size = null, int? mfrom = null)
         {
             //the base uri for api requestss
             string _baseUri = Configuration.BaseUri;
@@ -142,6 +216,13 @@ namespace SuggestGrid.Controllers
             //prepare query string for API call
             StringBuilder _queryBuilder = new StringBuilder(_baseUri);
             _queryBuilder.Append("/v1/users");
+
+            //process optional query parameters
+            APIHelper.AppendUrlWithQueryParameters(_queryBuilder, new Dictionary<string, object>()
+            {
+                { "size", size },
+                { "from", mfrom }
+            });
 
 
             //validate and preprocess url
@@ -173,7 +254,7 @@ namespace SuggestGrid.Controllers
 
             try
             {
-                return APIHelper.JsonDeserialize<MetadataInformationResponse>(_response.Body);
+                return APIHelper.JsonDeserialize<GetUsersResponse>(_response.Body);
             }
             catch (Exception _ex)
             {
@@ -189,7 +270,7 @@ namespace SuggestGrid.Controllers
         public MessageResponse PostUser(Metadata<string,object> user)
         {
             Task<MessageResponse> t = PostUserAsync(user);
-            Task.WaitAll(t);
+            APIHelper.RunTaskSynchronously(t);
             return t.Result;
         }
 
@@ -259,7 +340,7 @@ namespace SuggestGrid.Controllers
         public MessageResponse DeleteAllUsers()
         {
             Task<MessageResponse> t = DeleteAllUsersAsync();
-            Task.WaitAll(t);
+            APIHelper.RunTaskSynchronously(t);
             return t.Result;
         }
 
@@ -315,19 +396,89 @@ namespace SuggestGrid.Controllers
         }
 
         /// <summary>
-        /// Delete an Item
+        /// Get An Item
+        /// </summary>
+        /// <param name="itemId">Required parameter: The item id to delete its metadata.</param>
+        /// <return>Returns the Metadata response from the API call</return>
+        public Metadata GetItem(string itemId)
+        {
+            Task<Metadata> t = GetItemAsync(itemId);
+            APIHelper.RunTaskSynchronously(t);
+            return t.Result;
+        }
+
+        /// <summary>
+        /// Get An Item
+        /// </summary>
+        /// <param name="itemId">Required parameter: The item id to delete its metadata.</param>
+        /// <return>Returns the Metadata response from the API call</return>
+        public async Task<Metadata> GetItemAsync(string itemId)
+        {
+            //the base uri for api requestss
+            string _baseUri = Configuration.BaseUri;
+
+            //prepare query string for API call
+            StringBuilder _queryBuilder = new StringBuilder(_baseUri);
+            _queryBuilder.Append("/v1/items/{item_id}");
+
+            //process optional template parameters
+            APIHelper.AppendUrlWithTemplateParameters(_queryBuilder, new Dictionary<string, object>()
+            {
+                { "item_id", itemId }
+            });
+
+
+            //validate and preprocess url
+            string _queryUrl = APIHelper.CleanUrl(_queryBuilder);
+
+            //append request with appropriate headers and parameters
+            var _headers = new Dictionary<string,string>()
+            {
+                { "user-agent", "SUGGESTGRID" },
+                { "accept", "application/json" }
+            };
+
+            //prepare the API call request to fetch the response
+            HttpRequest _request = ClientInstance.Get(_queryUrl,_headers, Configuration.BasicAuthUserName, Configuration.BasicAuthPassword);
+
+            //invoke request and get response
+            HttpStringResponse _response = (HttpStringResponse) await ClientInstance.ExecuteAsStringAsync(_request);
+            HttpContext _context = new HttpContext(_request,_response);
+
+            //Error handling using HTTP status codes
+            if (_response.StatusCode == 404)
+                throw new ErrorResponseException(@"Item not found.", _context);
+
+            else if (_response.StatusCode == 500)
+                throw new APIException(@"Unexpected internal error.", _context);
+
+            //handle errors defined at the API level
+            base.ValidateResponse(_response, _context);
+
+            try
+            {
+                return APIHelper.JsonDeserialize<Metadata>(_response.Body);
+            }
+            catch (Exception _ex)
+            {
+                throw new APIException("Failed to parse the response: " + _ex.Message, _context);
+            }
+        }
+
+        /// <summary>
+        /// Delete An Item
         /// </summary>
         /// <param name="itemId">Required parameter: The item id to delete its metadata.</param>
         /// <return>Returns the MessageResponse response from the API call</return>
         public MessageResponse DeleteItem(string itemId)
         {
             Task<MessageResponse> t = DeleteItemAsync(itemId);
-            Task.WaitAll(t);
+            APIHelper.RunTaskSynchronously(t);
             return t.Result;
         }
 
         /// <summary>
-        /// Delete an Item
+        /// Delete An Item
         /// </summary>
         /// <param name="itemId">Required parameter: The item id to delete its metadata.</param>
         /// <return>Returns the MessageResponse response from the API call</return>
@@ -387,19 +538,23 @@ namespace SuggestGrid.Controllers
         /// <summary>
         /// Get Items
         /// </summary>
-        /// <return>Returns the MetadataInformationResponse response from the API call</return>
-        public MetadataInformationResponse GetItems()
+        /// <param name="size">Optional parameter: The number of the users response. Defaults to 10. Must be between 1 and 10.000 inclusive. This parameter must be string represetation of an integer like "1".</param>
+        /// <param name="mfrom">Optional parameter: The number of users to be skipped for response. Defaults to 0. Must be bigger than or equal to 0. This parameter must be string represetation of an integer like "1".</param>
+        /// <return>Returns the GetItemsResponse response from the API call</return>
+        public GetItemsResponse GetItems(int? size = null, int? mfrom = null)
         {
-            Task<MetadataInformationResponse> t = GetItemsAsync();
-            Task.WaitAll(t);
+            Task<GetItemsResponse> t = GetItemsAsync(size, mfrom);
+            APIHelper.RunTaskSynchronously(t);
             return t.Result;
         }
 
         /// <summary>
         /// Get Items
         /// </summary>
-        /// <return>Returns the MetadataInformationResponse response from the API call</return>
-        public async Task<MetadataInformationResponse> GetItemsAsync()
+        /// <param name="size">Optional parameter: The number of the users response. Defaults to 10. Must be between 1 and 10.000 inclusive. This parameter must be string represetation of an integer like "1".</param>
+        /// <param name="mfrom">Optional parameter: The number of users to be skipped for response. Defaults to 0. Must be bigger than or equal to 0. This parameter must be string represetation of an integer like "1".</param>
+        /// <return>Returns the GetItemsResponse response from the API call</return>
+        public async Task<GetItemsResponse> GetItemsAsync(int? size = null, int? mfrom = null)
         {
             //the base uri for api requestss
             string _baseUri = Configuration.BaseUri;
@@ -407,6 +562,13 @@ namespace SuggestGrid.Controllers
             //prepare query string for API call
             StringBuilder _queryBuilder = new StringBuilder(_baseUri);
             _queryBuilder.Append("/v1/items");
+
+            //process optional query parameters
+            APIHelper.AppendUrlWithQueryParameters(_queryBuilder, new Dictionary<string, object>()
+            {
+                { "size", size },
+                { "from", mfrom }
+            });
 
 
             //validate and preprocess url
@@ -438,7 +600,7 @@ namespace SuggestGrid.Controllers
 
             try
             {
-                return APIHelper.JsonDeserialize<MetadataInformationResponse>(_response.Body);
+                return APIHelper.JsonDeserialize<GetItemsResponse>(_response.Body);
             }
             catch (Exception _ex)
             {
@@ -454,7 +616,7 @@ namespace SuggestGrid.Controllers
         public MessageResponse PostItem(Metadata<string,object> item)
         {
             Task<MessageResponse> t = PostItemAsync(item);
-            Task.WaitAll(t);
+            APIHelper.RunTaskSynchronously(t);
             return t.Result;
         }
 
@@ -524,7 +686,7 @@ namespace SuggestGrid.Controllers
         public MessageResponse DeleteAllItems()
         {
             Task<MessageResponse> t = DeleteAllItemsAsync();
-            Task.WaitAll(t);
+            APIHelper.RunTaskSynchronously(t);
             return t.Result;
         }
 
@@ -593,7 +755,7 @@ namespace SuggestGrid.Controllers
                 sb.Append(Environment.NewLine);
             }
             Task<MessageResponse> t = PostBulkUsersAsync(sb.ToString());
-            Task.WaitAll(t);
+            APIHelper.RunTaskSynchronously(t);
             return t.Result;
         }
 
@@ -673,7 +835,7 @@ namespace SuggestGrid.Controllers
                 sb.Append(Environment.NewLine);
             }
             Task<MessageResponse> t = PostBulkItemsAsync(sb.ToString());
-            Task.WaitAll(t);
+            APIHelper.RunTaskSynchronously(t);
             return t.Result;
         }
 
