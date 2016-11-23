@@ -20,6 +20,7 @@ namespace SuggestGrid.Models
     {
         // These fields hold the values for the public properties.
         private long? count;
+        private long? totalCount;
         private List<Metadata<string,object>> users;
 
         /// <summary>
@@ -36,6 +37,23 @@ namespace SuggestGrid.Models
             {
                 this.count = value;
                 onPropertyChanged("Count");
+            }
+        }
+
+        /// <summary>
+        /// The total number of users available.
+        /// </summary>
+        [JsonProperty("total_count")]
+        public long? TotalCount
+        {
+            get
+            {
+                return this.totalCount;
+            }
+            set
+            {
+                this.totalCount = value;
+                onPropertyChanged("TotalCount");
             }
         }
 

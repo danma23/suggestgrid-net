@@ -194,10 +194,10 @@ namespace SuggestGrid.Controllers
         /// </summary>
         /// <param name="size">Optional parameter: The number of the users response. Defaults to 10. Must be between 1 and 10.000 inclusive. This parameter must be string represetation of an integer like "1".</param>
         /// <param name="mfrom">Optional parameter: The number of users to be skipped for response. Defaults to 0. Must be bigger than or equal to 0. This parameter must be string represetation of an integer like "1".</param>
-        /// <return>Returns the GetUsersResponse response from the API call</return>
-        public GetUsersResponse GetUsers(int? size = null, int? mfrom = null)
+        /// <return>Returns the UsersResponse response from the API call</return>
+        public UsersResponse GetUsers(int? size = null, int? mfrom = null)
         {
-            Task<GetUsersResponse> t = GetUsersAsync(size, mfrom);
+            Task<UsersResponse> t = GetUsersAsync(size, mfrom);
             APIHelper.RunTaskSynchronously(t);
             return t.Result;
         }
@@ -207,8 +207,8 @@ namespace SuggestGrid.Controllers
         /// </summary>
         /// <param name="size">Optional parameter: The number of the users response. Defaults to 10. Must be between 1 and 10.000 inclusive. This parameter must be string represetation of an integer like "1".</param>
         /// <param name="mfrom">Optional parameter: The number of users to be skipped for response. Defaults to 0. Must be bigger than or equal to 0. This parameter must be string represetation of an integer like "1".</param>
-        /// <return>Returns the GetUsersResponse response from the API call</return>
-        public async Task<GetUsersResponse> GetUsersAsync(int? size = null, int? mfrom = null)
+        /// <return>Returns the UsersResponse response from the API call</return>
+        public async Task<UsersResponse> GetUsersAsync(int? size = null, int? mfrom = null)
         {
             //the base uri for api requestss
             string _baseUri = Configuration.BaseUri;
@@ -254,7 +254,7 @@ namespace SuggestGrid.Controllers
 
             try
             {
-                return APIHelper.JsonDeserialize<GetUsersResponse>(_response.Body);
+                return APIHelper.JsonDeserialize<UsersResponse>(_response.Body);
             }
             catch (Exception _ex)
             {
@@ -540,10 +540,10 @@ namespace SuggestGrid.Controllers
         /// </summary>
         /// <param name="size">Optional parameter: The number of the users response. Defaults to 10. Must be between 1 and 10.000 inclusive. This parameter must be string represetation of an integer like "1".</param>
         /// <param name="mfrom">Optional parameter: The number of users to be skipped for response. Defaults to 0. Must be bigger than or equal to 0. This parameter must be string represetation of an integer like "1".</param>
-        /// <return>Returns the GetItemsResponse response from the API call</return>
-        public GetItemsResponse GetItems(int? size = null, int? mfrom = null)
+        /// <return>Returns the ItemsResponse response from the API call</return>
+        public ItemsResponse GetItems(int? size = null, int? mfrom = null)
         {
-            Task<GetItemsResponse> t = GetItemsAsync(size, mfrom);
+            Task<ItemsResponse> t = GetItemsAsync(size, mfrom);
             APIHelper.RunTaskSynchronously(t);
             return t.Result;
         }
@@ -553,8 +553,8 @@ namespace SuggestGrid.Controllers
         /// </summary>
         /// <param name="size">Optional parameter: The number of the users response. Defaults to 10. Must be between 1 and 10.000 inclusive. This parameter must be string represetation of an integer like "1".</param>
         /// <param name="mfrom">Optional parameter: The number of users to be skipped for response. Defaults to 0. Must be bigger than or equal to 0. This parameter must be string represetation of an integer like "1".</param>
-        /// <return>Returns the GetItemsResponse response from the API call</return>
-        public async Task<GetItemsResponse> GetItemsAsync(int? size = null, int? mfrom = null)
+        /// <return>Returns the ItemsResponse response from the API call</return>
+        public async Task<ItemsResponse> GetItemsAsync(int? size = null, int? mfrom = null)
         {
             //the base uri for api requestss
             string _baseUri = Configuration.BaseUri;
@@ -600,7 +600,7 @@ namespace SuggestGrid.Controllers
 
             try
             {
-                return APIHelper.JsonDeserialize<GetItemsResponse>(_response.Body);
+                return APIHelper.JsonDeserialize<ItemsResponse>(_response.Body);
             }
             catch (Exception _ex)
             {
