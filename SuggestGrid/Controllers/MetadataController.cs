@@ -54,9 +54,9 @@ namespace SuggestGrid.Controllers
         /// </summary>
         /// <param name="userId">Required parameter: The user id to delete its metadata.</param>
         /// <return>Returns the Metadata response from the API call</return>
-        public Metadata GetUser(string userId)
+        public Metadata<string,object> GetUser(string userId)
         {
-            Task<Metadata> t = GetUserAsync(userId);
+            Task<Metadata<string,object>> t = GetUserAsync(userId);
             APIHelper.RunTaskSynchronously(t);
             return t.Result;
         }
@@ -66,7 +66,7 @@ namespace SuggestGrid.Controllers
         /// </summary>
         /// <param name="userId">Required parameter: The user id to delete its metadata.</param>
         /// <return>Returns the Metadata response from the API call</return>
-        public async Task<Metadata> GetUserAsync(string userId)
+        public async Task<Metadata<string,object>> GetUserAsync(string userId)
         {
             //the base uri for api requestss
             string _baseUri = Configuration.BaseUri;
@@ -111,7 +111,7 @@ namespace SuggestGrid.Controllers
 
             try
             {
-                return APIHelper.JsonDeserialize<Metadata>(_response.Body);
+                return APIHelper.JsonDeserialize<Metadata<string,object>>(_response.Body);
             }
             catch (Exception _ex)
             {
@@ -400,9 +400,9 @@ namespace SuggestGrid.Controllers
         /// </summary>
         /// <param name="itemId">Required parameter: The item id to delete its metadata.</param>
         /// <return>Returns the Metadata response from the API call</return>
-        public Metadata GetItem(string itemId)
+        public Metadata<string,object> GetItem(string itemId)
         {
-            Task<Metadata> t = GetItemAsync(itemId);
+            Task<Metadata<string,object>> t = GetItemAsync(itemId);
             APIHelper.RunTaskSynchronously(t);
             return t.Result;
         }
@@ -412,7 +412,7 @@ namespace SuggestGrid.Controllers
         /// </summary>
         /// <param name="itemId">Required parameter: The item id to delete its metadata.</param>
         /// <return>Returns the Metadata response from the API call</return>
-        public async Task<Metadata> GetItemAsync(string itemId)
+        public async Task<Metadata<string,object>> GetItemAsync(string itemId)
         {
             //the base uri for api requestss
             string _baseUri = Configuration.BaseUri;
@@ -457,7 +457,7 @@ namespace SuggestGrid.Controllers
 
             try
             {
-                return APIHelper.JsonDeserialize<Metadata>(_response.Body);
+                return APIHelper.JsonDeserialize<Metadata<string,object>>(_response.Body);
             }
             catch (Exception _ex)
             {
