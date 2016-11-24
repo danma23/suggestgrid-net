@@ -132,7 +132,7 @@ namespace SuggestGrid.Models
 
         /// <summary>
         /// Contraints on the returned users or items.
-        /// Filter structure is defined in [the filter parameter documentation](http://www.suggestgrid.com/docs/concepts#filters-parameter).
+        /// Filter structure is defined in [the filter parameter documentation](http://www.suggestgrid.com/docs/advanced-features#filters-parameter).
         /// </summary>
         [JsonProperty("filter")]
         public object Filter 

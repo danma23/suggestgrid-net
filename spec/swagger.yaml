@@ -2,7 +2,7 @@ swagger: '2.0'
 
 info:
   title: SuggestGrid
-  version: 0.1.25
+  version: 0.1.26-SNAPSHOT
   description: SuggestGrid is a recommendation and personalization service.
   x-codegen-settings:
     appendContentHeaders: true
@@ -44,7 +44,7 @@ tags:
     description: Type Methods
     x-docs-text: |
       Type methods are used for managing SuggestGrid types.
-      For more information on types, refer to [Types concept documentation](http://www.suggestgrid.com/docs/concepts#types).
+      For more information on types, refer to [Types concept documentation](http://www.suggestgrid.com/docs/types).
     x-methods:
       - create_type
       - get_type
@@ -55,7 +55,7 @@ tags:
     description: Action Methods
     x-docs-text: |
       Action methods are for posting and deleting actions.
-      For more information on actions, refer to [Actions concept documentation](http://www.suggestgrid.com/docs/concepts#actions).
+      For more information on actions, refer to [Actions concept documentation](http://www.suggestgrid.com/docs/actions).
     x-methods:
       - post_action
       - post_bulk_actions
@@ -65,7 +65,7 @@ tags:
     description: Metadata Methods
     x-docs-text: |
       Metadata methods are for posting and deleting metadata.
-      For more information on metadata, refer to [Metadata concept documentation ](http://www.suggestgrid.com/docs/concepts#metadata).
+      For more information on metadata, refer to [Metadata concept documentation ](http://www.suggestgrid.com/docs/metadata).
     x-methods:
       - post_user
       - post_bulk_users
@@ -83,7 +83,7 @@ tags:
     description: Recommnedation Methods
     x-docs-text: |
       Recommnedation methods are for getting recommended items or users responses from SuggestGrid.
-      For more information on recommendations, refer to [Recommendations concept documentation](http://www.suggestgrid.com/docs/concepts#recommendations).
+      For more information on recommendations, refer to [Recommendations concept documentation](http://www.suggestgrid.com/docs/recommendations).
     x-methods:
       - get_recommended_users
       - get_recommended_items
@@ -91,7 +91,7 @@ tags:
     description: Similarity Methods
     x-docs-text: |
       Similarity methods are for getting similar items or users responses from SuggestGrid.
-      For more information on similars, refer to [Similarities concept documentation](http://www.suggestgrid.com/docs/concepts#similarities).
+      For more information on similars, refer to [Similarities concept documentation](http://www.suggestgrid.com/docs/similarities).
     x-methods:
       - get_similar_users
       - get_similar_items
@@ -123,7 +123,7 @@ definitions:
     type: object
     description: |
       Contraints on the returned users or items.
-      Filter structure is defined in [the filter parameter documentation](http://www.suggestgrid.com/docs/concepts#filters-parameter).
+      Filter structure is defined in [the filter parameter documentation](http://www.suggestgrid.com/docs/advanced-features#filters-parameter).
     additionalProperties:
       type:
         - string

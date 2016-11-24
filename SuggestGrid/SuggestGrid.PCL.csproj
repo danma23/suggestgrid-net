@@ -8,7 +8,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{1ff01ba7-068d-4791-8d2a-9eb5b6589219}</ProjectGuid>
+    <ProjectGuid>{f9ffba65-d8d8-4c66-978a-cdbfae34fe20}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>SuggestGrid</RootNamespace>
