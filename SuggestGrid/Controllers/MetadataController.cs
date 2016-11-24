@@ -1,7 +1,7 @@
 /*
  * SuggestGrid.PCL
  *
- * This file was automatically generated for SuggestGrid by APIMATIC v2.0 ( https://apimatic.io ) on 11/23/2016
+ * This file was automatically generated for SuggestGrid by APIMATIC v2.0 ( https://apimatic.io ) on 11/24/2016
  */
 using System;
 using System.Collections.Generic;
@@ -745,8 +745,8 @@ namespace SuggestGrid.Controllers
         /// Post Bulk Users
         /// </summary>
         /// <param name="users">Required parameter: A number of user metadata objects separated with newlines. Each user metadata object must have its id field. Note that this is not a valid JSON data structure. The body size is limited to 10 thousand lines.</param>
-        /// <return>Returns the MessageResponse response from the API call</return>
-        public MessageResponse PostBulkUsers(List<Metadata<string, object>> users)
+        /// <return>Returns the BulkPostResponse response from the API call</return>
+        public BulkPostResponse PostBulkUsers(List<Metadata<string, object>> users)
         {
             StringBuilder sb = new StringBuilder();
             foreach (Metadata<string, object> user in users)
@@ -754,7 +754,7 @@ namespace SuggestGrid.Controllers
                 sb.Append(JsonConvert.SerializeObject(user, Formatting.None));
                 sb.Append(Environment.NewLine);
             }
-            Task<MessageResponse> t = PostBulkUsersAsync(sb.ToString());
+            Task<BulkPostResponse> t = PostBulkUsersAsync(sb.ToString());
             APIHelper.RunTaskSynchronously(t);
             return t.Result;
         }
@@ -763,8 +763,8 @@ namespace SuggestGrid.Controllers
         /// Post Bulk Users
         /// </summary>
         /// <param name="users">Required parameter: A number of user metadata objects separated with newlines. Each user metadata object must have its id field. Note that this is not a valid JSON data structure. The body size is limited to 10 thousand lines.</param>
-        /// <return>Returns the MessageResponse response from the API call</return>
-        private async Task<MessageResponse> PostBulkUsersAsync(string users)
+        /// <return>Returns the BulkPostResponse response from the API call</return>
+        private async Task<BulkPostResponse> PostBulkUsersAsync(string users)
         {
             //the base uri for api requestss
             string _baseUri = Configuration.BaseUri;
@@ -796,10 +796,7 @@ namespace SuggestGrid.Controllers
             HttpContext _context = new HttpContext(_request,_response);
 
             //Error handling using HTTP status codes
-            if (_response.StatusCode == 209)
-                throw new BulkSchemaErrorResponseException(@"Some metadata is not uploaded successfully.", _context);
-
-            else if (_response.StatusCode == 400)
+            if (_response.StatusCode == 400)
                 throw new ErrorResponseException(@"Body is missing.", _context);
 
             else if (_response.StatusCode == 429)
@@ -813,7 +810,7 @@ namespace SuggestGrid.Controllers
 
             try
             {
-                return APIHelper.JsonDeserialize<MessageResponse>(_response.Body);
+                return APIHelper.JsonDeserialize<BulkPostResponse>(_response.Body);
             }
             catch (Exception _ex)
             {
@@ -825,8 +822,8 @@ namespace SuggestGrid.Controllers
         /// Post Bulk Items
         /// </summary>
         /// <param name="items">Required parameter: A number of item metadata objects separated with newlines. Each item metadata object must have its id field. Note that this is not a valid JSON data structure. The body size is limited to 10 thousand lines.</param>
-        /// <return>Returns the MessageResponse response from the API call</return>
-        public MessageResponse PostBulkItems(List<Metadata<string, object>> items)
+        /// <return>Returns the BulkPostResponse response from the API call</return>
+        public BulkPostResponse PostBulkItems(List<Metadata<string, object>> items)
         {
             StringBuilder sb = new StringBuilder();
             foreach (Metadata<string, object> item in items)
@@ -834,7 +831,7 @@ namespace SuggestGrid.Controllers
                 sb.Append(JsonConvert.SerializeObject(item, Formatting.None));
                 sb.Append(Environment.NewLine);
             }
-            Task<MessageResponse> t = PostBulkItemsAsync(sb.ToString());
+            Task<BulkPostResponse> t = PostBulkItemsAsync(sb.ToString());
             APIHelper.RunTaskSynchronously(t);
             return t.Result;
         }
@@ -843,8 +840,8 @@ namespace SuggestGrid.Controllers
         /// Post Bulk Items
         /// </summary>
         /// <param name="items">Required parameter: A number of item metadata objects separated with newlines. Each item metadata object must have its id field. Note that this is not a valid JSON data structure. The body size is limited to 10 thousand lines.</param>
-        /// <return>Returns the MessageResponse response from the API call</return>
-        private async Task<MessageResponse> PostBulkItemsAsync(string items)
+        /// <return>Returns the BulkPostResponse response from the API call</return>
+        private async Task<BulkPostResponse> PostBulkItemsAsync(string items)
         {
             //the base uri for api requestss
             string _baseUri = Configuration.BaseUri;
@@ -876,10 +873,7 @@ namespace SuggestGrid.Controllers
             HttpContext _context = new HttpContext(_request,_response);
 
             //Error handling using HTTP status codes
-            if (_response.StatusCode == 209)
-                throw new BulkSchemaErrorResponseException(@"Some metadata is not uploaded successfully.", _context);
-
-            else if (_response.StatusCode == 400)
+            if (_response.StatusCode == 400)
                 throw new ErrorResponseException(@"Body is missing.", _context);
 
             else if (_response.StatusCode == 429)
@@ -893,7 +887,7 @@ namespace SuggestGrid.Controllers
 
             try
             {
-                return APIHelper.JsonDeserialize<MessageResponse>(_response.Body);
+                return APIHelper.JsonDeserialize<BulkPostResponse>(_response.Body);
             }
             catch (Exception _ex)
             {

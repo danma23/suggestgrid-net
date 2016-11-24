@@ -1,7 +1,7 @@
 /*
  * SuggestGrid.PCL
  *
- * This file was automatically generated for SuggestGrid by APIMATIC v2.0 ( https://apimatic.io ) on 11/23/2016
+ * This file was automatically generated for SuggestGrid by APIMATIC v2.0 ( https://apimatic.io ) on 11/24/2016
  */
 using System;
 using System.Collections.Generic;
@@ -328,8 +328,8 @@ namespace SuggestGrid.Controllers
         /// Post Bulk Actions
         /// </summary>
         /// <param name="actions">Required parameter: A number of action objects separated with newlines. Note that this is not a valid JSON data structure. The body size is limited to 10 thousand lines.</param>
-        /// <return>Returns the MessageResponse response from the API call</return>
-        public MessageResponse PostBulkActions(List<ActionModel> actions)
+        /// <return>Returns the BulkPostResponse response from the API call</return>
+        public BulkPostResponse PostBulkActions(List<ActionModel> actions)
         {
             StringBuilder sb = new StringBuilder();
             foreach (ActionModel action in actions)
@@ -337,7 +337,7 @@ namespace SuggestGrid.Controllers
                 sb.Append(JsonConvert.SerializeObject(action, Formatting.None));
                 sb.Append(Environment.NewLine);
             }
-            Task<MessageResponse> t = PostBulkActionsAsync(sb.ToString());
+            Task<BulkPostResponse> t = PostBulkActionsAsync(sb.ToString());
             APIHelper.RunTaskSynchronously(t);
             return t.Result;
         }
@@ -346,8 +346,8 @@ namespace SuggestGrid.Controllers
         /// Post Bulk Actions
         /// </summary>
         /// <param name="actions">Required parameter: A number of action objects separated with newlines. Note that this is not a valid JSON data structure. The body size is limited to 10 thousand lines.</param>
-        /// <return>Returns the MessageResponse response from the API call</return>
-        private async Task<MessageResponse> PostBulkActionsAsync(string actions)
+        /// <return>Returns the BulkPostResponse response from the API call</return>
+        private async Task<BulkPostResponse> PostBulkActionsAsync(string actions)
         {
             //the base uri for api requestss
             string _baseUri = Configuration.BaseUri;
@@ -379,10 +379,7 @@ namespace SuggestGrid.Controllers
             HttpContext _context = new HttpContext(_request,_response);
 
             //Error handling using HTTP status codes
-            if (_response.StatusCode == 209)
-                throw new BulkSchemaErrorResponseException(@"Some metadata is not uploaded successfully.", _context);
-
-            else if (_response.StatusCode == 400)
+            if (_response.StatusCode == 400)
                 throw new ErrorResponseException(@"Body is missing.", _context);
 
             else if (_response.StatusCode == 402)
@@ -399,7 +396,7 @@ namespace SuggestGrid.Controllers
 
             try
             {
-                return APIHelper.JsonDeserialize<MessageResponse>(_response.Body);
+                return APIHelper.JsonDeserialize<BulkPostResponse>(_response.Body);
             }
             catch (Exception _ex)
             {

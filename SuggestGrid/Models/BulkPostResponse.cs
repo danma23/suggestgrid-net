@@ -1,7 +1,7 @@
 /*
  * SuggestGrid.PCL
  *
- * This file was automatically generated for SuggestGrid by APIMATIC v2.0 ( https://apimatic.io ) on 11/23/2016
+ * This file was automatically generated for SuggestGrid by APIMATIC v2.0 ( https://apimatic.io ) on 11/24/2016
  */
 using System;
 using System.IO;
@@ -12,18 +12,15 @@ using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
-using SuggestGrid.Http.Client;
-
-using SuggestGrid.Models;
 using SuggestGrid;
 
-namespace SuggestGrid.Exceptions
+namespace SuggestGrid.Models
 {
-    public class BulkSchemaErrorResponseException : APIException 
+    public class BulkPostResponse : INotifyPropertyChanged 
     {
         // These fields hold the values for the public properties.
         private string message;
-        private List<SchemaErrorResponse> errors;
+        private List<BulkPostError> errors;
 
         /// <summary>
         /// Message of the response.
@@ -35,9 +32,10 @@ namespace SuggestGrid.Exceptions
             {
                 return this.message; 
             } 
-            private set 
+            set 
             {
                 this.message = value;
+                onPropertyChanged("Message");
             }
         }
 
@@ -45,26 +43,34 @@ namespace SuggestGrid.Exceptions
         /// TODO: Write general description for this method
         /// </summary>
         [JsonProperty("errors")]
-        public List<SchemaErrorResponse> Errors 
+        public List<BulkPostError> Errors 
         { 
             get 
             {
                 return this.errors; 
             } 
-            private set 
+            set 
             {
                 this.errors = value;
+                onPropertyChanged("Errors");
             }
         }
 
         /// <summary>
-        /// Initialization constructor
+        /// Property changed event for observer pattern
         /// </summary>
-        /// <param name="reason"> The reason for throwing exception </param>
-        /// <param name="context"> The HTTP context that encapsulates request and response objects </param>
-        public BulkSchemaErrorResponseException(string reason, HttpContext context)
-            : base(reason, context)
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        /// <summary>
+        /// Raises event when a property is changed
+        /// </summary>
+        /// <param name="propertyName">Name of the changed property</param>
+        protected void onPropertyChanged(String propertyName)
         {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            }
         }
     }
 } 

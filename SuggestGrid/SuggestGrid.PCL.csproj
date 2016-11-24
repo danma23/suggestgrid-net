@@ -2,13 +2,13 @@
 <!--
  - SuggestGrid.PCL
  -
- - This file was automatically generated for SuggestGrid by APIMATIC v2.0 ( https://apimatic.io ) on 11/23/2016
+ - This file was automatically generated for SuggestGrid by APIMATIC v2.0 ( https://apimatic.io ) on 11/24/2016
 -->
 <Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{976ff314-2338-444c-9507-dceb080115b6}</ProjectGuid>
+    <ProjectGuid>{c9480e01-76a2-46c0-bc0a-f45c37cec823}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>SuggestGrid</RootNamespace>
@@ -50,24 +50,24 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Models\Action.cs" />
-    <Compile Include="Models\SchemaErrorResponse.cs" />
+    <Compile Include="Models\BulkPostError.cs" />
+    <Compile Include="Models\BulkPostResponse.cs" />
     <Compile Include="Models\GetTypeResponse.cs" />
     <Compile Include="Models\GetTypesResponse.cs" />
     <Compile Include="Models\UsersResponse.cs" />
     <Compile Include="Models\ActionsResponse.cs" />
-    <Compile Include="Models\MessageResponse.cs" />
     <Compile Include="Models\ItemsResponse.cs" />
+    <Compile Include="Models\GetSimilarItemsBody.cs" />
     <Compile Include="Models\GetSimilarUsersBody.cs" />
     <Compile Include="Models\GetRecommendedItemsBody.cs" />
     <Compile Include="Models\GetRecommendedUsersBody.cs" />
     <Compile Include="Models\TypeRequestBody.cs" />
     <Compile Include="Models\Metadata.cs" />
-    <Compile Include="Models\GetSimilarItemsBody.cs" />
+    <Compile Include="Models\MessageResponse.cs" />
     <Compile Include="Exceptions\DetailedErrorResponseException.cs" />
     <Compile Include="Exceptions\LimitExceededErrorResponseException.cs" />
     <Compile Include="Exceptions\DeleteErrorResponseException.cs" />
     <Compile Include="Exceptions\DeleteSuccessResponseException.cs" />
-    <Compile Include="Exceptions\BulkSchemaErrorResponseException.cs" />
     <Compile Include="Exceptions\ErrorResponseException.cs" />
     <Compile Include="Controllers\TypeController.cs" />
     <Compile Include="Controllers\ActionController.cs" />

@@ -446,11 +446,11 @@ definitions:
       rating:
         type: string
         description: Rating type of the type that is either implicit or explicit.
-  BulkSchemaErrorResponse:
+  BulkPostResponse:
     type: object
     description: |
       Bulk error response.
-      Returned on bulk post requests with failures.
+      Returned on all bulk post requests regardless of the number of erroneous or successful posts.
     properties:
       message:
         type: string
@@ -458,10 +458,10 @@ definitions:
       errors:
         type: array
         items:
-          $ref: '#/definitions/SchemaErrorResponse'
-  SchemaErrorResponse:
+          $ref: '#/definitions/BulkPostError'
+  BulkPostError:
     type: object
-    description: Error response returned due to Schema validations.
+    description: Error response returned due to bulk post schema validations.
     properties:
       message:
         type: string
@@ -857,11 +857,7 @@ paths:
         201:
           description: Bulk action request executed.
           schema:
-            $ref: '#/definitions/MessageResponse'
-        209:
-          description: Some metadata is not uploaded successfully.
-          schema:
-            $ref: '#/definitions/BulkSchemaErrorResponse'
+            $ref: '#/definitions/BulkPostResponse'
         400:
           description: Body is missing.
           schema:
@@ -1181,11 +1177,7 @@ paths:
         201:
           description: Bulk user metadata request executed.
           schema:
-            $ref: '#/definitions/MessageResponse'
-        209:
-          description: Some metadata is not uploaded successfully.
-          schema:
-            $ref: '#/definitions/BulkSchemaErrorResponse'
+            $ref: '#/definitions/BulkPostResponse'
         400:
           description: Body is missing.
           schema:
@@ -1224,11 +1216,7 @@ paths:
         201:
           description: Bulk item metadata request executed.
           schema:
-            $ref: '#/definitions/MessageResponse'
-        209:
-          description: Some metadata is not uploaded successfully.
-          schema:
-            $ref: '#/definitions/BulkSchemaErrorResponse'
+            $ref: '#/definitions/BulkPostResponse'
         400:
           description: Body is missing.
           schema:
