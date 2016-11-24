@@ -23,6 +23,7 @@ namespace SuggestGrid.Models
         private string types;
         private string userId;
         private List<string> userIds;
+        private int? mfrom;
         private int? size;
         private List<string> fields;
         private object filter;
@@ -93,6 +94,23 @@ namespace SuggestGrid.Models
             {
                 this.userIds = value;
                 onPropertyChanged("UserIds");
+            }
+        }
+
+        /// <summary>
+        /// The number of most similar users to be skipped.
+        /// </summary>
+        [JsonProperty("from")]
+        public int? From 
+        { 
+            get 
+            {
+                return this.mfrom; 
+            } 
+            set 
+            {
+                this.mfrom = value;
+                onPropertyChanged("From");
             }
         }
 

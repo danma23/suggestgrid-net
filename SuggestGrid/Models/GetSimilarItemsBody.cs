@@ -23,6 +23,7 @@ namespace SuggestGrid.Models
         private string types;
         private string itemId;
         private List<string> itemIds;
+        private int? mfrom;
         private int? size;
         private List<string> fields;
         private object filter;
@@ -97,7 +98,24 @@ namespace SuggestGrid.Models
         }
 
         /// <summary>
-        /// The number of users asked to return in the response.
+        /// The number of most similar items to be skipped.
+        /// </summary>
+        [JsonProperty("from")]
+        public int? From 
+        { 
+            get 
+            {
+                return this.mfrom; 
+            } 
+            set 
+            {
+                this.mfrom = value;
+                onPropertyChanged("From");
+            }
+        }
+
+        /// <summary>
+        /// The number of items asked to return in the response.
         /// </summary>
         [JsonProperty("size")]
         public int? Size 
@@ -114,7 +132,7 @@ namespace SuggestGrid.Models
         }
 
         /// <summary>
-        /// The metadata fields that are to be included in returned users.
+        /// The metadata fields that are to be included in returned items.
         /// </summary>
         [JsonProperty("fields")]
         public List<string> Fields 
@@ -149,7 +167,7 @@ namespace SuggestGrid.Models
         }
 
         /// <summary>
-        /// These user ids that will not be included in the response.
+        /// These item ids that will not be included in the response.
         /// </summary>
         [JsonProperty("except")]
         public List<string> Except 

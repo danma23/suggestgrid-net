@@ -176,6 +176,9 @@ definitions:
         description: The item ids of the query. Exactly one of item id or item ids parameters must be provided.
         items:
           type: string
+      from:
+        type: integer
+        description: The number of most recommended items to be skipped.
       size:
         type: integer
         description: The number of users asked to return in the response.
@@ -217,9 +220,12 @@ definitions:
         description: The user ids of the query. Exactly one of user id or user ids parameters must be provided.
         items:
           type: string
+      from:
+        type: integer
+        description: The number of most recommended items to be skipped.
       size:
         type: integer
-        description: The number of users asked to return in the response.
+        description: The number of items asked to return in the response.
       similar_item_id:
         type: string
         description: Similar item that the response should be similar to.
@@ -232,14 +238,14 @@ definitions:
         type: array
         items:
           type: string
-        description: The metadata fields that are to be included in returned users.
+        description: The metadata fields that are to be included in returned items.
       filter:
         $ref: '#/definitions/Filter'
       except:
         type: array
         items:
           type: string
-        description: These user ids that will not be included in the response.
+        description: These item ids that will not be included in the response.
   GetSimilarUsersBody:
     type: object
     description: The query for similar users.
@@ -258,6 +264,9 @@ definitions:
         description: The user ids of the query. Exactly one of user id or user ids parameters must be provided.
         items:
           type: string
+      from:
+        type: integer
+        description: The number of most similar users to be skipped.
       size:
         type: integer
         description: The number of users asked to return in the response.
@@ -293,21 +302,24 @@ definitions:
           Get similar items to given item ids. Either item id or item ids must be provided.
         items:
           type: string
+      from:
+        type: integer
+        description: The number of most similar items to be skipped.
       size:
         type: integer
-        description: The number of users asked to return in the response.
+        description: The number of items asked to return in the response.
       fields:
         type: array
         items:
           type: string
-        description: The metadata fields that are to be included in returned users.
+        description: The metadata fields that are to be included in returned items.
       filter:
         $ref: '#/definitions/Filter'
       except:
         type: array
         items:
           type: string
-        description: These user ids that will not be included in the response.
+        description: These item ids that will not be included in the response.
   # Responses
   MessageResponse:
     type: object
