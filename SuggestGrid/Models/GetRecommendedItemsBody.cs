@@ -16,13 +16,14 @@ using SuggestGrid;
 
 namespace SuggestGrid.Models
 {
-    public class GetRecommendedItemsBody : INotifyPropertyChanged 
+    public class GetRecommendedItemsBody : INotifyPropertyChanged
     {
         // These fields hold the values for the public properties.
         private string type;
         private string types;
         private string userId;
         private List<string> userIds;
+        private int? mfrom;
         private int? size;
         private string similarItemId;
         private string similarItemIds;
@@ -34,13 +35,13 @@ namespace SuggestGrid.Models
         /// The type of the query.
         /// </summary>
         [JsonProperty("type")]
-        public string Type 
-        { 
-            get 
+        public string Type
+        {
+            get
             {
-                return this.type; 
-            } 
-            set 
+                return this.type;
+            }
+            set
             {
                 this.type = value;
                 onPropertyChanged("Type");
@@ -51,13 +52,13 @@ namespace SuggestGrid.Models
         /// The types of the query. Exactly one of type or types parameters must be provided.
         /// </summary>
         [JsonProperty("types")]
-        public string Types 
-        { 
-            get 
+        public string Types
+        {
+            get
             {
-                return this.types; 
-            } 
-            set 
+                return this.types;
+            }
+            set
             {
                 this.types = value;
                 onPropertyChanged("Types");
@@ -68,13 +69,13 @@ namespace SuggestGrid.Models
         /// The user id of the query.
         /// </summary>
         [JsonProperty("user_id")]
-        public string UserId 
-        { 
-            get 
+        public string UserId
+        {
+            get
             {
-                return this.userId; 
-            } 
-            set 
+                return this.userId;
+            }
+            set
             {
                 this.userId = value;
                 onPropertyChanged("UserId");
@@ -85,13 +86,13 @@ namespace SuggestGrid.Models
         /// The user ids of the query. Exactly one of user id or user ids parameters must be provided.
         /// </summary>
         [JsonProperty("user_ids")]
-        public List<string> UserIds 
-        { 
-            get 
+        public List<string> UserIds
+        {
+            get
             {
-                return this.userIds; 
-            } 
-            set 
+                return this.userIds;
+            }
+            set
             {
                 this.userIds = value;
                 onPropertyChanged("UserIds");
@@ -99,16 +100,33 @@ namespace SuggestGrid.Models
         }
 
         /// <summary>
-        /// The number of users asked to return in the response.
+        /// The number of most recommended items to be skipped.
+        /// </summary>
+        [JsonProperty("from")]
+        public int? From
+        {
+            get
+            {
+                return this.mfrom;
+            }
+            set
+            {
+                this.mfrom = value;
+                onPropertyChanged("From");
+            }
+        }
+
+        /// <summary>
+        /// The number of items asked to return in the response.
         /// </summary>
         [JsonProperty("size")]
-        public int? Size 
-        { 
-            get 
+        public int? Size
+        {
+            get
             {
-                return this.size; 
-            } 
-            set 
+                return this.size;
+            }
+            set
             {
                 this.size = value;
                 onPropertyChanged("Size");
@@ -119,13 +137,13 @@ namespace SuggestGrid.Models
         /// Similar item that the response should be similar to.
         /// </summary>
         [JsonProperty("similar_item_id")]
-        public string SimilarItemId 
-        { 
-            get 
+        public string SimilarItemId
+        {
+            get
             {
-                return this.similarItemId; 
-            } 
-            set 
+                return this.similarItemId;
+            }
+            set
             {
                 this.similarItemId = value;
                 onPropertyChanged("SimilarItemId");
@@ -137,13 +155,13 @@ namespace SuggestGrid.Models
         /// At most one of similar item and similar items parameters can be provided.
         /// </summary>
         [JsonProperty("similar_item_ids")]
-        public string SimilarItemIds 
-        { 
-            get 
+        public string SimilarItemIds
+        {
+            get
             {
-                return this.similarItemIds; 
-            } 
-            set 
+                return this.similarItemIds;
+            }
+            set
             {
                 this.similarItemIds = value;
                 onPropertyChanged("SimilarItemIds");
@@ -151,16 +169,16 @@ namespace SuggestGrid.Models
         }
 
         /// <summary>
-        /// The metadata fields that are to be included in returned users.
+        /// The metadata fields that are to be included in returned items.
         /// </summary>
         [JsonProperty("fields")]
-        public List<string> Fields 
-        { 
-            get 
+        public List<string> Fields
+        {
+            get
             {
-                return this.fields; 
-            } 
-            set 
+                return this.fields;
+            }
+            set
             {
                 this.fields = value;
                 onPropertyChanged("Fields");
@@ -172,13 +190,13 @@ namespace SuggestGrid.Models
         /// Filter structure is defined in [the filter parameter documentation](http://www.suggestgrid.com/docs/advanced-features#filters-parameter).
         /// </summary>
         [JsonProperty("filter")]
-        public object Filter 
-        { 
-            get 
+        public object Filter
+        {
+            get
             {
-                return this.filter; 
-            } 
-            set 
+                return this.filter;
+            }
+            set
             {
                 this.filter = value;
                 onPropertyChanged("Filter");
@@ -186,16 +204,16 @@ namespace SuggestGrid.Models
         }
 
         /// <summary>
-        /// These user ids that will not be included in the response.
+        /// These item ids that will not be included in the response.
         /// </summary>
         [JsonProperty("except")]
-        public List<string> Except 
-        { 
-            get 
+        public List<string> Except
+        {
+            get
             {
-                return this.except; 
-            } 
-            set 
+                return this.except;
+            }
+            set
             {
                 this.except = value;
                 onPropertyChanged("Except");
