@@ -12,14 +12,11 @@ using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
-using SuggestGrid.Http.Client;
-
-using SuggestGrid.Models;
 using SuggestGrid;
 
-namespace SuggestGrid.Exceptions
+namespace SuggestGrid.Models
 {
-    public class DeleteSuccessResponseException : APIException 
+    public class DeleteSuccessResponse : INotifyPropertyChanged 
     {
         // These fields hold the values for the public properties.
         private string message;
@@ -37,9 +34,10 @@ namespace SuggestGrid.Exceptions
             {
                 return this.message; 
             } 
-            private set 
+            set 
             {
                 this.message = value;
+                onPropertyChanged("Message");
             }
         }
 
@@ -53,9 +51,10 @@ namespace SuggestGrid.Exceptions
             {
                 return this.found; 
             } 
-            private set 
+            set 
             {
                 this.found = value;
+                onPropertyChanged("Found");
             }
         }
 
@@ -69,9 +68,10 @@ namespace SuggestGrid.Exceptions
             {
                 return this.deleted; 
             } 
-            private set 
+            set 
             {
                 this.deleted = value;
+                onPropertyChanged("Deleted");
             }
         }
 
@@ -85,20 +85,28 @@ namespace SuggestGrid.Exceptions
             {
                 return this.failed; 
             } 
-            private set 
+            set 
             {
                 this.failed = value;
+                onPropertyChanged("Failed");
             }
         }
 
         /// <summary>
-        /// Initialization constructor
+        /// Property changed event for observer pattern
         /// </summary>
-        /// <param name="reason"> The reason for throwing exception </param>
-        /// <param name="context"> The HTTP context that encapsulates request and response objects </param>
-        public DeleteSuccessResponseException(string reason, HttpContext context)
-            : base(reason, context)
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        /// <summary>
+        /// Raises event when a property is changed
+        /// </summary>
+        /// <param name="propertyName">Name of the changed property</param>
+        protected void onPropertyChanged(String propertyName)
         {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            }
         }
     }
 } 

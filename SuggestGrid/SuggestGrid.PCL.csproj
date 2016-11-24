@@ -8,7 +8,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{c9480e01-76a2-46c0-bc0a-f45c37cec823}</ProjectGuid>
+    <ProjectGuid>{1ff01ba7-068d-4791-8d2a-9eb5b6589219}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>SuggestGrid</RootNamespace>
@@ -54,6 +54,7 @@
     <Compile Include="Models\BulkPostResponse.cs" />
     <Compile Include="Models\GetTypeResponse.cs" />
     <Compile Include="Models\GetTypesResponse.cs" />
+    <Compile Include="Models\DeleteSuccessResponse.cs" />
     <Compile Include="Models\UsersResponse.cs" />
     <Compile Include="Models\ActionsResponse.cs" />
     <Compile Include="Models\ItemsResponse.cs" />
@@ -67,7 +68,6 @@
     <Compile Include="Exceptions\DetailedErrorResponseException.cs" />
     <Compile Include="Exceptions\LimitExceededErrorResponseException.cs" />
     <Compile Include="Exceptions\DeleteErrorResponseException.cs" />
-    <Compile Include="Exceptions\DeleteSuccessResponseException.cs" />
     <Compile Include="Exceptions\ErrorResponseException.cs" />
     <Compile Include="Controllers\TypeController.cs" />
     <Compile Include="Controllers\ActionController.cs" />

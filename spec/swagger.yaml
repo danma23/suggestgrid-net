@@ -2,7 +2,7 @@ swagger: '2.0'
 
 info:
   title: SuggestGrid
-  version: 0.1.25-SNAPSHOT
+  version: 0.1.25
   description: SuggestGrid is a recommendation and personalization service.
   x-codegen-settings:
     appendContentHeaders: true
@@ -802,10 +802,6 @@ paths:
       responses:
         200:
           description: Successfully deleted actions.
-          schema:
-            $ref: '#/definitions/DeleteSuccessResponse'
-        209:
-          description: Some actions are deleted successfully.
           schema:
             $ref: '#/definitions/DeleteSuccessResponse'
         400:

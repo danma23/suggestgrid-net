@@ -279,7 +279,8 @@ namespace SuggestGrid.Controllers
             //append request with appropriate headers and parameters
             var _headers = new Dictionary<string,string>()
             {
-                { "user-agent", "SUGGESTGRID" }
+                { "user-agent", "SUGGESTGRID" },
+                { "accept", "application/json" }
             };
 
             //prepare the API call request to fetch the response
@@ -290,10 +291,7 @@ namespace SuggestGrid.Controllers
             HttpContext _context = new HttpContext(_request,_response);
 
             //Error handling using HTTP status codes
-            if (_response.StatusCode == 209)
-                throw new DeleteSuccessResponseException(@"Some actions are deleted successfully.", _context);
-
-            else if (_response.StatusCode == 400)
+            if (_response.StatusCode == 400)
                 throw new ErrorResponseException(@"Required `user_id` or `item_id` parameters are missing from the request body.", _context);
 
             else if (_response.StatusCode == 404)
@@ -316,7 +314,7 @@ namespace SuggestGrid.Controllers
 
             try
             {
-                return _response.Body;
+                return APIHelper.JsonDeserialize<DeleteSuccessResponse>(_response.Body);
             }
             catch (Exception _ex)
             {
