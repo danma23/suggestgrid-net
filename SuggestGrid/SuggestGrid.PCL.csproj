@@ -2,13 +2,13 @@
 <!--
  - SuggestGrid.PCL
  -
- - This file was automatically generated for SuggestGrid by APIMATIC v2.0 ( https://apimatic.io ) on 11/24/2016
+ - This file was automatically generated for SuggestGrid by APIMATIC v2.0 ( https://apimatic.io ) on 11/25/2016
 -->
 <Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{d72fff68-51e8-41af-a71a-3f9a284bdf98}</ProjectGuid>
+    <ProjectGuid>{7dc06743-5922-4e6e-966e-33472b63c4a1}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>SuggestGrid</RootNamespace>
