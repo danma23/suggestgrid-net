@@ -115,6 +115,7 @@ Name | Type |Required| Description
 --- | --- | --- | ---
 item_id|string|true|The item id of the item the action is performed on.
 rating|number|false|The optional rating given by the user, if the type is explicit.
+timestamp|number|false|The optional UNIX epoch timestamp of the action. Defaults to the current timestamp.
 type|string|true|The type that the action belongs to.
 user_id|string|true|The user id of the performer of the action.
 ### Post Bulk Actions

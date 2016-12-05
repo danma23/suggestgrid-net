@@ -2,7 +2,7 @@ swagger: '2.0'
 
 info:
   title: SuggestGrid
-  version: 0.1.27
+  version: 0.1.28-SNAPSHOT
   description: SuggestGrid is a recommendation and personalization service.
   x-codegen-settings:
     appendContentHeaders: true
@@ -115,6 +115,9 @@ definitions:
       rating:
         type: number
         description: The optional rating given by the user, if the type is explicit.
+      timestamp:
+        type: number
+        description: The optional UNIX epoch timestamp of the action. Defaults to the current timestamp.
     required:
       - type
       - user_id
@@ -447,10 +450,6 @@ definitions:
         description: The list of type names
         items:
           type: string
-      status:
-        type: integer
-        format: int32
-        description: Status code of the response. It is not 2XX.
   GetTypeResponse:
     type: object
     description: Get type details response.
