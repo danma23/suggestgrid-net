@@ -304,10 +304,10 @@ suggestGridClient.Metadata.PostBulkUsers(users);
 ```
 
 #### Parameters
-### Get An User
+### Get A User
 > `GetUser()`
 
-Returns an user metadata if it exists.
+Returns a user metadata if it exists.
 
 
 ```csharp

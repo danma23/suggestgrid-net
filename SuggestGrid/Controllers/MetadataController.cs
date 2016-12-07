@@ -1,7 +1,7 @@
 /*
  * SuggestGrid.PCL
  *
- * This file was automatically generated for SuggestGrid by APIMATIC v2.0 ( https://apimatic.io ) on 12/05/2016
+ * This file was automatically generated for SuggestGrid by APIMATIC v2.0 ( https://apimatic.io ) on 12/07/2016
  */
 using System;
 using System.Collections.Generic;
@@ -50,7 +50,7 @@ namespace SuggestGrid.Controllers
         #endregion Singleton Pattern
 
         /// <summary>
-        /// Get An User
+        /// Get A User
         /// </summary>
         /// <param name="userId">Required parameter: The user id to delete its metadata.</param>
         /// <return>Returns the Metadata response from the API call</return>
@@ -62,7 +62,7 @@ namespace SuggestGrid.Controllers
         }
 
         /// <summary>
-        /// Get An User
+        /// Get A User
         /// </summary>
         /// <param name="userId">Required parameter: The user id to delete its metadata.</param>
         /// <return>Returns the Metadata response from the API call</return>
