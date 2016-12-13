@@ -548,7 +548,7 @@ paths:
         200:
           description: Get types response.
           schema:
-            $ref: '#/definitions/GetTypesResponse'
+            $ref: '#/definitions/MessageResponse'
         429:
           description: Too many requests.
           schema:
