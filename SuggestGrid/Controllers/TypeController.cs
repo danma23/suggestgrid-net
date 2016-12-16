@@ -1,7 +1,7 @@
 /*
  * SuggestGrid.PCL
  *
- * This file was automatically generated for SuggestGrid by APIMATIC v2.0 ( https://apimatic.io ) on 12/13/2016
+ * This file was automatically generated for SuggestGrid by APIMATIC v2.0 ( https://apimatic.io ) on 12/16/2016
  */
 using System;
 using System.Collections.Generic;
@@ -223,7 +223,10 @@ namespace SuggestGrid.Controllers
             HttpContext _context = new HttpContext(_request,_response);
 
             //Error handling using HTTP status codes
-            if (_response.StatusCode == 429)
+            if (_response.StatusCode == 404)
+                throw new ErrorResponseException(@"Type not found.", _context);
+
+            else if (_response.StatusCode == 429)
                 throw new ErrorResponseException(@"Too many requests.", _context);
 
             else if (_response.StatusCode == 500)

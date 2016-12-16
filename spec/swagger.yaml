@@ -576,6 +576,10 @@ paths:
           description: Get type response.
           schema:
             $ref: '#/definitions/GetTypeResponse'
+        404:
+          description: Type not found.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
         429:
           description: Too many requests.
           schema:
