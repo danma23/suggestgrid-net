@@ -548,7 +548,7 @@ paths:
         200:
           description: Get types response.
           schema:
-            $ref: '#/definitions/GetTypesResponse'
+            $ref: '#/definitions/MessageResponse'
         429:
           description: Too many requests.
           schema:
@@ -894,11 +894,11 @@ paths:
       tags:
         - metadata
       operationId: get_user
-      summary: Get An User
-      description: Returns an user metadata if it exists.
+      summary: Get A User
+      description: Returns a user metadata if it exists.
       responses:
         200:
-          description: Returns an user metadata.
+          description: Returns a user metadata.
           schema:
             $ref: '#/definitions/Metadata'
         404:

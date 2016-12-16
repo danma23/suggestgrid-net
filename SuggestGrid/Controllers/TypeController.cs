@@ -1,7 +1,7 @@
 /*
  * SuggestGrid.PCL
  *
- * This file was automatically generated for SuggestGrid by APIMATIC v2.0 ( https://apimatic.io ) on 12/05/2016
+ * This file was automatically generated for SuggestGrid by APIMATIC v2.0 ( https://apimatic.io ) on 12/13/2016
  */
 using System;
 using System.Collections.Generic;
@@ -113,10 +113,10 @@ namespace SuggestGrid.Controllers
         /// <summary>
         /// Delete All Types
         /// </summary>
-        /// <return>Returns the GetTypesResponse response from the API call</return>
-        public GetTypesResponse DeleteAllTypes()
+        /// <return>Returns the MessageResponse response from the API call</return>
+        public MessageResponse DeleteAllTypes()
         {
-            Task<GetTypesResponse> t = DeleteAllTypesAsync();
+            Task<MessageResponse> t = DeleteAllTypesAsync();
             APIHelper.RunTaskSynchronously(t);
             return t.Result;
         }
@@ -124,8 +124,8 @@ namespace SuggestGrid.Controllers
         /// <summary>
         /// Delete All Types
         /// </summary>
-        /// <return>Returns the GetTypesResponse response from the API call</return>
-        public async Task<GetTypesResponse> DeleteAllTypesAsync()
+        /// <return>Returns the MessageResponse response from the API call</return>
+        public async Task<MessageResponse> DeleteAllTypesAsync()
         {
             //the base uri for api requestss
             string _baseUri = Configuration.BaseUri;
@@ -164,7 +164,7 @@ namespace SuggestGrid.Controllers
 
             try
             {
-                return APIHelper.JsonDeserialize<GetTypesResponse>(_response.Body);
+                return APIHelper.JsonDeserialize<MessageResponse>(_response.Body);
             }
             catch (Exception _ex)
             {
