@@ -540,7 +540,7 @@ You can read [filters](/docs/concepts#filters-parameter) and [fields](/docs/conc
 Name | Type |Required| Description
 --- | --- | --- | ---
 except|array|false|These user ids that will not be included in the response.
-fields|array|false|The metadata fields that are to be included in returned users.
+fields|array|false|The metadata fields to be included in returned user objects.
 filter||false|
 from|integer|false|The number of most recommended items to be skipped.
 item_id|string|false|The item id of the query.
@@ -623,7 +623,7 @@ You can read [filters](/docs/concepts#filters-parameter) and [fields](/docs/conc
 Name | Type |Required| Description
 --- | --- | --- | ---
 except|array|false|These item ids that will not be included in the response.
-fields|array|false|The metadata fields that are to be included in returned items.
+fields|array|false|The metadata fields to be included in returned item objects.
 filter||false|
 from|integer|false|The number of most recommended items to be skipped.
 similar_item_id|string|false|Similar item that the response should be similar to.
@@ -690,7 +690,7 @@ You can read [filters](/docs/concepts#filters-parameter) and [fields](/docs/conc
 Name | Type |Required| Description
 --- | --- | --- | ---
 except|array|false|These user ids that will not be included in the response.
-fields|array|false|The metadata fields that are to be included in returned users.
+fields|array|false|The metadata fields to be included in returned user objects.
 filter||false|
 from|integer|false|The number of most similar users to be skipped.
 size|integer|false|The number of users asked to return in the response.
@@ -749,7 +749,7 @@ You can read [filters](/docs/concepts#filters-parameter) and [fields](/docs/conc
 Name | Type |Required| Description
 --- | --- | --- | ---
 except|array|false|These item ids that will not be included in the response.
-fields|array|false|The metadata fields that are to be included in returned items.
+fields|array|false|The metadata fields to be included in returned item objects.
 filter||false|
 from|integer|false|The number of most similar items to be skipped.
 item_id|string|false|The item id of the query. Get similar items to given item id. Either item id or item ids must be provided.

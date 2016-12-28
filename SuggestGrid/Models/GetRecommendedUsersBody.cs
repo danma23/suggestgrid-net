@@ -1,7 +1,7 @@
 /*
  * SuggestGrid.PCL
  *
- * This file was automatically generated for SuggestGrid by APIMATIC v2.0 ( https://apimatic.io ) on 12/16/2016
+ * This file was automatically generated for SuggestGrid by APIMATIC v2.0 ( https://apimatic.io ) on 12/18/2016
  */
 using System;
 using System.IO;
@@ -169,7 +169,7 @@ namespace SuggestGrid.Models
         }
 
         /// <summary>
-        /// The metadata fields that are to be included in returned users.
+        /// The metadata fields to be included in returned user objects.
         /// </summary>
         [JsonProperty("fields")]
         public List<string> Fields 

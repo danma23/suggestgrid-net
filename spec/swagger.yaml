@@ -197,7 +197,7 @@ definitions:
         type: array
         items:
           type: string
-        description: The metadata fields that are to be included in returned users.
+        description: The metadata fields to be included in returned user objects.
       filter:
         $ref: '#/definitions/Filter'
       except:
@@ -241,7 +241,7 @@ definitions:
         type: array
         items:
           type: string
-        description: The metadata fields that are to be included in returned items.
+        description: The metadata fields to be included in returned item objects.
       filter:
         $ref: '#/definitions/Filter'
       except:
@@ -277,7 +277,7 @@ definitions:
         type: array
         items:
           type: string
-        description: The metadata fields that are to be included in returned users.
+        description: The metadata fields to be included in returned user objects.
       filter:
         $ref: '#/definitions/Filter'
       except:
@@ -315,7 +315,7 @@ definitions:
         type: array
         items:
           type: string
-        description: The metadata fields that are to be included in returned items.
+        description: The metadata fields to be included in returned item objects.
       filter:
         $ref: '#/definitions/Filter'
       except:
