@@ -157,10 +157,7 @@ definitions:
     properties:
       rating:
         type: string
-        description:  |
-          The rating type of the type to be created.
-          Could be "explicit" or "implicit"
-          The default is "implicit".
+        description: The rating type of the type. Could be "explicit" or "implicit", where "implicit" is the default.
   GetRecommendedUsersBody:
     type: object
     description: Query for recommended users.
@@ -597,7 +594,7 @@ paths:
       parameters:
         - name: type
           in: path
-          description: The name of the type to be created.
+          description: The name of the type.
           required: true
           type: string
           format: id

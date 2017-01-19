@@ -28,8 +28,8 @@ Name | Type |Required| Description
 
 Name | Type |Required| Description
 --- | --- | --- | ---
-rating|string|false|The rating type of the type to be created. Could be "explicit" or "implicit" The default is "implicit". 
-type|string|true|The name of the type to be created.
+rating|string|false|The rating type of the type. Could be "explicit" or "implicit", where "implicit" is the default.
+type|string|true|The name of the type.
 ### Get Properties of a Type
 > `GetType(type)`
 

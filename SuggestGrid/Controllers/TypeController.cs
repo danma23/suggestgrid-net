@@ -1,7 +1,7 @@
 /*
  * SuggestGrid.PCL
  *
- * This file was automatically generated for SuggestGrid by APIMATIC v2.0 ( https://apimatic.io ) on 01/18/2017
+ * This file was automatically generated for SuggestGrid by APIMATIC v2.0 ( https://apimatic.io ) on 01/19/2017
  */
 using System;
 using System.Collections.Generic;
@@ -248,7 +248,7 @@ namespace SuggestGrid.Controllers
         /// <summary>
         /// Create a New Type
         /// </summary>
-        /// <param name="type">Required parameter: The name of the type to be created.</param>
+        /// <param name="type">Required parameter: The name of the type.</param>
         /// <param name="settings">Optional parameter: Optional settings for the rating parameter.</param>
         /// <return>Returns the MessageResponse response from the API call</return>
         public MessageResponse CreateType(string type, TypeRequestBody settings = null)
@@ -261,7 +261,7 @@ namespace SuggestGrid.Controllers
         /// <summary>
         /// Create a New Type
         /// </summary>
-        /// <param name="type">Required parameter: The name of the type to be created.</param>
+        /// <param name="type">Required parameter: The name of the type.</param>
         /// <param name="settings">Optional parameter: Optional settings for the rating parameter.</param>
         /// <return>Returns the MessageResponse response from the API call</return>
         public async Task<MessageResponse> CreateTypeAsync(string type, TypeRequestBody settings = null)
