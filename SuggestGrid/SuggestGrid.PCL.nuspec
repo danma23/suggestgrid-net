@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
 SuggestGrid.PCL
-This file was automatically generated for SuggestGrid by APIMATIC v2.0 ( https://apimatic.io ) on 01/19/2017
+This file was automatically generated for SuggestGrid by APIMATIC v2.0 ( https://apimatic.io ) on 01/20/2017
 -->
 <package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
   <metadata>
@@ -11,7 +11,7 @@ This file was automatically generated for SuggestGrid by APIMATIC v2.0 ( https:/
     <authors>SuggestGrid</authors>
     <iconUrl>https://nuget.org/Content/Images/packageDefaultIcon-50x50.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>SuggestGrid is a recommendation and personalization service.</description>
+    <description>Personalization made Simple</description>
     <summary />
     <releaseNotes />
     <copyright>Copyright 2016</copyright>
