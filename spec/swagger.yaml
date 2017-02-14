@@ -181,7 +181,7 @@ definitions:
         description: The number of most recommended items to be skipped.
       size:
         type: integer
-        description: The number of users asked to return in the response.
+        description: The number of users asked to return in the response. Defaults to 10. Must be between 1 and 10.000 inclusive.
       similar_user_id:
         type: string
         description: Similar user that the response should be similar to.
@@ -225,7 +225,7 @@ definitions:
         description: The number of most recommended items to be skipped.
       size:
         type: integer
-        description: The number of items asked to return in the response.
+        description: The number of items asked to return in the response. Defaults to 10. Must be between 1 and 10.000 inclusive.
       similar_item_id:
         type: string
         description: Similar item that the response should be similar to.
@@ -269,7 +269,7 @@ definitions:
         description: The number of most similar users to be skipped.
       size:
         type: integer
-        description: The number of users asked to return in the response.
+        description: The number of users asked to return in the response. Defaults to 10. Must be between 1 and 10.000 inclusive.
       fields:
         type: array
         items:
@@ -307,7 +307,7 @@ definitions:
         description: The number of most similar items to be skipped.
       size:
         type: integer
-        description: The number of items asked to return in the response.
+        description: The number of items asked to return in the response. Defaults to 10. Must be between 1 and 10.000 inclusive.
       fields:
         type: array
         items:
