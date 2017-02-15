@@ -299,7 +299,11 @@ namespace SuggestGrid
                 if (enumHelperType != null)
                 {
                     //this enum has an associated helper, use that to load the value
+#if DNXCORE50
+                    MethodInfo enumHelperMethod = enumHelperType.GetTypeInfo().GetMethod("ToValue", new[] { value.GetType() });
+#else
                     MethodInfo enumHelperMethod = enumHelperType.GetMethod("ToValue", new[] { value.GetType() });
+#endif
                     if (enumHelperMethod != null)
                         enumValue = enumHelperMethod.Invoke(null, new object[] { value });
                 }
@@ -320,7 +324,11 @@ namespace SuggestGrid
             else if (!(value.GetType().Namespace.StartsWith("System")))
             {
                 //Custom object Iterate through its properties
+#if DNXCORE50
+                var enumerator = value.GetType().GetTypeInfo().GetProperties().GetEnumerator();
+#else
                 var enumerator = value.GetType().GetProperties().GetEnumerator();
+#endif
                 PropertyInfo pInfo = null;
                 var t = new JsonPropertyAttribute().GetType();
                 while (enumerator.MoveNext())
