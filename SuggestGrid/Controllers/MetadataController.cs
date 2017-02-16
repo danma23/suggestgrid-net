@@ -1,7 +1,7 @@
 /*
  * SuggestGrid.PCL
  *
- * This file was automatically generated for SuggestGrid by APIMATIC v2.0 ( https://apimatic.io ) on 02/10/2017
+ * This file was automatically generated for SuggestGrid by APIMATIC v2.0 ( https://apimatic.io ) on 02/16/2017
  */
 using System;
 using System.Collections.Generic;
@@ -195,7 +195,7 @@ namespace SuggestGrid.Controllers
         /// <param name="size">Optional parameter: The number of the users response. Defaults to 10. Must be between 1 and 10.000 inclusive. This parameter must be string represetation of an integer like "1".</param>
         /// <param name="mfrom">Optional parameter: The number of users to be skipped for response. Defaults to 0. Must be bigger than or equal to 0. This parameter must be string represetation of an integer like "1".</param>
         /// <return>Returns the UsersResponse response from the API call</return>
-        public UsersResponse GetUsers(int? size = null, int? mfrom = null)
+        public UsersResponse GetUsers(long? size = null, long? mfrom = null)
         {
             Task<UsersResponse> t = GetUsersAsync(size, mfrom);
             APIHelper.RunTaskSynchronously(t);
@@ -208,7 +208,7 @@ namespace SuggestGrid.Controllers
         /// <param name="size">Optional parameter: The number of the users response. Defaults to 10. Must be between 1 and 10.000 inclusive. This parameter must be string represetation of an integer like "1".</param>
         /// <param name="mfrom">Optional parameter: The number of users to be skipped for response. Defaults to 0. Must be bigger than or equal to 0. This parameter must be string represetation of an integer like "1".</param>
         /// <return>Returns the UsersResponse response from the API call</return>
-        public async Task<UsersResponse> GetUsersAsync(int? size = null, int? mfrom = null)
+        public async Task<UsersResponse> GetUsersAsync(long? size = null, long? mfrom = null)
         {
             //the base uri for api requestss
             string _baseUri = Configuration.BaseUri;
@@ -541,7 +541,7 @@ namespace SuggestGrid.Controllers
         /// <param name="size">Optional parameter: The number of the users response. Defaults to 10. Must be between 1 and 10.000 inclusive. This parameter must be string represetation of an integer like "1".</param>
         /// <param name="mfrom">Optional parameter: The number of users to be skipped for response. Defaults to 0. Must be bigger than or equal to 0. This parameter must be string represetation of an integer like "1".</param>
         /// <return>Returns the ItemsResponse response from the API call</return>
-        public ItemsResponse GetItems(int? size = null, int? mfrom = null)
+        public ItemsResponse GetItems(long? size = null, long? mfrom = null)
         {
             Task<ItemsResponse> t = GetItemsAsync(size, mfrom);
             APIHelper.RunTaskSynchronously(t);
@@ -554,7 +554,7 @@ namespace SuggestGrid.Controllers
         /// <param name="size">Optional parameter: The number of the users response. Defaults to 10. Must be between 1 and 10.000 inclusive. This parameter must be string represetation of an integer like "1".</param>
         /// <param name="mfrom">Optional parameter: The number of users to be skipped for response. Defaults to 0. Must be bigger than or equal to 0. This parameter must be string represetation of an integer like "1".</param>
         /// <return>Returns the ItemsResponse response from the API call</return>
-        public async Task<ItemsResponse> GetItemsAsync(int? size = null, int? mfrom = null)
+        public async Task<ItemsResponse> GetItemsAsync(long? size = null, long? mfrom = null)
         {
             //the base uri for api requestss
             string _baseUri = Configuration.BaseUri;

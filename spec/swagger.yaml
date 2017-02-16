@@ -388,11 +388,11 @@ definitions:
         description: URI of the response for more details.
       used:
         type: integer
-        format: int32
+        format: int64
         description: The quantity used by the account.
       limit:
         type: integer
-        format: int32
+        format: int64
         description: The limit quantity of the account.
   DeleteErrorResponse:
     type: object
@@ -409,15 +409,15 @@ definitions:
         description: URI of the response for more details.
       found:
         type: integer
-        format: int32
+        format: int64
         description: The number of records found for the delete query.
       deleted:
         type: integer
-        format: int32
+        format: int64
         description: The number of records deleted for the delete query.
       failed:
         type: integer
-        format: int32
+        format: int64
         description: The number of records found but not deleted for the delete query.
   DeleteSuccessResponse:
     type: object
@@ -428,15 +428,15 @@ definitions:
         description: Message of the response.
       found:
         type: integer
-        format: int32
+        format: int64
         description: The number of records found for the delete query.
       deleted:
         type: integer
-        format: int32
+        format: int64
         description: The number of records deleted for the delete query.
       failed:
         type: integer
-        format: int32
+        format: int64
         description: The number of records found but not deleted for the delete query.
   GetTypesResponse:
     type: object
@@ -735,10 +735,9 @@ paths:
           in: query
           description: |
             Maxium timestamp of the actions.
-            Valid times are 1s, 1m, 1h, 1d, 1M, 1y, or unix timestamp (like 1443798195).
+            Valid times are in form of 1s, 1m, 1h, 1d, 1M, 1y, where 1 can be any integer, or a UNIX timestamp like 1443798195.
           required: false
           type: string
-          format: id
         - name: size
           in: query
           description: |
@@ -747,7 +746,7 @@ paths:
             This parameter must be string represetation of an integer like "1".
           required: false
           type: integer
-          format: int32
+          format: int64
         - name: from
           in: query
           description: |
@@ -756,7 +755,7 @@ paths:
             This parameter must be string represetation of an integer like "1".
           required: false
           type: integer
-          format: int32
+          format: int64
       responses:
         200:
           description: Paged actions response.
@@ -807,10 +806,9 @@ paths:
           in: query
           description: |
             Delete all actions of a type older than the given timestamp or time.
-            Valid times are 1s, 1m, 1h, 1d, 1M, 1y, or unix timestamp (like 1443798195).
+            Valid times are in form of 1s, 1m, 1h, 1d, 1M, 1y, where 1 can be any integer, or a UNIX timestamp like 1443798195.
           required: false
           type: string
-          format: id
       responses:
         200:
           description: Successfully deleted actions.
@@ -977,7 +975,7 @@ paths:
             This parameter must be string represetation of an integer like "1".
           required: false
           type: integer
-          format: int32
+          format: int64
         - name: from
           in: query
           description: |
@@ -986,7 +984,7 @@ paths:
             This parameter must be string represetation of an integer like "1".
           required: false
           type: integer
-          format: int32
+          format: int64
       responses:
         200:
           description: Get users response.
@@ -1115,7 +1113,7 @@ paths:
             This parameter must be string represetation of an integer like "1".
           required: false
           type: integer
-          format: int32
+          format: int64
         - name: from
           in: query
           description: |
@@ -1124,7 +1122,7 @@ paths:
             This parameter must be string represetation of an integer like "1".
           required: false
           type: integer
-          format: int32
+          format: int64
       responses:
         200:
           description: Get items response.
