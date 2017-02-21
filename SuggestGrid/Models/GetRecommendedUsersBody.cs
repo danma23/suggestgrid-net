@@ -1,7 +1,7 @@
 /*
  * SuggestGrid.PCL
  *
- * This file was automatically generated for SuggestGrid by APIMATIC v2.0 ( https://apimatic.io ) on 12/16/2016
+ * This file was automatically generated for SuggestGrid by APIMATIC v2.0 ( https://apimatic.io ) on 02/21/2017
  */
 using System;
 using System.IO;
@@ -117,7 +117,7 @@ namespace SuggestGrid.Models
         }
 
         /// <summary>
-        /// The number of users asked to return in the response.
+        /// The number of users asked to return in the response. Defaults to 10. Must be between 1 and 10.000 inclusive.
         /// </summary>
         [JsonProperty("size")]
         public int? Size 
@@ -169,7 +169,7 @@ namespace SuggestGrid.Models
         }
 
         /// <summary>
-        /// The metadata fields that are to be included in returned users.
+        /// The metadata fields to be included in returned user objects.
         /// </summary>
         [JsonProperty("fields")]
         public List<string> Fields 

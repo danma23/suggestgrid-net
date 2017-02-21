@@ -28,8 +28,8 @@ Name | Type |Required| Description
 
 Name | Type |Required| Description
 --- | --- | --- | ---
-rating|string|false|The rating type of the type to be created. Could be "explicit" or "implicit" The default is "implicit". 
-type|string|true|The name of the type to be created.
+rating|string|false|The rating type of the type. Could be "explicit" or "implicit", where "implicit" is the default.
+type|string|true|The name of the type.
 ### Get Properties of a Type
 > `GetType(type)`
 
@@ -115,7 +115,7 @@ Name | Type |Required| Description
 --- | --- | --- | ---
 item_id|string|true|The item id of the item the action is performed on.
 rating|number|false|The optional rating given by the user, if the type is explicit.
-timestamp|number|false|The optional UNIX epoch timestamp of the action. Defaults to the current timestamp.
+timestamp|integer|false|The optional UNIX epoch timestamp of the action. Defaults to the current timestamp.
 type|string|true|The type that the action belongs to.
 user_id|string|true|The user id of the performer of the action.
 ### Post Bulk Actions
@@ -191,7 +191,7 @@ Name | Type |Required| Description
 --- | --- | --- | ---
 from|integer||The number of users to be skipped for response. Defaults to 0. Must be bigger than or equal to 0. This parameter must be string represetation of an integer like "1". 
 item_id|string||The item id of the actions.
-older_than|string||Maxium timestamp of the actions. Valid times are 1s, 1m, 1h, 1d, 1M, 1y, or unix timestamp (like 1443798195). 
+older_than|string||Maxium timestamp of the actions. Valid times are in form of 1s, 1m, 1h, 1d, 1M, 1y, where 1 can be any integer, or a UNIX timestamp like 1443798195. 
 size|integer||The number of the users response. Defaults to 10. Must be between 1 and 10.000 inclusive. This parameter must be string represetation of an integer like "1". 
 type|string||The type of the actions.
 user_id|string||The user id of the actions.
@@ -252,7 +252,7 @@ suggestGridClient.Action.DeleteActions("views","1", "30", "891628467");
 Name | Type |Required| Description
 --- | --- | --- | ---
 item_id|string||The item id of the actions.
-older_than|string||Delete all actions of a type older than the given timestamp or time. Valid times are 1s, 1m, 1h, 1d, 1M, 1y, or unix timestamp (like 1443798195). 
+older_than|string||Delete all actions of a type older than the given timestamp or time. Valid times are in form of 1s, 1m, 1h, 1d, 1M, 1y, where 1 can be any integer, or a UNIX timestamp like 1443798195. 
 type|string||The type of the actions.
 user_id|string||The user id of the actions.
 
@@ -540,14 +540,14 @@ You can read [filters](/docs/concepts#filters-parameter) and [fields](/docs/conc
 Name | Type |Required| Description
 --- | --- | --- | ---
 except|array|false|These user ids that will not be included in the response.
-fields|array|false|The metadata fields that are to be included in returned users.
+fields|array|false|The metadata fields to be included in returned user objects.
 filter||false|
 from|integer|false|The number of most recommended items to be skipped.
 item_id|string|false|The item id of the query.
 item_ids|array|false|The item ids of the query. Exactly one of item id or item ids parameters must be provided.
 similar_user_id|string|false|Similar user that the response should be similar to.
 similar_user_ids|string|false|Similar users that the response should be similar to. At most one of similar user and similar users parameters can be provided. 
-size|integer|false|The number of users asked to return in the response.
+size|integer|false|The number of users asked to return in the response. Defaults to 10. Must be between 1 and 10.000 inclusive.
 type|string|false|The type of the query.
 types|string|false|The types of the query. Exactly one of type or types parameters must be provided.
 ### Get Recommended Items
@@ -623,12 +623,12 @@ You can read [filters](/docs/concepts#filters-parameter) and [fields](/docs/conc
 Name | Type |Required| Description
 --- | --- | --- | ---
 except|array|false|These item ids that will not be included in the response.
-fields|array|false|The metadata fields that are to be included in returned items.
+fields|array|false|The metadata fields to be included in returned item objects.
 filter||false|
 from|integer|false|The number of most recommended items to be skipped.
 similar_item_id|string|false|Similar item that the response should be similar to.
 similar_item_ids|string|false|Similar items that the response should be similar to. At most one of similar item and similar items parameters can be provided. 
-size|integer|false|The number of items asked to return in the response.
+size|integer|false|The number of items asked to return in the response. Defaults to 10. Must be between 1 and 10.000 inclusive.
 type|string|false|The type of the query.
 types|string|false|The types of the query. Exactly one of type or types parameters must be provided.
 user_id|string|false|The user id of the query.
@@ -690,10 +690,10 @@ You can read [filters](/docs/concepts#filters-parameter) and [fields](/docs/conc
 Name | Type |Required| Description
 --- | --- | --- | ---
 except|array|false|These user ids that will not be included in the response.
-fields|array|false|The metadata fields that are to be included in returned users.
+fields|array|false|The metadata fields to be included in returned user objects.
 filter||false|
 from|integer|false|The number of most similar users to be skipped.
-size|integer|false|The number of users asked to return in the response.
+size|integer|false|The number of users asked to return in the response. Defaults to 10. Must be between 1 and 10.000 inclusive.
 type|string|false|The type of the query.
 types|string|false|The types of the query. Exactly one of type or types parameters must be provided.
 user_id|string|false|The user id of the query.
@@ -749,11 +749,11 @@ You can read [filters](/docs/concepts#filters-parameter) and [fields](/docs/conc
 Name | Type |Required| Description
 --- | --- | --- | ---
 except|array|false|These item ids that will not be included in the response.
-fields|array|false|The metadata fields that are to be included in returned items.
+fields|array|false|The metadata fields to be included in returned item objects.
 filter||false|
 from|integer|false|The number of most similar items to be skipped.
 item_id|string|false|The item id of the query. Get similar items to given item id. Either item id or item ids must be provided.
 item_ids|array|false|The item ids of the query. Exactly one of item id or item ids parameters must be provided. Get similar items to given item ids. Either item id or item ids must be provided.
-size|integer|false|The number of items asked to return in the response.
+size|integer|false|The number of items asked to return in the response. Defaults to 10. Must be between 1 and 10.000 inclusive.
 type|string|false|The type of the query.
 types|string|false|The types of the query. Exactly one of type or types parameters must be provided.

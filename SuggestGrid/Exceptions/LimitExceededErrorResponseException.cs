@@ -1,7 +1,7 @@
 /*
  * SuggestGrid.PCL
  *
- * This file was automatically generated for SuggestGrid by APIMATIC v2.0 ( https://apimatic.io ) on 12/16/2016
+ * This file was automatically generated for SuggestGrid by APIMATIC v2.0 ( https://apimatic.io ) on 02/21/2017
  */
 using System;
 using System.IO;
@@ -25,8 +25,8 @@ namespace SuggestGrid.Exceptions
         private string errorText;
         private string errorDescription;
         private string errorUri;
-        private int? used;
-        private int? limit;
+        private long? used;
+        private long? limit;
 
         /// <summary>
         /// Message of the response.
@@ -80,7 +80,7 @@ namespace SuggestGrid.Exceptions
         /// The quantity used by the account.
         /// </summary>
         [JsonProperty("used")]
-        public int? Used 
+        public long? Used 
         { 
             get 
             {
@@ -96,7 +96,7 @@ namespace SuggestGrid.Exceptions
         /// The limit quantity of the account.
         /// </summary>
         [JsonProperty("limit")]
-        public int? Limit 
+        public long? Limit 
         { 
             get 
             {

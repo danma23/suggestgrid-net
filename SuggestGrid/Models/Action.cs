@@ -1,7 +1,7 @@
 /*
  * SuggestGrid.PCL
  *
- * This file was automatically generated for SuggestGrid by APIMATIC v2.0 ( https://apimatic.io ) on 12/16/2016
+ * This file was automatically generated for SuggestGrid by APIMATIC v2.0 ( https://apimatic.io ) on 02/21/2017
  */
 using System;
 using System.IO;
@@ -23,7 +23,7 @@ namespace SuggestGrid.Models
         private string userId;
         private string itemId;
         private double? rating;
-        private double? timestamp;
+        private long? timestamp;
 
         /// <summary>
         /// The type that the action belongs to.
@@ -97,7 +97,7 @@ namespace SuggestGrid.Models
         /// The optional UNIX epoch timestamp of the action. Defaults to the current timestamp.
         /// </summary>
         [JsonProperty("timestamp")]
-        public double? Timestamp
+        public long? Timestamp
         {
             get
             {

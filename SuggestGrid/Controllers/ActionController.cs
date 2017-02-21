@@ -1,7 +1,7 @@
 /*
  * SuggestGrid.PCL
  *
- * This file was automatically generated for SuggestGrid by APIMATIC v2.0 ( https://apimatic.io ) on 12/16/2016
+ * This file was automatically generated for SuggestGrid by APIMATIC v2.0 ( https://apimatic.io ) on 02/21/2017
  */
 using System;
 using System.Collections.Generic;
@@ -55,7 +55,7 @@ namespace SuggestGrid.Controllers
         /// <param name="type">Optional parameter: The type of the actions.</param>
         /// <param name="userId">Optional parameter: The user id of the actions.</param>
         /// <param name="itemId">Optional parameter: The item id of the actions.</param>
-        /// <param name="olderThan">Optional parameter: Maxium timestamp of the actions. Valid times are 1s, 1m, 1h, 1d, 1M, 1y, or unix timestamp (like 1443798195).</param>
+        /// <param name="olderThan">Optional parameter: Maxium timestamp of the actions. Valid times are in form of 1s, 1m, 1h, 1d, 1M, 1y, where 1 can be any integer, or a UNIX timestamp like 1443798195.</param>
         /// <param name="size">Optional parameter: The number of the users response. Defaults to 10. Must be between 1 and 10.000 inclusive. This parameter must be string represetation of an integer like "1".</param>
         /// <param name="mfrom">Optional parameter: The number of users to be skipped for response. Defaults to 0. Must be bigger than or equal to 0. This parameter must be string represetation of an integer like "1".</param>
         /// <return>Returns the ActionsResponse response from the API call</return>
@@ -64,8 +64,8 @@ namespace SuggestGrid.Controllers
                 string userId = null,
                 string itemId = null,
                 string olderThan = null,
-                int? size = null,
-                int? mfrom = null)
+                long? size = null,
+                long? mfrom = null)
         {
             Task<ActionsResponse> t = GetActionsAsync(type, userId, itemId, olderThan, size, mfrom);
             APIHelper.RunTaskSynchronously(t);
@@ -78,7 +78,7 @@ namespace SuggestGrid.Controllers
         /// <param name="type">Optional parameter: The type of the actions.</param>
         /// <param name="userId">Optional parameter: The user id of the actions.</param>
         /// <param name="itemId">Optional parameter: The item id of the actions.</param>
-        /// <param name="olderThan">Optional parameter: Maxium timestamp of the actions. Valid times are 1s, 1m, 1h, 1d, 1M, 1y, or unix timestamp (like 1443798195).</param>
+        /// <param name="olderThan">Optional parameter: Maxium timestamp of the actions. Valid times are in form of 1s, 1m, 1h, 1d, 1M, 1y, where 1 can be any integer, or a UNIX timestamp like 1443798195.</param>
         /// <param name="size">Optional parameter: The number of the users response. Defaults to 10. Must be between 1 and 10.000 inclusive. This parameter must be string represetation of an integer like "1".</param>
         /// <param name="mfrom">Optional parameter: The number of users to be skipped for response. Defaults to 0. Must be bigger than or equal to 0. This parameter must be string represetation of an integer like "1".</param>
         /// <return>Returns the ActionsResponse response from the API call</return>
@@ -87,8 +87,8 @@ namespace SuggestGrid.Controllers
                 string userId = null,
                 string itemId = null,
                 string olderThan = null,
-                int? size = null,
-                int? mfrom = null)
+                long? size = null,
+                long? mfrom = null)
         {
             //the base uri for api requestss
             string _baseUri = Configuration.BaseUri;
@@ -229,7 +229,7 @@ namespace SuggestGrid.Controllers
         /// <param name="type">Optional parameter: The type of the actions.</param>
         /// <param name="userId">Optional parameter: The user id of the actions.</param>
         /// <param name="itemId">Optional parameter: The item id of the actions.</param>
-        /// <param name="olderThan">Optional parameter: Delete all actions of a type older than the given timestamp or time. Valid times are 1s, 1m, 1h, 1d, 1M, 1y, or unix timestamp (like 1443798195).</param>
+        /// <param name="olderThan">Optional parameter: Delete all actions of a type older than the given timestamp or time. Valid times are in form of 1s, 1m, 1h, 1d, 1M, 1y, where 1 can be any integer, or a UNIX timestamp like 1443798195.</param>
         /// <return>Returns the DeleteSuccessResponse response from the API call</return>
         public DeleteSuccessResponse DeleteActions(
                 string type = null,
@@ -248,7 +248,7 @@ namespace SuggestGrid.Controllers
         /// <param name="type">Optional parameter: The type of the actions.</param>
         /// <param name="userId">Optional parameter: The user id of the actions.</param>
         /// <param name="itemId">Optional parameter: The item id of the actions.</param>
-        /// <param name="olderThan">Optional parameter: Delete all actions of a type older than the given timestamp or time. Valid times are 1s, 1m, 1h, 1d, 1M, 1y, or unix timestamp (like 1443798195).</param>
+        /// <param name="olderThan">Optional parameter: Delete all actions of a type older than the given timestamp or time. Valid times are in form of 1s, 1m, 1h, 1d, 1M, 1y, where 1 can be any integer, or a UNIX timestamp like 1443798195.</param>
         /// <return>Returns the DeleteSuccessResponse response from the API call</return>
         public async Task<DeleteSuccessResponse> DeleteActionsAsync(
                 string type = null,

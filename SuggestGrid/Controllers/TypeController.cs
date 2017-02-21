@@ -1,7 +1,7 @@
 /*
  * SuggestGrid.PCL
  *
- * This file was automatically generated for SuggestGrid by APIMATIC v2.0 ( https://apimatic.io ) on 12/16/2016
+ * This file was automatically generated for SuggestGrid by APIMATIC v2.0 ( https://apimatic.io ) on 02/21/2017
  */
 using System;
 using System.Collections.Generic;
@@ -223,7 +223,10 @@ namespace SuggestGrid.Controllers
             HttpContext _context = new HttpContext(_request,_response);
 
             //Error handling using HTTP status codes
-            if (_response.StatusCode == 429)
+            if (_response.StatusCode == 404)
+                throw new ErrorResponseException(@"Type not found.", _context);
+
+            else if (_response.StatusCode == 429)
                 throw new ErrorResponseException(@"Too many requests.", _context);
 
             else if (_response.StatusCode == 500)
@@ -245,7 +248,7 @@ namespace SuggestGrid.Controllers
         /// <summary>
         /// Create a New Type
         /// </summary>
-        /// <param name="type">Required parameter: The name of the type to be created.</param>
+        /// <param name="type">Required parameter: The name of the type.</param>
         /// <param name="settings">Optional parameter: Optional settings for the rating parameter.</param>
         /// <return>Returns the MessageResponse response from the API call</return>
         public MessageResponse CreateType(string type, TypeRequestBody settings = null)
@@ -258,7 +261,7 @@ namespace SuggestGrid.Controllers
         /// <summary>
         /// Create a New Type
         /// </summary>
-        /// <param name="type">Required parameter: The name of the type to be created.</param>
+        /// <param name="type">Required parameter: The name of the type.</param>
         /// <param name="settings">Optional parameter: Optional settings for the rating parameter.</param>
         /// <return>Returns the MessageResponse response from the API call</return>
         public async Task<MessageResponse> CreateTypeAsync(string type, TypeRequestBody settings = null)

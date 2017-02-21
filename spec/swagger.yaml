@@ -2,8 +2,8 @@ swagger: '2.0'
 
 info:
   title: SuggestGrid
-  version: 0.1.28
-  description: SuggestGrid is a recommendation and personalization service.
+  version: 0.1.28-SNAPSHOT
+  description: Personalization made Simple
   x-codegen-settings:
     appendContentHeaders: true
     generateAsyncCode: true
@@ -116,7 +116,8 @@ definitions:
         type: number
         description: The optional rating given by the user, if the type is explicit.
       timestamp:
-        type: number
+        type: integer
+        format: int64
         description: The optional UNIX epoch timestamp of the action. Defaults to the current timestamp.
     required:
       - type
@@ -157,10 +158,7 @@ definitions:
     properties:
       rating:
         type: string
-        description:  |
-          The rating type of the type to be created.
-          Could be "explicit" or "implicit"
-          The default is "implicit".
+        description: The rating type of the type. Could be "explicit" or "implicit", where "implicit" is the default.
   GetRecommendedUsersBody:
     type: object
     description: Query for recommended users.
@@ -184,7 +182,7 @@ definitions:
         description: The number of most recommended items to be skipped.
       size:
         type: integer
-        description: The number of users asked to return in the response.
+        description: The number of users asked to return in the response. Defaults to 10. Must be between 1 and 10.000 inclusive.
       similar_user_id:
         type: string
         description: Similar user that the response should be similar to.
@@ -197,7 +195,7 @@ definitions:
         type: array
         items:
           type: string
-        description: The metadata fields that are to be included in returned users.
+        description: The metadata fields to be included in returned user objects.
       filter:
         $ref: '#/definitions/Filter'
       except:
@@ -228,7 +226,7 @@ definitions:
         description: The number of most recommended items to be skipped.
       size:
         type: integer
-        description: The number of items asked to return in the response.
+        description: The number of items asked to return in the response. Defaults to 10. Must be between 1 and 10.000 inclusive.
       similar_item_id:
         type: string
         description: Similar item that the response should be similar to.
@@ -241,7 +239,7 @@ definitions:
         type: array
         items:
           type: string
-        description: The metadata fields that are to be included in returned items.
+        description: The metadata fields to be included in returned item objects.
       filter:
         $ref: '#/definitions/Filter'
       except:
@@ -272,12 +270,12 @@ definitions:
         description: The number of most similar users to be skipped.
       size:
         type: integer
-        description: The number of users asked to return in the response.
+        description: The number of users asked to return in the response. Defaults to 10. Must be between 1 and 10.000 inclusive.
       fields:
         type: array
         items:
           type: string
-        description: The metadata fields that are to be included in returned users.
+        description: The metadata fields to be included in returned user objects.
       filter:
         $ref: '#/definitions/Filter'
       except:
@@ -310,12 +308,12 @@ definitions:
         description: The number of most similar items to be skipped.
       size:
         type: integer
-        description: The number of items asked to return in the response.
+        description: The number of items asked to return in the response. Defaults to 10. Must be between 1 and 10.000 inclusive.
       fields:
         type: array
         items:
           type: string
-        description: The metadata fields that are to be included in returned items.
+        description: The metadata fields to be included in returned item objects.
       filter:
         $ref: '#/definitions/Filter'
       except:
@@ -391,11 +389,11 @@ definitions:
         description: URI of the response for more details.
       used:
         type: integer
-        format: int32
+        format: int64
         description: The quantity used by the account.
       limit:
         type: integer
-        format: int32
+        format: int64
         description: The limit quantity of the account.
   DeleteErrorResponse:
     type: object
@@ -412,15 +410,15 @@ definitions:
         description: URI of the response for more details.
       found:
         type: integer
-        format: int32
+        format: int64
         description: The number of records found for the delete query.
       deleted:
         type: integer
-        format: int32
+        format: int64
         description: The number of records deleted for the delete query.
       failed:
         type: integer
-        format: int32
+        format: int64
         description: The number of records found but not deleted for the delete query.
   DeleteSuccessResponse:
     type: object
@@ -431,15 +429,15 @@ definitions:
         description: Message of the response.
       found:
         type: integer
-        format: int32
+        format: int64
         description: The number of records found for the delete query.
       deleted:
         type: integer
-        format: int32
+        format: int64
         description: The number of records deleted for the delete query.
       failed:
         type: integer
-        format: int32
+        format: int64
         description: The number of records found but not deleted for the delete query.
   GetTypesResponse:
     type: object
@@ -576,6 +574,10 @@ paths:
           description: Get type response.
           schema:
             $ref: '#/definitions/GetTypeResponse'
+        404:
+          description: Type not found.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
         429:
           description: Too many requests.
           schema:
@@ -593,7 +595,7 @@ paths:
       parameters:
         - name: type
           in: path
-          description: The name of the type to be created.
+          description: The name of the type.
           required: true
           type: string
           format: id
@@ -734,10 +736,9 @@ paths:
           in: query
           description: |
             Maxium timestamp of the actions.
-            Valid times are 1s, 1m, 1h, 1d, 1M, 1y, or unix timestamp (like 1443798195).
+            Valid times are in form of 1s, 1m, 1h, 1d, 1M, 1y, where 1 can be any integer, or a UNIX timestamp like 1443798195.
           required: false
           type: string
-          format: id
         - name: size
           in: query
           description: |
@@ -746,7 +747,7 @@ paths:
             This parameter must be string represetation of an integer like "1".
           required: false
           type: integer
-          format: int32
+          format: int64
         - name: from
           in: query
           description: |
@@ -755,7 +756,7 @@ paths:
             This parameter must be string represetation of an integer like "1".
           required: false
           type: integer
-          format: int32
+          format: int64
       responses:
         200:
           description: Paged actions response.
@@ -806,10 +807,9 @@ paths:
           in: query
           description: |
             Delete all actions of a type older than the given timestamp or time.
-            Valid times are 1s, 1m, 1h, 1d, 1M, 1y, or unix timestamp (like 1443798195).
+            Valid times are in form of 1s, 1m, 1h, 1d, 1M, 1y, where 1 can be any integer, or a UNIX timestamp like 1443798195.
           required: false
           type: string
-          format: id
       responses:
         200:
           description: Successfully deleted actions.
@@ -976,7 +976,7 @@ paths:
             This parameter must be string represetation of an integer like "1".
           required: false
           type: integer
-          format: int32
+          format: int64
         - name: from
           in: query
           description: |
@@ -985,7 +985,7 @@ paths:
             This parameter must be string represetation of an integer like "1".
           required: false
           type: integer
-          format: int32
+          format: int64
       responses:
         200:
           description: Get users response.
@@ -1114,7 +1114,7 @@ paths:
             This parameter must be string represetation of an integer like "1".
           required: false
           type: integer
-          format: int32
+          format: int64
         - name: from
           in: query
           description: |
@@ -1123,7 +1123,7 @@ paths:
             This parameter must be string represetation of an integer like "1".
           required: false
           type: integer
-          format: int32
+          format: int64
       responses:
         200:
           description: Get items response.

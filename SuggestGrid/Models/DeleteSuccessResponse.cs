@@ -1,7 +1,7 @@
 /*
  * SuggestGrid.PCL
  *
- * This file was automatically generated for SuggestGrid by APIMATIC v2.0 ( https://apimatic.io ) on 12/16/2016
+ * This file was automatically generated for SuggestGrid by APIMATIC v2.0 ( https://apimatic.io ) on 02/21/2017
  */
 using System;
 using System.IO;
@@ -20,9 +20,9 @@ namespace SuggestGrid.Models
     {
         // These fields hold the values for the public properties.
         private string message;
-        private int? found;
-        private int? deleted;
-        private int? failed;
+        private long? found;
+        private long? deleted;
+        private long? failed;
 
         /// <summary>
         /// Message of the response.
@@ -45,7 +45,7 @@ namespace SuggestGrid.Models
         /// The number of records found for the delete query.
         /// </summary>
         [JsonProperty("found")]
-        public int? Found 
+        public long? Found 
         { 
             get 
             {
@@ -62,7 +62,7 @@ namespace SuggestGrid.Models
         /// The number of records deleted for the delete query.
         /// </summary>
         [JsonProperty("deleted")]
-        public int? Deleted 
+        public long? Deleted 
         { 
             get 
             {
@@ -79,7 +79,7 @@ namespace SuggestGrid.Models
         /// The number of records found but not deleted for the delete query.
         /// </summary>
         [JsonProperty("failed")]
-        public int? Failed 
+        public long? Failed 
         { 
             get 
             {
