@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using SuggestGrid.Http.Request;
 using SuggestGrid.Http.Response;
+using SuggestGrid.Utilities;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;

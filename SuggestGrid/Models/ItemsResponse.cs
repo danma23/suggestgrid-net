@@ -1,7 +1,7 @@
 /*
  * SuggestGrid.PCL
  *
- * This file was automatically generated for SuggestGrid by APIMATIC v2.0 ( https://apimatic.io ) on 02/16/2017
+ * This file was automatically generated for SuggestGrid by APIMATIC v2.0 ( https://apimatic.io )
  */
 using System;
 using System.IO;
@@ -13,15 +13,16 @@ using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using SuggestGrid;
+using SuggestGrid.Utilities;
 
 namespace SuggestGrid.Models
 {
-    public class ItemsResponse : INotifyPropertyChanged
+    public class ItemsResponse : BaseModel
     {
         // These fields hold the values for the public properties.
         private long? count;
         private long? totalCount;
-        private List<Metadata<string,object>> items;
+        private List<Models.Metadata<string,object>> items;
 
         /// <summary>
         /// The number of items in the response.
@@ -61,7 +62,7 @@ namespace SuggestGrid.Models
         /// TODO: Write general description for this method
         /// </summary>
         [JsonProperty("items")]
-        public List<Metadata<string,object>> Items
+        public List<Models.Metadata<string,object>> Items
         {
             get
             {
@@ -71,23 +72,6 @@ namespace SuggestGrid.Models
             {
                 this.items = value;
                 onPropertyChanged("Items");
-            }
-        }
-
-        /// <summary>
-        /// Property changed event for observer pattern
-        /// </summary>
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        /// <summary>
-        /// Raises event when a property is changed
-        /// </summary>
-        /// <param name="propertyName">Name of the changed property</param>
-        protected void onPropertyChanged(String propertyName)
-        {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
             }
         }
     }

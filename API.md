@@ -1,8 +1,8 @@
 
 
 ## Type Methods
-Type methods are used for managing SuggestGrid types.
-For more information on types, refer to [Types concept documentation](http://www.suggestgrid.com/docs/types).
+Type methods are used for creating, inspecting, and deleting SuggestGrid types.
+For more information, you may refer to [types documentation](http://www.suggestgrid.com/docs/types).
 
 ### Create a New Type
 > `CreateType(type, body)`
@@ -87,8 +87,8 @@ suggestGridClient.Type.DeleteAllTypes();
 
 
 ## Action Methods
-Action methods are for posting and deleting actions.
-For more information on actions, refer to [Actions concept documentation](http://www.suggestgrid.com/docs/actions).
+Action methods are for creating, inspecting, and deleting actions.
+For more information, you may refer to [actions documentation](http://www.suggestgrid.com/docs/actions).
 
 ### Post an Action
 > `PostAction(ActionModel)`
@@ -115,7 +115,7 @@ Name | Type |Required| Description
 --- | --- | --- | ---
 item_id|string|true|The item id of the item the action is performed on.
 rating|number|false|The optional rating given by the user, if the type is explicit.
-timestamp|number|false|The optional UNIX epoch timestamp of the action. Defaults to the current timestamp.
+timestamp|integer|false|The optional UNIX epoch timestamp of the action. Defaults to the current timestamp.
 type|string|true|The type that the action belongs to.
 user_id|string|true|The user id of the performer of the action.
 ### Post Bulk Actions
@@ -258,8 +258,8 @@ user_id|string||The user id of the actions.
 
 
 ## Metadata Methods
-Metadata methods are for posting and deleting metadata.
-For more information on metadata, refer to [Metadata concept documentation ](http://www.suggestgrid.com/docs/metadata).
+Metadata methods are for creating, inspecting, and deleting metadata.
+For more information, you may refer to [metadata documentation ](http://www.suggestgrid.com/docs/metadata).
 
 ### Post a User
 > `PostUser(Metadata<string,object> metadata)`
@@ -476,8 +476,8 @@ suggestGridClient.Metadata.DeleteAllItems();
 
 
 ## Recommnedation Methods
-Recommnedation methods are for getting recommended items or users responses from SuggestGrid.
-For more information on recommendations, refer to [Recommendations concept documentation](http://www.suggestgrid.com/docs/recommendations).
+Recommnedation methods are for getting recommended items or users from SuggestGrid.
+For more information, you may refer to [recommendations documentation](http://www.suggestgrid.com/docs/recommendations).
 
 ### Get Recommended Users
 > `GetRecommendedUsers(GetRecommendedUsersBody body)`
@@ -636,8 +636,8 @@ user_ids|array|false|The user ids of the query. Exactly one of user id or user i
 
 
 ## Similarity Methods
-Similarity methods are for getting similar items or users responses from SuggestGrid.
-For more information on similars, refer to [Similarities concept documentation](http://www.suggestgrid.com/docs/similarities).
+Similarity methods are for getting similar items or users from SuggestGrid.
+For more information, you may refer to [similarities documentation](http://www.suggestgrid.com/docs/similarities).
 
 ### Get Similar Users
 > `GetSimilarUsers(GetSimilarUsersBody body)`

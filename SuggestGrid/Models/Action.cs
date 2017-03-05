@@ -1,7 +1,7 @@
 /*
  * SuggestGrid.PCL
  *
- * This file was automatically generated for SuggestGrid by APIMATIC v2.0 ( https://apimatic.io ) on 02/16/2017
+ * This file was automatically generated for SuggestGrid by APIMATIC v2.0 ( https://apimatic.io )
  */
 using System;
 using System.IO;
@@ -13,29 +13,30 @@ using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using SuggestGrid;
+using SuggestGrid.Utilities;
 
 namespace SuggestGrid.Models
 {
-    public class ActionModel : INotifyPropertyChanged
+    public class Action : BaseModel 
     {
         // These fields hold the values for the public properties.
         private string type;
         private string userId;
         private string itemId;
         private double? rating;
-        private double? timestamp;
+        private long? timestamp;
 
         /// <summary>
         /// The type that the action belongs to.
         /// </summary>
         [JsonProperty("type")]
-        public string Type
-        {
-            get
+        public string Type 
+        { 
+            get 
             {
-                return this.type;
-            }
-            set
+                return this.type; 
+            } 
+            set 
             {
                 this.type = value;
                 onPropertyChanged("Type");
@@ -46,13 +47,13 @@ namespace SuggestGrid.Models
         /// The user id of the performer of the action.
         /// </summary>
         [JsonProperty("user_id")]
-        public string UserId
-        {
-            get
+        public string UserId 
+        { 
+            get 
             {
-                return this.userId;
-            }
-            set
+                return this.userId; 
+            } 
+            set 
             {
                 this.userId = value;
                 onPropertyChanged("UserId");
@@ -63,13 +64,13 @@ namespace SuggestGrid.Models
         /// The item id of the item the action is performed on.
         /// </summary>
         [JsonProperty("item_id")]
-        public string ItemId
-        {
-            get
+        public string ItemId 
+        { 
+            get 
             {
-                return this.itemId;
-            }
-            set
+                return this.itemId; 
+            } 
+            set 
             {
                 this.itemId = value;
                 onPropertyChanged("ItemId");
@@ -80,13 +81,13 @@ namespace SuggestGrid.Models
         /// The optional rating given by the user, if the type is explicit.
         /// </summary>
         [JsonProperty("rating")]
-        public double? Rating
-        {
-            get
+        public double? Rating 
+        { 
+            get 
             {
-                return this.rating;
-            }
-            set
+                return this.rating; 
+            } 
+            set 
             {
                 this.rating = value;
                 onPropertyChanged("Rating");
@@ -97,34 +98,17 @@ namespace SuggestGrid.Models
         /// The optional UNIX epoch timestamp of the action. Defaults to the current timestamp.
         /// </summary>
         [JsonProperty("timestamp")]
-        public double? Timestamp
-        {
-            get
+        public long? Timestamp 
+        { 
+            get 
             {
-                return this.timestamp;
-            }
-            set
+                return this.timestamp; 
+            } 
+            set 
             {
                 this.timestamp = value;
                 onPropertyChanged("Timestamp");
             }
         }
-
-        /// <summary>
-        /// Property changed event for observer pattern
-        /// </summary>
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        /// <summary>
-        /// Raises event when a property is changed
-        /// </summary>
-        /// <param name="propertyName">Name of the changed property</param>
-        protected void onPropertyChanged(String propertyName)
-        {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-            }
-        }
     }
-}
+} 

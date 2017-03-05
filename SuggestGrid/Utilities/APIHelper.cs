@@ -1,7 +1,7 @@
 /*
  * SuggestGrid.PCL
  *
- * This file was automatically generated for SuggestGrid by APIMATIC v2.0 ( https://apimatic.io ) on 02/16/2017
+ * This file was automatically generated for SuggestGrid by APIMATIC v2.0 ( https://apimatic.io ) on 03/03/2017
  */
 using System;
 using System.Collections;
@@ -18,7 +18,7 @@ using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Linq;
 
 
-namespace SuggestGrid
+namespace SuggestGrid.Utilities
 {
     public static class APIHelper
     {
@@ -29,30 +29,36 @@ namespace SuggestGrid
         /// JSON Serialization of a given object.
         /// </summary>
         /// <param name="obj">The object to serialize into JSON</param>
+        /// <param name="converter">The converter to use for date time conversion</param>
         /// <returns>The serialized Json string representation of the given object</returns>
-        public static string JsonSerialize(object obj)
+        public static string JsonSerialize(object obj, JsonConverter converter = null)
         {
             if (null == obj)
                 return null;
-
-            return JsonConvert.SerializeObject(obj, Formatting.None,
-                 new JsonSerializerSettings {NullValueHandling = NullValueHandling.Ignore,
-                     Converters = new List<JsonConverter> {new IsoDateTimeConverter() { DateTimeFormat = DateTimeFormat } } });
+            if (converter == null)
+                return JsonConvert.SerializeObject(obj,
+                    Formatting.None,
+                    new JsonSerializerSettings {NullValueHandling = NullValueHandling.Ignore,
+                                                Converters = new List<JsonConverter> {new IsoDateTimeConverter() { DateTimeFormat = DateTimeFormat } } });
+            else
+                return JsonConvert.SerializeObject(obj, Formatting.None, converter);
         }
 
         /// <summary>
         /// JSON Deserialization of the given json string.
         /// </summary>
         /// <param name="json">The json string to deserialize</param>
+        /// <param name="converter">The converter to use for date time conversion</param>
         /// <typeparam name="T">The type of the object to desialize into</typeparam>
         /// <returns>The deserialized object</returns>
-        public static T JsonDeserialize<T>(string json)
+        public static T JsonDeserialize<T>(string json, JsonConverter converter = null)
         {
             if (string.IsNullOrWhiteSpace(json))
                 return default(T);
-
-            return JsonConvert.DeserializeObject<T>(json,
-                 new IsoDateTimeConverter() { DateTimeFormat = DateTimeFormat });
+            if (converter == null)
+                return JsonConvert.DeserializeObject<T>(json, new IsoDateTimeConverter());
+            else
+                return JsonConvert.DeserializeObject<T>(json, converter);
         }
 
         /// <summary>
@@ -82,6 +88,8 @@ namespace SuggestGrid
                     replaceValue = flattenCollection(pair.Value as ICollection, "{0}{1}", '/', false);
                 else if (pair.Value is DateTime)
                     replaceValue = ((DateTime)pair.Value).ToString(DateTimeFormat);
+                else if (pair.Value is DateTimeOffset)
+                    replaceValue = ((DateTimeOffset)pair.Value).ToString(DateTimeFormat);
                 else
                     replaceValue = pair.Value.ToString();
 
@@ -130,6 +138,8 @@ namespace SuggestGrid
                     paramKeyValPair = flattenCollection(pair.Value as ICollection, string.Format("{0}[]={{0}}{{1}}", pair.Key), '&', true);
                 else if (pair.Value is DateTime)
                     paramKeyValPair = string.Format("{0}={1}", Uri.EscapeDataString(pair.Key), ((DateTime)pair.Value).ToString(DateTimeFormat));
+                else if (pair.Value is DateTimeOffset)
+                    paramKeyValPair = string.Format("{0}={1}", Uri.EscapeDataString(pair.Key), ((DateTimeOffset)pair.Value).ToString(DateTimeFormat));
                 else
                     paramKeyValPair = string.Format("{0}={1}", Uri.EscapeDataString(pair.Key), Uri.EscapeDataString(pair.Value.ToString()));
 
@@ -220,6 +230,8 @@ namespace SuggestGrid
                     elemValue = string.Empty;
                 else if (element is DateTime)
                     elemValue = ((DateTime)element).ToString(DateTimeFormat);
+                else if (element is DateTimeOffset)
+                    elemValue = ((DateTimeOffset)element).ToString(DateTimeFormat);
                 else
                     elemValue = element.ToString();
 
@@ -244,7 +256,7 @@ namespace SuggestGrid
         /// <param name="keys">Contains a flattend and form friendly values</param>
         /// <returns>Contains a flattend and form friendly values</returns>
         public static Dictionary<string, object> PrepareFormFieldsFromObject(
-            string name, object value, Dictionary<string, object> keys = null)
+            string name, object value, Dictionary<string, object> keys = null,PropertyInfo propInfo = null)
         {
             keys = keys ?? new Dictionary<string, object>();
 
@@ -265,7 +277,7 @@ namespace SuggestGrid
                     string pKey = property.Name;
                     object pValue = property.Value;
                     var fullSubName = name + '[' + pKey + ']';
-                    PrepareFormFieldsFromObject(fullSubName, pValue, keys);
+                    PrepareFormFieldsFromObject(fullSubName, pValue, keys,propInfo);
                 }
             }
             else if (value is IList)
@@ -277,7 +289,7 @@ namespace SuggestGrid
                     var subValue = enumerator.Current;
                     if (subValue == null) continue;
                     var fullSubName = name + '[' + i + ']';
-                    PrepareFormFieldsFromObject(fullSubName, subValue, keys);
+                    PrepareFormFieldsFromObject(fullSubName, subValue, keys,propInfo);
                     i++;
                 }
             }
@@ -318,7 +330,7 @@ namespace SuggestGrid
                     var subName = sName.ToString();
                     var subValue = obj[subName];
                     string fullSubName = string.IsNullOrWhiteSpace(name) ? subName : name + '[' + subName + ']';
-                    PrepareFormFieldsFromObject(fullSubName, subValue, keys);
+                    PrepareFormFieldsFromObject(fullSubName, subValue, keys,propInfo);
                 }
             }
             else if (!(value.GetType().Namespace.StartsWith("System")))
@@ -339,12 +351,23 @@ namespace SuggestGrid
                     var subName = (jsonProperty != null) ? jsonProperty.PropertyName : pInfo.Name;
                     string fullSubName = string.IsNullOrWhiteSpace(name) ? subName : name + '[' + subName + ']';
                     var subValue = pInfo.GetValue(value, null);
-                    PrepareFormFieldsFromObject(fullSubName, subValue, keys);
+                    PrepareFormFieldsFromObject(fullSubName, subValue, keys,pInfo);
                 }
             }
             else if (value is DateTime)
             {
-                keys[name] = ((DateTime)value).ToString(DateTimeFormat);
+                string convertedValue = null;
+                var pInfo =propInfo?.GetCustomAttributes(true);
+                if (pInfo != null)
+                {
+                    foreach (object attr in pInfo)
+                    {
+                        JsonConverterAttribute converterAttr = attr as JsonConverterAttribute;
+                        if (converterAttr != null)
+                            convertedValue = JsonSerialize(value, (JsonConverter)Activator.CreateInstance(converterAttr.ConverterType, converterAttr.ConverterParameters)).Replace("\"","");
+                    }
+                }
+                keys[name] = (convertedValue)??((DateTime)value).ToString(DateTimeFormat);
             }
             else
             {
