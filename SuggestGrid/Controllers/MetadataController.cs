@@ -56,7 +56,7 @@ namespace SuggestGrid.Controllers
         /// </summary>
         /// <param name="user">Required parameter: The metadata to be saved. Metadata format has its restrictions.</param>
         /// <return>Returns the Models.MessageResponse response from the API call</return>
-        public Models.MessageResponse PostUser(Models.Metadata<string,object> user)
+        public Models.MessageResponse PostUser(Models.Metadata user)
         {
             Task<Models.MessageResponse> t = PostUserAsync(user);
             APIHelper.RunTaskSynchronously(t);
@@ -68,7 +68,7 @@ namespace SuggestGrid.Controllers
         /// </summary>
         /// <param name="user">Required parameter: The metadata to be saved. Metadata format has its restrictions.</param>
         /// <return>Returns the Models.MessageResponse response from the API call</return>
-        public async Task<Models.MessageResponse> PostUserAsync(Models.Metadata<string,object> user)
+        public async Task<Models.MessageResponse> PostUserAsync(Models.Metadata user)
         {
             //the base uri for api requestss
             string _baseUri = Configuration.BaseUri;
@@ -127,10 +127,10 @@ namespace SuggestGrid.Controllers
         /// </summary>
         /// <param name="users">Required parameter: A number of user metadata objects separated with newlines. Each user metadata object must have its id field. Note that this is not a valid JSON data structure. The body size is limited to 10 thousand lines.</param>
         /// <return>Returns the Models.BulkPostResponse response from the API call</return>
-        public Models.BulkPostResponse PostBulkUsers(List<Models.Metadata<string, object>> users)
+        public Models.BulkPostResponse PostBulkUsers(List<Models.Metadata> users)
         {
             StringBuilder sb = new StringBuilder();
-            foreach (Metadata<string, object> user in users)
+            foreach (Metadata user in users)
             {
                 sb.Append(JsonConvert.SerializeObject(user, Formatting.None));
                 sb.Append(Environment.NewLine);
@@ -145,7 +145,7 @@ namespace SuggestGrid.Controllers
         /// </summary>
         /// <param name="users">Required parameter: A number of user metadata objects separated with newlines. Each user metadata object must have its id field. Note that this is not a valid JSON data structure. The body size is limited to 10 thousand lines.</param>
         /// <return>Returns the Models.BulkPostResponse response from the API call</return>
-        private async Task<Models.BulkPostResponse> PostBulkUsersAsync(string users)
+        public async Task<Models.BulkPostResponse> PostBulkUsersAsync(string users)
         {
             //the base uri for api requestss
             string _baseUri = Configuration.BaseUri;
@@ -204,9 +204,9 @@ namespace SuggestGrid.Controllers
         /// </summary>
         /// <param name="userId">Required parameter: The user id to delete its metadata.</param>
         /// <return>Returns the Models.Metadata response from the API call</return>
-        public Models.Metadata<string,object> GetUser(string userId)
+        public Models.Metadata GetUser(string userId)
         {
-            Task<Models.Metadata<string,object>> t = GetUserAsync(userId);
+            Task<Models.Metadata> t = GetUserAsync(userId);
             APIHelper.RunTaskSynchronously(t);
             return t.Result;
         }
@@ -216,7 +216,7 @@ namespace SuggestGrid.Controllers
         /// </summary>
         /// <param name="userId">Required parameter: The user id to delete its metadata.</param>
         /// <return>Returns the Models.Metadata response from the API call</return>
-        public async Task<Models.Metadata<string,object>> GetUserAsync(string userId)
+        public async Task<Models.Metadata> GetUserAsync(string userId)
         {
             //the base uri for api requestss
             string _baseUri = Configuration.BaseUri;
@@ -261,7 +261,7 @@ namespace SuggestGrid.Controllers
 
             try
             {
-                return APIHelper.JsonDeserialize<Models.Metadata<string,object>>(_response.Body);
+                return APIHelper.JsonDeserialize<Models.Metadata>(_response.Body);
             }
             catch (Exception _ex)
             {
@@ -302,7 +302,7 @@ namespace SuggestGrid.Controllers
             {
                 { "size", size },
                 { "from", mfrom }
-            });
+            },ArrayDeserializationFormat,ParameterSeparator);
 
 
             //validate and preprocess url
@@ -479,7 +479,7 @@ namespace SuggestGrid.Controllers
         /// </summary>
         /// <param name="item">Required parameter: The metadata to be saved. Metadata format has its restrictions.</param>
         /// <return>Returns the Models.MessageResponse response from the API call</return>
-        public Models.MessageResponse PostItem(Models.Metadata<string,object> item)
+        public Models.MessageResponse PostItem(Models.Metadata item)
         {
             Task<Models.MessageResponse> t = PostItemAsync(item);
             APIHelper.RunTaskSynchronously(t);
@@ -491,7 +491,7 @@ namespace SuggestGrid.Controllers
         /// </summary>
         /// <param name="item">Required parameter: The metadata to be saved. Metadata format has its restrictions.</param>
         /// <return>Returns the Models.MessageResponse response from the API call</return>
-        public async Task<Models.MessageResponse> PostItemAsync(Models.Metadata<string,object> item)
+        public async Task<Models.MessageResponse> PostItemAsync(Models.Metadata item)
         {
             //the base uri for api requestss
             string _baseUri = Configuration.BaseUri;
@@ -550,10 +550,10 @@ namespace SuggestGrid.Controllers
         /// </summary>
         /// <param name="items">Required parameter: A number of item metadata objects separated with newlines. Each item metadata object must have its id field. Note that this is not a valid JSON data structure. The body size is limited to 10 thousand lines.</param>
         /// <return>Returns the Models.BulkPostResponse response from the API call</return>
-        public Models.BulkPostResponse PostBulkItems(List<Models.Metadata<string, object>> items)
+        public Models.BulkPostResponse PostBulkItems(List<Models.Metadata> items)
         {
             StringBuilder sb = new StringBuilder();
-            foreach (Metadata<string, object> item in items)
+            foreach (Metadata item in items)
             {
                 sb.Append(JsonConvert.SerializeObject(item, Formatting.None));
                 sb.Append(Environment.NewLine);
@@ -627,9 +627,9 @@ namespace SuggestGrid.Controllers
         /// </summary>
         /// <param name="itemId">Required parameter: The item id to delete its metadata.</param>
         /// <return>Returns the Models.Metadata response from the API call</return>
-        public Models.Metadata<string,object> GetItem(string itemId)
+        public Models.Metadata GetItem(string itemId)
         {
-            Task<Models.Metadata<string,object>> t = GetItemAsync(itemId);
+            Task<Models.Metadata> t = GetItemAsync(itemId);
             APIHelper.RunTaskSynchronously(t);
             return t.Result;
         }
@@ -639,7 +639,7 @@ namespace SuggestGrid.Controllers
         /// </summary>
         /// <param name="itemId">Required parameter: The item id to delete its metadata.</param>
         /// <return>Returns the Models.Metadata response from the API call</return>
-        public async Task<Models.Metadata<string,object>> GetItemAsync(string itemId)
+        public async Task<Models.Metadata> GetItemAsync(string itemId)
         {
             //the base uri for api requestss
             string _baseUri = Configuration.BaseUri;
@@ -684,7 +684,7 @@ namespace SuggestGrid.Controllers
 
             try
             {
-                return APIHelper.JsonDeserialize<Models.Metadata<string,object>>(_response.Body);
+                return APIHelper.JsonDeserialize<Models.Metadata>(_response.Body);
             }
             catch (Exception _ex)
             {
@@ -725,7 +725,7 @@ namespace SuggestGrid.Controllers
             {
                 { "size", size },
                 { "from", mfrom }
-            });
+            },ArrayDeserializationFormat,ParameterSeparator);
 
 
             //validate and preprocess url

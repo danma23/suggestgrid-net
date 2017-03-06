@@ -17,24 +17,24 @@ using SuggestGrid.Utilities;
 
 namespace SuggestGrid.Models
 {
-    public class UsersResponse : BaseModel
+    public class UsersResponse : BaseModel 
     {
         // These fields hold the values for the public properties.
         private long? count;
         private long? totalCount;
-        private List<Models.Metadata<string,object>> users;
+        private List<Models.Metadata> users;
 
         /// <summary>
         /// The number of users in the response.
         /// </summary>
         [JsonProperty("count")]
-        public long? Count
-        {
-            get
+        public long? Count 
+        { 
+            get 
             {
-                return this.count;
-            }
-            set
+                return this.count; 
+            } 
+            set 
             {
                 this.count = value;
                 onPropertyChanged("Count");
@@ -45,13 +45,13 @@ namespace SuggestGrid.Models
         /// The total number of users available.
         /// </summary>
         [JsonProperty("total_count")]
-        public long? TotalCount
-        {
-            get
+        public long? TotalCount 
+        { 
+            get 
             {
-                return this.totalCount;
-            }
-            set
+                return this.totalCount; 
+            } 
+            set 
             {
                 this.totalCount = value;
                 onPropertyChanged("TotalCount");
@@ -62,17 +62,17 @@ namespace SuggestGrid.Models
         /// TODO: Write general description for this method
         /// </summary>
         [JsonProperty("users")]
-        public List<Models.Metadata<string,object>> Users
-        {
-            get
+        public List<Models.Metadata> Users 
+        { 
+            get 
             {
-                return this.users;
-            }
-            set
+                return this.users; 
+            } 
+            set 
             {
                 this.users = value;
                 onPropertyChanged("Users");
             }
         }
     }
-}
+} 

@@ -1,7 +1,7 @@
 /*
  * SuggestGrid.PCL
  *
- * This file was automatically generated for SuggestGrid by APIMATIC v2.0 ( https://apimatic.io ) on 03/03/2017
+ * This file was automatically generated for SuggestGrid by APIMATIC v2.0 ( https://apimatic.io )
  */
 using System;
 using SuggestGrid;
@@ -43,6 +43,9 @@ namespace SuggestGrid.Controllers
             }
         }
         #endregion shared http client instance
+
+        internal ArrayDeserialization ArrayDeserializationFormat = ArrayDeserialization.Indexed;
+        internal static char ParameterSeparator = '&';
 
         /// <summary>
         /// Validates the response against HTTP errors defined at the API level

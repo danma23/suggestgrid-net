@@ -265,7 +265,7 @@ namespace SuggestGrid.Controllers
                 { "older_than", olderThan },
                 { "size", size },
                 { "from", mfrom }
-            });
+            },ArrayDeserializationFormat,ParameterSeparator);
 
 
             //validate and preprocess url
@@ -352,7 +352,7 @@ namespace SuggestGrid.Controllers
                 { "user_id", userId },
                 { "item_id", itemId },
                 { "older_than", olderThan }
-            });
+            },ArrayDeserializationFormat,ParameterSeparator);
 
 
             //validate and preprocess url

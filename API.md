@@ -546,7 +546,7 @@ from|integer|false|The number of most recommended items to be skipped.
 itemId|string|false|The item id of the query.
 itemIds|array|false|The item ids of the query. Exactly one of item id or item ids parameters must be provided.
 similarUserId|string|false|Similar user that the response should be similar to.
-similarUserIds|string|false|Similar users that the response should be similar to. At most one of similar user and similar users parameters can be provided. 
+similarUserIds|array|false|Similar users that the response should be similar to. At most one of similar user and similar users parameters can be provided. 
 size|integer|false|The number of users asked to return in the response. Defaults to 10. Must be between 1 and 10.000 inclusive.
 type|string|false|The type of the query.
 types|string|false|The types of the query. Exactly one of type or types parameters must be provided.
@@ -627,7 +627,7 @@ fields|array|false|The metadata fields to be included in returned item objects.
 filter||false|
 from|integer|false|The number of most recommended items to be skipped.
 similarItemId|string|false|Similar item that the response should be similar to.
-similarItemIds|string|false|Similar items that the response should be similar to. At most one of similar item and similar items parameters can be provided. 
+similarItemIds|array|false|Similar items that the response should be similar to. At most one of similar item and similar items parameters can be provided. 
 size|integer|false|The number of items asked to return in the response. Defaults to 10. Must be between 1 and 10.000 inclusive.
 type|string|false|The type of the query.
 types|string|false|The types of the query. Exactly one of type or types parameters must be provided.

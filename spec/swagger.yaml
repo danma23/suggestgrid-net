@@ -187,10 +187,12 @@ definitions:
         type: string
         description: Similar user that the response should be similar to.
       similar_user_ids:
-        type: string
+        type: array
         description: |
           Similar users that the response should be similar to.
           At most one of similar user and similar users parameters can be provided.
+        items:
+          type: string
       fields:
         type: array
         items:
@@ -231,10 +233,12 @@ definitions:
         type: string
         description: Similar item that the response should be similar to.
       similar_item_ids:
-        type: string
+        type: array
         description: |
           Similar items that the response should be similar to.
           At most one of similar item and similar items parameters can be provided.
+        items:
+          type: string
       fields:
         type: array
         items:

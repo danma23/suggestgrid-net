@@ -1,5 +1,17 @@
 machine:
+  services:
+    - docker
+  environment:
+    SDK_PATH: /home/ubuntu/suggestgrid-net
+    PROXY_PATH: /home/ubuntu/suggestgrid-net-test-proxy
+    KIRK_PATH: /home/ubuntu/kirk
+    MALIK_PATH: /home/ubuntu/malik
   pre:
+    - sudo sh -c 'echo "deb [arch=amd64] https://apt-mo.trafficmanager.net/repos/dotnet-release/ trusty main" > /etc/apt/sources.list.d/dotnetdev.list'
+    - sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 417A0893
+    - sudo apt-get install -y apt-transport-https
+    - sudo apt-get update
+    - sudo apt-get install -y dotnet-dev-1.0.0-preview2.1-003177
     - sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF
     - echo "deb http://download.mono-project.com/repo/debian wheezy main" | sudo tee /etc/apt/sources.list.d/mono-xamarin.list
     - sudo apt-get update
@@ -8,6 +20,21 @@ machine:
     - sudo apt-get install ca-certificates-mono
     - sudo mozroots --import --sync
     - sudo apt-get install nuget
+
+dependencies:
+  cache_directories:
+    - ~/docker
+  override:
+    - git clone --depth 1 -b master https://${GITHUB_USERNAME}:${GITHUB_PASSWORD}@github.com/suggestgrid/suggestgrid-net-test-proxy.git ${PROXY_PATH}
+    - git clone --depth 1 -b ${CIRCLE_BRANCH:-master} https://${GITHUB_USERNAME}:${GITHUB_PASSWORD}@github.com/suggestgrid/kirk.git ${KIRK_PATH}
+    - git clone --depth 1 -b ${CIRCLE_BRANCH:-master} https://${GITHUB_USERNAME}:${GITHUB_PASSWORD}@github.com/suggestgrid/malik.git ${MALIK_PATH}
+
+test:
+  override:
+    - cd ${SDK_PATH} && dotnet restore
+    - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
+    - docker pull suggestgrid/c-12
+    - docker run -v ${KIRK_PATH}:/repos/kirk -v ${MALIK_PATH}:/repos/malik -v ${SDK_PATH}:/repos/sdk -v ${PROXY_PATH}:/repos/proxy suggestgrid/c-12
 
 test:
   override:
@@ -20,5 +47,4 @@ deployment:
     tag: /[0-9]+(\.[0-9]+)+/
     owner: suggestgrid
     commands:
-      - nuget pack SuggestGrid/SuggestGrid.PCL.nuspec
-      - nuget push *.nupkg $PACKAGE_MANAGER_API_KEY
+      - ./.deploy
