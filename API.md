@@ -113,11 +113,11 @@ suggestGridClient.Action.PostAction(new ActionModel { Type = "views", ItemId = "
 
 Name | Type |Required| Description
 --- | --- | --- | ---
-item_id|string|true|The item id of the item the action is performed on.
+itemId|string|true|The item id of the item the action is performed on.
 rating|number|false|The optional rating given by the user, if the type is explicit.
 timestamp|integer|false|The optional UNIX epoch timestamp of the action. Defaults to the current timestamp.
 type|string|true|The type that the action belongs to.
-user_id|string|true|The user id of the performer of the action.
+userId|string|true|The user id of the performer of the action.
 ### Post Bulk Actions
 > `PostBulkActions(List<ActionModel> actions)`
 
@@ -543,10 +543,10 @@ except|array|false|These user ids that will not be included in the response.
 fields|array|false|The metadata fields to be included in returned user objects.
 filter||false|
 from|integer|false|The number of most recommended items to be skipped.
-item_id|string|false|The item id of the query.
-item_ids|array|false|The item ids of the query. Exactly one of item id or item ids parameters must be provided.
-similar_user_id|string|false|Similar user that the response should be similar to.
-similar_user_ids|string|false|Similar users that the response should be similar to. At most one of similar user and similar users parameters can be provided. 
+itemId|string|false|The item id of the query.
+itemIds|array|false|The item ids of the query. Exactly one of item id or item ids parameters must be provided.
+similarUserId|string|false|Similar user that the response should be similar to.
+similarUserIds|string|false|Similar users that the response should be similar to. At most one of similar user and similar users parameters can be provided. 
 size|integer|false|The number of users asked to return in the response. Defaults to 10. Must be between 1 and 10.000 inclusive.
 type|string|false|The type of the query.
 types|string|false|The types of the query. Exactly one of type or types parameters must be provided.
@@ -626,13 +626,13 @@ except|array|false|These item ids that will not be included in the response.
 fields|array|false|The metadata fields to be included in returned item objects.
 filter||false|
 from|integer|false|The number of most recommended items to be skipped.
-similar_item_id|string|false|Similar item that the response should be similar to.
-similar_item_ids|string|false|Similar items that the response should be similar to. At most one of similar item and similar items parameters can be provided. 
+similarItemId|string|false|Similar item that the response should be similar to.
+similarItemIds|string|false|Similar items that the response should be similar to. At most one of similar item and similar items parameters can be provided. 
 size|integer|false|The number of items asked to return in the response. Defaults to 10. Must be between 1 and 10.000 inclusive.
 type|string|false|The type of the query.
 types|string|false|The types of the query. Exactly one of type or types parameters must be provided.
-user_id|string|false|The user id of the query.
-user_ids|array|false|The user ids of the query. Exactly one of user id or user ids parameters must be provided.
+userId|string|false|The user id of the query.
+userIds|array|false|The user ids of the query. Exactly one of user id or user ids parameters must be provided.
 
 
 ## Similarity Methods
@@ -696,8 +696,8 @@ from|integer|false|The number of most similar users to be skipped.
 size|integer|false|The number of users asked to return in the response. Defaults to 10. Must be between 1 and 10.000 inclusive.
 type|string|false|The type of the query.
 types|string|false|The types of the query. Exactly one of type or types parameters must be provided.
-user_id|string|false|The user id of the query.
-user_ids|array|false|The user ids of the query. Exactly one of user id or user ids parameters must be provided.
+userId|string|false|The user id of the query.
+userIds|array|false|The user ids of the query. Exactly one of user id or user ids parameters must be provided.
 ### Get Similar Items
 > `GetSimilarItems(GetSimilarItemsBody body)`
 
@@ -752,8 +752,8 @@ except|array|false|These item ids that will not be included in the response.
 fields|array|false|The metadata fields to be included in returned item objects.
 filter||false|
 from|integer|false|The number of most similar items to be skipped.
-item_id|string|false|The item id of the query. Get similar items to given item id. Either item id or item ids must be provided.
-item_ids|array|false|The item ids of the query. Exactly one of item id or item ids parameters must be provided. Get similar items to given item ids. Either item id or item ids must be provided.
+itemId|string|false|The item id of the query. Get similar items to given item id. Either item id or item ids must be provided.
+itemIds|array|false|The item ids of the query. Exactly one of item id or item ids parameters must be provided. Get similar items to given item ids. Either item id or item ids must be provided.
 size|integer|false|The number of items asked to return in the response. Defaults to 10. Must be between 1 and 10.000 inclusive.
 type|string|false|The type of the query.
 types|string|false|The types of the query. Exactly one of type or types parameters must be provided.
