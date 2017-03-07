@@ -1,7 +1,7 @@
 /*
  * SuggestGrid.PCL
  *
- * This file was automatically generated for SuggestGrid by APIMATIC v2.0 ( https://apimatic.io ) on 03/02/2017
+ * This file was automatically generated for SuggestGrid by APIMATIC v2.0 ( https://apimatic.io )
  */
 using System;
 using System.Collections;
@@ -18,7 +18,7 @@ using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Linq;
 
 
-namespace SuggestGrid
+namespace SuggestGrid.Utilities
 {
     public static class APIHelper
     {
@@ -29,30 +29,36 @@ namespace SuggestGrid
         /// JSON Serialization of a given object.
         /// </summary>
         /// <param name="obj">The object to serialize into JSON</param>
+        /// <param name="converter">The converter to use for date time conversion</param>
         /// <returns>The serialized Json string representation of the given object</returns>
-        public static string JsonSerialize(object obj)
+        public static string JsonSerialize(object obj, JsonConverter converter = null)
         {
             if (null == obj)
                 return null;
-
-            return JsonConvert.SerializeObject(obj, Formatting.None,
-                 new JsonSerializerSettings {NullValueHandling = NullValueHandling.Ignore,
-                     Converters = new List<JsonConverter> {new IsoDateTimeConverter() { DateTimeFormat = DateTimeFormat } } });
+            if (converter == null)
+                return JsonConvert.SerializeObject(obj,
+                    Formatting.None,
+                    new JsonSerializerSettings {NullValueHandling = NullValueHandling.Ignore,
+                                                Converters = new List<JsonConverter> {new IsoDateTimeConverter() { DateTimeFormat = DateTimeFormat } } });
+            else
+                return JsonConvert.SerializeObject(obj, Formatting.None, converter);
         }
 
         /// <summary>
         /// JSON Deserialization of the given json string.
         /// </summary>
         /// <param name="json">The json string to deserialize</param>
+        /// <param name="converter">The converter to use for date time conversion</param>
         /// <typeparam name="T">The type of the object to desialize into</typeparam>
         /// <returns>The deserialized object</returns>
-        public static T JsonDeserialize<T>(string json)
+        public static T JsonDeserialize<T>(string json, JsonConverter converter = null)
         {
             if (string.IsNullOrWhiteSpace(json))
                 return default(T);
-
-            return JsonConvert.DeserializeObject<T>(json,
-                 new IsoDateTimeConverter() { DateTimeFormat = DateTimeFormat });
+            if (converter == null)
+                return JsonConvert.DeserializeObject<T>(json, new IsoDateTimeConverter());
+            else
+                return JsonConvert.DeserializeObject<T>(json, converter);
         }
 
         /// <summary>
@@ -79,9 +85,11 @@ namespace SuggestGrid
                 if (null == pair.Value)
                     replaceValue = "";
                 else if (pair.Value is ICollection)
-                    replaceValue = flattenCollection(pair.Value as ICollection, "{0}{1}", '/', false);
+                    replaceValue = flattenCollection(pair.Value as ICollection, ArrayDeserialization.None, '/', false);
                 else if (pair.Value is DateTime)
                     replaceValue = ((DateTime)pair.Value).ToString(DateTimeFormat);
+                else if (pair.Value is DateTimeOffset)
+                    replaceValue = ((DateTimeOffset)pair.Value).ToString(DateTimeFormat);
                 else
                     replaceValue = pair.Value.ToString();
 
@@ -98,7 +106,7 @@ namespace SuggestGrid
         /// <param name="queryUrl">The query url string to append the parameters</param>
         /// <param name="parameters">The parameters to append</param>
         public static void AppendUrlWithQueryParameters
-            (StringBuilder queryBuilder, IEnumerable<KeyValuePair<string, object>> parameters)
+            (StringBuilder queryBuilder, IEnumerable<KeyValuePair<string, object>> parameters, ArrayDeserialization arrayDeserializationFormat = ArrayDeserialization.UnIndexed, char separator = '&')
         {
             //perform parameter validation
             if (null == queryBuilder)
@@ -127,9 +135,11 @@ namespace SuggestGrid
 
                 //load element value as string
                 if (pair.Value is ICollection)
-                    paramKeyValPair = flattenCollection(pair.Value as ICollection, string.Format("{0}[]={{0}}{{1}}", pair.Key), '&', true);
+                    paramKeyValPair = flattenCollection(pair.Value as ICollection, arrayDeserializationFormat, separator, true, pair.Key);
                 else if (pair.Value is DateTime)
                     paramKeyValPair = string.Format("{0}={1}", Uri.EscapeDataString(pair.Key), ((DateTime)pair.Value).ToString(DateTimeFormat));
+                else if (pair.Value is DateTimeOffset)
+                    paramKeyValPair = string.Format("{0}={1}", Uri.EscapeDataString(pair.Key), ((DateTimeOffset)pair.Value).ToString(DateTimeFormat));
                 else
                     paramKeyValPair = string.Format("{0}={1}", Uri.EscapeDataString(pair.Key), Uri.EscapeDataString(pair.Value.ToString()));
 
@@ -206,29 +216,31 @@ namespace SuggestGrid
         /// <param name="fmt">Format string to use for array flattening</param>
         /// <param name="separator">Separator to use for string concat</param>
         /// <returns>Representative string made up of array elements</returns>
-        private static string flattenCollection(ICollection array, string fmt, char separator, bool urlEncode)
+        private static string flattenCollection(ICollection array, ArrayDeserialization fmt, char separator,
+            bool urlEncode, string key = "")
         {
             StringBuilder builder = new StringBuilder();
 
-            //append all elements in the array into a string
-            foreach (object element in array)
+            string format = string.Empty;
+            if (fmt == ArrayDeserialization.UnIndexed)
+                format = $"{key}[]={{0}}{{1}}";
+            else if (fmt == ArrayDeserialization.Indexed)
+                format = $"{key}[{{2}}]={{0}}{{1}}";
+            else if (fmt == ArrayDeserialization.Plain)
+                format = $"{key}={{0}}{{1}}";
+            else if (fmt == ArrayDeserialization.Csv || fmt == ArrayDeserialization.Psv ||
+                     fmt == ArrayDeserialization.Tsv)
             {
-                string elemValue = null;
-
-                //replace null values with empty string to maintain index order
-                if (null == element)
-                    elemValue = string.Empty;
-                else if (element is DateTime)
-                    elemValue = ((DateTime)element).ToString(DateTimeFormat);
-                else
-                    elemValue = element.ToString();
-
-                if (urlEncode)
-                    elemValue = Uri.EscapeDataString(elemValue);
-
-                builder.AppendFormat(fmt, elemValue, separator);
+                builder.Append($"{key}=");
+                format = "{0}{1}";
             }
+            else
+                format = "{0}{1}";
 
+            //append all elements in the array into a string
+            int index = 0;
+            foreach (object element in array)
+                builder.AppendFormat(format, getElementValue(element, urlEncode), separator, index++);
             //remove the last separator, if appended
             if ((builder.Length > 1) && (builder[builder.Length - 1] == separator))
                 builder.Length -= 1;
@@ -236,17 +248,29 @@ namespace SuggestGrid
             return builder.ToString();
         }
 
-        /// <summary>
-        /// Prepares the object as form fields using the provided name.
-        /// </summary>
-        /// <param name="name">root name for the variable</param>
-        /// <param name="value">form field value</param>
-        /// <param name="keys">Contains a flattend and form friendly values</param>
-        /// <returns>Contains a flattend and form friendly values</returns>
-        public static Dictionary<string, object> PrepareFormFieldsFromObject(
-            string name, object value, Dictionary<string, object> keys = null)
+        private static string getElementValue(object element, bool urlEncode)
         {
-            keys = keys ?? new Dictionary<string, object>();
+            string elemValue = null;
+
+            //replace null values with empty string to maintain index order
+            if (null == element)
+                elemValue = string.Empty;
+            else if (element is DateTime)
+                elemValue = ((DateTime) element).ToString(DateTimeFormat);
+            else if (element is DateTimeOffset)
+                elemValue = ((DateTimeOffset) element).ToString(DateTimeFormat);
+            else
+                elemValue = element.ToString();
+
+            if (urlEncode)
+                elemValue = Uri.EscapeDataString(elemValue);
+            return elemValue;
+        }
+
+        public static List<KeyValuePair<string, object>> PrepareFormFieldsFromObject(
+            string name, object value, List<KeyValuePair<string, object>> keys = null, PropertyInfo propInfo = null, ArrayDeserialization arrayDeserializationFormat = ArrayDeserialization.UnIndexed)
+        {
+            keys = keys ?? new List<KeyValuePair<string, object>>();
 
             if (value == null)
             {
@@ -254,93 +278,120 @@ namespace SuggestGrid
             }
             else if (value is Stream)
             {
-                keys[name] = value;
+                keys.Add(new KeyValuePair<string, object>(name,value));
                 return keys;
             }
             else if (value is JObject)
             {
-                var valueAccept = (value as Newtonsoft.Json.Linq.JObject);
+                var valueAccept = (value as JObject);
                 foreach (var property in valueAccept.Properties())
                 {
                     string pKey = property.Name;
                     object pValue = property.Value;
                     var fullSubName = name + '[' + pKey + ']';
-                    PrepareFormFieldsFromObject(fullSubName, pValue, keys);
+                    PrepareFormFieldsFromObject(fullSubName, pValue, keys, propInfo,arrayDeserializationFormat);
                 }
             }
             else if (value is IList)
             {
                 int i = 0;
-                var enumerator = ((IEnumerable)value).GetEnumerator();
+                var enumerator = ((IEnumerable) value).GetEnumerator();
                 while (enumerator.MoveNext())
                 {
                     var subValue = enumerator.Current;
                     if (subValue == null) continue;
                     var fullSubName = name + '[' + i + ']';
-                    PrepareFormFieldsFromObject(fullSubName, subValue, keys);
+                    if (arrayDeserializationFormat == ArrayDeserialization.UnIndexed)
+                        fullSubName = name + "[]";
+                    else if (arrayDeserializationFormat == ArrayDeserialization.Plain)
+                        fullSubName = name;
+                    PrepareFormFieldsFromObject(fullSubName, subValue, keys, propInfo,arrayDeserializationFormat);
                     i++;
                 }
             }
             else if (value is JToken)
             {
-                keys[name] = value.ToString();
+                keys.Add(new KeyValuePair<string, object>(name, value.ToString()));
             }
             else if (value is Enum)
             {
-#if WINDOWS_UWP
+#if (WINDOWS_UWP || DNXCORE50)
                 Assembly thisAssembly = typeof(APIHelper).GetTypeInfo().Assembly;
 #else
                 Assembly thisAssembly = Assembly.GetExecutingAssembly();
 #endif
                 string enumTypeName = value.GetType().FullName;
                 Type enumHelperType = thisAssembly.GetType(string.Format("{0}Helper", enumTypeName));
-                object enumValue = (int)value;
+                object enumValue = (int) value;
 
                 if (enumHelperType != null)
                 {
                     //this enum has an associated helper, use that to load the value
+#if DNXCORE50
+                    MethodInfo enumHelperMethod = enumHelperType.GetTypeInfo().GetMethod("ToValue", new[] { value.GetType() });
+#else
                     MethodInfo enumHelperMethod = enumHelperType.GetMethod("ToValue", new[] { value.GetType() });
+#endif
                     if (enumHelperMethod != null)
-                        enumValue = enumHelperMethod.Invoke(null, new object[] { value });
+                        enumValue = enumHelperMethod.Invoke(null, new object[] {value});
                 }
 
-                keys[name] = enumValue;
+                keys.Add(new KeyValuePair<string, object>(name, enumValue));
             }
             else if (value is IDictionary)
             {
-                var obj = (IDictionary)value;
+                var obj = (IDictionary) value;
                 foreach (var sName in obj.Keys)
                 {
                     var subName = sName.ToString();
                     var subValue = obj[subName];
                     string fullSubName = string.IsNullOrWhiteSpace(name) ? subName : name + '[' + subName + ']';
-                    PrepareFormFieldsFromObject(fullSubName, subValue, keys);
+                    PrepareFormFieldsFromObject(fullSubName, subValue, keys, propInfo,arrayDeserializationFormat);
                 }
             }
             else if (!(value.GetType().Namespace.StartsWith("System")))
             {
                 //Custom object Iterate through its properties
+#if DNXCORE50
+                var enumerator = value.GetType().GetTypeInfo().GetProperties().GetEnumerator();
+#else
                 var enumerator = value.GetType().GetProperties().GetEnumerator();
+#endif
                 PropertyInfo pInfo = null;
                 var t = new JsonPropertyAttribute().GetType();
                 while (enumerator.MoveNext())
                 {
                     pInfo = enumerator.Current as PropertyInfo;
 
-                    var jsonProperty = (JsonPropertyAttribute)pInfo.GetCustomAttributes(t, true).FirstOrDefault();
+                    var jsonProperty = (JsonPropertyAttribute) pInfo.GetCustomAttributes(t, true).FirstOrDefault();
                     var subName = (jsonProperty != null) ? jsonProperty.PropertyName : pInfo.Name;
                     string fullSubName = string.IsNullOrWhiteSpace(name) ? subName : name + '[' + subName + ']';
                     var subValue = pInfo.GetValue(value, null);
-                    PrepareFormFieldsFromObject(fullSubName, subValue, keys);
+                    PrepareFormFieldsFromObject(fullSubName, subValue, keys, pInfo,arrayDeserializationFormat);
                 }
             }
             else if (value is DateTime)
             {
-                keys[name] = ((DateTime)value).ToString(DateTimeFormat);
+                string convertedValue = null;
+                var pInfo = propInfo?.GetCustomAttributes(true);
+                if (pInfo != null)
+                {
+                    foreach (object attr in pInfo)
+                    {
+                        JsonConverterAttribute converterAttr = attr as JsonConverterAttribute;
+                        if (converterAttr != null)
+                            convertedValue =
+                                JsonSerialize(value,
+                                    (JsonConverter)
+                                        Activator.CreateInstance(converterAttr.ConverterType,
+                                            converterAttr.ConverterParameters)).Replace("\"", "");
+                    }
+                }
+                keys.Add(new KeyValuePair<string, object>(name, (convertedValue) ?? ((DateTime)value).ToString(DateTimeFormat)));
             }
             else
             {
-                keys[name] = value;
+                keys.Add(new KeyValuePair<string, object>(name,value));
             }
             return keys;
         }
@@ -357,6 +408,7 @@ namespace SuggestGrid
                 dictionary[kvp.Key] = kvp.Value;
             }
         }
+
         /// <summary>
         /// Runs asynchronous tasks synchronously and throws the first caught exception
         /// </summary>

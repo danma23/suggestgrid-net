@@ -1,7 +1,7 @@
 /*
  * SuggestGrid.PCL
  *
- * This file was automatically generated for SuggestGrid by APIMATIC v2.0 ( https://apimatic.io ) on 03/02/2017
+ * This file was automatically generated for SuggestGrid by APIMATIC v2.0 ( https://apimatic.io )
  */
 using System;
 using System.Collections.Generic;
@@ -11,7 +11,9 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Newtonsoft.Json.Converters;
 using SuggestGrid;
+using SuggestGrid.Utilities;
 using SuggestGrid.Http.Request;
 using SuggestGrid.Http.Response;
 using SuggestGrid.Http.Client;
@@ -49,211 +51,14 @@ namespace SuggestGrid.Controllers
         #endregion Singleton Pattern
 
         /// <summary>
-        /// Get All Types
-        /// </summary>
-        /// <return>Returns the GetTypesResponse response from the API call</return>
-        public GetTypesResponse GetAllTypes()
-        {
-            Task<GetTypesResponse> t = GetAllTypesAsync();
-            APIHelper.RunTaskSynchronously(t);
-            return t.Result;
-        }
-
-        /// <summary>
-        /// Get All Types
-        /// </summary>
-        /// <return>Returns the GetTypesResponse response from the API call</return>
-        public async Task<GetTypesResponse> GetAllTypesAsync()
-        {
-            //the base uri for api requestss
-            string _baseUri = Configuration.BaseUri;
-
-            //prepare query string for API call
-            StringBuilder _queryBuilder = new StringBuilder(_baseUri);
-            _queryBuilder.Append("/v1/types");
-
-
-            //validate and preprocess url
-            string _queryUrl = APIHelper.CleanUrl(_queryBuilder);
-
-            //append request with appropriate headers and parameters
-            var _headers = new Dictionary<string,string>()
-            {
-                { "user-agent", "SUGGESTGRID" },
-                { "accept", "application/json" }
-            };
-
-            //prepare the API call request to fetch the response
-            HttpRequest _request = ClientInstance.Get(_queryUrl,_headers, Configuration.BasicAuthUserName, Configuration.BasicAuthPassword);
-
-            //invoke request and get response
-            HttpStringResponse _response = (HttpStringResponse) await ClientInstance.ExecuteAsStringAsync(_request).ConfigureAwait(false);
-            HttpContext _context = new HttpContext(_request,_response);
-
-            //Error handling using HTTP status codes
-            if (_response.StatusCode == 429)
-                throw new ErrorResponseException(@"Too many requests.", _context);
-
-            else if (_response.StatusCode == 500)
-                throw new APIException(@"Unexpected internal error.", _context);
-
-            //handle errors defined at the API level
-            base.ValidateResponse(_response, _context);
-
-            try
-            {
-                return APIHelper.JsonDeserialize<GetTypesResponse>(_response.Body);
-            }
-            catch (Exception _ex)
-            {
-                throw new APIException("Failed to parse the response: " + _ex.Message, _context);
-            }
-        }
-
-        /// <summary>
-        /// Delete All Types
-        /// </summary>
-        /// <return>Returns the MessageResponse response from the API call</return>
-        public MessageResponse DeleteAllTypes()
-        {
-            Task<MessageResponse> t = DeleteAllTypesAsync();
-            APIHelper.RunTaskSynchronously(t);
-            return t.Result;
-        }
-
-        /// <summary>
-        /// Delete All Types
-        /// </summary>
-        /// <return>Returns the MessageResponse response from the API call</return>
-        public async Task<MessageResponse> DeleteAllTypesAsync()
-        {
-            //the base uri for api requestss
-            string _baseUri = Configuration.BaseUri;
-
-            //prepare query string for API call
-            StringBuilder _queryBuilder = new StringBuilder(_baseUri);
-            _queryBuilder.Append("/v1/types");
-
-
-            //validate and preprocess url
-            string _queryUrl = APIHelper.CleanUrl(_queryBuilder);
-
-            //append request with appropriate headers and parameters
-            var _headers = new Dictionary<string,string>()
-            {
-                { "user-agent", "SUGGESTGRID" },
-                { "accept", "application/json" }
-            };
-
-            //prepare the API call request to fetch the response
-            HttpRequest _request = ClientInstance.Delete(_queryUrl, _headers, null, Configuration.BasicAuthUserName, Configuration.BasicAuthPassword);
-
-            //invoke request and get response
-            HttpStringResponse _response = (HttpStringResponse) await ClientInstance.ExecuteAsStringAsync(_request).ConfigureAwait(false);
-            HttpContext _context = new HttpContext(_request,_response);
-
-            //Error handling using HTTP status codes
-            if (_response.StatusCode == 429)
-                throw new ErrorResponseException(@"Too many requests.", _context);
-
-            else if (_response.StatusCode == 500)
-                throw new APIException(@"Unexpected internal error.", _context);
-
-            //handle errors defined at the API level
-            base.ValidateResponse(_response, _context);
-
-            try
-            {
-                return APIHelper.JsonDeserialize<MessageResponse>(_response.Body);
-            }
-            catch (Exception _ex)
-            {
-                throw new APIException("Failed to parse the response: " + _ex.Message, _context);
-            }
-        }
-
-        /// <summary>
-        /// Get Properties of a Type
-        /// </summary>
-        /// <param name="type">Required parameter: The name of the type to get properties.</param>
-        /// <return>Returns the GetTypeResponse response from the API call</return>
-        public GetTypeResponse GetType(string type)
-        {
-            Task<GetTypeResponse> t = GetTypeAsync(type);
-            APIHelper.RunTaskSynchronously(t);
-            return t.Result;
-        }
-
-        /// <summary>
-        /// Get Properties of a Type
-        /// </summary>
-        /// <param name="type">Required parameter: The name of the type to get properties.</param>
-        /// <return>Returns the GetTypeResponse response from the API call</return>
-        public async Task<GetTypeResponse> GetTypeAsync(string type)
-        {
-            //the base uri for api requestss
-            string _baseUri = Configuration.BaseUri;
-
-            //prepare query string for API call
-            StringBuilder _queryBuilder = new StringBuilder(_baseUri);
-            _queryBuilder.Append("/v1/types/{type}");
-
-            //process optional template parameters
-            APIHelper.AppendUrlWithTemplateParameters(_queryBuilder, new Dictionary<string, object>()
-            {
-                { "type", type }
-            });
-
-
-            //validate and preprocess url
-            string _queryUrl = APIHelper.CleanUrl(_queryBuilder);
-
-            //append request with appropriate headers and parameters
-            var _headers = new Dictionary<string,string>()
-            {
-                { "user-agent", "SUGGESTGRID" },
-                { "accept", "application/json" }
-            };
-
-            //prepare the API call request to fetch the response
-            HttpRequest _request = ClientInstance.Get(_queryUrl,_headers, Configuration.BasicAuthUserName, Configuration.BasicAuthPassword);
-
-            //invoke request and get response
-            HttpStringResponse _response = (HttpStringResponse) await ClientInstance.ExecuteAsStringAsync(_request).ConfigureAwait(false);
-            HttpContext _context = new HttpContext(_request,_response);
-
-            //Error handling using HTTP status codes
-            if (_response.StatusCode == 404)
-                throw new ErrorResponseException(@"Type not found.", _context);
-
-            else if (_response.StatusCode == 429)
-                throw new ErrorResponseException(@"Too many requests.", _context);
-
-            else if (_response.StatusCode == 500)
-                throw new APIException(@"Unexpected internal error.", _context);
-
-            //handle errors defined at the API level
-            base.ValidateResponse(_response, _context);
-
-            try
-            {
-                return APIHelper.JsonDeserialize<GetTypeResponse>(_response.Body);
-            }
-            catch (Exception _ex)
-            {
-                throw new APIException("Failed to parse the response: " + _ex.Message, _context);
-            }
-        }
-
-        /// <summary>
         /// Create a New Type
         /// </summary>
         /// <param name="type">Required parameter: The name of the type.</param>
         /// <param name="settings">Optional parameter: Optional settings for the rating parameter.</param>
-        /// <return>Returns the MessageResponse response from the API call</return>
-        public MessageResponse CreateType(string type, TypeRequestBody settings = null)
+        /// <return>Returns the Models.MessageResponse response from the API call</return>
+        public Models.MessageResponse CreateType(string type, Models.TypeRequestBody settings = null)
         {
-            Task<MessageResponse> t = CreateTypeAsync(type, settings);
+            Task<Models.MessageResponse> t = CreateTypeAsync(type, settings);
             APIHelper.RunTaskSynchronously(t);
             return t.Result;
         }
@@ -263,8 +68,8 @@ namespace SuggestGrid.Controllers
         /// </summary>
         /// <param name="type">Required parameter: The name of the type.</param>
         /// <param name="settings">Optional parameter: Optional settings for the rating parameter.</param>
-        /// <return>Returns the MessageResponse response from the API call</return>
-        public async Task<MessageResponse> CreateTypeAsync(string type, TypeRequestBody settings = null)
+        /// <return>Returns the Models.MessageResponse response from the API call</return>
+        public async Task<Models.MessageResponse> CreateTypeAsync(string type, Models.TypeRequestBody settings = null)
         {
             //the base uri for api requestss
             string _baseUri = Configuration.BaseUri;
@@ -305,24 +110,97 @@ namespace SuggestGrid.Controllers
             if (_response.StatusCode == 402)
                 throw new LimitExceededErrorResponseException(@"Type limit reached.", _context);
 
-            else if (_response.StatusCode == 409)
+            if (_response.StatusCode == 409)
                 throw new ErrorResponseException(@"Type already exists.", _context);
 
-            else if (_response.StatusCode == 422)
+            if (_response.StatusCode == 422)
                 throw new ErrorResponseException(@"Rating type is not `implicit` or `explicit`.", _context);
 
-            else if (_response.StatusCode == 429)
+            if (_response.StatusCode == 429)
                 throw new ErrorResponseException(@"Too many requests.", _context);
 
-            else if (_response.StatusCode == 500)
-                throw new APIException(@"Unexpected internal error.", _context);
+            if ((_response.StatusCode < 200) || (_response.StatusCode > 208)) //[200,208] = HTTP OK
+                throw new ErrorResponseException(@"Unexpected internal error.", _context);
 
             //handle errors defined at the API level
             base.ValidateResponse(_response, _context);
 
             try
             {
-                return APIHelper.JsonDeserialize<MessageResponse>(_response.Body);
+                return APIHelper.JsonDeserialize<Models.MessageResponse>(_response.Body);
+            }
+            catch (Exception _ex)
+            {
+                throw new APIException("Failed to parse the response: " + _ex.Message, _context);
+            }
+        }
+
+        /// <summary>
+        /// Get Properties of a Type
+        /// </summary>
+        /// <param name="type">Required parameter: The name of the type to get properties.</param>
+        /// <return>Returns the Models.GetTypeResponse response from the API call</return>
+        public Models.GetTypeResponse GetType(string type)
+        {
+            Task<Models.GetTypeResponse> t = GetTypeAsync(type);
+            APIHelper.RunTaskSynchronously(t);
+            return t.Result;
+        }
+
+        /// <summary>
+        /// Get Properties of a Type
+        /// </summary>
+        /// <param name="type">Required parameter: The name of the type to get properties.</param>
+        /// <return>Returns the Models.GetTypeResponse response from the API call</return>
+        public async Task<Models.GetTypeResponse> GetTypeAsync(string type)
+        {
+            //the base uri for api requestss
+            string _baseUri = Configuration.BaseUri;
+
+            //prepare query string for API call
+            StringBuilder _queryBuilder = new StringBuilder(_baseUri);
+            _queryBuilder.Append("/v1/types/{type}");
+
+            //process optional template parameters
+            APIHelper.AppendUrlWithTemplateParameters(_queryBuilder, new Dictionary<string, object>()
+            {
+                { "type", type }
+            });
+
+
+            //validate and preprocess url
+            string _queryUrl = APIHelper.CleanUrl(_queryBuilder);
+
+            //append request with appropriate headers and parameters
+            var _headers = new Dictionary<string,string>()
+            {
+                { "user-agent", "SUGGESTGRID" },
+                { "accept", "application/json" }
+            };
+
+            //prepare the API call request to fetch the response
+            HttpRequest _request = ClientInstance.Get(_queryUrl,_headers, Configuration.BasicAuthUserName, Configuration.BasicAuthPassword);
+
+            //invoke request and get response
+            HttpStringResponse _response = (HttpStringResponse) await ClientInstance.ExecuteAsStringAsync(_request).ConfigureAwait(false);
+            HttpContext _context = new HttpContext(_request,_response);
+
+            //Error handling using HTTP status codes
+            if (_response.StatusCode == 404)
+                throw new ErrorResponseException(@"Type not found.", _context);
+
+            if (_response.StatusCode == 429)
+                throw new ErrorResponseException(@"Too many requests.", _context);
+
+            if ((_response.StatusCode < 200) || (_response.StatusCode > 208)) //[200,208] = HTTP OK
+                throw new ErrorResponseException(@"Unexpected internal error.", _context);
+
+            //handle errors defined at the API level
+            base.ValidateResponse(_response, _context);
+
+            try
+            {
+                return APIHelper.JsonDeserialize<Models.GetTypeResponse>(_response.Body);
             }
             catch (Exception _ex)
             {
@@ -334,10 +212,10 @@ namespace SuggestGrid.Controllers
         /// Delete a Type
         /// </summary>
         /// <param name="type">Required parameter: The name of the type to be deleted.</param>
-        /// <return>Returns the MessageResponse response from the API call</return>
-        public MessageResponse DeleteType(string type)
+        /// <return>Returns the Models.MessageResponse response from the API call</return>
+        public Models.MessageResponse DeleteType(string type)
         {
-            Task<MessageResponse> t = DeleteTypeAsync(type);
+            Task<Models.MessageResponse> t = DeleteTypeAsync(type);
             APIHelper.RunTaskSynchronously(t);
             return t.Result;
         }
@@ -346,8 +224,8 @@ namespace SuggestGrid.Controllers
         /// Delete a Type
         /// </summary>
         /// <param name="type">Required parameter: The name of the type to be deleted.</param>
-        /// <return>Returns the MessageResponse response from the API call</return>
-        public async Task<MessageResponse> DeleteTypeAsync(string type)
+        /// <return>Returns the Models.MessageResponse response from the API call</return>
+        public async Task<Models.MessageResponse> DeleteTypeAsync(string type)
         {
             //the base uri for api requestss
             string _baseUri = Configuration.BaseUri;
@@ -384,18 +262,142 @@ namespace SuggestGrid.Controllers
             if (_response.StatusCode == 404)
                 throw new ErrorResponseException(@"Type does not exists.", _context);
 
-            else if (_response.StatusCode == 429)
+            if (_response.StatusCode == 429)
                 throw new ErrorResponseException(@"Too many requests.", _context);
 
-            else if (_response.StatusCode == 500)
-                throw new APIException(@"Unexpected internal error.", _context);
+            if ((_response.StatusCode < 200) || (_response.StatusCode > 208)) //[200,208] = HTTP OK
+                throw new ErrorResponseException(@"Unexpected internal error.", _context);
 
             //handle errors defined at the API level
             base.ValidateResponse(_response, _context);
 
             try
             {
-                return APIHelper.JsonDeserialize<MessageResponse>(_response.Body);
+                return APIHelper.JsonDeserialize<Models.MessageResponse>(_response.Body);
+            }
+            catch (Exception _ex)
+            {
+                throw new APIException("Failed to parse the response: " + _ex.Message, _context);
+            }
+        }
+
+        /// <summary>
+        /// Get All Types
+        /// </summary>
+        /// <return>Returns the Models.GetTypesResponse response from the API call</return>
+        public Models.GetTypesResponse GetAllTypes()
+        {
+            Task<Models.GetTypesResponse> t = GetAllTypesAsync();
+            APIHelper.RunTaskSynchronously(t);
+            return t.Result;
+        }
+
+        /// <summary>
+        /// Get All Types
+        /// </summary>
+        /// <return>Returns the Models.GetTypesResponse response from the API call</return>
+        public async Task<Models.GetTypesResponse> GetAllTypesAsync()
+        {
+            //the base uri for api requestss
+            string _baseUri = Configuration.BaseUri;
+
+            //prepare query string for API call
+            StringBuilder _queryBuilder = new StringBuilder(_baseUri);
+            _queryBuilder.Append("/v1/types");
+
+
+            //validate and preprocess url
+            string _queryUrl = APIHelper.CleanUrl(_queryBuilder);
+
+            //append request with appropriate headers and parameters
+            var _headers = new Dictionary<string,string>()
+            {
+                { "user-agent", "SUGGESTGRID" },
+                { "accept", "application/json" }
+            };
+
+            //prepare the API call request to fetch the response
+            HttpRequest _request = ClientInstance.Get(_queryUrl,_headers, Configuration.BasicAuthUserName, Configuration.BasicAuthPassword);
+
+            //invoke request and get response
+            HttpStringResponse _response = (HttpStringResponse) await ClientInstance.ExecuteAsStringAsync(_request).ConfigureAwait(false);
+            HttpContext _context = new HttpContext(_request,_response);
+
+            //Error handling using HTTP status codes
+            if (_response.StatusCode == 429)
+                throw new ErrorResponseException(@"Too many requests.", _context);
+
+            if ((_response.StatusCode < 200) || (_response.StatusCode > 208)) //[200,208] = HTTP OK
+                throw new ErrorResponseException(@"Unexpected internal error.", _context);
+
+            //handle errors defined at the API level
+            base.ValidateResponse(_response, _context);
+
+            try
+            {
+                return APIHelper.JsonDeserialize<Models.GetTypesResponse>(_response.Body);
+            }
+            catch (Exception _ex)
+            {
+                throw new APIException("Failed to parse the response: " + _ex.Message, _context);
+            }
+        }
+
+        /// <summary>
+        /// Delete All Types
+        /// </summary>
+        /// <return>Returns the Models.MessageResponse response from the API call</return>
+        public Models.MessageResponse DeleteAllTypes()
+        {
+            Task<Models.MessageResponse> t = DeleteAllTypesAsync();
+            APIHelper.RunTaskSynchronously(t);
+            return t.Result;
+        }
+
+        /// <summary>
+        /// Delete All Types
+        /// </summary>
+        /// <return>Returns the Models.MessageResponse response from the API call</return>
+        public async Task<Models.MessageResponse> DeleteAllTypesAsync()
+        {
+            //the base uri for api requestss
+            string _baseUri = Configuration.BaseUri;
+
+            //prepare query string for API call
+            StringBuilder _queryBuilder = new StringBuilder(_baseUri);
+            _queryBuilder.Append("/v1/types");
+
+
+            //validate and preprocess url
+            string _queryUrl = APIHelper.CleanUrl(_queryBuilder);
+
+            //append request with appropriate headers and parameters
+            var _headers = new Dictionary<string,string>()
+            {
+                { "user-agent", "SUGGESTGRID" },
+                { "accept", "application/json" }
+            };
+
+            //prepare the API call request to fetch the response
+            HttpRequest _request = ClientInstance.Delete(_queryUrl, _headers, null, Configuration.BasicAuthUserName, Configuration.BasicAuthPassword);
+
+            //invoke request and get response
+            HttpStringResponse _response = (HttpStringResponse) await ClientInstance.ExecuteAsStringAsync(_request).ConfigureAwait(false);
+            HttpContext _context = new HttpContext(_request,_response);
+
+            //Error handling using HTTP status codes
+            if (_response.StatusCode == 429)
+                throw new ErrorResponseException(@"Too many requests.", _context);
+
+            if ((_response.StatusCode < 200) || (_response.StatusCode > 208)) //[200,208] = HTTP OK
+                throw new ErrorResponseException(@"Unexpected internal error.", _context);
+
+            //handle errors defined at the API level
+            base.ValidateResponse(_response, _context);
+
+            try
+            {
+                return APIHelper.JsonDeserialize<Models.MessageResponse>(_response.Body);
             }
             catch (Exception _ex)
             {

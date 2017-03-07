@@ -1,7 +1,7 @@
 /*
  * SuggestGrid.PCL
  *
- * This file was automatically generated for SuggestGrid by APIMATIC v2.0 ( https://apimatic.io ) on 03/02/2017
+ * This file was automatically generated for SuggestGrid by APIMATIC v2.0 ( https://apimatic.io )
  */
 using System;
 using System.Collections.Generic;
@@ -11,7 +11,9 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Newtonsoft.Json.Converters;
 using SuggestGrid;
+using SuggestGrid.Utilities;
 using SuggestGrid.Http.Request;
 using SuggestGrid.Http.Response;
 using SuggestGrid.Http.Client;
@@ -52,10 +54,10 @@ namespace SuggestGrid.Controllers
         /// Get Recommended Users
         /// </summary>
         /// <param name="query">Required parameter: The query for recommended users.</param>
-        /// <return>Returns the UsersResponse response from the API call</return>
-        public UsersResponse GetRecommendedUsers(GetRecommendedUsersBody query)
+        /// <return>Returns the Models.UsersResponse response from the API call</return>
+        public Models.UsersResponse GetRecommendedUsers(Models.GetRecommendedUsersBody query)
         {
-            Task<UsersResponse> t = GetRecommendedUsersAsync(query);
+            Task<Models.UsersResponse> t = GetRecommendedUsersAsync(query);
             APIHelper.RunTaskSynchronously(t);
             return t.Result;
         }
@@ -64,8 +66,8 @@ namespace SuggestGrid.Controllers
         /// Get Recommended Users
         /// </summary>
         /// <param name="query">Required parameter: The query for recommended users.</param>
-        /// <return>Returns the UsersResponse response from the API call</return>
-        public async Task<UsersResponse> GetRecommendedUsersAsync(GetRecommendedUsersBody query)
+        /// <return>Returns the Models.UsersResponse response from the API call</return>
+        public async Task<Models.UsersResponse> GetRecommendedUsersAsync(Models.GetRecommendedUsersBody query)
         {
             //the base uri for api requestss
             string _baseUri = Configuration.BaseUri;
@@ -100,21 +102,21 @@ namespace SuggestGrid.Controllers
             if (_response.StatusCode == 400)
                 throw new ErrorResponseException(@"Request body is invalid.", _context);
 
-            else if (_response.StatusCode == 422)
+            if (_response.StatusCode == 422)
                 throw new ErrorResponseException(@"Required parameters are missing.", _context);
 
-            else if (_response.StatusCode == 429)
+            if (_response.StatusCode == 429)
                 throw new ErrorResponseException(@"Too many requests.", _context);
 
-            else if (_response.StatusCode == 500)
-                throw new APIException(@"Unexpected internal error.", _context);
+            if ((_response.StatusCode < 200) || (_response.StatusCode > 208)) //[200,208] = HTTP OK
+                throw new ErrorResponseException(@"Unexpected internal error.", _context);
 
             //handle errors defined at the API level
             base.ValidateResponse(_response, _context);
 
             try
             {
-                return APIHelper.JsonDeserialize<UsersResponse>(_response.Body);
+                return APIHelper.JsonDeserialize<Models.UsersResponse>(_response.Body);
             }
             catch (Exception _ex)
             {
@@ -126,10 +128,10 @@ namespace SuggestGrid.Controllers
         /// Get Recommended Items
         /// </summary>
         /// <param name="query">Required parameter: The query for recommended items.</param>
-        /// <return>Returns the ItemsResponse response from the API call</return>
-        public ItemsResponse GetRecommendedItems(GetRecommendedItemsBody query)
+        /// <return>Returns the Models.ItemsResponse response from the API call</return>
+        public Models.ItemsResponse GetRecommendedItems(Models.GetRecommendedItemsBody query)
         {
-            Task<ItemsResponse> t = GetRecommendedItemsAsync(query);
+            Task<Models.ItemsResponse> t = GetRecommendedItemsAsync(query);
             APIHelper.RunTaskSynchronously(t);
             return t.Result;
         }
@@ -138,8 +140,8 @@ namespace SuggestGrid.Controllers
         /// Get Recommended Items
         /// </summary>
         /// <param name="query">Required parameter: The query for recommended items.</param>
-        /// <return>Returns the ItemsResponse response from the API call</return>
-        public async Task<ItemsResponse> GetRecommendedItemsAsync(GetRecommendedItemsBody query)
+        /// <return>Returns the Models.ItemsResponse response from the API call</return>
+        public async Task<Models.ItemsResponse> GetRecommendedItemsAsync(Models.GetRecommendedItemsBody query)
         {
             //the base uri for api requestss
             string _baseUri = Configuration.BaseUri;
@@ -174,21 +176,21 @@ namespace SuggestGrid.Controllers
             if (_response.StatusCode == 400)
                 throw new ErrorResponseException(@"Request body is invalid.", _context);
 
-            else if (_response.StatusCode == 422)
+            if (_response.StatusCode == 422)
                 throw new ErrorResponseException(@"Required parameters are missing.", _context);
 
-            else if (_response.StatusCode == 429)
+            if (_response.StatusCode == 429)
                 throw new ErrorResponseException(@"Too many requests.", _context);
 
-            else if (_response.StatusCode == 500)
-                throw new APIException(@"Unexpected internal error.", _context);
+            if ((_response.StatusCode < 200) || (_response.StatusCode > 208)) //[200,208] = HTTP OK
+                throw new ErrorResponseException(@"Unexpected internal error.", _context);
 
             //handle errors defined at the API level
             base.ValidateResponse(_response, _context);
 
             try
             {
-                return APIHelper.JsonDeserialize<ItemsResponse>(_response.Body);
+                return APIHelper.JsonDeserialize<Models.ItemsResponse>(_response.Body);
             }
             catch (Exception _ex)
             {

@@ -1,8 +1,8 @@
 
 
 ## Type Methods
-Type methods are used for managing SuggestGrid types.
-For more information on types, refer to [Types concept documentation](http://www.suggestgrid.com/docs/types).
+Type methods are used for creating, inspecting, and deleting SuggestGrid types.
+For more information, you may refer to [types documentation](http://www.suggestgrid.com/docs/types).
 
 ### Create a New Type
 > `CreateType(type, body)`
@@ -87,8 +87,8 @@ suggestGridClient.Type.DeleteAllTypes();
 
 
 ## Action Methods
-Action methods are for posting and deleting actions.
-For more information on actions, refer to [Actions concept documentation](http://www.suggestgrid.com/docs/actions).
+Action methods are for creating, inspecting, and deleting actions.
+For more information, you may refer to [actions documentation](http://www.suggestgrid.com/docs/actions).
 
 ### Post an Action
 > `PostAction(ActionModel)`
@@ -113,11 +113,11 @@ suggestGridClient.Action.PostAction(new ActionModel { Type = "views", ItemId = "
 
 Name | Type |Required| Description
 --- | --- | --- | ---
-item_id|string|true|The item id of the item the action is performed on.
+itemId|string|true|The item id of the item the action is performed on.
 rating|number|false|The optional rating given by the user, if the type is explicit.
 timestamp|integer|false|The optional UNIX epoch timestamp of the action. Defaults to the current timestamp.
 type|string|true|The type that the action belongs to.
-user_id|string|true|The user id of the performer of the action.
+userId|string|true|The user id of the performer of the action.
 ### Post Bulk Actions
 > `PostBulkActions(List<ActionModel> actions)`
 
@@ -258,8 +258,8 @@ user_id|string||The user id of the actions.
 
 
 ## Metadata Methods
-Metadata methods are for posting and deleting metadata.
-For more information on metadata, refer to [Metadata concept documentation ](http://www.suggestgrid.com/docs/metadata).
+Metadata methods are for creating, inspecting, and deleting metadata.
+For more information, you may refer to [metadata documentation ](http://www.suggestgrid.com/docs/metadata).
 
 ### Post a User
 > `PostUser(Metadata<string,object> metadata)`
@@ -476,8 +476,8 @@ suggestGridClient.Metadata.DeleteAllItems();
 
 
 ## Recommnedation Methods
-Recommnedation methods are for getting recommended items or users responses from SuggestGrid.
-For more information on recommendations, refer to [Recommendations concept documentation](http://www.suggestgrid.com/docs/recommendations).
+Recommnedation methods are for getting recommended items or users from SuggestGrid.
+For more information, you may refer to [recommendations documentation](http://www.suggestgrid.com/docs/recommendations).
 
 ### Get Recommended Users
 > `GetRecommendedUsers(GetRecommendedUsersBody body)`
@@ -543,10 +543,10 @@ except|array|false|These user ids that will not be included in the response.
 fields|array|false|The metadata fields to be included in returned user objects.
 filter||false|
 from|integer|false|The number of most recommended items to be skipped.
-item_id|string|false|The item id of the query.
-item_ids|array|false|The item ids of the query. Exactly one of item id or item ids parameters must be provided.
-similar_user_id|string|false|Similar user that the response should be similar to.
-similar_user_ids|string|false|Similar users that the response should be similar to. At most one of similar user and similar users parameters can be provided. 
+itemId|string|false|The item id of the query.
+itemIds|array|false|The item ids of the query. Exactly one of item id or item ids parameters must be provided.
+similarUserId|string|false|Similar user that the response should be similar to.
+similarUserIds|array|false|Similar users that the response should be similar to. At most one of similar user and similar users parameters can be provided. 
 size|integer|false|The number of users asked to return in the response. Defaults to 10. Must be between 1 and 10.000 inclusive.
 type|string|false|The type of the query.
 types|string|false|The types of the query. Exactly one of type or types parameters must be provided.
@@ -626,18 +626,18 @@ except|array|false|These item ids that will not be included in the response.
 fields|array|false|The metadata fields to be included in returned item objects.
 filter||false|
 from|integer|false|The number of most recommended items to be skipped.
-similar_item_id|string|false|Similar item that the response should be similar to.
-similar_item_ids|string|false|Similar items that the response should be similar to. At most one of similar item and similar items parameters can be provided. 
+similarItemId|string|false|Similar item that the response should be similar to.
+similarItemIds|array|false|Similar items that the response should be similar to. At most one of similar item and similar items parameters can be provided. 
 size|integer|false|The number of items asked to return in the response. Defaults to 10. Must be between 1 and 10.000 inclusive.
 type|string|false|The type of the query.
 types|string|false|The types of the query. Exactly one of type or types parameters must be provided.
-user_id|string|false|The user id of the query.
-user_ids|array|false|The user ids of the query. Exactly one of user id or user ids parameters must be provided.
+userId|string|false|The user id of the query.
+userIds|array|false|The user ids of the query. Exactly one of user id or user ids parameters must be provided.
 
 
 ## Similarity Methods
-Similarity methods are for getting similar items or users responses from SuggestGrid.
-For more information on similars, refer to [Similarities concept documentation](http://www.suggestgrid.com/docs/similarities).
+Similarity methods are for getting similar items or users from SuggestGrid.
+For more information, you may refer to [similarities documentation](http://www.suggestgrid.com/docs/similarities).
 
 ### Get Similar Users
 > `GetSimilarUsers(GetSimilarUsersBody body)`
@@ -696,8 +696,8 @@ from|integer|false|The number of most similar users to be skipped.
 size|integer|false|The number of users asked to return in the response. Defaults to 10. Must be between 1 and 10.000 inclusive.
 type|string|false|The type of the query.
 types|string|false|The types of the query. Exactly one of type or types parameters must be provided.
-user_id|string|false|The user id of the query.
-user_ids|array|false|The user ids of the query. Exactly one of user id or user ids parameters must be provided.
+userId|string|false|The user id of the query.
+userIds|array|false|The user ids of the query. Exactly one of user id or user ids parameters must be provided.
 ### Get Similar Items
 > `GetSimilarItems(GetSimilarItemsBody body)`
 
@@ -752,8 +752,8 @@ except|array|false|These item ids that will not be included in the response.
 fields|array|false|The metadata fields to be included in returned item objects.
 filter||false|
 from|integer|false|The number of most similar items to be skipped.
-item_id|string|false|The item id of the query. Get similar items to given item id. Either item id or item ids must be provided.
-item_ids|array|false|The item ids of the query. Exactly one of item id or item ids parameters must be provided. Get similar items to given item ids. Either item id or item ids must be provided.
+itemId|string|false|The item id of the query. Get similar items to given item id. Either item id or item ids must be provided.
+itemIds|array|false|The item ids of the query. Exactly one of item id or item ids parameters must be provided. Get similar items to given item ids. Either item id or item ids must be provided.
 size|integer|false|The number of items asked to return in the response. Defaults to 10. Must be between 1 and 10.000 inclusive.
 type|string|false|The type of the query.
 types|string|false|The types of the query. Exactly one of type or types parameters must be provided.

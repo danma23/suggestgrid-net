@@ -109,7 +109,7 @@ namespace SuggestGrid.Http.Client
         /// <param name="username">Basic Auth username</param>
         /// <param name="password">Basic Auth password</param>
         /// <returns> HttpRequest initialised with the http parameters specified</returns>
-        HttpRequest Post(string queryUrl, Dictionary<string, string> headers, Dictionary<string, Object> formParameters,
+        HttpRequest Post(string queryUrl, Dictionary<string, string> headers, List<KeyValuePair<string, Object>> formParameters,
            string username = null, string password = null);
 
         /// <summary>
@@ -133,7 +133,7 @@ namespace SuggestGrid.Http.Client
         /// <param name="username">Basic Auth username</param>
         /// <param name="password">Basic Auth password</param>
         /// <returns> HttpRequest initialised with the http parameters specified</returns>
-        HttpRequest Put(string queryUrl, Dictionary<string, string> headers, Dictionary<string, Object> formParameters,
+        HttpRequest Put(string queryUrl, Dictionary<string, string> headers, List<KeyValuePair<string, Object>> formParameters,
             string username = null, string password = null);
 
         /// <summary>
@@ -157,7 +157,7 @@ namespace SuggestGrid.Http.Client
         /// <param name="username">Basic Auth username</param>
         /// <param name="password">Basic Auth password</param>
         /// <returns> HttpRequest initialised with the http parameters specified</returns>
-        HttpRequest Patch(string queryUrl, Dictionary<string, string> headers, Dictionary<string, Object> formParameters,
+        HttpRequest Patch(string queryUrl, Dictionary<string, string> headers, List<KeyValuePair<string, Object>> formParameters,
             string username = null, string password = null);
 
         /// <summary>
@@ -181,7 +181,7 @@ namespace SuggestGrid.Http.Client
         /// <param name="username">Basic Auth username</param>
         /// <param name="password">Basic Auth password</param>
         /// <returns> HttpRequest initialised with the http parameters specified</returns>
-        HttpRequest Delete(string queryUrl, Dictionary<string, string> headers, Dictionary<string, Object> formParameters,
+        HttpRequest Delete(string queryUrl, Dictionary<string, string> headers, List<KeyValuePair<string, Object>> formParameters,
             string username = null, string password = null);
 
         /// <summary>
