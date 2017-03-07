@@ -1,4 +1,4 @@
 #! /bin/bash
-dotnet restore
+
 nuget pack SuggestGrid/SuggestGrid.PCL.nuspec
 nuget push *.nupkg $PACKAGE_MANAGER_API_KEY

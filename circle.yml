@@ -31,16 +31,13 @@ dependencies:
 
 test:
   override:
+    # # Set TERM to xterm-256color
+    # - nuget restore
+    # - xbuild /p:Configuration=Release SuggestGrid.sln
     - cd ${SDK_PATH} && dotnet restore
     - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
     - docker pull suggestgrid/c-12
     - docker run -v ${KIRK_PATH}:/repos/kirk -v ${MALIK_PATH}:/repos/malik -v ${SDK_PATH}:/repos/sdk -v ${PROXY_PATH}:/repos/proxy suggestgrid/c-12
-
-test:
-  override:
-      # Set TERM to xterm-256color
-    - nuget restore
-    - xbuild /p:Configuration=Release SuggestGrid.sln
 
 deployment:
   release:
