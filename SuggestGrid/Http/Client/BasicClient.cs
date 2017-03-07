@@ -137,7 +137,7 @@ namespace SuggestGrid.Http.Client
             return new HttpRequest(HttpMethod.PATCH, queryUrl);
         }
 
-        public HttpRequest Post(string queryUrl, Dictionary<string, string> headers, Dictionary<string, object> formParameters, string username = null,
+        public HttpRequest Post(string queryUrl, Dictionary<string, string> headers, List<KeyValuePair<string, Object>> formParameters, string username = null,
             string password = null)
         {
             return new HttpRequest(HttpMethod.POST, queryUrl, headers, formParameters, username, password);
@@ -148,7 +148,7 @@ namespace SuggestGrid.Http.Client
             return new HttpRequest(HttpMethod.POST, queryUrl, headers, body, username, password);
         }
 
-        public HttpRequest Put(string queryUrl, Dictionary<string, string> headers, Dictionary<string, object> formParameters, string username = null,
+        public HttpRequest Put(string queryUrl, Dictionary<string, string> headers, List<KeyValuePair<string, Object>> formParameters, string username = null,
             string password = null)
         {
             return new HttpRequest(HttpMethod.PUT, queryUrl, headers, formParameters, username, password);
@@ -159,7 +159,7 @@ namespace SuggestGrid.Http.Client
             return new HttpRequest(HttpMethod.PUT, queryUrl, headers, body, username, password);
         }
 
-        public HttpRequest Patch(string queryUrl, Dictionary<string, string> headers, Dictionary<string, object> formParameters, string username = null,
+        public HttpRequest Patch(string queryUrl, Dictionary<string, string> headers, List<KeyValuePair<string, Object>> formParameters, string username = null,
             string password = null)
         {
             return new HttpRequest(HttpMethod.PATCH, queryUrl, headers, formParameters, username, password);
@@ -170,7 +170,7 @@ namespace SuggestGrid.Http.Client
             return new HttpRequest(HttpMethod.PATCH, queryUrl, headers, body, username, password);
         }
 
-        public HttpRequest Delete(string queryUrl, Dictionary<string, string> headers, Dictionary<string, object> formParameters, string username = null,
+        public HttpRequest Delete(string queryUrl, Dictionary<string, string> headers, List<KeyValuePair<string, Object>> formParameters, string username = null,
             string password = null)
         {
             return new HttpRequest(HttpMethod.DELETE, queryUrl, headers, formParameters, username, password);
