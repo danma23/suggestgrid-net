@@ -181,6 +181,7 @@ namespace SuggestGrid.Http.Client
             return new HttpRequest(HttpMethod.DELETE, queryUrl, headers, body, username, password);
         }
 
+
         #endregion
 
         #region Helper methods
