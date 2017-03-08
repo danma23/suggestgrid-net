@@ -182,7 +182,7 @@ definitions:
         description: The number of most recommended items to be skipped from the response. Defaults to 0.
       size:
         type: integer
-        description: The number of users asked to return in the response. Defaults to 10. Must be between 1 and 10.000 inclusive.
+        description: The number of users requested. Defaults to 10. Must be between 1 and 10,000 inclusive.
       similar_user_id:
         type: string
         description: Similar user that the response should be similar to.
@@ -228,7 +228,7 @@ definitions:
         description: The number of most recommended items to be skipped from the response. Defaults to 0.
       size:
         type: integer
-        description: The number of items asked to return in the response. Defaults to 10. Must be between 1 and 10.000 inclusive.
+        description: The number of items requested. Defaults to 10. Must be between 1 and 10,000 inclusive.
       similar_item_id:
         type: string
         description: Similar item that the response should be similar to.
@@ -274,7 +274,7 @@ definitions:
         description: The number of most similar users to be skipped from the response. Defaults to 0.
       size:
         type: integer
-        description: The number of users asked to return in the response. Defaults to 10. Must be between 1 and 10.000 inclusive.
+        description: The number of users requested. Defaults to 10. Must be between 1 and 10,000 inclusive.
       fields:
         type: array
         items:
@@ -312,7 +312,7 @@ definitions:
         description: The number of most similar items to be skipped from the response. Defaults to 0.
       size:
         type: integer
-        description: The number of items asked to return in the response. Defaults to 10. Must be between 1 and 10.000 inclusive.
+        description: The number of items requested. Defaults to 10. Must be between 1 and 10,000 inclusive.
       fields:
         type: array
         items:
@@ -747,7 +747,7 @@ paths:
           in: query
           description: |
             The number of the users response.
-            Defaults to 10. Must be between 1 and 10.000 inclusive.
+            Defaults to 10. Must be between 1 and 10,000 inclusive.
             This parameter must be string represetation of an integer like "1".
           required: false
           type: integer
@@ -755,7 +755,7 @@ paths:
         - name: from
           in: query
           description: |
-            The number of users to be skipped for response.
+            The number of users to be skipped from the response.
             Defaults to 0. Must be bigger than or equal to 0.
             This parameter must be string represetation of an integer like "1".
           required: false
@@ -980,7 +980,7 @@ paths:
           in: query
           description: |
             The number of the users response.
-            Defaults to 10. Must be between 1 and 10.000 inclusive.
+            Defaults to 10. Must be between 1 and 10,000 inclusive.
             This parameter must be string represetation of an integer like "1".
           required: false
           type: integer
@@ -988,7 +988,7 @@ paths:
         - name: from
           in: query
           description: |
-            The number of users to be skipped for response.
+            The number of users to be skipped from the response.
             Defaults to 0. Must be bigger than or equal to 0.
             This parameter must be string represetation of an integer like "1".
           required: false
@@ -1118,7 +1118,7 @@ paths:
           in: query
           description: |
             The number of the users response.
-            Defaults to 10. Must be between 1 and 10.000 inclusive.
+            Defaults to 10. Must be between 1 and 10,000 inclusive.
             This parameter must be string represetation of an integer like "1".
           required: false
           type: integer
@@ -1126,7 +1126,7 @@ paths:
         - name: from
           in: query
           description: |
-            The number of users to be skipped for response.
+            The number of users to be skipped from the response.
             Defaults to 0. Must be bigger than or equal to 0.
             This parameter must be string represetation of an integer like "1".
           required: false

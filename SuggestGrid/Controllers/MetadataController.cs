@@ -275,8 +275,8 @@ namespace SuggestGrid.Controllers
         /// <summary>
         /// Get Users
         /// </summary>
-        /// <param name="size">Optional parameter: The number of the users response. Defaults to 10. Must be between 1 and 10.000 inclusive. This parameter must be string represetation of an integer like "1".</param>
-        /// <param name="mfrom">Optional parameter: The number of users to be skipped for response. Defaults to 0. Must be bigger than or equal to 0. This parameter must be string represetation of an integer like "1".</param>
+        /// <param name="size">Optional parameter: The number of the users response. Defaults to 10. Must be between 1 and 10,000 inclusive. This parameter must be string represetation of an integer like "1".</param>
+        /// <param name="mfrom">Optional parameter: The number of users to be skipped from the response. Defaults to 0. Must be bigger than or equal to 0. This parameter must be string represetation of an integer like "1".</param>
         /// <return>Returns the Models.UsersResponse response from the API call</return>
         public Models.UsersResponse GetUsers(long? size = null, long? mfrom = null)
         {
@@ -288,8 +288,8 @@ namespace SuggestGrid.Controllers
         /// <summary>
         /// Get Users
         /// </summary>
-        /// <param name="size">Optional parameter: The number of the users response. Defaults to 10. Must be between 1 and 10.000 inclusive. This parameter must be string represetation of an integer like "1".</param>
-        /// <param name="mfrom">Optional parameter: The number of users to be skipped for response. Defaults to 0. Must be bigger than or equal to 0. This parameter must be string represetation of an integer like "1".</param>
+        /// <param name="size">Optional parameter: The number of the users response. Defaults to 10. Must be between 1 and 10,000 inclusive. This parameter must be string represetation of an integer like "1".</param>
+        /// <param name="mfrom">Optional parameter: The number of users to be skipped from the response. Defaults to 0. Must be bigger than or equal to 0. This parameter must be string represetation of an integer like "1".</param>
         /// <return>Returns the Models.UsersResponse response from the API call</return>
         public async Task<Models.UsersResponse> GetUsersAsync(long? size = null, long? mfrom = null)
         {
@@ -698,8 +698,8 @@ namespace SuggestGrid.Controllers
         /// <summary>
         /// Get Items
         /// </summary>
-        /// <param name="size">Optional parameter: The number of the users response. Defaults to 10. Must be between 1 and 10.000 inclusive. This parameter must be string represetation of an integer like "1".</param>
-        /// <param name="mfrom">Optional parameter: The number of users to be skipped for response. Defaults to 0. Must be bigger than or equal to 0. This parameter must be string represetation of an integer like "1".</param>
+        /// <param name="size">Optional parameter: The number of the users response. Defaults to 10. Must be between 1 and 10,000 inclusive. This parameter must be string represetation of an integer like "1".</param>
+        /// <param name="mfrom">Optional parameter: The number of users to be skipped from the response. Defaults to 0. Must be bigger than or equal to 0. This parameter must be string represetation of an integer like "1".</param>
         /// <return>Returns the Models.ItemsResponse response from the API call</return>
         public Models.ItemsResponse GetItems(long? size = null, long? mfrom = null)
         {
@@ -711,8 +711,8 @@ namespace SuggestGrid.Controllers
         /// <summary>
         /// Get Items
         /// </summary>
-        /// <param name="size">Optional parameter: The number of the users response. Defaults to 10. Must be between 1 and 10.000 inclusive. This parameter must be string represetation of an integer like "1".</param>
-        /// <param name="mfrom">Optional parameter: The number of users to be skipped for response. Defaults to 0. Must be bigger than or equal to 0. This parameter must be string represetation of an integer like "1".</param>
+        /// <param name="size">Optional parameter: The number of the users response. Defaults to 10. Must be between 1 and 10,000 inclusive. This parameter must be string represetation of an integer like "1".</param>
+        /// <param name="mfrom">Optional parameter: The number of users to be skipped from the response. Defaults to 0. Must be bigger than or equal to 0. This parameter must be string represetation of an integer like "1".</param>
         /// <return>Returns the Models.ItemsResponse response from the API call</return>
         public async Task<Models.ItemsResponse> GetItemsAsync(long? size = null, long? mfrom = null)
         {

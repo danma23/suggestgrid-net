@@ -215,8 +215,8 @@ namespace SuggestGrid.Controllers
         /// <param name="userId">Optional parameter: The user id of the actions.</param>
         /// <param name="itemId">Optional parameter: The item id of the actions.</param>
         /// <param name="olderThan">Optional parameter: Maxium timestamp of the actions. Valid times are in form of 1s, 1m, 1h, 1d, 1M, 1y, where 1 can be any integer, or a UNIX timestamp like 1443798195.</param>
-        /// <param name="size">Optional parameter: The number of the users response. Defaults to 10. Must be between 1 and 10.000 inclusive. This parameter must be string represetation of an integer like "1".</param>
-        /// <param name="mfrom">Optional parameter: The number of users to be skipped for response. Defaults to 0. Must be bigger than or equal to 0. This parameter must be string represetation of an integer like "1".</param>
+        /// <param name="size">Optional parameter: The number of the users response. Defaults to 10. Must be between 1 and 10,000 inclusive. This parameter must be string represetation of an integer like "1".</param>
+        /// <param name="mfrom">Optional parameter: The number of users to be skipped from the response. Defaults to 0. Must be bigger than or equal to 0. This parameter must be string represetation of an integer like "1".</param>
         /// <return>Returns the Models.ActionsResponse response from the API call</return>
         public Models.ActionsResponse GetActions(
                 string type = null,
@@ -238,8 +238,8 @@ namespace SuggestGrid.Controllers
         /// <param name="userId">Optional parameter: The user id of the actions.</param>
         /// <param name="itemId">Optional parameter: The item id of the actions.</param>
         /// <param name="olderThan">Optional parameter: Maxium timestamp of the actions. Valid times are in form of 1s, 1m, 1h, 1d, 1M, 1y, where 1 can be any integer, or a UNIX timestamp like 1443798195.</param>
-        /// <param name="size">Optional parameter: The number of the users response. Defaults to 10. Must be between 1 and 10.000 inclusive. This parameter must be string represetation of an integer like "1".</param>
-        /// <param name="mfrom">Optional parameter: The number of users to be skipped for response. Defaults to 0. Must be bigger than or equal to 0. This parameter must be string represetation of an integer like "1".</param>
+        /// <param name="size">Optional parameter: The number of the users response. Defaults to 10. Must be between 1 and 10,000 inclusive. This parameter must be string represetation of an integer like "1".</param>
+        /// <param name="mfrom">Optional parameter: The number of users to be skipped from the response. Defaults to 0. Must be bigger than or equal to 0. This parameter must be string represetation of an integer like "1".</param>
         /// <return>Returns the Models.ActionsResponse response from the API call</return>
         public async Task<Models.ActionsResponse> GetActionsAsync(
                 string type = null,
