@@ -43,7 +43,7 @@ namespace SuggestGrid.Models
         }
 
         /// <summary>
-        /// The number of records found for the delete query.
+        /// The number of records found.
         /// </summary>
         [JsonProperty("found")]
         public long? Found 
@@ -60,7 +60,7 @@ namespace SuggestGrid.Models
         }
 
         /// <summary>
-        /// The number of records deleted for the delete query.
+        /// The number of records deleted.
         /// </summary>
         [JsonProperty("deleted")]
         public long? Deleted 
@@ -77,7 +77,7 @@ namespace SuggestGrid.Models
         }
 
         /// <summary>
-        /// The number of records found but not deleted for the delete query.
+        /// The number of records failed to be deleted.
         /// </summary>
         [JsonProperty("failed")]
         public long? Failed 

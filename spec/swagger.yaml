@@ -415,15 +415,15 @@ definitions:
       found:
         type: integer
         format: int64
-        description: The number of records found for the delete query.
+        description: The number of records found.
       deleted:
         type: integer
         format: int64
-        description: The number of records deleted for the delete query.
+        description: The number of records deleted.
       failed:
         type: integer
         format: int64
-        description: The number of records found but not deleted for the delete query.
+        description: The number of records failed to be deleted.
   DeleteSuccessResponse:
     type: object
     description: Successful delete response with found, deleted, and failed parameters.
@@ -434,15 +434,15 @@ definitions:
       found:
         type: integer
         format: int64
-        description: The number of records found for the delete query.
+        description: The number of records found.
       deleted:
         type: integer
         format: int64
-        description: The number of records deleted for the delete query.
+        description: The number of records deleted.
       failed:
         type: integer
         format: int64
-        description: The number of records found but not deleted for the delete query.
+        description: The number of records failed to be deleted.
   GetTypesResponse:
     type: object
     description: Type names response.
