@@ -50,8 +50,7 @@ type|string|true|The name of the type to get properties.
 ### Delete a Type
 > `DeleteType(type)`
 
-Deletes a type with ALL of its actions and recommendation model.
-Do not use this if you will need the type.
+Warning: Deletes the type with all of its actions and its recommendation model.
 
 
 ```csharp
@@ -198,14 +197,14 @@ user_id|string||The user id of the actions.
 ### Delete Actions
 > `DeleteActions (string type = null, string userId = null, string itemId = null, string olderThan = null)`
 
-Type must be provided. Additionally,
+Warning: Please use get actions with the exact parameters first to inspect the actions to be deleted.
 
-* If both user id and item id are supplied the user's actions on the item will be deleted.
-* If only user id is provided, all actions of the user will be deleted.
-* If only item id is provided, all actions on the item will be deleted.
-* If only older than is provided, all actions older than the timestamp or the duration will be deleted.
-* If a few of these parameters are provided, delete action will be executed within intersection of these parameters.
-* One of these parameters must be provided. In order to delete all actions, delete the type.
+* Type must be provided. 
+* If user id is provided, all actions of the user will be deleted.
+* If item id is provided, all actions on the item will be deleted.
+* If older than is provided, all actions older than the timestamp or the duration will be deleted.
+* If a number of these parameters are provided, the intersection of these parameters will be deleted.
+* In addition to a type, at least one of these parameters must be provided. In order to delete all the actions of a type, delete the type.
 
 
 
@@ -359,7 +358,8 @@ user_id|string|true|The user id to delete its metadata.
 ### Delete All Users
 > `DeleteAllUsers()`
 
-Deletes all user metadata from SuggestGrid.
+Warning: Deletes all user metadata from SuggestGrid.
+
 
 ```csharp
 suggestGridClient.Metadata.DeleteAllUsers();
@@ -465,8 +465,7 @@ item_id|string|true|The item id to delete its metadata.
 ### Delete All Items
 > `DeleteAllItems()`
 
-Delete all items metadata.
-This method would flush all items metadata on SuggestGrid.
+Warning: Deletes all item metadata from SuggestGrid.
 
 
 ```csharp
