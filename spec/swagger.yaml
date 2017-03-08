@@ -136,13 +136,15 @@ definitions:
         - boolean
   Metadata:
     type: object
-    description: A metadata for a user or an item.
+    description: |
+      Metadata of a user or an item.
+      Id parameter is required for all metadata.
+      Metadata may have other parameters with string, number, or boolean values.
     properties:
       id:
         type: string
         description: |
-          The id of the user or the item that the metadata is associated with.
-          Id parameter is necessary for all metadata.
+          The id of the metadata of a user or an item.
     additionalProperties:
       type:
         - string

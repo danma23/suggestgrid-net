@@ -277,7 +277,7 @@ Posts a user metadata.
 
 Name | Type |Required| Description
 --- | --- | --- | ---
-id|string|true|The id of the user or the item that the metadata is associated with. Id parameter is necessary for all metadata. 
+id|string|true|The id of the metadata of a user or an item. 
 ### Post Bulk Users
 > `PostBulkUsers(List<Metadata<string, object>> users)`
 
@@ -383,7 +383,7 @@ suggestGridClient.Metadata.PostItem(new Metadata<string, object> { { "id", "2592
 
 Name | Type |Required| Description
 --- | --- | --- | ---
-id|string|true|The id of the user or the item that the metadata is associated with. Id parameter is necessary for all metadata. 
+id|string|true|The id of the metadata of a user or an item. 
 ### Post Bulk Items
 > `PostBulkItems(List<Metadata<string, object>> items)`
 
