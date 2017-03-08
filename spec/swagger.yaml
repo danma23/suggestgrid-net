@@ -909,6 +909,10 @@ paths:
           description: User not found.
           schema:
             $ref: '#/definitions/ErrorResponse'
+        429:
+          description: Too many requests.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
         default:
           description: Unexpected internal error.
           schema:
