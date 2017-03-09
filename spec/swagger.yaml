@@ -255,7 +255,7 @@ definitions:
         description: These item ids that will not be included in the response.
   GetSimilarUsersBody:
     type: object
-    description: The query for similar users.
+    description: Query for similar users.
     properties:
       type:
         type: string
@@ -291,7 +291,7 @@ definitions:
         description: These user ids that will not be included in the response.
   GetSimilarItemsBody:
     type: object
-    description: The query for similar items.
+    description: Query for similar items.
     properties:
       type:
         type: string
@@ -1256,7 +1256,7 @@ paths:
       parameters:
         - name: query
           in: body
-          description: The query for recommended users.
+          description: Query for recommended users.
           required: true
           schema:
             $ref: '#/definitions/GetRecommendedUsersBody'
@@ -1291,7 +1291,7 @@ paths:
       parameters:
         - name: query
           in: body
-          description: The query for recommended items.
+          description: Query for recommended items.
           required: true
           schema:
             $ref: '#/definitions/GetRecommendedItemsBody'
@@ -1327,7 +1327,7 @@ paths:
       parameters:
         - name: query
           in: body
-          description: The query for similar users.
+          description: Query for similar users.
           required: true
           schema:
             $ref: '#/definitions/GetSimilarUsersBody'
@@ -1362,7 +1362,7 @@ paths:
       parameters:
         - name: query
           in: body
-          description: The query for similar items.
+          description: Query for similar items.
           required: true
           schema:
             $ref: '#/definitions/GetSimilarItemsBody'
