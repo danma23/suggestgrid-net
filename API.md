@@ -156,6 +156,7 @@ suggestGridClient.Action.PostBulkActions(actions);
 
 Get actions. Defaut responses will be paged by 10 actios each.
 Type, user id, item id, or older than parameters could be provided.
+The intersection of the provided parameters will be returned.
 
 
 
