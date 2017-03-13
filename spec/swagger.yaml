@@ -82,7 +82,7 @@ tags:
   - name: recommendation
     description: Recommnedation Methods
     x-docs-text: |
-      Recommnedation methods are for getting recommended items or users from SuggestGrid.
+      Recommnedation methods are for getting recommended items, or recommended users from SuggestGrid.
       For more information, you may refer to [recommendations documentation](http://www.suggestgrid.com/docs/recommendations).
     x-methods:
       - get_recommended_users
@@ -90,7 +90,7 @@ tags:
   - name: similarity
     description: Similarity Methods
     x-docs-text: |
-      Similarity methods are for getting similar items or users from SuggestGrid.
+      Similarity methods are for getting similar items, or similar users from SuggestGrid.
       For more information, you may refer to [similarities documentation](http://www.suggestgrid.com/docs/similarities).
     x-methods:
       - get_similar_users
@@ -100,8 +100,7 @@ definitions:
   Action:
     type: object
     description: |
-      An action object represents a user's action on an item.
-      All actions belong to a type that gives meaning to actions.
+      An action object represents a user's action of a type on an item.
     properties:
       type:
         type: string

@@ -476,7 +476,7 @@ suggestGridClient.Metadata.DeleteAllItems();
 
 
 ## Recommnedation Methods
-Recommnedation methods are for getting recommended items or users from SuggestGrid.
+Recommnedation methods are for getting recommended items, or recommended users from SuggestGrid.
 For more information, you may refer to [recommendations documentation](http://www.suggestgrid.com/docs/recommendations).
 
 ### Get Recommended Users
@@ -636,7 +636,7 @@ userIds|array|false|The user ids of the query. Exactly one of user id or user id
 
 
 ## Similarity Methods
-Similarity methods are for getting similar items or users from SuggestGrid.
+Similarity methods are for getting similar items, or similar users from SuggestGrid.
 For more information, you may refer to [similarities documentation](http://www.suggestgrid.com/docs/similarities).
 
 ### Get Similar Users
