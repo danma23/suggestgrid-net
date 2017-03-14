@@ -184,7 +184,7 @@ namespace SuggestGrid.Controllers
 
             //Error handling using HTTP status codes
             if (_response.StatusCode == 404)
-                throw new ErrorResponseException(@"Type not found.", _context);
+                throw new ErrorResponseException(@"Type does not exists.", _context);
 
             if ((_response.StatusCode < 200) || (_response.StatusCode > 208)) //[200,208] = HTTP OK
                 throw new ErrorResponseException(@"Unexpected internal error.", _context);
@@ -254,7 +254,7 @@ namespace SuggestGrid.Controllers
 
             //Error handling using HTTP status codes
             if (_response.StatusCode == 404)
-                throw new ErrorResponseException(@"Type does not exists.", _context);
+                throw new ErrorResponseException(@"Action type does not exists.", _context);
 
             if ((_response.StatusCode < 200) || (_response.StatusCode > 208)) //[200,208] = HTTP OK
                 throw new ErrorResponseException(@"Unexpected internal error.", _context);

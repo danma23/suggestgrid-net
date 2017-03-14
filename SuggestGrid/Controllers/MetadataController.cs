@@ -177,6 +177,9 @@ namespace SuggestGrid.Controllers
             if (_response.StatusCode == 400)
                 throw new ErrorResponseException(@"Body is missing.", _context);
 
+            if (_response.StatusCode == 413)
+                throw new ErrorResponseException(@"Bulk request maximum line count exceeded.", _context);
+
             if ((_response.StatusCode < 200) || (_response.StatusCode > 208)) //[200,208] = HTTP OK
                 throw new ErrorResponseException(@"Unexpected internal error.", _context);
 
@@ -245,7 +248,7 @@ namespace SuggestGrid.Controllers
 
             //Error handling using HTTP status codes
             if (_response.StatusCode == 404)
-                throw new ErrorResponseException(@"User not found.", _context);
+                throw new ErrorResponseException(@"User does not exists.", _context);
 
             if ((_response.StatusCode < 200) || (_response.StatusCode > 208)) //[200,208] = HTTP OK
                 throw new ErrorResponseException(@"Unexpected internal error.", _context);
@@ -585,6 +588,9 @@ namespace SuggestGrid.Controllers
             if (_response.StatusCode == 400)
                 throw new ErrorResponseException(@"Body is missing.", _context);
 
+            if (_response.StatusCode == 413)
+                throw new ErrorResponseException(@"Bulk request maximum line count exceeded.", _context);
+
             if ((_response.StatusCode < 200) || (_response.StatusCode > 208)) //[200,208] = HTTP OK
                 throw new ErrorResponseException(@"Unexpected internal error.", _context);
 
@@ -653,7 +659,7 @@ namespace SuggestGrid.Controllers
 
             //Error handling using HTTP status codes
             if (_response.StatusCode == 404)
-                throw new ErrorResponseException(@"Item not found.", _context);
+                throw new ErrorResponseException(@"Item does not exists.", _context);
 
             if ((_response.StatusCode < 200) || (_response.StatusCode > 208)) //[200,208] = HTTP OK
                 throw new ErrorResponseException(@"Unexpected internal error.", _context);

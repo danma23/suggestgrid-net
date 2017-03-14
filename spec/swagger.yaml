@@ -572,7 +572,7 @@ paths:
           schema:
             $ref: '#/definitions/GetTypeResponse'
         404:
-          description: Type not found.
+          description: Type does not exists.
           schema:
             $ref: '#/definitions/ErrorResponse'
         default:
@@ -639,7 +639,7 @@ paths:
           schema:
             $ref: '#/definitions/MessageResponse'
         404:
-          description: Type does not exists.
+          description: Action type does not exists.
           schema:
             $ref: '#/definitions/ErrorResponse'
         default:
@@ -678,7 +678,7 @@ paths:
           schema:
             $ref: '#/definitions/ErrorResponse'
         404:
-          description: Type does not exists.
+          description: Action type does not exists.
           schema:
             $ref: '#/definitions/ErrorResponse'
         default:
@@ -846,6 +846,14 @@ paths:
           description: Action limit exceeded.
           schema:
             $ref: '#/definitions/ErrorResponse'
+        404:
+          description: Action type does not exists.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        413:
+          description: Bulk request maximum line count exceeded.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
         default:
           description: Unexpected internal error.
           schema:
@@ -871,7 +879,7 @@ paths:
           schema:
             $ref: '#/definitions/Metadata'
         404:
-          description: User not found.
+          description: User does not exists.
           schema:
             $ref: '#/definitions/ErrorResponse'
         default:
@@ -992,7 +1000,7 @@ paths:
           schema:
             $ref: '#/definitions/Metadata'
         404:
-          description: Item not found.
+          description: Item does not exists.
           schema:
             $ref: '#/definitions/ErrorResponse'
         default:
@@ -1126,6 +1134,10 @@ paths:
           description: Body is missing.
           schema:
             $ref: '#/definitions/ErrorResponse'
+        413:
+          description: Bulk request maximum line count exceeded.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
         default:
           description: Unexpected internal error.
           schema:
@@ -1159,6 +1171,10 @@ paths:
             $ref: '#/definitions/BulkPostResponse'
         400:
           description: Body is missing.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        413:
+          description: Bulk request maximum line count exceeded.
           schema:
             $ref: '#/definitions/ErrorResponse'
         default:
