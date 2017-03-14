@@ -533,10 +533,6 @@ paths:
           description: Get types response.
           schema:
             $ref: '#/definitions/GetTypesResponse'
-        429:
-          description: Too many requests.
-          schema:
-            $ref: '#/definitions/ErrorResponse'
         default:
           description: Unexpected internal error.
           schema:
@@ -552,10 +548,6 @@ paths:
           description: Get types response.
           schema:
             $ref: '#/definitions/MessageResponse'
-        429:
-          description: Too many requests.
-          schema:
-            $ref: '#/definitions/ErrorResponse'
         default:
           description: Unexpected internal error.
           schema:
@@ -581,10 +573,6 @@ paths:
             $ref: '#/definitions/GetTypeResponse'
         404:
           description: Type not found.
-          schema:
-            $ref: '#/definitions/ErrorResponse'
-        429:
-          description: Too many requests.
           schema:
             $ref: '#/definitions/ErrorResponse'
         default:
@@ -627,10 +615,6 @@ paths:
           description: Rating type is not `implicit` or `explicit`.
           schema:
             $ref: '#/definitions/ErrorResponse'
-        429:
-          description: Too many requests.
-          schema:
-            $ref: '#/definitions/ErrorResponse'
         default:
           description: Unexpected internal error.
           schema:
@@ -656,10 +640,6 @@ paths:
             $ref: '#/definitions/MessageResponse'
         404:
           description: Type does not exists.
-          schema:
-            $ref: '#/definitions/ErrorResponse'
-        429:
-          description: Too many requests.
           schema:
             $ref: '#/definitions/ErrorResponse'
         default:
@@ -699,10 +679,6 @@ paths:
             $ref: '#/definitions/ErrorResponse'
         404:
           description: Type does not exists.
-          schema:
-            $ref: '#/definitions/ErrorResponse'
-        429:
-          description: Too many requests.
           schema:
             $ref: '#/definitions/ErrorResponse'
         default:
@@ -767,10 +743,6 @@ paths:
           description: Paged actions response.
           schema:
             $ref: '#/definitions/ActionsResponse'
-        429:
-          description: Too many requests.
-          schema:
-            $ref: '#/definitions/ErrorResponse'
         default:
           description: Unexpected internal error.
           schema:
@@ -832,10 +804,6 @@ paths:
           description: No query parameter (`user_id`, `item_id`, or `older_than`) is given.  In order to delete all actionsdelete the type.
           schema:
             $ref: '#/definitions/ErrorResponse'
-        429:
-          description: Too many requests.
-          schema:
-            $ref: '#/definitions/ErrorResponse'
         505:
           description: Request timed out.
           schema:
@@ -878,10 +846,6 @@ paths:
           description: Action limit exceeded.
           schema:
             $ref: '#/definitions/ErrorResponse'
-        429:
-          description: Too many requests.
-          schema:
-            $ref: '#/definitions/ErrorResponse'
         default:
           description: Unexpected internal error.
           schema:
@@ -910,10 +874,6 @@ paths:
           description: User not found.
           schema:
             $ref: '#/definitions/ErrorResponse'
-        429:
-          description: Too many requests.
-          schema:
-            $ref: '#/definitions/ErrorResponse'
         default:
           description: Unexpected internal error.
           schema:
@@ -929,10 +889,6 @@ paths:
           description: Deleted a user metadata.
           schema:
             $ref: '#/definitions/MessageResponse'
-        429:
-          description: Too many requests.
-          schema:
-            $ref: '#/definitions/ErrorResponse'
         default:
           description: Unexpected internal error.
           schema:
@@ -960,10 +916,6 @@ paths:
             description: Metadata is invalid.
             schema:
               $ref: '#/definitions/DetailedErrorResponse'
-          429:
-            description: Too many requests.
-            schema:
-              $ref: '#/definitions/ErrorResponse'
           default:
             description: Unexpected internal error.
             schema:
@@ -1000,10 +952,6 @@ paths:
           description: Get users response.
           schema:
             $ref: '#/definitions/UsersResponse'
-        429:
-          description: Too many requests.
-          schema:
-            $ref: '#/definitions/ErrorResponse'
         default:
           description: Unexpected internal error.
           schema:
@@ -1020,10 +968,6 @@ paths:
           description: Deleted all user metadata.
           schema:
             $ref: '#/definitions/MessageResponse'
-        429:
-          description: Too many requests.
-          schema:
-            $ref: '#/definitions/ErrorResponse'
         default:
           description: Unexpected internal error.
           schema:
@@ -1066,10 +1010,6 @@ paths:
           description: Deleted an item metadata.
           schema:
             $ref: '#/definitions/MessageResponse'
-        429:
-          description: Too many requests.
-          schema:
-            $ref: '#/definitions/ErrorResponse'
         default:
           description: Unexpected internal error.
           schema:
@@ -1099,10 +1039,6 @@ paths:
           description: Metadata is invalid.
           schema:
             $ref: '#/definitions/DetailedErrorResponse'
-        429:
-          description: Too many requests.
-          schema:
-            $ref: '#/definitions/ErrorResponse'
         default:
           description: Unexpected internal error.
           schema:
@@ -1139,10 +1075,6 @@ paths:
           description: Get items response.
           schema:
             $ref: '#/definitions/ItemsResponse'
-        429:
-          description: Too many requests.
-          schema:
-            $ref: '#/definitions/ErrorResponse'
         default:
           description: Unexpected internal error.
           schema:
@@ -1159,10 +1091,6 @@ paths:
           description: Deleted all item metadata.
           schema:
             $ref: '#/definitions/MessageResponse'
-        429:
-          description: Too many requests.
-          schema:
-            $ref: '#/definitions/ErrorResponse'
         default:
           description: Unexpected internal error.
           schema:
@@ -1196,10 +1124,6 @@ paths:
             $ref: '#/definitions/BulkPostResponse'
         400:
           description: Body is missing.
-          schema:
-            $ref: '#/definitions/ErrorResponse'
-        429:
-          description: Too many requests.
           schema:
             $ref: '#/definitions/ErrorResponse'
         default:
@@ -1237,10 +1161,6 @@ paths:
           description: Body is missing.
           schema:
             $ref: '#/definitions/ErrorResponse'
-        429:
-          description: Too many requests.
-          schema:
-            $ref: '#/definitions/ErrorResponse'
         default:
           description: Unexpected internal error.
           schema:
@@ -1273,10 +1193,6 @@ paths:
           description: Required parameters are missing.
           schema:
             $ref: '#/definitions/ErrorResponse'
-        429:
-          description: Too many requests.
-          schema:
-            $ref: '#/definitions/ErrorResponse'
         default:
           description: Unexpected internal error.
           schema:
@@ -1306,10 +1222,6 @@ paths:
             $ref: '#/definitions/ErrorResponse'
         422:
           description: Required parameters are missing.
-          schema:
-            $ref: '#/definitions/ErrorResponse'
-        429:
-          description: Too many requests.
           schema:
             $ref: '#/definitions/ErrorResponse'
         default:
@@ -1344,10 +1256,6 @@ paths:
           description: Required parameters are missing.
           schema:
             $ref: '#/definitions/ErrorResponse'
-        429:
-          description: Too many requests.
-          schema:
-            $ref: '#/definitions/ErrorResponse'
         default:
           description: Unexpected internal error.
           schema:
@@ -1377,10 +1285,6 @@ paths:
             $ref: '#/definitions/ErrorResponse'
         422:
           description: Required parameters are missing.
-          schema:
-            $ref: '#/definitions/ErrorResponse'
-        429:
-          description: Too many requests.
           schema:
             $ref: '#/definitions/ErrorResponse'
         default:

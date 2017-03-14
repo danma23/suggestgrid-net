@@ -109,9 +109,6 @@ namespace SuggestGrid.Controllers
             if (_response.StatusCode == 404)
                 throw new ErrorResponseException(@"Type does not exists.", _context);
 
-            if (_response.StatusCode == 429)
-                throw new ErrorResponseException(@"Too many requests.", _context);
-
             if ((_response.StatusCode < 200) || (_response.StatusCode > 208)) //[200,208] = HTTP OK
                 throw new ErrorResponseException(@"Unexpected internal error.", _context);
 
@@ -188,9 +185,6 @@ namespace SuggestGrid.Controllers
 
             if (_response.StatusCode == 402)
                 throw new ErrorResponseException(@"Action limit exceeded.", _context);
-
-            if (_response.StatusCode == 429)
-                throw new ErrorResponseException(@"Too many requests.", _context);
 
             if ((_response.StatusCode < 200) || (_response.StatusCode > 208)) //[200,208] = HTTP OK
                 throw new ErrorResponseException(@"Unexpected internal error.", _context);
@@ -286,9 +280,6 @@ namespace SuggestGrid.Controllers
             HttpContext _context = new HttpContext(_request,_response);
 
             //Error handling using HTTP status codes
-            if (_response.StatusCode == 429)
-                throw new ErrorResponseException(@"Too many requests.", _context);
-
             if ((_response.StatusCode < 200) || (_response.StatusCode > 208)) //[200,208] = HTTP OK
                 throw new ErrorResponseException(@"Unexpected internal error.", _context);
 
@@ -381,9 +372,6 @@ namespace SuggestGrid.Controllers
 
             if (_response.StatusCode == 422)
                 throw new ErrorResponseException(@"No query parameter (`user_id`, `item_id`, or `older_than`) is given.  In order to delete all actionsdelete the type.", _context);
-
-            if (_response.StatusCode == 429)
-                throw new ErrorResponseException(@"Too many requests.", _context);
 
             if (_response.StatusCode == 505)
                 throw new ErrorResponseException(@"Request timed out.", _context);

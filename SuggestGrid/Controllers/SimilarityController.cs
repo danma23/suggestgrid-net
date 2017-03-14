@@ -105,9 +105,6 @@ namespace SuggestGrid.Controllers
             if (_response.StatusCode == 422)
                 throw new ErrorResponseException(@"Required parameters are missing.", _context);
 
-            if (_response.StatusCode == 429)
-                throw new ErrorResponseException(@"Too many requests.", _context);
-
             if ((_response.StatusCode < 200) || (_response.StatusCode > 208)) //[200,208] = HTTP OK
                 throw new ErrorResponseException(@"Unexpected internal error.", _context);
 
@@ -178,9 +175,6 @@ namespace SuggestGrid.Controllers
 
             if (_response.StatusCode == 422)
                 throw new ErrorResponseException(@"Required parameters are missing.", _context);
-
-            if (_response.StatusCode == 429)
-                throw new ErrorResponseException(@"Too many requests.", _context);
 
             if ((_response.StatusCode < 200) || (_response.StatusCode > 208)) //[200,208] = HTTP OK
                 throw new ErrorResponseException(@"Unexpected internal error.", _context);

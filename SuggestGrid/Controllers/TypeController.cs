@@ -116,9 +116,6 @@ namespace SuggestGrid.Controllers
             if (_response.StatusCode == 422)
                 throw new ErrorResponseException(@"Rating type is not `implicit` or `explicit`.", _context);
 
-            if (_response.StatusCode == 429)
-                throw new ErrorResponseException(@"Too many requests.", _context);
-
             if ((_response.StatusCode < 200) || (_response.StatusCode > 208)) //[200,208] = HTTP OK
                 throw new ErrorResponseException(@"Unexpected internal error.", _context);
 
@@ -188,9 +185,6 @@ namespace SuggestGrid.Controllers
             //Error handling using HTTP status codes
             if (_response.StatusCode == 404)
                 throw new ErrorResponseException(@"Type not found.", _context);
-
-            if (_response.StatusCode == 429)
-                throw new ErrorResponseException(@"Too many requests.", _context);
 
             if ((_response.StatusCode < 200) || (_response.StatusCode > 208)) //[200,208] = HTTP OK
                 throw new ErrorResponseException(@"Unexpected internal error.", _context);
@@ -262,9 +256,6 @@ namespace SuggestGrid.Controllers
             if (_response.StatusCode == 404)
                 throw new ErrorResponseException(@"Type does not exists.", _context);
 
-            if (_response.StatusCode == 429)
-                throw new ErrorResponseException(@"Too many requests.", _context);
-
             if ((_response.StatusCode < 200) || (_response.StatusCode > 208)) //[200,208] = HTTP OK
                 throw new ErrorResponseException(@"Unexpected internal error.", _context);
 
@@ -324,9 +315,6 @@ namespace SuggestGrid.Controllers
             HttpContext _context = new HttpContext(_request,_response);
 
             //Error handling using HTTP status codes
-            if (_response.StatusCode == 429)
-                throw new ErrorResponseException(@"Too many requests.", _context);
-
             if ((_response.StatusCode < 200) || (_response.StatusCode > 208)) //[200,208] = HTTP OK
                 throw new ErrorResponseException(@"Unexpected internal error.", _context);
 
@@ -386,9 +374,6 @@ namespace SuggestGrid.Controllers
             HttpContext _context = new HttpContext(_request,_response);
 
             //Error handling using HTTP status codes
-            if (_response.StatusCode == 429)
-                throw new ErrorResponseException(@"Too many requests.", _context);
-
             if ((_response.StatusCode < 200) || (_response.StatusCode > 208)) //[200,208] = HTTP OK
                 throw new ErrorResponseException(@"Unexpected internal error.", _context);
 
