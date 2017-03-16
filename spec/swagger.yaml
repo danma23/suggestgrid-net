@@ -670,7 +670,7 @@ paths:
           schema:
             $ref: '#/definitions/MessageResponse'
         400:
-          description: Required `user_id` or `item_id` parameters are missing from the request body.
+          description: Required user id or item id parameters are missing from the request.
           schema:
             $ref: '#/definitions/ErrorResponse'
         402:
@@ -793,7 +793,7 @@ paths:
           schema:
             $ref: '#/definitions/DeleteSuccessResponse'
         400:
-          description: Required `user_id` or `item_id` parameters are missing from the request body.
+          description: Required user id or item id parameters are missing.
           schema:
             $ref: '#/definitions/ErrorResponse'
         404:
@@ -801,7 +801,7 @@ paths:
           schema:
             $ref: '#/definitions/DeleteErrorResponse'
         422:
-          description: No query parameter (`user_id`, `item_id`, or `older_than`) is given.  In order to delete all actionsdelete the type.
+          description: No query parameter (user id, item id, or older than) is given. qIn order to delete all actionsdelete the type.
           schema:
             $ref: '#/definitions/ErrorResponse'
         505:

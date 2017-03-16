@@ -101,7 +101,7 @@ namespace SuggestGrid.Controllers
 
             //Error handling using HTTP status codes
             if (_response.StatusCode == 400)
-                throw new ErrorResponseException(@"Required `user_id` or `item_id` parameters are missing from the request body.", _context);
+                throw new ErrorResponseException(@"Required user id or item id parameters are missing from the request.", _context);
 
             if (_response.StatusCode == 402)
                 throw new ErrorResponseException(@"Action limit exceeded.", _context);
@@ -371,13 +371,13 @@ namespace SuggestGrid.Controllers
 
             //Error handling using HTTP status codes
             if (_response.StatusCode == 400)
-                throw new ErrorResponseException(@"Required `user_id` or `item_id` parameters are missing from the request body.", _context);
+                throw new ErrorResponseException(@"Required user id or item id parameters are missing.", _context);
 
             if (_response.StatusCode == 404)
                 throw new DeleteErrorResponseException(@"Delete actions not found.", _context);
 
             if (_response.StatusCode == 422)
-                throw new ErrorResponseException(@"No query parameter (`user_id`, `item_id`, or `older_than`) is given.  In order to delete all actionsdelete the type.", _context);
+                throw new ErrorResponseException(@"No query parameter (user id, item id, or older than) is given. qIn order to delete all actionsdelete the type.", _context);
 
             if (_response.StatusCode == 505)
                 throw new ErrorResponseException(@"Request timed out.", _context);
