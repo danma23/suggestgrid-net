@@ -63,7 +63,7 @@ namespace SuggestGrid.Exceptions
         }
 
         /// <summary>
-        /// URI of the response for more details.
+        /// The URI of the error for more details.
         /// </summary>
         [JsonProperty("error_uri")]
         public string ErrorUri 

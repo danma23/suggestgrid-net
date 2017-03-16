@@ -362,7 +362,7 @@ definitions:
         description: Description of the response.
       error_uri:
         type: string
-        description: URI of the response for more details.
+        description: The URI of the error for more details.
   DetailedErrorResponse:
     type: object
     description: Error response.
@@ -375,7 +375,7 @@ definitions:
         description: Description of the response.
       error_uri:
         type: string
-        description: URI of the response for more details.
+        description: The URI of the error for more details.
       error_details:
         type: string
         description: Specific details of the response.
@@ -391,7 +391,7 @@ definitions:
         description: Description of the response.
       error_uri:
         type: string
-        description: URI of the response for more details.
+        description: The URI of the error for more details.
       used:
         type: integer
         format: int64
@@ -412,7 +412,7 @@ definitions:
         description: Description of the response.
       error_uri:
         type: string
-        description: URI of the response for more details.
+        description: The URI of the error for more details.
       found:
         type: integer
         format: int64
