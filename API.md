@@ -2,7 +2,7 @@
 
 ## Type Methods
 Type methods are used for creating, inspecting, and deleting SuggestGrid types.
-For more information, you may refer to [types documentation](http://www.suggestgrid.com/docs/types).
+[Types documentation](http://www.suggestgrid.com/docs/types) is available for an overview.
 
 ### Create a New Type
 > `CreateType(type, body)`
@@ -87,7 +87,7 @@ suggestGridClient.Type.DeleteAllTypes();
 
 ## Action Methods
 Action methods are for creating, inspecting, and deleting actions.
-For more information, you may refer to [actions documentation](http://www.suggestgrid.com/docs/actions).
+[Actions documentation](http://www.suggestgrid.com/docs/actions) is available for an overview.
 
 ### Post an Action
 > `PostAction(ActionModel)`
@@ -259,7 +259,7 @@ user_id|string||The user id of the actions.
 
 ## Metadata Methods
 Metadata methods are for creating, inspecting, and deleting metadata.
-For more information, you may refer to [metadata documentation ](http://www.suggestgrid.com/docs/metadata).
+[Metadata documentation ](http://www.suggestgrid.com/docs/metadata) is available for an overview.
 
 ### Post a User
 > `PostUser(Metadata<string,object> metadata)`
@@ -477,7 +477,7 @@ suggestGridClient.Metadata.DeleteAllItems();
 
 ## Recommnedation Methods
 Recommnedation methods are for getting recommended items, or recommended users from SuggestGrid.
-For more information, you may refer to [recommendations documentation](http://www.suggestgrid.com/docs/recommendations).
+[Recommendations documentation](http://www.suggestgrid.com/docs/recommendations) is available for an overview.
 
 ### Get Recommended Users
 > `GetRecommendedUsers(GetRecommendedUsersBody body)`
@@ -637,7 +637,7 @@ userIds|array|false|The user ids of the query. Exactly one of user id or user id
 
 ## Similarity Methods
 Similarity methods are for getting similar items, or similar users from SuggestGrid.
-For more information, you may refer to [similarities documentation](http://www.suggestgrid.com/docs/similarities).
+[Similarities documentation](http://www.suggestgrid.com/docs/similarities) is available for an overview.
 
 ### Get Similar Users
 > `GetSimilarUsers(GetSimilarUsersBody body)`

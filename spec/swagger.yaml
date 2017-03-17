@@ -44,7 +44,7 @@ tags:
     description: Type Methods
     x-docs-text: |
       Type methods are used for creating, inspecting, and deleting SuggestGrid types.
-      For more information, you may refer to [types documentation](http://www.suggestgrid.com/docs/types).
+      [Types documentation](http://www.suggestgrid.com/docs/types) is available for an overview.
     x-methods:
       - create_type
       - get_type
@@ -55,7 +55,7 @@ tags:
     description: Action Methods
     x-docs-text: |
       Action methods are for creating, inspecting, and deleting actions.
-      For more information, you may refer to [actions documentation](http://www.suggestgrid.com/docs/actions).
+      [Actions documentation](http://www.suggestgrid.com/docs/actions) is available for an overview.
     x-methods:
       - post_action
       - post_bulk_actions
@@ -65,7 +65,7 @@ tags:
     description: Metadata Methods
     x-docs-text: |
       Metadata methods are for creating, inspecting, and deleting metadata.
-      For more information, you may refer to [metadata documentation ](http://www.suggestgrid.com/docs/metadata).
+      [Metadata documentation ](http://www.suggestgrid.com/docs/metadata) is available for an overview.
     x-methods:
       - post_user
       - post_bulk_users
@@ -83,7 +83,7 @@ tags:
     description: Recommnedation Methods
     x-docs-text: |
       Recommnedation methods are for getting recommended items, or recommended users from SuggestGrid.
-      For more information, you may refer to [recommendations documentation](http://www.suggestgrid.com/docs/recommendations).
+      [Recommendations documentation](http://www.suggestgrid.com/docs/recommendations) is available for an overview.
     x-methods:
       - get_recommended_users
       - get_recommended_items
@@ -91,7 +91,7 @@ tags:
     description: Similarity Methods
     x-docs-text: |
       Similarity methods are for getting similar items, or similar users from SuggestGrid.
-      For more information, you may refer to [similarities documentation](http://www.suggestgrid.com/docs/similarities).
+      [Similarities documentation](http://www.suggestgrid.com/docs/similarities) is available for an overview.
     x-methods:
       - get_similar_users
       - get_similar_items
