@@ -101,16 +101,13 @@ namespace SuggestGrid.Controllers
 
             //Error handling using HTTP status codes
             if (_response.StatusCode == 400)
-                throw new ErrorResponseException(@"Required `user_id` or `item_id` parameters are missing from the request body.", _context);
+                throw new ErrorResponseException(@"Required user id or item id parameters are missing from the request.", _context);
 
             if (_response.StatusCode == 402)
                 throw new ErrorResponseException(@"Action limit exceeded.", _context);
 
             if (_response.StatusCode == 404)
-                throw new ErrorResponseException(@"Type does not exists.", _context);
-
-            if (_response.StatusCode == 429)
-                throw new ErrorResponseException(@"Too many requests.", _context);
+                throw new ErrorResponseException(@"Action type does not exists.", _context);
 
             if ((_response.StatusCode < 200) || (_response.StatusCode > 208)) //[200,208] = HTTP OK
                 throw new ErrorResponseException(@"Unexpected internal error.", _context);
@@ -189,8 +186,11 @@ namespace SuggestGrid.Controllers
             if (_response.StatusCode == 402)
                 throw new ErrorResponseException(@"Action limit exceeded.", _context);
 
-            if (_response.StatusCode == 429)
-                throw new ErrorResponseException(@"Too many requests.", _context);
+            if (_response.StatusCode == 404)
+                throw new ErrorResponseException(@"Action type does not exists.", _context);
+
+            if (_response.StatusCode == 413)
+                throw new ErrorResponseException(@"Bulk request maximum line count exceeded.", _context);
 
             if ((_response.StatusCode < 200) || (_response.StatusCode > 208)) //[200,208] = HTTP OK
                 throw new ErrorResponseException(@"Unexpected internal error.", _context);
@@ -215,8 +215,8 @@ namespace SuggestGrid.Controllers
         /// <param name="userId">Optional parameter: The user id of the actions.</param>
         /// <param name="itemId">Optional parameter: The item id of the actions.</param>
         /// <param name="olderThan">Optional parameter: Maxium timestamp of the actions. Valid times are in form of 1s, 1m, 1h, 1d, 1M, 1y, where 1 can be any integer, or a UNIX timestamp like 1443798195.</param>
-        /// <param name="size">Optional parameter: The number of the users response. Defaults to 10. Must be between 1 and 10.000 inclusive. This parameter must be string represetation of an integer like "1".</param>
-        /// <param name="mfrom">Optional parameter: The number of users to be skipped for response. Defaults to 0. Must be bigger than or equal to 0. This parameter must be string represetation of an integer like "1".</param>
+        /// <param name="size">Optional parameter: The number of the users response. Defaults to 10. Must be between 1 and 10,000 inclusive. This parameter must be string represetation of an integer like "1".</param>
+        /// <param name="mfrom">Optional parameter: The number of users to be skipped from the response. Defaults to 0. Must be bigger than or equal to 0. This parameter must be string represetation of an integer like "1".</param>
         /// <return>Returns the Models.ActionsResponse response from the API call</return>
         public Models.ActionsResponse GetActions(
                 string type = null,
@@ -238,8 +238,8 @@ namespace SuggestGrid.Controllers
         /// <param name="userId">Optional parameter: The user id of the actions.</param>
         /// <param name="itemId">Optional parameter: The item id of the actions.</param>
         /// <param name="olderThan">Optional parameter: Maxium timestamp of the actions. Valid times are in form of 1s, 1m, 1h, 1d, 1M, 1y, where 1 can be any integer, or a UNIX timestamp like 1443798195.</param>
-        /// <param name="size">Optional parameter: The number of the users response. Defaults to 10. Must be between 1 and 10.000 inclusive. This parameter must be string represetation of an integer like "1".</param>
-        /// <param name="mfrom">Optional parameter: The number of users to be skipped for response. Defaults to 0. Must be bigger than or equal to 0. This parameter must be string represetation of an integer like "1".</param>
+        /// <param name="size">Optional parameter: The number of the users response. Defaults to 10. Must be between 1 and 10,000 inclusive. This parameter must be string represetation of an integer like "1".</param>
+        /// <param name="mfrom">Optional parameter: The number of users to be skipped from the response. Defaults to 0. Must be bigger than or equal to 0. This parameter must be string represetation of an integer like "1".</param>
         /// <return>Returns the Models.ActionsResponse response from the API call</return>
         public async Task<Models.ActionsResponse> GetActionsAsync(
                 string type = null,
@@ -286,9 +286,6 @@ namespace SuggestGrid.Controllers
             HttpContext _context = new HttpContext(_request,_response);
 
             //Error handling using HTTP status codes
-            if (_response.StatusCode == 429)
-                throw new ErrorResponseException(@"Too many requests.", _context);
-
             if ((_response.StatusCode < 200) || (_response.StatusCode > 208)) //[200,208] = HTTP OK
                 throw new ErrorResponseException(@"Unexpected internal error.", _context);
 
@@ -374,16 +371,13 @@ namespace SuggestGrid.Controllers
 
             //Error handling using HTTP status codes
             if (_response.StatusCode == 400)
-                throw new ErrorResponseException(@"Required `user_id` or `item_id` parameters are missing from the request body.", _context);
+                throw new ErrorResponseException(@"Required user id or item id parameters are missing.", _context);
 
             if (_response.StatusCode == 404)
                 throw new DeleteErrorResponseException(@"Delete actions not found.", _context);
 
             if (_response.StatusCode == 422)
-                throw new ErrorResponseException(@"No query parameter (`user_id`, `item_id`, or `older_than`) is given.  In order to delete all actionsdelete the type.", _context);
-
-            if (_response.StatusCode == 429)
-                throw new ErrorResponseException(@"Too many requests.", _context);
+                throw new ErrorResponseException(@"No query parameter (user id, item id, or older than) is given. qIn order to delete all actionsdelete the type.", _context);
 
             if (_response.StatusCode == 505)
                 throw new ErrorResponseException(@"Request timed out.", _context);

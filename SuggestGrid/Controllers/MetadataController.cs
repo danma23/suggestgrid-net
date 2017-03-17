@@ -103,9 +103,6 @@ namespace SuggestGrid.Controllers
             if (_response.StatusCode == 400)
                 throw new DetailedErrorResponseException(@"Metadata is invalid.", _context);
 
-            if (_response.StatusCode == 429)
-                throw new ErrorResponseException(@"Too many requests.", _context);
-
             if ((_response.StatusCode < 200) || (_response.StatusCode > 208)) //[200,208] = HTTP OK
                 throw new ErrorResponseException(@"Unexpected internal error.", _context);
 
@@ -180,8 +177,8 @@ namespace SuggestGrid.Controllers
             if (_response.StatusCode == 400)
                 throw new ErrorResponseException(@"Body is missing.", _context);
 
-            if (_response.StatusCode == 429)
-                throw new ErrorResponseException(@"Too many requests.", _context);
+            if (_response.StatusCode == 413)
+                throw new ErrorResponseException(@"Bulk request maximum line count exceeded.", _context);
 
             if ((_response.StatusCode < 200) || (_response.StatusCode > 208)) //[200,208] = HTTP OK
                 throw new ErrorResponseException(@"Unexpected internal error.", _context);
@@ -251,7 +248,7 @@ namespace SuggestGrid.Controllers
 
             //Error handling using HTTP status codes
             if (_response.StatusCode == 404)
-                throw new ErrorResponseException(@"User not found.", _context);
+                throw new ErrorResponseException(@"User does not exists.", _context);
 
             if ((_response.StatusCode < 200) || (_response.StatusCode > 208)) //[200,208] = HTTP OK
                 throw new ErrorResponseException(@"Unexpected internal error.", _context);
@@ -272,8 +269,8 @@ namespace SuggestGrid.Controllers
         /// <summary>
         /// Get Users
         /// </summary>
-        /// <param name="size">Optional parameter: The number of the users response. Defaults to 10. Must be between 1 and 10.000 inclusive. This parameter must be string represetation of an integer like "1".</param>
-        /// <param name="mfrom">Optional parameter: The number of users to be skipped for response. Defaults to 0. Must be bigger than or equal to 0. This parameter must be string represetation of an integer like "1".</param>
+        /// <param name="size">Optional parameter: The number of the users response. Defaults to 10. Must be between 1 and 10,000 inclusive. This parameter must be string represetation of an integer like "1".</param>
+        /// <param name="mfrom">Optional parameter: The number of users to be skipped from the response. Defaults to 0. Must be bigger than or equal to 0. This parameter must be string represetation of an integer like "1".</param>
         /// <return>Returns the Models.UsersResponse response from the API call</return>
         public Models.UsersResponse GetUsers(long? size = null, long? mfrom = null)
         {
@@ -285,8 +282,8 @@ namespace SuggestGrid.Controllers
         /// <summary>
         /// Get Users
         /// </summary>
-        /// <param name="size">Optional parameter: The number of the users response. Defaults to 10. Must be between 1 and 10.000 inclusive. This parameter must be string represetation of an integer like "1".</param>
-        /// <param name="mfrom">Optional parameter: The number of users to be skipped for response. Defaults to 0. Must be bigger than or equal to 0. This parameter must be string represetation of an integer like "1".</param>
+        /// <param name="size">Optional parameter: The number of the users response. Defaults to 10. Must be between 1 and 10,000 inclusive. This parameter must be string represetation of an integer like "1".</param>
+        /// <param name="mfrom">Optional parameter: The number of users to be skipped from the response. Defaults to 0. Must be bigger than or equal to 0. This parameter must be string represetation of an integer like "1".</param>
         /// <return>Returns the Models.UsersResponse response from the API call</return>
         public async Task<Models.UsersResponse> GetUsersAsync(long? size = null, long? mfrom = null)
         {
@@ -323,9 +320,6 @@ namespace SuggestGrid.Controllers
             HttpContext _context = new HttpContext(_request,_response);
 
             //Error handling using HTTP status codes
-            if (_response.StatusCode == 429)
-                throw new ErrorResponseException(@"Too many requests.", _context);
-
             if ((_response.StatusCode < 200) || (_response.StatusCode > 208)) //[200,208] = HTTP OK
                 throw new ErrorResponseException(@"Unexpected internal error.", _context);
 
@@ -393,9 +387,6 @@ namespace SuggestGrid.Controllers
             HttpContext _context = new HttpContext(_request,_response);
 
             //Error handling using HTTP status codes
-            if (_response.StatusCode == 429)
-                throw new ErrorResponseException(@"Too many requests.", _context);
-
             if ((_response.StatusCode < 200) || (_response.StatusCode > 208)) //[200,208] = HTTP OK
                 throw new ErrorResponseException(@"Unexpected internal error.", _context);
 
@@ -455,9 +446,6 @@ namespace SuggestGrid.Controllers
             HttpContext _context = new HttpContext(_request,_response);
 
             //Error handling using HTTP status codes
-            if (_response.StatusCode == 429)
-                throw new ErrorResponseException(@"Too many requests.", _context);
-
             if ((_response.StatusCode < 200) || (_response.StatusCode > 208)) //[200,208] = HTTP OK
                 throw new ErrorResponseException(@"Unexpected internal error.", _context);
 
@@ -525,9 +513,6 @@ namespace SuggestGrid.Controllers
             //Error handling using HTTP status codes
             if (_response.StatusCode == 400)
                 throw new DetailedErrorResponseException(@"Metadata is invalid.", _context);
-
-            if (_response.StatusCode == 429)
-                throw new ErrorResponseException(@"Too many requests.", _context);
 
             if ((_response.StatusCode < 200) || (_response.StatusCode > 208)) //[200,208] = HTTP OK
                 throw new ErrorResponseException(@"Unexpected internal error.", _context);
@@ -603,8 +588,8 @@ namespace SuggestGrid.Controllers
             if (_response.StatusCode == 400)
                 throw new ErrorResponseException(@"Body is missing.", _context);
 
-            if (_response.StatusCode == 429)
-                throw new ErrorResponseException(@"Too many requests.", _context);
+            if (_response.StatusCode == 413)
+                throw new ErrorResponseException(@"Bulk request maximum line count exceeded.", _context);
 
             if ((_response.StatusCode < 200) || (_response.StatusCode > 208)) //[200,208] = HTTP OK
                 throw new ErrorResponseException(@"Unexpected internal error.", _context);
@@ -674,7 +659,7 @@ namespace SuggestGrid.Controllers
 
             //Error handling using HTTP status codes
             if (_response.StatusCode == 404)
-                throw new ErrorResponseException(@"Item not found.", _context);
+                throw new ErrorResponseException(@"Item does not exists.", _context);
 
             if ((_response.StatusCode < 200) || (_response.StatusCode > 208)) //[200,208] = HTTP OK
                 throw new ErrorResponseException(@"Unexpected internal error.", _context);
@@ -695,8 +680,8 @@ namespace SuggestGrid.Controllers
         /// <summary>
         /// Get Items
         /// </summary>
-        /// <param name="size">Optional parameter: The number of the users response. Defaults to 10. Must be between 1 and 10.000 inclusive. This parameter must be string represetation of an integer like "1".</param>
-        /// <param name="mfrom">Optional parameter: The number of users to be skipped for response. Defaults to 0. Must be bigger than or equal to 0. This parameter must be string represetation of an integer like "1".</param>
+        /// <param name="size">Optional parameter: The number of the users response. Defaults to 10. Must be between 1 and 10,000 inclusive. This parameter must be string represetation of an integer like "1".</param>
+        /// <param name="mfrom">Optional parameter: The number of users to be skipped from the response. Defaults to 0. Must be bigger than or equal to 0. This parameter must be string represetation of an integer like "1".</param>
         /// <return>Returns the Models.ItemsResponse response from the API call</return>
         public Models.ItemsResponse GetItems(long? size = null, long? mfrom = null)
         {
@@ -708,8 +693,8 @@ namespace SuggestGrid.Controllers
         /// <summary>
         /// Get Items
         /// </summary>
-        /// <param name="size">Optional parameter: The number of the users response. Defaults to 10. Must be between 1 and 10.000 inclusive. This parameter must be string represetation of an integer like "1".</param>
-        /// <param name="mfrom">Optional parameter: The number of users to be skipped for response. Defaults to 0. Must be bigger than or equal to 0. This parameter must be string represetation of an integer like "1".</param>
+        /// <param name="size">Optional parameter: The number of the users response. Defaults to 10. Must be between 1 and 10,000 inclusive. This parameter must be string represetation of an integer like "1".</param>
+        /// <param name="mfrom">Optional parameter: The number of users to be skipped from the response. Defaults to 0. Must be bigger than or equal to 0. This parameter must be string represetation of an integer like "1".</param>
         /// <return>Returns the Models.ItemsResponse response from the API call</return>
         public async Task<Models.ItemsResponse> GetItemsAsync(long? size = null, long? mfrom = null)
         {
@@ -746,9 +731,6 @@ namespace SuggestGrid.Controllers
             HttpContext _context = new HttpContext(_request,_response);
 
             //Error handling using HTTP status codes
-            if (_response.StatusCode == 429)
-                throw new ErrorResponseException(@"Too many requests.", _context);
-
             if ((_response.StatusCode < 200) || (_response.StatusCode > 208)) //[200,208] = HTTP OK
                 throw new ErrorResponseException(@"Unexpected internal error.", _context);
 
@@ -816,9 +798,6 @@ namespace SuggestGrid.Controllers
             HttpContext _context = new HttpContext(_request,_response);
 
             //Error handling using HTTP status codes
-            if (_response.StatusCode == 429)
-                throw new ErrorResponseException(@"Too many requests.", _context);
-
             if ((_response.StatusCode < 200) || (_response.StatusCode > 208)) //[200,208] = HTTP OK
                 throw new ErrorResponseException(@"Unexpected internal error.", _context);
 
@@ -878,9 +857,6 @@ namespace SuggestGrid.Controllers
             HttpContext _context = new HttpContext(_request,_response);
 
             //Error handling using HTTP status codes
-            if (_response.StatusCode == 429)
-                throw new ErrorResponseException(@"Too many requests.", _context);
-
             if ((_response.StatusCode < 200) || (_response.StatusCode > 208)) //[200,208] = HTTP OK
                 throw new ErrorResponseException(@"Unexpected internal error.", _context);
 

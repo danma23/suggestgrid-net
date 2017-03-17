@@ -99,7 +99,7 @@ namespace SuggestGrid.Models
         }
 
         /// <summary>
-        /// The number of most similar items to be skipped.
+        /// The number of most similar items to be skipped from the response. Defaults to 0.
         /// </summary>
         [JsonProperty("from")]
         public int? From
@@ -116,7 +116,7 @@ namespace SuggestGrid.Models
         }
 
         /// <summary>
-        /// The number of items asked to return in the response. Defaults to 10. Must be between 1 and 10.000 inclusive.
+        /// The number of items requested. Defaults to 10. Must be between 1 and 10,000 inclusive.
         /// </summary>
         [JsonProperty("size")]
         public int? Size

@@ -53,7 +53,7 @@ namespace SuggestGrid.Controllers
         /// <summary>
         /// Get Recommended Users
         /// </summary>
-        /// <param name="query">Required parameter: The query for recommended users.</param>
+        /// <param name="query">Required parameter: Query for recommended users.</param>
         /// <return>Returns the Models.UsersResponse response from the API call</return>
         public Models.UsersResponse GetRecommendedUsers(Models.GetRecommendedUsersBody query)
         {
@@ -65,7 +65,7 @@ namespace SuggestGrid.Controllers
         /// <summary>
         /// Get Recommended Users
         /// </summary>
-        /// <param name="query">Required parameter: The query for recommended users.</param>
+        /// <param name="query">Required parameter: Query for recommended users.</param>
         /// <return>Returns the Models.UsersResponse response from the API call</return>
         public async Task<Models.UsersResponse> GetRecommendedUsersAsync(Models.GetRecommendedUsersBody query)
         {
@@ -105,9 +105,6 @@ namespace SuggestGrid.Controllers
             if (_response.StatusCode == 422)
                 throw new ErrorResponseException(@"Required parameters are missing.", _context);
 
-            if (_response.StatusCode == 429)
-                throw new ErrorResponseException(@"Too many requests.", _context);
-
             if ((_response.StatusCode < 200) || (_response.StatusCode > 208)) //[200,208] = HTTP OK
                 throw new ErrorResponseException(@"Unexpected internal error.", _context);
 
@@ -127,7 +124,7 @@ namespace SuggestGrid.Controllers
         /// <summary>
         /// Get Recommended Items
         /// </summary>
-        /// <param name="query">Required parameter: The query for recommended items.</param>
+        /// <param name="query">Required parameter: Query for recommended items.</param>
         /// <return>Returns the Models.ItemsResponse response from the API call</return>
         public Models.ItemsResponse GetRecommendedItems(Models.GetRecommendedItemsBody query)
         {
@@ -139,7 +136,7 @@ namespace SuggestGrid.Controllers
         /// <summary>
         /// Get Recommended Items
         /// </summary>
-        /// <param name="query">Required parameter: The query for recommended items.</param>
+        /// <param name="query">Required parameter: Query for recommended items.</param>
         /// <return>Returns the Models.ItemsResponse response from the API call</return>
         public async Task<Models.ItemsResponse> GetRecommendedItemsAsync(Models.GetRecommendedItemsBody query)
         {
@@ -178,9 +175,6 @@ namespace SuggestGrid.Controllers
 
             if (_response.StatusCode == 422)
                 throw new ErrorResponseException(@"Required parameters are missing.", _context);
-
-            if (_response.StatusCode == 429)
-                throw new ErrorResponseException(@"Too many requests.", _context);
 
             if ((_response.StatusCode < 200) || (_response.StatusCode > 208)) //[200,208] = HTTP OK
                 throw new ErrorResponseException(@"Unexpected internal error.", _context);

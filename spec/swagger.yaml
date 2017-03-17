@@ -44,7 +44,7 @@ tags:
     description: Type Methods
     x-docs-text: |
       Type methods are used for creating, inspecting, and deleting SuggestGrid types.
-      For more information, you may refer to [types documentation](http://www.suggestgrid.com/docs/types).
+      [Types documentation](http://www.suggestgrid.com/docs/types) is available for an overview.
     x-methods:
       - create_type
       - get_type
@@ -55,7 +55,7 @@ tags:
     description: Action Methods
     x-docs-text: |
       Action methods are for creating, inspecting, and deleting actions.
-      For more information, you may refer to [actions documentation](http://www.suggestgrid.com/docs/actions).
+      [Actions documentation](http://www.suggestgrid.com/docs/actions) is available for an overview.
     x-methods:
       - post_action
       - post_bulk_actions
@@ -65,7 +65,7 @@ tags:
     description: Metadata Methods
     x-docs-text: |
       Metadata methods are for creating, inspecting, and deleting metadata.
-      For more information, you may refer to [metadata documentation ](http://www.suggestgrid.com/docs/metadata).
+      [Metadata documentation ](http://www.suggestgrid.com/docs/metadata) is available for an overview.
     x-methods:
       - post_user
       - post_bulk_users
@@ -82,16 +82,16 @@ tags:
   - name: recommendation
     description: Recommnedation Methods
     x-docs-text: |
-      Recommnedation methods are for getting recommended items or users from SuggestGrid.
-      For more information, you may refer to [recommendations documentation](http://www.suggestgrid.com/docs/recommendations).
+      Recommnedation methods are for getting recommended items, or recommended users from SuggestGrid.
+      [Recommendations documentation](http://www.suggestgrid.com/docs/recommendations) is available for an overview.
     x-methods:
       - get_recommended_users
       - get_recommended_items
   - name: similarity
     description: Similarity Methods
     x-docs-text: |
-      Similarity methods are for getting similar items or users from SuggestGrid.
-      For more information, you may refer to [similarities documentation](http://www.suggestgrid.com/docs/similarities).
+      Similarity methods are for getting similar items, or similar users from SuggestGrid.
+      [Similarities documentation](http://www.suggestgrid.com/docs/similarities) is available for an overview.
     x-methods:
       - get_similar_users
       - get_similar_items
@@ -100,8 +100,7 @@ definitions:
   Action:
     type: object
     description: |
-      An action object represents a user's action on an item.
-      All actions belong to a type that gives meaning to actions.
+      An action object represents a user's action of a type on an item.
     properties:
       type:
         type: string
@@ -136,13 +135,15 @@ definitions:
         - boolean
   Metadata:
     type: object
-    description: A metadata for a user or an item.
+    description: |
+      Metadata of a user or an item.
+      Id parameter is required for all metadata.
+      Metadata may have other parameters with string, number, or boolean values.
     properties:
       id:
         type: string
         description: |
-          The id of the user or the item that the metadata is associated with.
-          Id parameter is necessary for all metadata.
+          The id of the metadata of a user or an item.
     additionalProperties:
       type:
         - string
@@ -179,10 +180,10 @@ definitions:
           type: string
       from:
         type: integer
-        description: The number of most recommended items to be skipped.
+        description: The number of most recommended items to be skipped from the response. Defaults to 0.
       size:
         type: integer
-        description: The number of users asked to return in the response. Defaults to 10. Must be between 1 and 10.000 inclusive.
+        description: The number of users requested. Defaults to 10. Must be between 1 and 10,000 inclusive.
       similar_user_id:
         type: string
         description: Similar user that the response should be similar to.
@@ -225,10 +226,10 @@ definitions:
           type: string
       from:
         type: integer
-        description: The number of most recommended items to be skipped.
+        description: The number of most recommended items to be skipped from the response. Defaults to 0.
       size:
         type: integer
-        description: The number of items asked to return in the response. Defaults to 10. Must be between 1 and 10.000 inclusive.
+        description: The number of items requested. Defaults to 10. Must be between 1 and 10,000 inclusive.
       similar_item_id:
         type: string
         description: Similar item that the response should be similar to.
@@ -253,7 +254,7 @@ definitions:
         description: These item ids that will not be included in the response.
   GetSimilarUsersBody:
     type: object
-    description: The query for similar users.
+    description: Query for similar users.
     properties:
       type:
         type: string
@@ -271,10 +272,10 @@ definitions:
           type: string
       from:
         type: integer
-        description: The number of most similar users to be skipped.
+        description: The number of most similar users to be skipped from the response. Defaults to 0.
       size:
         type: integer
-        description: The number of users asked to return in the response. Defaults to 10. Must be between 1 and 10.000 inclusive.
+        description: The number of users requested. Defaults to 10. Must be between 1 and 10,000 inclusive.
       fields:
         type: array
         items:
@@ -289,7 +290,7 @@ definitions:
         description: These user ids that will not be included in the response.
   GetSimilarItemsBody:
     type: object
-    description: The query for similar items.
+    description: Query for similar items.
     properties:
       type:
         type: string
@@ -309,10 +310,10 @@ definitions:
           type: string
       from:
         type: integer
-        description: The number of most similar items to be skipped.
+        description: The number of most similar items to be skipped from the response. Defaults to 0.
       size:
         type: integer
-        description: The number of items asked to return in the response. Defaults to 10. Must be between 1 and 10.000 inclusive.
+        description: The number of items requested. Defaults to 10. Must be between 1 and 10,000 inclusive.
       fields:
         type: array
         items:
@@ -361,7 +362,7 @@ definitions:
         description: Description of the response.
       error_uri:
         type: string
-        description: URI of the response for more details.
+        description: The URI of the error for more details.
   DetailedErrorResponse:
     type: object
     description: Error response.
@@ -374,7 +375,7 @@ definitions:
         description: Description of the response.
       error_uri:
         type: string
-        description: URI of the response for more details.
+        description: The URI of the error for more details.
       error_details:
         type: string
         description: Specific details of the response.
@@ -390,7 +391,7 @@ definitions:
         description: Description of the response.
       error_uri:
         type: string
-        description: URI of the response for more details.
+        description: The URI of the error for more details.
       used:
         type: integer
         format: int64
@@ -411,19 +412,19 @@ definitions:
         description: Description of the response.
       error_uri:
         type: string
-        description: URI of the response for more details.
+        description: The URI of the error for more details.
       found:
         type: integer
         format: int64
-        description: The number of records found for the delete query.
+        description: The number of records found.
       deleted:
         type: integer
         format: int64
-        description: The number of records deleted for the delete query.
+        description: The number of records deleted.
       failed:
         type: integer
         format: int64
-        description: The number of records found but not deleted for the delete query.
+        description: The number of records failed to be deleted.
   DeleteSuccessResponse:
     type: object
     description: Successful delete response with found, deleted, and failed parameters.
@@ -434,15 +435,15 @@ definitions:
       found:
         type: integer
         format: int64
-        description: The number of records found for the delete query.
+        description: The number of records found.
       deleted:
         type: integer
         format: int64
-        description: The number of records deleted for the delete query.
+        description: The number of records deleted.
       failed:
         type: integer
         format: int64
-        description: The number of records found but not deleted for the delete query.
+        description: The number of records failed to be deleted.
   GetTypesResponse:
     type: object
     description: Type names response.
@@ -532,10 +533,6 @@ paths:
           description: Get types response.
           schema:
             $ref: '#/definitions/GetTypesResponse'
-        429:
-          description: Too many requests.
-          schema:
-            $ref: '#/definitions/ErrorResponse'
         default:
           description: Unexpected internal error.
           schema:
@@ -551,10 +548,6 @@ paths:
           description: Get types response.
           schema:
             $ref: '#/definitions/MessageResponse'
-        429:
-          description: Too many requests.
-          schema:
-            $ref: '#/definitions/ErrorResponse'
         default:
           description: Unexpected internal error.
           schema:
@@ -579,11 +572,7 @@ paths:
           schema:
             $ref: '#/definitions/GetTypeResponse'
         404:
-          description: Type not found.
-          schema:
-            $ref: '#/definitions/ErrorResponse'
-        429:
-          description: Too many requests.
+          description: Type does not exists.
           schema:
             $ref: '#/definitions/ErrorResponse'
         default:
@@ -626,10 +615,6 @@ paths:
           description: Rating type is not `implicit` or `explicit`.
           schema:
             $ref: '#/definitions/ErrorResponse'
-        429:
-          description: Too many requests.
-          schema:
-            $ref: '#/definitions/ErrorResponse'
         default:
           description: Unexpected internal error.
           schema:
@@ -640,8 +625,7 @@ paths:
       operationId: delete_type
       summary: Delete a Type
       description: |
-        Deletes a type with ALL of its actions and recommendation model.
-        Do not use this if you will need the type.
+        Warning: Deletes the type with all of its actions and its recommendation model.
       parameters:
         - name: type
           in: path
@@ -655,11 +639,7 @@ paths:
           schema:
             $ref: '#/definitions/MessageResponse'
         404:
-          description: Type does not exists.
-          schema:
-            $ref: '#/definitions/ErrorResponse'
-        429:
-          description: Too many requests.
+          description: Action type does not exists.
           schema:
             $ref: '#/definitions/ErrorResponse'
         default:
@@ -690,7 +670,7 @@ paths:
           schema:
             $ref: '#/definitions/MessageResponse'
         400:
-          description: Required `user_id` or `item_id` parameters are missing from the request body.
+          description: Required user id or item id parameters are missing from the request.
           schema:
             $ref: '#/definitions/ErrorResponse'
         402:
@@ -698,11 +678,7 @@ paths:
           schema:
             $ref: '#/definitions/ErrorResponse'
         404:
-          description: Type does not exists.
-          schema:
-            $ref: '#/definitions/ErrorResponse'
-        429:
-          description: Too many requests.
+          description: Action type does not exists.
           schema:
             $ref: '#/definitions/ErrorResponse'
         default:
@@ -717,6 +693,7 @@ paths:
       description: |
         Get actions. Defaut responses will be paged by 10 actios each.
         Type, user id, item id, or older than parameters could be provided.
+        The intersection of the provided parameters will be returned.
       parameters:
         - name: type
           in: query
@@ -747,7 +724,7 @@ paths:
           in: query
           description: |
             The number of the users response.
-            Defaults to 10. Must be between 1 and 10.000 inclusive.
+            Defaults to 10. Must be between 1 and 10,000 inclusive.
             This parameter must be string represetation of an integer like "1".
           required: false
           type: integer
@@ -755,7 +732,7 @@ paths:
         - name: from
           in: query
           description: |
-            The number of users to be skipped for response.
+            The number of users to be skipped from the response.
             Defaults to 0. Must be bigger than or equal to 0.
             This parameter must be string represetation of an integer like "1".
           required: false
@@ -766,10 +743,6 @@ paths:
           description: Paged actions response.
           schema:
             $ref: '#/definitions/ActionsResponse'
-        429:
-          description: Too many requests.
-          schema:
-            $ref: '#/definitions/ErrorResponse'
         default:
           description: Unexpected internal error.
           schema:
@@ -780,14 +753,14 @@ paths:
       operationId: delete_actions
       summary: Delete Actions
       description: |
-        Type must be provided. Additionally,
-
-        * If both user id and item id are supplied the user's actions on the item will be deleted.
-        * If only user id is provided, all actions of the user will be deleted.
-        * If only item id is provided, all actions on the item will be deleted.
-        * If only older than is provided, all actions older than the timestamp or the duration will be deleted.
-        * If a few of these parameters are provided, delete action will be executed within intersection of these parameters.
-        * One of these parameters must be provided. In order to delete all actions, delete the type.
+        Warning: Please use get actions with the exact parameters first to inspect the actions to be deleted.
+        
+        * Type must be provided. 
+        * If user id is provided, all actions of the user will be deleted.
+        * If item id is provided, all actions on the item will be deleted.
+        * If older than is provided, all actions older than the timestamp or the duration will be deleted.
+        * If a number of these parameters are provided, the intersection of these parameters will be deleted.
+        * In addition to a type, at least one of these parameters must be provided. In order to delete all the actions of a type, delete the type.
       parameters:
         - name: type
           in: query
@@ -820,7 +793,7 @@ paths:
           schema:
             $ref: '#/definitions/DeleteSuccessResponse'
         400:
-          description: Required `user_id` or `item_id` parameters are missing from the request body.
+          description: Required user id or item id parameters are missing.
           schema:
             $ref: '#/definitions/ErrorResponse'
         404:
@@ -828,11 +801,7 @@ paths:
           schema:
             $ref: '#/definitions/DeleteErrorResponse'
         422:
-          description: No query parameter (`user_id`, `item_id`, or `older_than`) is given.  In order to delete all actionsdelete the type.
-          schema:
-            $ref: '#/definitions/ErrorResponse'
-        429:
-          description: Too many requests.
+          description: No query parameter (user id, item id, or older than) is given. qIn order to delete all actionsdelete the type.
           schema:
             $ref: '#/definitions/ErrorResponse'
         505:
@@ -877,8 +846,12 @@ paths:
           description: Action limit exceeded.
           schema:
             $ref: '#/definitions/ErrorResponse'
-        429:
-          description: Too many requests.
+        404:
+          description: Action type does not exists.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        413:
+          description: Bulk request maximum line count exceeded.
           schema:
             $ref: '#/definitions/ErrorResponse'
         default:
@@ -906,7 +879,7 @@ paths:
           schema:
             $ref: '#/definitions/Metadata'
         404:
-          description: User not found.
+          description: User does not exists.
           schema:
             $ref: '#/definitions/ErrorResponse'
         default:
@@ -924,10 +897,6 @@ paths:
           description: Deleted a user metadata.
           schema:
             $ref: '#/definitions/MessageResponse'
-        429:
-          description: Too many requests.
-          schema:
-            $ref: '#/definitions/ErrorResponse'
         default:
           description: Unexpected internal error.
           schema:
@@ -955,10 +924,6 @@ paths:
             description: Metadata is invalid.
             schema:
               $ref: '#/definitions/DetailedErrorResponse'
-          429:
-            description: Too many requests.
-            schema:
-              $ref: '#/definitions/ErrorResponse'
           default:
             description: Unexpected internal error.
             schema:
@@ -976,7 +941,7 @@ paths:
           in: query
           description: |
             The number of the users response.
-            Defaults to 10. Must be between 1 and 10.000 inclusive.
+            Defaults to 10. Must be between 1 and 10,000 inclusive.
             This parameter must be string represetation of an integer like "1".
           required: false
           type: integer
@@ -984,7 +949,7 @@ paths:
         - name: from
           in: query
           description: |
-            The number of users to be skipped for response.
+            The number of users to be skipped from the response.
             Defaults to 0. Must be bigger than or equal to 0.
             This parameter must be string represetation of an integer like "1".
           required: false
@@ -995,10 +960,6 @@ paths:
           description: Get users response.
           schema:
             $ref: '#/definitions/UsersResponse'
-        429:
-          description: Too many requests.
-          schema:
-            $ref: '#/definitions/ErrorResponse'
         default:
           description: Unexpected internal error.
           schema:
@@ -1008,16 +969,13 @@ paths:
         - metadata
       operationId: delete_all_users
       summary: Delete All Users
-      description: Deletes all user metadata from SuggestGrid.
+      description: |
+        Warning: Deletes all user metadata from SuggestGrid.
       responses:
         200:
           description: Deleted all user metadata.
           schema:
             $ref: '#/definitions/MessageResponse'
-        429:
-          description: Too many requests.
-          schema:
-            $ref: '#/definitions/ErrorResponse'
         default:
           description: Unexpected internal error.
           schema:
@@ -1042,7 +1000,7 @@ paths:
           schema:
             $ref: '#/definitions/Metadata'
         404:
-          description: Item not found.
+          description: Item does not exists.
           schema:
             $ref: '#/definitions/ErrorResponse'
         default:
@@ -1060,10 +1018,6 @@ paths:
           description: Deleted an item metadata.
           schema:
             $ref: '#/definitions/MessageResponse'
-        429:
-          description: Too many requests.
-          schema:
-            $ref: '#/definitions/ErrorResponse'
         default:
           description: Unexpected internal error.
           schema:
@@ -1093,10 +1047,6 @@ paths:
           description: Metadata is invalid.
           schema:
             $ref: '#/definitions/DetailedErrorResponse'
-        429:
-          description: Too many requests.
-          schema:
-            $ref: '#/definitions/ErrorResponse'
         default:
           description: Unexpected internal error.
           schema:
@@ -1114,7 +1064,7 @@ paths:
           in: query
           description: |
             The number of the users response.
-            Defaults to 10. Must be between 1 and 10.000 inclusive.
+            Defaults to 10. Must be between 1 and 10,000 inclusive.
             This parameter must be string represetation of an integer like "1".
           required: false
           type: integer
@@ -1122,7 +1072,7 @@ paths:
         - name: from
           in: query
           description: |
-            The number of users to be skipped for response.
+            The number of users to be skipped from the response.
             Defaults to 0. Must be bigger than or equal to 0.
             This parameter must be string represetation of an integer like "1".
           required: false
@@ -1133,10 +1083,6 @@ paths:
           description: Get items response.
           schema:
             $ref: '#/definitions/ItemsResponse'
-        429:
-          description: Too many requests.
-          schema:
-            $ref: '#/definitions/ErrorResponse'
         default:
           description: Unexpected internal error.
           schema:
@@ -1147,17 +1093,12 @@ paths:
       operationId: delete_all_items
       summary: Delete All Items
       description: |
-        Delete all items metadata.
-        This method would flush all items metadata on SuggestGrid.
+        Warning: Deletes all item metadata from SuggestGrid.
       responses:
         200:
           description: Deleted all item metadata.
           schema:
             $ref: '#/definitions/MessageResponse'
-        429:
-          description: Too many requests.
-          schema:
-            $ref: '#/definitions/ErrorResponse'
         default:
           description: Unexpected internal error.
           schema:
@@ -1193,8 +1134,8 @@ paths:
           description: Body is missing.
           schema:
             $ref: '#/definitions/ErrorResponse'
-        429:
-          description: Too many requests.
+        413:
+          description: Bulk request maximum line count exceeded.
           schema:
             $ref: '#/definitions/ErrorResponse'
         default:
@@ -1232,8 +1173,8 @@ paths:
           description: Body is missing.
           schema:
             $ref: '#/definitions/ErrorResponse'
-        429:
-          description: Too many requests.
+        413:
+          description: Bulk request maximum line count exceeded.
           schema:
             $ref: '#/definitions/ErrorResponse'
         default:
@@ -1247,11 +1188,11 @@ paths:
         - recommendation
       operationId: get_recommended_users
       summary: Get Recommended Users
-      description: Returns recommended users for the given query.
+      description: Returns recommended users for the query.
       parameters:
         - name: query
           in: body
-          description: The query for recommended users.
+          description: Query for recommended users.
           required: true
           schema:
             $ref: '#/definitions/GetRecommendedUsersBody'
@@ -1268,10 +1209,6 @@ paths:
           description: Required parameters are missing.
           schema:
             $ref: '#/definitions/ErrorResponse'
-        429:
-          description: Too many requests.
-          schema:
-            $ref: '#/definitions/ErrorResponse'
         default:
           description: Unexpected internal error.
           schema:
@@ -1282,11 +1219,11 @@ paths:
         - recommendation
       operationId: get_recommended_items
       summary: Get Recommended Items
-      description: Returns recommended items for the given query.
+      description: Returns recommended items for the query.
       parameters:
         - name: query
           in: body
-          description: The query for recommended items.
+          description: Query for recommended items.
           required: true
           schema:
             $ref: '#/definitions/GetRecommendedItemsBody'
@@ -1301,10 +1238,6 @@ paths:
             $ref: '#/definitions/ErrorResponse'
         422:
           description: Required parameters are missing.
-          schema:
-            $ref: '#/definitions/ErrorResponse'
-        429:
-          description: Too many requests.
           schema:
             $ref: '#/definitions/ErrorResponse'
         default:
@@ -1322,7 +1255,7 @@ paths:
       parameters:
         - name: query
           in: body
-          description: The query for similar users.
+          description: Query for similar users.
           required: true
           schema:
             $ref: '#/definitions/GetSimilarUsersBody'
@@ -1339,10 +1272,6 @@ paths:
           description: Required parameters are missing.
           schema:
             $ref: '#/definitions/ErrorResponse'
-        429:
-          description: Too many requests.
-          schema:
-            $ref: '#/definitions/ErrorResponse'
         default:
           description: Unexpected internal error.
           schema:
@@ -1357,7 +1286,7 @@ paths:
       parameters:
         - name: query
           in: body
-          description: The query for similar items.
+          description: Query for similar items.
           required: true
           schema:
             $ref: '#/definitions/GetSimilarItemsBody'
@@ -1372,10 +1301,6 @@ paths:
             $ref: '#/definitions/ErrorResponse'
         422:
           description: Required parameters are missing.
-          schema:
-            $ref: '#/definitions/ErrorResponse'
-        429:
-          description: Too many requests.
           schema:
             $ref: '#/definitions/ErrorResponse'
         default:

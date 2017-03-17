@@ -23,8 +23,7 @@ namespace SuggestGrid.Models
         private string id;
 
         /// <summary>
-        /// The id of the user or the item that the metadata is associated with.
-        /// Id parameter is necessary for all metadata.
+        /// The id of the metadata of a user or an item.
         /// </summary>
         [JsonProperty("id")]
         public string Id 
