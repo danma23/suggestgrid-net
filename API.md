@@ -482,7 +482,7 @@ For more information, you may refer to [recommendations documentation](http://ww
 ### Get Recommended Users
 > `GetRecommendedUsers(GetRecommendedUsersBody body)`
 
-Returns recommended users for the given query.
+Returns recommended users for the query.
 
 examples:
 
@@ -553,7 +553,7 @@ types|string|false|The types of the query. Exactly one of type or types paramete
 ### Get Recommended Items
 > `GetRecommendedItems(GetRecommendedItemsBody body)`
 
-Returns recommended items for the given query.
+Returns recommended items for the query.
 
 examples:
 

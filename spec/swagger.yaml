@@ -1188,7 +1188,7 @@ paths:
         - recommendation
       operationId: get_recommended_users
       summary: Get Recommended Users
-      description: Returns recommended users for the given query.
+      description: Returns recommended users for the query.
       parameters:
         - name: query
           in: body
@@ -1219,7 +1219,7 @@ paths:
         - recommendation
       operationId: get_recommended_items
       summary: Get Recommended Items
-      description: Returns recommended items for the given query.
+      description: Returns recommended items for the query.
       parameters:
         - name: query
           in: body
