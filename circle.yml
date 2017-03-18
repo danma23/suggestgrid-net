@@ -26,8 +26,8 @@ dependencies:
     - ~/docker
   override:
     - git clone --depth 1 -b master https://${GITHUB_USERNAME}:${GITHUB_PASSWORD}@github.com/suggestgrid/suggestgrid-net-test-proxy.git ${PROXY_PATH}
-    - git clone --depth 1 -b ${CIRCLE_BRANCH:-master} https://${GITHUB_USERNAME}:${GITHUB_PASSWORD}@github.com/suggestgrid/kirk.git ${KIRK_PATH}
-    - git clone --depth 1 -b ${CIRCLE_BRANCH:-master} https://${GITHUB_USERNAME}:${GITHUB_PASSWORD}@github.com/suggestgrid/malik.git ${MALIK_PATH}
+    - git clone --depth 1 -b ${CIRCLE_TAG:-$CIRCLE_BRANCH} https://${GITHUB_USERNAME}:${GITHUB_PASSWORD}@github.com/suggestgrid/kirk.git ${KIRK_PATH}
+    - git clone --depth 1 -b ${CIRCLE_TAG:-$CIRCLE_BRANCH} https://${GITHUB_USERNAME}:${GITHUB_PASSWORD}@github.com/suggestgrid/malik.git ${MALIK_PATH}
     - cd ${SDK_PATH} && dotnet restore
     - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
     - docker pull suggestgrid/c-12
