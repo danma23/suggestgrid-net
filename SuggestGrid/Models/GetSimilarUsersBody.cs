@@ -31,7 +31,7 @@ namespace SuggestGrid.Models
         private List<string> except;
 
         /// <summary>
-        /// The type of the query.
+        /// The type of the query. Similarities will be calculated based on actions of this type.
         /// </summary>
         [JsonProperty("type")]
         public string Type
