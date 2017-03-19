@@ -166,7 +166,7 @@ definitions:
     properties:
       type:
         type: string
-        description: The type of the query.
+        description: The type of the query. Recommendations will be calculated based on actions of this type.
       types:
         type: string
         description: The types of the query. Exactly one of type or types parameters must be provided.
@@ -212,7 +212,7 @@ definitions:
     properties:
       type:
         type: string
-        description: The type of the query.
+        description: The type of the query. Recommendations will be calculated based on actions of this type.
       types:
         type: string
         description: The types of the query. Exactly one of type or types parameters must be provided.
@@ -258,7 +258,7 @@ definitions:
     properties:
       type:
         type: string
-        description: The type of the query.
+        description: The type of the query. Similarities will be calculated based on actions of this type.
       types:
         type: string
         description: The types of the query. Exactly one of type or types parameters must be provided.
@@ -294,7 +294,7 @@ definitions:
     properties:
       type:
         type: string
-        description: The type of the query.
+        description: The type of the query. Similarities will be calculated based on actions of this type.
       types:
         type: string
         description: The types of the query. Exactly one of type or types parameters must be provided.
