@@ -2,7 +2,7 @@ swagger: '2.0'
 
 info:
   title: SuggestGrid
-  version: 0.1.30-SNAPSHOT
+  version: 0.1.31-SNAPSHOT
   description: Personalization made Simple
   x-codegen-settings:
     appendContentHeaders: true
