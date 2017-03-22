@@ -2,4 +2,4 @@
 
 cd SuggestGrid
 dotnet pack --configuration release
-nuget push bin/release/SuggestGrid.*.nupkg $PACKAGE_MANAGER_API_KEY
+nuget push $(find bin/release/ -type f -name "*.nupkg" | head -n 1) $PACKAGE_MANAGER_API_KEY
