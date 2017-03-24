@@ -52,7 +52,7 @@ namespace SuggestGrid.Controllers
         #endregion Singleton Pattern
 
         /// <summary>
-        /// Post an Action
+        /// Posts an Action
         /// </summary>
         /// <param name="action">Required parameter: The action to be posted.</param>
         /// <return>Returns the Models.MessageResponse response from the API call</return>
@@ -64,7 +64,7 @@ namespace SuggestGrid.Controllers
         }
 
         /// <summary>
-        /// Post an Action
+        /// Posts an Action
         /// </summary>
         /// <param name="action">Required parameter: The action to be posted.</param>
         /// <return>Returns the Models.MessageResponse response from the API call</return>
@@ -126,7 +126,7 @@ namespace SuggestGrid.Controllers
         }
 
         /// <summary>
-        /// Post Bulk Actions
+        /// Posts Actions
         /// </summary>
         /// <param name="actions">Required parameter: A number of action objects separated with newlines. Note that this is not a valid JSON data structure. The body size is limited to 10 thousand lines.</param>
         /// <return>Returns the Models.BulkPostResponse response from the API call</return>
@@ -144,7 +144,7 @@ namespace SuggestGrid.Controllers
         }
 
         /// <summary>
-        /// Post Bulk Actions
+        /// Posts Actions
         /// </summary>
         /// <param name="actions">Required parameter: A number of action objects separated with newlines. Note that this is not a valid JSON data structure. The body size is limited to 10 thousand lines.</param>
         /// <return>Returns the Models.BulkPostResponse response from the API call</return>
@@ -209,7 +209,7 @@ namespace SuggestGrid.Controllers
         }
 
         /// <summary>
-        /// Get Actions
+        /// Gets Actions
         /// </summary>
         /// <param name="type">Optional parameter: The type of the actions.</param>
         /// <param name="userId">Optional parameter: The user id of the actions.</param>
@@ -232,7 +232,7 @@ namespace SuggestGrid.Controllers
         }
 
         /// <summary>
-        /// Get Actions
+        /// Gets Actions
         /// </summary>
         /// <param name="type">Optional parameter: The type of the actions.</param>
         /// <param name="userId">Optional parameter: The user id of the actions.</param>

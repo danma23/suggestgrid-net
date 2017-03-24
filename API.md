@@ -4,7 +4,7 @@
 Type methods are used for creating, inspecting, and deleting SuggestGrid types.
 [Types documentation](http://www.suggestgrid.com/docs/types) is available for an overview.
 
-### Create a New Type
+### Creates a Type
 > `CreateType(type, body)`
 
 Creates a new type.
@@ -30,7 +30,7 @@ Name | Type |Required| Description
 --- | --- | --- | ---
 rating|string|false|The rating type of the type. Could be "explicit" or "implicit", where "implicit" is the default.
 type|string|true|The name of the type.
-### Get Properties of a Type
+### Gets Properties of a Type
 > `GetType(type)`
 
 Returns the options of a type. The response rating parameter.
@@ -47,7 +47,7 @@ Returns the options of a type. The response rating parameter.
 Name | Type |Required| Description
 --- | --- | --- | ---
 type|string|true|The name of the type to get properties.
-### Delete a Type
+### Deletes a Type
 > `DeleteType(type)`
 
 Warning: Deletes the type with all of its actions and its recommendation model.
@@ -63,7 +63,7 @@ suggestGridClient.Type.DeleteType("views");
 Name | Type |Required| Description
 --- | --- | --- | ---
 type|string|true|The name of the type to be deleted.
-### Get All Types
+### Gets All Types
 > `GetAllTypes()`
 
 Returns all type names in an array named types.
@@ -74,7 +74,7 @@ Returns all type names in an array named types.
   var types = response.Types; // get array of type names
 ```
 
-### Delete All Types
+### Deletes All Types
 > `deleteAllTypes()`
 
 Deletes ALL the types and ALL the actions.
@@ -89,7 +89,7 @@ suggestGridClient.Type.DeleteAllTypes();
 Action methods are for creating, inspecting, and deleting actions.
 [Actions documentation](http://www.suggestgrid.com/docs/actions) is available for an overview.
 
-### Post an Action
+### Posts an Action
 > `PostAction(ActionModel)`
 
 Posts an action to the given type in the body.
@@ -117,7 +117,7 @@ rating|number|false|The optional rating given by the user, if the type is explic
 timestamp|integer|false|The optional UNIX epoch timestamp of the action. Defaults to the current timestamp.
 type|string|true|The type that the action belongs to.
 userId|string|true|The user id of the performer of the action.
-### Post Bulk Actions
+### Posts Actions
 > `PostBulkActions(List<ActionModel> actions)`
 
 Posts bulk actions to SuggestGrid.
@@ -151,7 +151,7 @@ suggestGridClient.Action.PostBulkActions(actions);
 ```
 
 #### Parameters
-### Get Actions
+### Gets Actions
 > `GetActions (string type = null, string userId = null, string itemId = null, string olderThan = null)`
 
 Get actions. Defaut responses will be paged by 10 actios each.
@@ -261,10 +261,12 @@ user_id|string||The user id of the actions.
 Metadata methods are for creating, inspecting, and deleting metadata.
 [Metadata documentation ](http://www.suggestgrid.com/docs/metadata) is available for an overview.
 
-### Post a User
+### Posts a User
 > `PostUser(Metadata<string,object> metadata)`
 
 Posts a user metadata.
+Note that this operation completely overrides previous metadata for the id, if it exists.
+
 
 ```csharp
 	suggestGridClient.Metadata.PostUser(new Metadata<string, object> { { "id", "9394182" }, { "age", 28 }, { "name", "Avis Horton" } });
@@ -278,11 +280,11 @@ Posts a user metadata.
 Name | Type |Required| Description
 --- | --- | --- | ---
 id|string|true|The id of the metadata of a user or an item. 
-### Post Bulk Users
+### Posts Users
 > `PostBulkUsers(List<Metadata<string, object>> users)`
 
-Post user metadata in bulk.
-This metadata can be used to filter or to be included in recommendations and similars methods.
+Posts user metadata in bulk.
+Note that this operation completely overrides metadata with the same ids, if they exist.
 
 
 
@@ -304,7 +306,7 @@ suggestGridClient.Metadata.PostBulkUsers(users);
 ```
 
 #### Parameters
-### Get A User
+### Gets A User
 > `GetUser()`
 
 Returns a user metadata if it exists.
@@ -320,7 +322,7 @@ var response = suggestGridClient.Metadata.GetUser("42");
 Name | Type |Required| Description
 --- | --- | --- | ---
 user_id|string|true|The user id to delete its metadata.
-### Get Users
+### Gets Users
 > `GetUsers()`
 
 Get items and total count of items.
@@ -341,7 +343,7 @@ Name | Type |Required| Description
 --- | --- | --- | ---
 from|integer||The number of users to be skipped from the response. Defaults to 0. Must be bigger than or equal to 0. This parameter must be string represetation of an integer like "1". 
 size|integer||The number of the users response. Defaults to 10. Must be between 1 and 10,000 inclusive. This parameter must be string represetation of an integer like "1". 
-### Delete a User
+### Deletes a User
 > `DeleteUser(string userId)`
 
 Deletes a user metadata with the given user id.
@@ -356,7 +358,7 @@ suggestGridClient.Metadata.DeleteUser("6084106");
 Name | Type |Required| Description
 --- | --- | --- | ---
 user_id|string|true|The user id to delete its metadata.
-### Delete All Users
+### Deletes All Users
 > `DeleteAllUsers()`
 
 Warning: Deletes all user metadata from SuggestGrid.
@@ -366,11 +368,11 @@ Warning: Deletes all user metadata from SuggestGrid.
 suggestGridClient.Metadata.DeleteAllUsers();
 ```
 
-### Post an Item
+### Posts An Item
 > `PostItem(Metadata<string,object> metadata)`
 
 Posts an item metadata.
-This metadata can be used to filter or to be included in recommendations and similars methods.
+Note that this operation completely overrides previous metadata for the id, if it exists.
 
 
 ```csharp
@@ -385,11 +387,11 @@ suggestGridClient.Metadata.PostItem(new Metadata<string, object> { { "id", "2592
 Name | Type |Required| Description
 --- | --- | --- | ---
 id|string|true|The id of the metadata of a user or an item. 
-### Post Bulk Items
+### Posts Items
 > `PostBulkItems(List<Metadata<string, object>> items)`
 
-Post item metadata in bulk.
-This method is recommended for sharing stored data with SuggestGrid.
+Posts item metadata in bulk.
+Note that this operation completely overrides metadata with the same ids, if they exist.
 
 
 
@@ -411,7 +413,7 @@ suggestGridClient.Metadata.PostBulkItems(items);
 ```
 
 #### Parameters
-### Get An Item
+### Gets An Item
 > `GetItem(string itemId)`
 
 Returns an item metadata if it exists.
@@ -427,10 +429,10 @@ var response = suggestGridClient.Metadata.GetItem("42");
 Name | Type |Required| Description
 --- | --- | --- | ---
 item_id|string|true|The item id to delete its metadata.
-### Get Items
+### Gets Items
 > `GetItems()`
 
-Get items and total count of items.
+Gets items and total count of items.
 Page and per-page parameters could be set.
 
 
@@ -463,7 +465,7 @@ suggestGridClient.Metadata.DeleteItem("25922342");
 Name | Type |Required| Description
 --- | --- | --- | ---
 item_id|string|true|The item id to delete its metadata.
-### Delete All Items
+### Deletes All Items
 > `DeleteAllItems()`
 
 Warning: Deletes all item metadata from SuggestGrid.
@@ -479,7 +481,7 @@ suggestGridClient.Metadata.DeleteAllItems();
 Recommnedation methods are for getting recommended items, or recommended users from SuggestGrid.
 [Recommendations documentation](http://www.suggestgrid.com/docs/recommendations) is available for an overview.
 
-### Get Recommended Users
+### Gets Recommended Users
 > `GetRecommendedUsers(GetRecommendedUsersBody body)`
 
 Returns recommended users for the query.
@@ -550,7 +552,7 @@ similarUserIds|array|false|Similar users that the response should be similar to.
 size|integer|false|The number of users requested. Defaults to 10. Must be between 1 and 10,000 inclusive.
 type|string|false|The type of the query. Recommendations will be calculated based on actions of this type.
 types|string|false|The types of the query. Exactly one of type or types parameters must be provided.
-### Get Recommended Items
+### Gets Recommended Items
 > `GetRecommendedItems(GetRecommendedItemsBody body)`
 
 Returns recommended items for the query.
@@ -639,7 +641,7 @@ userIds|array|false|The user ids of the query. Exactly one of user id or user id
 Similarity methods are for getting similar items, or similar users from SuggestGrid.
 [Similarities documentation](http://www.suggestgrid.com/docs/similarities) is available for an overview.
 
-### Get Similar Users
+### Gets Similar Users
 > `GetSimilarUsers(GetSimilarUsersBody body)`
 
 Returns similar users for the query.
@@ -698,7 +700,7 @@ type|string|false|The type of the query. Similarities will be calculated based o
 types|string|false|The types of the query. Exactly one of type or types parameters must be provided.
 userId|string|false|The user id of the query.
 userIds|array|false|The user ids of the query. Exactly one of user id or user ids parameters must be provided.
-### Get Similar Items
+### Gets Similar Items
 > `GetSimilarItems(GetSimilarItemsBody body)`
 
 Returns similar items for the query.

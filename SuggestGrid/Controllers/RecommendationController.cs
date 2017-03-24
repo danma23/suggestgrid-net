@@ -51,7 +51,7 @@ namespace SuggestGrid.Controllers
         #endregion Singleton Pattern
 
         /// <summary>
-        /// Get Recommended Users
+        /// Gets Recommended Users
         /// </summary>
         /// <param name="query">Required parameter: Query for recommended users.</param>
         /// <return>Returns the Models.UsersResponse response from the API call</return>
@@ -63,7 +63,7 @@ namespace SuggestGrid.Controllers
         }
 
         /// <summary>
-        /// Get Recommended Users
+        /// Gets Recommended Users
         /// </summary>
         /// <param name="query">Required parameter: Query for recommended users.</param>
         /// <return>Returns the Models.UsersResponse response from the API call</return>
@@ -122,7 +122,7 @@ namespace SuggestGrid.Controllers
         }
 
         /// <summary>
-        /// Get Recommended Items
+        /// Gets Recommended Items
         /// </summary>
         /// <param name="query">Required parameter: Query for recommended items.</param>
         /// <return>Returns the Models.ItemsResponse response from the API call</return>
@@ -134,7 +134,7 @@ namespace SuggestGrid.Controllers
         }
 
         /// <summary>
-        /// Get Recommended Items
+        /// Gets Recommended Items
         /// </summary>
         /// <param name="query">Required parameter: Query for recommended items.</param>
         /// <return>Returns the Models.ItemsResponse response from the API call</return>

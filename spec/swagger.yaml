@@ -526,7 +526,7 @@ paths:
       tags:
         - type
       operationId: get_all_types
-      summary: Get All Types
+      summary: Gets All Types
       description: Returns all type names in an array named types.
       responses:
         200:
@@ -541,7 +541,7 @@ paths:
       tags:
         - type
       operationId: delete_all_types
-      summary: Delete All Types
+      summary: Deletes All Types
       description: Deletes ALL the types and ALL the actions.
       responses:
         200:
@@ -557,7 +557,7 @@ paths:
       tags:
         - type
       operationId: get_type
-      summary: Get Properties of a Type
+      summary: Gets Properties of a Type
       description: Returns the options of a type. The response rating parameter.
       parameters:
         - name: type
@@ -583,7 +583,7 @@ paths:
       tags:
         - type
       operationId: create_type
-      summary: Create a New Type
+      summary: Creates a Type
       description: Creates a new type.
       parameters:
         - name: type
@@ -623,7 +623,7 @@ paths:
       tags:
         - type
       operationId: delete_type
-      summary: Delete a Type
+      summary: Deletes a Type
       description: |
         Warning: Deletes the type with all of its actions and its recommendation model.
       parameters:
@@ -652,7 +652,7 @@ paths:
       tags:
         - action
       operationId: post_action
-      summary: Post an Action
+      summary: Posts an Action
       description: |
         Posts an action to the given type in the body.
         The body must have user id, item id and type.
@@ -689,7 +689,7 @@ paths:
       tags:
         - action
       operationId: get_actions
-      summary: Get Actions
+      summary: Gets Actions
       description: |
         Get actions. Defaut responses will be paged by 10 actios each.
         Type, user id, item id, or older than parameters could be provided.
@@ -817,7 +817,7 @@ paths:
       tags:
         - action
       operationId: post_bulk_actions
-      summary: Post Bulk Actions
+      summary: Posts Actions
       description: |
         Posts bulk actions to SuggestGrid.
         The recommended method for posting multiple actions at once.
@@ -871,7 +871,7 @@ paths:
       tags:
         - metadata
       operationId: get_user
-      summary: Get A User
+      summary: Gets A User
       description: Returns a user metadata if it exists.
       responses:
         200:
@@ -890,7 +890,7 @@ paths:
       tags:
         - metadata
       operationId: delete_user
-      summary: Delete a User
+      summary: Deletes a User
       description: Deletes a user metadata with the given user id.
       responses:
         200:
@@ -906,8 +906,10 @@ paths:
         tags:
           - metadata
         operationId: post_user
-        summary: Post a User
-        description: Posts a user metadata.
+        summary: Posts a User
+        description: |
+          Posts a user metadata.
+          Note that this operation completely overrides previous metadata for the id, if it exists.
         parameters:
           - name: user
             in: body
@@ -932,7 +934,7 @@ paths:
       tags:
         - metadata
       operationId: get_users
-      summary: Get Users
+      summary: Gets Users
       description: |
         Get items and total count of items.
         Page and per-page parameters could be set.
@@ -968,7 +970,7 @@ paths:
       tags:
         - metadata
       operationId: delete_all_users
-      summary: Delete All Users
+      summary: Deletes All Users
       description: |
         Warning: Deletes all user metadata from SuggestGrid.
       responses:
@@ -992,7 +994,7 @@ paths:
       tags:
         - metadata
       operationId: get_item
-      summary: Get An Item
+      summary: Gets An Item
       description: Returns an item metadata if it exists.
       responses:
         200:
@@ -1027,10 +1029,10 @@ paths:
       tags:
         - metadata
       operationId: post_item
-      summary: Post an Item
+      summary: Posts An Item
       description: |
         Posts an item metadata.
-        This metadata can be used to filter or to be included in recommendations and similars methods.
+        Note that this operation completely overrides previous metadata for the id, if it exists.
       parameters:
         - name: item
           in: body
@@ -1055,9 +1057,9 @@ paths:
       tags:
         - metadata
       operationId: get_items
-      summary: Get Items
+      summary: Gets Items
       description: |
-        Get items and total count of items.
+        Gets items and total count of items.
         Page and per-page parameters could be set.
       parameters:
         - name: size
@@ -1091,7 +1093,7 @@ paths:
       tags:
         - metadata
       operationId: delete_all_items
-      summary: Delete All Items
+      summary: Deletes All Items
       description: |
         Warning: Deletes all item metadata from SuggestGrid.
       responses:
@@ -1108,10 +1110,10 @@ paths:
       tags:
         - metadata
       operationId: post_bulk_users
-      summary: Post Bulk Users
+      summary: Posts Users
       description: |
-        Post user metadata in bulk.
-        This metadata can be used to filter or to be included in recommendations and similars methods.
+        Posts user metadata in bulk.
+        Note that this operation completely overrides metadata with the same ids, if they exist.
       consumes:
        - text/plain; charset=utf-8
       parameters:
@@ -1147,10 +1149,10 @@ paths:
       tags:
         - metadata
       operationId: post_bulk_items
-      summary: Post Bulk Items
+      summary: Posts Items
       description: |
-        Post item metadata in bulk.
-        This method is recommended for sharing stored data with SuggestGrid.
+        Posts item metadata in bulk.
+        Note that this operation completely overrides metadata with the same ids, if they exist.
       consumes:
        - text/plain; charset=utf-8
       parameters:
@@ -1187,7 +1189,7 @@ paths:
       tags:
         - recommendation
       operationId: get_recommended_users
-      summary: Get Recommended Users
+      summary: Gets Recommended Users
       description: Returns recommended users for the query.
       parameters:
         - name: query
@@ -1218,7 +1220,7 @@ paths:
       tags:
         - recommendation
       operationId: get_recommended_items
-      summary: Get Recommended Items
+      summary: Gets Recommended Items
       description: Returns recommended items for the query.
       parameters:
         - name: query
@@ -1250,7 +1252,7 @@ paths:
       tags:
         - similarity
       operationId: get_similar_users
-      summary: Get Similar Users
+      summary: Gets Similar Users
       description: Returns similar users for the query.
       parameters:
         - name: query
@@ -1281,7 +1283,7 @@ paths:
       tags:
         - similarity
       operationId: get_similar_items
-      summary: Get Similar Items
+      summary: Gets Similar Items
       description: Returns similar items for the query.
       parameters:
         - name: query

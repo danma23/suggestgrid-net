@@ -51,7 +51,7 @@ namespace SuggestGrid.Controllers
         #endregion Singleton Pattern
 
         /// <summary>
-        /// Get Similar Users
+        /// Gets Similar Users
         /// </summary>
         /// <param name="query">Required parameter: Query for similar users.</param>
         /// <return>Returns the Models.UsersResponse response from the API call</return>
@@ -63,7 +63,7 @@ namespace SuggestGrid.Controllers
         }
 
         /// <summary>
-        /// Get Similar Users
+        /// Gets Similar Users
         /// </summary>
         /// <param name="query">Required parameter: Query for similar users.</param>
         /// <return>Returns the Models.UsersResponse response from the API call</return>
@@ -122,7 +122,7 @@ namespace SuggestGrid.Controllers
         }
 
         /// <summary>
-        /// Get Similar Items
+        /// Gets Similar Items
         /// </summary>
         /// <param name="query">Required parameter: Query for similar items.</param>
         /// <return>Returns the Models.ItemsResponse response from the API call</return>
@@ -134,7 +134,7 @@ namespace SuggestGrid.Controllers
         }
 
         /// <summary>
-        /// Get Similar Items
+        /// Gets Similar Items
         /// </summary>
         /// <param name="query">Required parameter: Query for similar items.</param>
         /// <return>Returns the Models.ItemsResponse response from the API call</return>

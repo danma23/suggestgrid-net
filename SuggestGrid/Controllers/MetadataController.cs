@@ -52,7 +52,7 @@ namespace SuggestGrid.Controllers
         #endregion Singleton Pattern
 
         /// <summary>
-        /// Post a User
+        /// Posts a User
         /// </summary>
         /// <param name="user">Required parameter: The metadata to be saved. Metadata format has its restrictions.</param>
         /// <return>Returns the Models.MessageResponse response from the API call</return>
@@ -64,7 +64,7 @@ namespace SuggestGrid.Controllers
         }
 
         /// <summary>
-        /// Post a User
+        /// Posts a User
         /// </summary>
         /// <param name="user">Required parameter: The metadata to be saved. Metadata format has its restrictions.</param>
         /// <return>Returns the Models.MessageResponse response from the API call</return>
@@ -120,7 +120,7 @@ namespace SuggestGrid.Controllers
         }
 
         /// <summary>
-        /// Post Bulk Users
+        /// Posts Users
         /// </summary>
         /// <param name="users">Required parameter: A number of user metadata objects separated with newlines. Each user metadata object must have its id field. Note that this is not a valid JSON data structure. The body size is limited to 10 thousand lines.</param>
         /// <return>Returns the Models.BulkPostResponse response from the API call</return>
@@ -138,7 +138,7 @@ namespace SuggestGrid.Controllers
         }
 
         /// <summary>
-        /// Post Bulk Users
+        /// Posts Users
         /// </summary>
         /// <param name="users">Required parameter: A number of user metadata objects separated with newlines. Each user metadata object must have its id field. Note that this is not a valid JSON data structure. The body size is limited to 10 thousand lines.</param>
         /// <return>Returns the Models.BulkPostResponse response from the API call</return>
@@ -197,7 +197,7 @@ namespace SuggestGrid.Controllers
         }
 
         /// <summary>
-        /// Get A User
+        /// Gets A User
         /// </summary>
         /// <param name="userId">Required parameter: The user id to delete its metadata.</param>
         /// <return>Returns the Models.Metadata response from the API call</return>
@@ -209,7 +209,7 @@ namespace SuggestGrid.Controllers
         }
 
         /// <summary>
-        /// Get A User
+        /// Gets A User
         /// </summary>
         /// <param name="userId">Required parameter: The user id to delete its metadata.</param>
         /// <return>Returns the Models.Metadata response from the API call</return>
@@ -267,7 +267,7 @@ namespace SuggestGrid.Controllers
         }
 
         /// <summary>
-        /// Get Users
+        /// Gets Users
         /// </summary>
         /// <param name="size">Optional parameter: The number of the users response. Defaults to 10. Must be between 1 and 10,000 inclusive. This parameter must be string represetation of an integer like "1".</param>
         /// <param name="mfrom">Optional parameter: The number of users to be skipped from the response. Defaults to 0. Must be bigger than or equal to 0. This parameter must be string represetation of an integer like "1".</param>
@@ -280,7 +280,7 @@ namespace SuggestGrid.Controllers
         }
 
         /// <summary>
-        /// Get Users
+        /// Gets Users
         /// </summary>
         /// <param name="size">Optional parameter: The number of the users response. Defaults to 10. Must be between 1 and 10,000 inclusive. This parameter must be string represetation of an integer like "1".</param>
         /// <param name="mfrom">Optional parameter: The number of users to be skipped from the response. Defaults to 0. Must be bigger than or equal to 0. This parameter must be string represetation of an integer like "1".</param>
@@ -337,7 +337,7 @@ namespace SuggestGrid.Controllers
         }
 
         /// <summary>
-        /// Delete a User
+        /// Deletes a User
         /// </summary>
         /// <param name="userId">Required parameter: The user id to delete its metadata.</param>
         /// <return>Returns the Models.MessageResponse response from the API call</return>
@@ -349,7 +349,7 @@ namespace SuggestGrid.Controllers
         }
 
         /// <summary>
-        /// Delete a User
+        /// Deletes a User
         /// </summary>
         /// <param name="userId">Required parameter: The user id to delete its metadata.</param>
         /// <return>Returns the Models.MessageResponse response from the API call</return>
@@ -404,7 +404,7 @@ namespace SuggestGrid.Controllers
         }
 
         /// <summary>
-        /// Delete All Users
+        /// Deletes All Users
         /// </summary>
         /// <return>Returns the Models.MessageResponse response from the API call</return>
         public Models.MessageResponse DeleteAllUsers()
@@ -415,7 +415,7 @@ namespace SuggestGrid.Controllers
         }
 
         /// <summary>
-        /// Delete All Users
+        /// Deletes All Users
         /// </summary>
         /// <return>Returns the Models.MessageResponse response from the API call</return>
         public async Task<Models.MessageResponse> DeleteAllUsersAsync()
@@ -463,7 +463,7 @@ namespace SuggestGrid.Controllers
         }
 
         /// <summary>
-        /// Post an Item
+        /// Posts An Item
         /// </summary>
         /// <param name="item">Required parameter: The metadata to be saved. Metadata format has its restrictions.</param>
         /// <return>Returns the Models.MessageResponse response from the API call</return>
@@ -475,7 +475,7 @@ namespace SuggestGrid.Controllers
         }
 
         /// <summary>
-        /// Post an Item
+        /// Posts An Item
         /// </summary>
         /// <param name="item">Required parameter: The metadata to be saved. Metadata format has its restrictions.</param>
         /// <return>Returns the Models.MessageResponse response from the API call</return>
@@ -531,7 +531,7 @@ namespace SuggestGrid.Controllers
         }
 
         /// <summary>
-        /// Post Bulk Items
+        /// Posts Items
         /// </summary>
         /// <param name="items">Required parameter: A number of item metadata objects separated with newlines. Each item metadata object must have its id field. Note that this is not a valid JSON data structure. The body size is limited to 10 thousand lines.</param>
         /// <return>Returns the Models.BulkPostResponse response from the API call</return>
@@ -549,7 +549,7 @@ namespace SuggestGrid.Controllers
         }
 
         /// <summary>
-        /// Post Bulk Items
+        /// Posts Items
         /// </summary>
         /// <param name="items">Required parameter: A number of item metadata objects separated with newlines. Each item metadata object must have its id field. Note that this is not a valid JSON data structure. The body size is limited to 10 thousand lines.</param>
         /// <return>Returns the Models.BulkPostResponse response from the API call</return>
@@ -608,7 +608,7 @@ namespace SuggestGrid.Controllers
         }
 
         /// <summary>
-        /// Get An Item
+        /// Gets An Item
         /// </summary>
         /// <param name="itemId">Required parameter: The item id to delete its metadata.</param>
         /// <return>Returns the Models.Metadata response from the API call</return>
@@ -620,7 +620,7 @@ namespace SuggestGrid.Controllers
         }
 
         /// <summary>
-        /// Get An Item
+        /// Gets An Item
         /// </summary>
         /// <param name="itemId">Required parameter: The item id to delete its metadata.</param>
         /// <return>Returns the Models.Metadata response from the API call</return>
@@ -678,7 +678,7 @@ namespace SuggestGrid.Controllers
         }
 
         /// <summary>
-        /// Get Items
+        /// Gets Items
         /// </summary>
         /// <param name="size">Optional parameter: The number of the users response. Defaults to 10. Must be between 1 and 10,000 inclusive. This parameter must be string represetation of an integer like "1".</param>
         /// <param name="mfrom">Optional parameter: The number of users to be skipped from the response. Defaults to 0. Must be bigger than or equal to 0. This parameter must be string represetation of an integer like "1".</param>
@@ -691,7 +691,7 @@ namespace SuggestGrid.Controllers
         }
 
         /// <summary>
-        /// Get Items
+        /// Gets Items
         /// </summary>
         /// <param name="size">Optional parameter: The number of the users response. Defaults to 10. Must be between 1 and 10,000 inclusive. This parameter must be string represetation of an integer like "1".</param>
         /// <param name="mfrom">Optional parameter: The number of users to be skipped from the response. Defaults to 0. Must be bigger than or equal to 0. This parameter must be string represetation of an integer like "1".</param>
@@ -815,7 +815,7 @@ namespace SuggestGrid.Controllers
         }
 
         /// <summary>
-        /// Delete All Items
+        /// Deletes All Items
         /// </summary>
         /// <return>Returns the Models.MessageResponse response from the API call</return>
         public Models.MessageResponse DeleteAllItems()
@@ -826,7 +826,7 @@ namespace SuggestGrid.Controllers
         }
 
         /// <summary>
-        /// Delete All Items
+        /// Deletes All Items
         /// </summary>
         /// <return>Returns the Models.MessageResponse response from the API call</return>
         public async Task<Models.MessageResponse> DeleteAllItemsAsync()
