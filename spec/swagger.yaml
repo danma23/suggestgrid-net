@@ -860,19 +860,19 @@ paths:
             $ref: '#/definitions/ErrorResponse'
   # Metadata Paths
   /v1/users/{user_id}:
-    parameters:
-      - name: user_id
-        in: path
-        description: The user id to delete its metadata.
-        required: true
-        type: string
-        format: id
     get:
       tags:
         - metadata
       operationId: get_user
       summary: Gets A User
       description: Returns a user metadata if it exists.
+      parameters:
+        - name: user_id
+          in: path
+          description: The user id to get its metadata.
+          required: true
+          type: string
+          format: id
       responses:
         200:
           description: Returns a user metadata.
@@ -892,6 +892,13 @@ paths:
       operationId: delete_user
       summary: Deletes a User
       description: Deletes a user metadata with the given user id.
+      parameters:
+        - name: user_id
+          in: path
+          description: The user id to delete its metadata.
+          required: true
+          type: string
+          format: id
       responses:
         200:
           description: Deleted a user metadata.
@@ -983,19 +990,19 @@ paths:
           schema:
             $ref: '#/definitions/ErrorResponse'
   /v1/items/{item_id}:
-    parameters:
-      - name: item_id
-        in: path
-        description: The item id to delete its metadata.
-        required: true
-        type: string
-        format: id
     get:
       tags:
         - metadata
       operationId: get_item
       summary: Gets An Item
       description: Returns an item metadata if it exists.
+      parameters:
+        - name: item_id
+          in: path
+          description: The item id to get its metadata.
+          required: true
+          type: string
+          format: id
       responses:
         200:
           description: Returns an item metadata.
@@ -1015,6 +1022,13 @@ paths:
       operationId: delete_item
       summary: Delete An Item
       description: Deletes an item metadata with the given item id.
+      parameters:
+        - name: item_id
+          in: path
+          description: The item id to delete its metadata.
+          required: true
+          type: string
+          format: id
       responses:
         200:
           description: Deleted an item metadata.
@@ -1207,6 +1221,10 @@ paths:
           description: Request body is invalid.
           schema:
             $ref: '#/definitions/ErrorResponse'
+        404:
+          description: At least one type in the request does not exist.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
         422:
           description: Required parameters are missing.
           schema:
@@ -1236,6 +1254,10 @@ paths:
             $ref: '#/definitions/ItemsResponse'
         400:
           description: Request body is invalid.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        404:
+          description: At least one type in the request does not exist.
           schema:
             $ref: '#/definitions/ErrorResponse'
         422:
@@ -1270,6 +1292,10 @@ paths:
           description: Request body is invalid.
           schema:
             $ref: '#/definitions/ErrorResponse'
+        404:
+          description: At least one type in the request does not exist.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
         422:
           description: Required parameters are missing.
           schema:
@@ -1299,6 +1325,10 @@ paths:
             $ref: '#/definitions/ItemsResponse'
         400:
           description: Request body is invalid.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        404:
+          description: At least one type in the request does not exist.
           schema:
             $ref: '#/definitions/ErrorResponse'
         422:

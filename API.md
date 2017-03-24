@@ -321,7 +321,7 @@ var response = suggestGridClient.Metadata.GetUser("42");
 
 Name | Type |Required| Description
 --- | --- | --- | ---
-user_id|string|true|The user id to delete its metadata.
+user_id|string|true|The user id to get its metadata.
 ### Gets Users
 > `GetUsers()`
 
@@ -428,7 +428,7 @@ var response = suggestGridClient.Metadata.GetItem("42");
 
 Name | Type |Required| Description
 --- | --- | --- | ---
-item_id|string|true|The item id to delete its metadata.
+item_id|string|true|The item id to get its metadata.
 ### Gets Items
 > `GetItems()`
 

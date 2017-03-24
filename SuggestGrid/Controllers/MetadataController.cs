@@ -199,7 +199,7 @@ namespace SuggestGrid.Controllers
         /// <summary>
         /// Gets A User
         /// </summary>
-        /// <param name="userId">Required parameter: The user id to delete its metadata.</param>
+        /// <param name="userId">Required parameter: The user id to get its metadata.</param>
         /// <return>Returns the Models.Metadata response from the API call</return>
         public Models.Metadata GetUser(string userId)
         {
@@ -211,7 +211,7 @@ namespace SuggestGrid.Controllers
         /// <summary>
         /// Gets A User
         /// </summary>
-        /// <param name="userId">Required parameter: The user id to delete its metadata.</param>
+        /// <param name="userId">Required parameter: The user id to get its metadata.</param>
         /// <return>Returns the Models.Metadata response from the API call</return>
         public async Task<Models.Metadata> GetUserAsync(string userId)
         {
@@ -610,7 +610,7 @@ namespace SuggestGrid.Controllers
         /// <summary>
         /// Gets An Item
         /// </summary>
-        /// <param name="itemId">Required parameter: The item id to delete its metadata.</param>
+        /// <param name="itemId">Required parameter: The item id to get its metadata.</param>
         /// <return>Returns the Models.Metadata response from the API call</return>
         public Models.Metadata GetItem(string itemId)
         {
@@ -622,7 +622,7 @@ namespace SuggestGrid.Controllers
         /// <summary>
         /// Gets An Item
         /// </summary>
-        /// <param name="itemId">Required parameter: The item id to delete its metadata.</param>
+        /// <param name="itemId">Required parameter: The item id to get its metadata.</param>
         /// <return>Returns the Models.Metadata response from the API call</return>
         public async Task<Models.Metadata> GetItemAsync(string itemId)
         {

@@ -102,6 +102,9 @@ namespace SuggestGrid.Controllers
             if (_response.StatusCode == 400)
                 throw new ErrorResponseException(@"Request body is invalid.", _context);
 
+            if (_response.StatusCode == 404)
+                throw new ErrorResponseException(@"At least one type in the request does not exist.", _context);
+
             if (_response.StatusCode == 422)
                 throw new ErrorResponseException(@"Required parameters are missing.", _context);
 
@@ -172,6 +175,9 @@ namespace SuggestGrid.Controllers
             //Error handling using HTTP status codes
             if (_response.StatusCode == 400)
                 throw new ErrorResponseException(@"Request body is invalid.", _context);
+
+            if (_response.StatusCode == 404)
+                throw new ErrorResponseException(@"At least one type in the request does not exist.", _context);
 
             if (_response.StatusCode == 422)
                 throw new ErrorResponseException(@"Required parameters are missing.", _context);
