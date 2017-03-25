@@ -329,7 +329,7 @@ definitions:
   # Responses
   MessageResponse:
     type: object
-    description: A basic response.
+    description: Basic response with a message for success responses.
     properties:
       message:
         type: string
