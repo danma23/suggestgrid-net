@@ -43,7 +43,7 @@ tags:
   - name: type
     description: Type Methods
     x-docs-text: |
-      Type methods are used for creating, inspecting, and deleting SuggestGrid types.
+      Type methods are used for creating, inspecting, and deleting types.
       [Types documentation](http://www.suggestgrid.com/docs/types) is available for an overview.
     x-methods:
       - create_type
@@ -82,7 +82,7 @@ tags:
   - name: recommendation
     description: Recommnedation Methods
     x-docs-text: |
-      Recommnedation methods are for getting recommended items, or recommended users from SuggestGrid.
+      Recommnedation methods are for getting recommended items for users, or recommended users for items.
       [Recommendations documentation](http://www.suggestgrid.com/docs/recommendations) is available for an overview.
     x-methods:
       - get_recommended_users
@@ -90,7 +90,7 @@ tags:
   - name: similarity
     description: Similarity Methods
     x-docs-text: |
-      Similarity methods are for getting similar items, or similar users from SuggestGrid.
+      Similarity methods are for getting similar items, or similar users.
       [Similarities documentation](http://www.suggestgrid.com/docs/similarities) is available for an overview.
     x-methods:
       - get_similar_users
