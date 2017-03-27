@@ -378,7 +378,7 @@ definitions:
         description: The URI of the error for more details.
       error_details:
         type: string
-        description: Specific details of the response.
+        description: Details of the response.
   LimitExceededErrorResponse:
     type: object
     description: Error response.
