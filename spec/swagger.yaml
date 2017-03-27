@@ -697,27 +697,28 @@ paths:
       parameters:
         - name: type
           in: query
-          description: The type of the actions.
+          description: Get actions of a type.
           required: false
           type: string
           format: id
         - name: user_id
           in: query
-          description: The user id of the actions.
+          description: Get actions of a user id.
           required: false
           type: string
           format: id
         - name: item_id
           in: query
-          description: The item id of the actions.
+          description: Get actions of an item id.
           required: false
           type: string
           format: id
         - name: older_than
           in: query
           description: |
-            Maxium timestamp of the actions.
-            Valid times are in form of 1s, 1m, 1h, 1d, 1M, 1y, where 1 can be any integer, or a UNIX timestamp like 1443798195.
+            Get actions older than the given duration, or the given time number.
+            Could be a ISO 8601 duration, or a Unix time number.
+            Specifications are available at https://en.wikipedia.org/wiki/ISO_8601#Durations, or https://en.wikipedia.org/wiki/Unix_time.
           required: false
           type: string
         - name: size
@@ -764,27 +765,28 @@ paths:
       parameters:
         - name: type
           in: query
-          description: The type of the actions.
-          required: false
+          description: Delete actions of a type. This parameter and at least one other parameter is required.
+          required: true
           type: string
           format: id
         - name: user_id
           in: query
-          description: The user id of the actions.
+          description: Delete actions of a user id.
           required: false
           type: string
           format: id
         - name: item_id
           in: query
-          description: The item id of the actions.
+          description: Delete actions of an item id.
           required: false
           type: string
           format: id
         - name: older_than
           in: query
           description: |
-            Delete all actions of a type older than the given timestamp or time.
-            Valid times are in form of 1s, 1m, 1h, 1d, 1M, 1y, where 1 can be any integer, or a UNIX timestamp like 1443798195.
+            Delete actions older than the given duration, or the given time number.
+            Could be a ISO 8601 duration, or a Unix time number.
+            Specifications are available at https://en.wikipedia.org/wiki/ISO_8601#Durations, or https://en.wikipedia.org/wiki/Unix_time.
           required: false
           type: string
       responses:
