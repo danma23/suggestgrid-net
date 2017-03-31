@@ -52,7 +52,7 @@ namespace SuggestGrid.Controllers
         #endregion Singleton Pattern
 
         /// <summary>
-        /// Post an Action
+        /// Posts an Action
         /// </summary>
         /// <param name="action">Required parameter: The action to be posted.</param>
         /// <return>Returns the Models.MessageResponse response from the API call</return>
@@ -64,7 +64,7 @@ namespace SuggestGrid.Controllers
         }
 
         /// <summary>
-        /// Post an Action
+        /// Posts an Action
         /// </summary>
         /// <param name="action">Required parameter: The action to be posted.</param>
         /// <return>Returns the Models.MessageResponse response from the API call</return>
@@ -126,7 +126,7 @@ namespace SuggestGrid.Controllers
         }
 
         /// <summary>
-        /// Post Bulk Actions
+        /// Posts Actions
         /// </summary>
         /// <param name="actions">Required parameter: A number of action objects separated with newlines. Note that this is not a valid JSON data structure. The body size is limited to 10 thousand lines.</param>
         /// <return>Returns the Models.BulkPostResponse response from the API call</return>
@@ -144,7 +144,7 @@ namespace SuggestGrid.Controllers
         }
 
         /// <summary>
-        /// Post Bulk Actions
+        /// Posts Actions
         /// </summary>
         /// <param name="actions">Required parameter: A number of action objects separated with newlines. Note that this is not a valid JSON data structure. The body size is limited to 10 thousand lines.</param>
         /// <return>Returns the Models.BulkPostResponse response from the API call</return>
@@ -209,12 +209,12 @@ namespace SuggestGrid.Controllers
         }
 
         /// <summary>
-        /// Get Actions
+        /// Gets Actions
         /// </summary>
-        /// <param name="type">Optional parameter: The type of the actions.</param>
-        /// <param name="userId">Optional parameter: The user id of the actions.</param>
-        /// <param name="itemId">Optional parameter: The item id of the actions.</param>
-        /// <param name="olderThan">Optional parameter: Maxium timestamp of the actions. Valid times are in form of 1s, 1m, 1h, 1d, 1M, 1y, where 1 can be any integer, or a UNIX timestamp like 1443798195.</param>
+        /// <param name="type">Optional parameter: Get actions of a type.</param>
+        /// <param name="userId">Optional parameter: Get actions of a user id.</param>
+        /// <param name="itemId">Optional parameter: Get actions of an item id.</param>
+        /// <param name="olderThan">Optional parameter: Get actions older than the given duration, or the given time number. Could be a ISO 8601 duration, or a Unix time number. Specifications are available at https://en.wikipedia.org/wiki/ISO_8601#Durations, or https://en.wikipedia.org/wiki/Unix_time.</param>
         /// <param name="size">Optional parameter: The number of the users response. Defaults to 10. Must be between 1 and 10,000 inclusive. This parameter must be string represetation of an integer like "1".</param>
         /// <param name="mfrom">Optional parameter: The number of users to be skipped from the response. Defaults to 0. Must be bigger than or equal to 0. This parameter must be string represetation of an integer like "1".</param>
         /// <return>Returns the Models.ActionsResponse response from the API call</return>
@@ -232,12 +232,12 @@ namespace SuggestGrid.Controllers
         }
 
         /// <summary>
-        /// Get Actions
+        /// Gets Actions
         /// </summary>
-        /// <param name="type">Optional parameter: The type of the actions.</param>
-        /// <param name="userId">Optional parameter: The user id of the actions.</param>
-        /// <param name="itemId">Optional parameter: The item id of the actions.</param>
-        /// <param name="olderThan">Optional parameter: Maxium timestamp of the actions. Valid times are in form of 1s, 1m, 1h, 1d, 1M, 1y, where 1 can be any integer, or a UNIX timestamp like 1443798195.</param>
+        /// <param name="type">Optional parameter: Get actions of a type.</param>
+        /// <param name="userId">Optional parameter: Get actions of a user id.</param>
+        /// <param name="itemId">Optional parameter: Get actions of an item id.</param>
+        /// <param name="olderThan">Optional parameter: Get actions older than the given duration, or the given time number. Could be a ISO 8601 duration, or a Unix time number. Specifications are available at https://en.wikipedia.org/wiki/ISO_8601#Durations, or https://en.wikipedia.org/wiki/Unix_time.</param>
         /// <param name="size">Optional parameter: The number of the users response. Defaults to 10. Must be between 1 and 10,000 inclusive. This parameter must be string represetation of an integer like "1".</param>
         /// <param name="mfrom">Optional parameter: The number of users to be skipped from the response. Defaults to 0. Must be bigger than or equal to 0. This parameter must be string represetation of an integer like "1".</param>
         /// <return>Returns the Models.ActionsResponse response from the API call</return>
@@ -305,13 +305,13 @@ namespace SuggestGrid.Controllers
         /// <summary>
         /// Delete Actions
         /// </summary>
-        /// <param name="type">Optional parameter: The type of the actions.</param>
-        /// <param name="userId">Optional parameter: The user id of the actions.</param>
-        /// <param name="itemId">Optional parameter: The item id of the actions.</param>
-        /// <param name="olderThan">Optional parameter: Delete all actions of a type older than the given timestamp or time. Valid times are in form of 1s, 1m, 1h, 1d, 1M, 1y, where 1 can be any integer, or a UNIX timestamp like 1443798195.</param>
+        /// <param name="type">Required parameter: Delete actions of a type. This parameter and at least one other parameter is required.</param>
+        /// <param name="userId">Optional parameter: Delete actions of a user id.</param>
+        /// <param name="itemId">Optional parameter: Delete actions of an item id.</param>
+        /// <param name="olderThan">Optional parameter: Delete actions older than the given duration, or the given time number. Could be a ISO 8601 duration, or a Unix time number. Specifications are available at https://en.wikipedia.org/wiki/ISO_8601#Durations, or https://en.wikipedia.org/wiki/Unix_time.</param>
         /// <return>Returns the Models.DeleteSuccessResponse response from the API call</return>
         public Models.DeleteSuccessResponse DeleteActions(
-                string type = null,
+                string type,
                 string userId = null,
                 string itemId = null,
                 string olderThan = null)
@@ -324,13 +324,13 @@ namespace SuggestGrid.Controllers
         /// <summary>
         /// Delete Actions
         /// </summary>
-        /// <param name="type">Optional parameter: The type of the actions.</param>
-        /// <param name="userId">Optional parameter: The user id of the actions.</param>
-        /// <param name="itemId">Optional parameter: The item id of the actions.</param>
-        /// <param name="olderThan">Optional parameter: Delete all actions of a type older than the given timestamp or time. Valid times are in form of 1s, 1m, 1h, 1d, 1M, 1y, where 1 can be any integer, or a UNIX timestamp like 1443798195.</param>
+        /// <param name="type">Required parameter: Delete actions of a type. This parameter and at least one other parameter is required.</param>
+        /// <param name="userId">Optional parameter: Delete actions of a user id.</param>
+        /// <param name="itemId">Optional parameter: Delete actions of an item id.</param>
+        /// <param name="olderThan">Optional parameter: Delete actions older than the given duration, or the given time number. Could be a ISO 8601 duration, or a Unix time number. Specifications are available at https://en.wikipedia.org/wiki/ISO_8601#Durations, or https://en.wikipedia.org/wiki/Unix_time.</param>
         /// <return>Returns the Models.DeleteSuccessResponse response from the API call</return>
         public async Task<Models.DeleteSuccessResponse> DeleteActionsAsync(
-                string type = null,
+                string type,
                 string userId = null,
                 string itemId = null,
                 string olderThan = null)

@@ -51,7 +51,7 @@ namespace SuggestGrid.Controllers
         #endregion Singleton Pattern
 
         /// <summary>
-        /// Get Similar Users
+        /// Gets Similar Users
         /// </summary>
         /// <param name="query">Required parameter: Query for similar users.</param>
         /// <return>Returns the Models.UsersResponse response from the API call</return>
@@ -63,7 +63,7 @@ namespace SuggestGrid.Controllers
         }
 
         /// <summary>
-        /// Get Similar Users
+        /// Gets Similar Users
         /// </summary>
         /// <param name="query">Required parameter: Query for similar users.</param>
         /// <return>Returns the Models.UsersResponse response from the API call</return>
@@ -102,6 +102,9 @@ namespace SuggestGrid.Controllers
             if (_response.StatusCode == 400)
                 throw new ErrorResponseException(@"Request body is invalid.", _context);
 
+            if (_response.StatusCode == 404)
+                throw new ErrorResponseException(@"At least one type in the request does not exist.", _context);
+
             if (_response.StatusCode == 422)
                 throw new ErrorResponseException(@"Required parameters are missing.", _context);
 
@@ -122,7 +125,7 @@ namespace SuggestGrid.Controllers
         }
 
         /// <summary>
-        /// Get Similar Items
+        /// Gets Similar Items
         /// </summary>
         /// <param name="query">Required parameter: Query for similar items.</param>
         /// <return>Returns the Models.ItemsResponse response from the API call</return>
@@ -134,7 +137,7 @@ namespace SuggestGrid.Controllers
         }
 
         /// <summary>
-        /// Get Similar Items
+        /// Gets Similar Items
         /// </summary>
         /// <param name="query">Required parameter: Query for similar items.</param>
         /// <return>Returns the Models.ItemsResponse response from the API call</return>
@@ -172,6 +175,9 @@ namespace SuggestGrid.Controllers
             //Error handling using HTTP status codes
             if (_response.StatusCode == 400)
                 throw new ErrorResponseException(@"Request body is invalid.", _context);
+
+            if (_response.StatusCode == 404)
+                throw new ErrorResponseException(@"At least one type in the request does not exist.", _context);
 
             if (_response.StatusCode == 422)
                 throw new ErrorResponseException(@"Required parameters are missing.", _context);

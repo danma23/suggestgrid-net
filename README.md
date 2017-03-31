@@ -1,14 +1,12 @@
-# [ SuggestGrid .NET Client ]( http://www.github.com/suggestgrid/suggestgrid-net )
+# [ SuggestGrid .NET Framework Client ]( http://www.github.com/suggestgrid/suggestgrid-net )
 
-We will walk through how to get started with SuggestGrid .NET Client in three steps:
+We will walk through how to get started with SuggestGrid .NET Framework Client in three steps:
     
 1. [Configuration](#1-configuration)
     
 2. [Post actions](#2-post-actions)
     
 3. [Get recommendations](#3-get-recommendations)
-
-If you did not [sign up for SuggestGrid](https://dashboard.suggestgrid.com/users/sign_up), this is the right time.
 
 ## Getting Started
 
@@ -22,34 +20,27 @@ Let's implement this feature in five minutes with SuggestGrid!
 
 We are beginning the development by adding the client as a dependency.
 
+SuggestGrid .NET client is a .NET Core library and could be used from a variety of .NET frameworks.
 
-From the package manager console inside Visual Studio
+Install the package from the package manager console inside Visual Studio:
 
 ```
 PM> Install-Package SuggestGrid
 ```
 
-Or search in the Package Manager UI for SuggestGrid or manually add to your packages.config file.
+One can also SuggestGrid in the Package Manager UI or manually add the dependecy to packages.config or project.json files.
 
 
 
-Applications make their API requests to their dedicated sub-domain of `suggestgrid.space`.
-
-Most endpoints require a username and password for authentication.
-
-An initial user name and password is given on sign up.
-
-It is very convenient to configure SuggestGrid by setting an authenticated `SUGGESTGRID_URL` environment variable in the format below:
+Once you [sign up for SuggestGrid](https://dashboard.suggestgrid.com/users/sign_up), you'll see your SUGGESTGRID_URL parameter on the dashboard in the format below:
 
 `http://{user}:{pass}@{region}.suggestgrid.space/{app-uuid}`
 
 You can authenticate your application using `SUGGESTGRID_URL` environment variable like the example below:
 
 ```csharp
-suggestGridURL = System.Environment.GetEnvironmentVariable("SUGGESTGRID_URL");
-
-# Initialize the SuggestGrid client.
-var suggestGridClient = new SuggestGridClient(suggestGridURL);
+string suggestGridURL = System.Environment.GetEnvironmentVariable("SUGGESTGRID_URL");
+SuggestGridClient suggestGridClient = new SuggestGrid.SuggestGridClient(suggestGridURL);
 ```
 
 
@@ -62,10 +53,9 @@ try
 {
     suggestGridClient.Type.GetType("views");
 }
-catch (Exception)
+catch (APIException e)
 {
     suggestGridClient.Type.CreateType("views", new TypeRequestBody { Rating = "implicit" });
-
 }
 ```
 
@@ -74,7 +64,7 @@ catch (Exception)
 ### 2. Post actions
 
 Once the type exists, let's start posting actions.
-We should invoke SuggestGrid client's PostAction when an user views an item in our application.
+We should invoke SuggestGrid client's suggestGridClient.Action.PostAction when an user views an item in our application.
 
 We can do this by putting the snippet below on the relevant point:
 
@@ -97,12 +87,12 @@ In addition, instant model generations can be triggered on the dashboard.
 Once the first model generated for 'views' type, recommendations could be get using a snippet like the following:
 
 ```csharp
-var recommendedItems = suggestGridClient.Recommendation.GetRecommendedItems(new GetRecommendedItemsBody
+var recommendedItemsResponse = suggestGridClient.Recommendation.GetRecommendedItems(new GetRecommendedItemsBody
 {
     Type = "views",
     UserId = "2",
     Size = 2
 });
 
-var items = recommendedItems.Items; // get items
+var recommendedItems = recommendedItemsResponse.Items; // get items
 ```

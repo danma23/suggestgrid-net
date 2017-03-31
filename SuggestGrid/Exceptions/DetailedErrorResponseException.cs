@@ -77,7 +77,7 @@ namespace SuggestGrid.Exceptions
         }
 
         /// <summary>
-        /// Specific details of the response.
+        /// Details of the response.
         /// </summary>
         [JsonProperty("error_details")]
         public string ErrorDetails 
