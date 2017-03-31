@@ -5,7 +5,7 @@ Type methods are used for creating, getting, and deleting types.
 Refer to [types](http://www.suggestgrid.com/docs/types) for an overview.
 
 ### Creates a Type
-> `CreateType(type, body)`
+> `MessageResponse suggestGridClient.Type.CreateType(string type, TypeRequestBody settings = null)`
 
 Creates a new type.
 
@@ -31,14 +31,13 @@ Name | Type |Required| Description
 rating|string|false|The rating type of the type. Could be "explicit" or "implicit", where "implicit" is the default.
 type|string|true|The name of the type.
 ### Gets Properties of a Type
-> `GetType(type)`
+> `GetTypeResponse suggestGridClient.Type.GetType(string type)`
 
 Returns the options of a type. The response rating parameter.
 
-
 ```csharp
-  var typeResponse = suggestGridClient.Type.GetType("views");
-  var rating = typeResponse.Rating; // get rating of type
+var typeResponse = suggestGridClient.Type.GetType("views");
+var rating = typeResponse.Rating; // get rating of type
 ```
 
 #### Parameters
@@ -48,7 +47,7 @@ Name | Type |Required| Description
 --- | --- | --- | ---
 type|string|true|The name of the type to get properties.
 ### Deletes a Type
-> `DeleteType(type)`
+> `MessageResponse suggestGridClient.Type.DeleteType(string type)`
 
 Warning: Deletes the type with all of its actions and its recommendation model.
 
@@ -64,18 +63,17 @@ Name | Type |Required| Description
 --- | --- | --- | ---
 type|string|true|The name of the type to be deleted.
 ### Gets All Types
-> `GetAllTypes()`
+> `GetTypesResponse suggestGridClient.Type.GetAllTypes()`
 
 Returns all type names in an array named types.
 
-
 ```csharp
-  var response = suggestGridClient.Type.GetAllTypes();
-  var types = response.Types; // get array of type names
+var response = suggestGridClient.Type.GetAllTypes();
+var types = response.Types; // The array of type names
 ```
 
 ### Deletes All Types
-> `deleteAllTypes()`
+> `MessageResponse suggestGridClient.Type.deleteAllTypes()`
 
 Deletes ALL the types and ALL the actions.
 
@@ -90,7 +88,7 @@ Action methods are for creating, getting, and deleting actions.
 Refer to [actions](http://www.suggestgrid.com/docs/actions) for an overview.
 
 ### Posts an Action
-> `PostAction(ActionModel)`
+> `MessageResponse suggestGridClient.Action.PostAction(Action action)`
 
 Posts an action to the given type in the body.
 The body must have user id, item id and type.
@@ -98,11 +96,13 @@ Rating is required for actions sent to an explicit type.
 
 
 ```csharp
-suggestGridClient.Action.PostAction(new ActionModel { Type = "views", ItemId = "1", UserId = "2" });
+Action action = new Action { Type = "views", ItemId = "1", UserId = "2" };
+suggestGridClient.Action.PostAction(action);
 ```
 
 ```csharp
-suggestGridClient.Action.PostAction(new ActionModel { Type = "views", ItemId = "1", UserId = "2", Rating = 10 });
+Action action = new Action { Type = "ratings", ItemId = "1", UserId = "2", Rating = 5 };
+suggestGridClient.Action.PostAction(action);
 ```
 
 #### Parameters
@@ -118,71 +118,68 @@ timestamp|integer|false|The optional UNIX epoch timestamp of the action. Default
 type|string|true|The type that the action belongs to.
 userId|string|true|The user id of the performer of the action.
 ### Posts Actions
-> `PostBulkActions(List<ActionModel> actions)`
+> `BulkPostResponse suggestGridClient.Action.PostBulkActions(List<Action> actions)`
 
 Posts bulk actions to SuggestGrid.
 The recommended method for posting multiple actions at once.
 
 
-
-There's a limit of lines, hence number of actions you can send in one requests. That's default to 10000.
+There's a limit of lines, hence number of objects you can send in one requests. That's default to 10000.
 
 An example for bulk action request is the following:
 
 ```csharp
-List<ActionModel> actions = new List<ActionModel>();
-
-actions.Add(new ActionModel { Type = "views", ItemId = "1", UserId = "2" });
-actions.Add(new ActionModel { Type = "views", ItemId = "3", UserId = "2"});
+List<Action> actions = new List<Action>();
+actions.Add(new Action { Type = "views", UserId = "2", ItemId = "1" });
+actions.Add(new Action { Type = "views", UserId = "2", ItemId = "3" });
 
 suggestGridClient.Action.PostBulkActions(actions);
 ```
 
-Explicit actions can be post as;
+Explicit actions can be post as:
 
 ```csharp
-
-List<ActionModel> actions = new List<ActionModel>();
-
-actions.Add(new ActionModel { Type = "views", ItemId = "1", UserId = "2", Rating = 10 });
-actions.Add(new ActionModel { Type = "views", ItemId = "3", UserId = "2", Rating = 2 });
+List<Action> actions = new List<Action>();
+actions.Add(new Action { Type = "ratings", UserId = "2", ItemId = "1", Rating = 10 });
+actions.Add(new Action { Type = "ratings", UserId = "2", ItemId = "3", Rating = 2 });
 
 suggestGridClient.Action.PostBulkActions(actions);
 ```
 
 #### Parameters
 ### Gets Actions
-> `GetActions (string type = null, string userId = null, string itemId = null, string olderThan = null)`
+> `ActionsResponse suggestGridClient.Action.GetActions(string type = null, string userId = null, string itemId = null, string olderThan = null, long? size = null, long? mfrom = null)`
 
 Get actions. Defaut responses will be paged by 10 actios each.
 Type, user id, item id, or older than parameters could be provided.
 The intersection of the provided parameters will be returned.
 
 
+Get actions count:
 
-#### Get Actions Count
-
+If no query parameters is provided, all the actions will be returned:
 ```csharp
-var response = suggestGridClient.Action.GetActions("views");
+var response = suggestGridClient.Action.GetActions();
 
-// get count
-var count = response.Count;
+// The total count of actions
+var count = response.TotalCount;
 ```
 
-#### Get Actions Count by Query
+Get actions count by query:
 
-You can include any of type, user_id, item_id, and older_than path parameters and SuggestGrid return the count of such actions.
-
-If no type is provided, the total number of actions will be returned.
+You can include any of `type`, `userId`, `itemId`, and `olderThan` query parameters and SuggestGrid would return the actions satisfying all the query parameters:
+`olderThan` value could be a [ISO 8601 duration](https://en.wikipedia.org/wiki/ISO_8601#Durations), or a [Unix time number](https://en.wikipedia.org/wiki/Unix_time).
 
 This method can be particularly useful before deleting actions by query.
 
 ```csharp
 var response = suggestGridClient.Action.GetActions(null, "u5321", "i1635", "891628467");
 
-// get count
-var count = response.Count;
+// The count of matching actions
+var count = response.TotalCount;
 ```
+
+You can also include `mfrom` (since `from` is a contextual C# keyword) and `size` parameters to nativage throught the reponse actions. From defaults to 0 and size defaults to 10. Returned actions are sorted from the most recent one to the least recent ones.
 
 #### Parameters
 ##### URI/Query Parameters
@@ -196,7 +193,7 @@ size|integer||The number of the users response. Defaults to 10. Must be between 
 type|string||Get actions of a type.
 user_id|string||Get actions of a user id.
 ### Delete Actions
-> `DeleteActions (string type = null, string userId = null, string itemId = null, string olderThan = null)`
+> `DeleteSuccessResponse suggestGridClient.Action.DeleteActions(string type, string userId = null, string itemId = null, string olderThan = null)`
 
 Warning: Please use get actions with the exact parameters first to inspect the actions to be deleted.
 
@@ -208,43 +205,37 @@ Warning: Please use get actions with the exact parameters first to inspect the a
 * In addition to a type, at least one of these parameters must be provided. In order to delete all the actions of a type, delete the type.
 
 
+Type and at least one more parameter must be provided for all delete actions queries.
 
-#### Delete a User's Actions
-
+Delete a user's actions:
 ```csharp
-suggestGridClient.Action.DeleteActions("views","2");
+suggestGridClient.Action.DeleteActions("views", "2");
 ```
 
-#### Delete an Item's Actions
-
+Delete an item's actions:
 ```csharp
-suggestGridClient.Action.DeleteActions("views",null,"2");
+suggestGridClient.Action.DeleteActions("views", null, "2");
 ```
 
-#### Delete Old Actions
+Delete actions older than a year:
 
-In addition to unix timestamps, the method could accept:
-
-  * Seconds. (s) For example: 100s
-  * Minutes. (m) For example: 30m
-  * Hours. (h) For example: 12h
-  * Days. (d) For example: 7d
-  * Months. (M) For example: 6M
-  * Years. (y) For example: 10y
+`olderThan` value could be a [ISO 8601 duration](https://en.wikipedia.org/wiki/ISO_8601#Durations), or a [Unix time number](https://en.wikipedia.org/wiki/Unix_time).
 
 ```csharp
-suggestGridClient.Action.DeleteActions("views",null, null, "1d");
+suggestGridClient.Action.DeleteActions("views", null, null, "P1Y");
 ```
 
-#### Delete Actions by Query
+Delete actions by query:
 
-You can include any of user_id, item_id, and older_than parameters to the delete query and SuggestGrid would delete the intersection of the given queries accordingly.
+You can include any of `userId`, `itemId`, and `olderThan` parameters to the delete query and SuggestGrid would delete the intersection of the given queries accordingly.
 
-For example, if all of user_id, item_id, and older_than are provided, SuggestGrid would delete the actions of the given user on the given item before the given time.
+For example, if all of `userId`, `itemId`, and `olderThan` are provided, SuggestGrid would delete the actions of the given user on the given item older than the given time or duration.
 
 ```csharp
-suggestGridClient.Action.DeleteActions("views","1", "30", "891628467");
+suggestGridClient.Action.DeleteActions("views", "1", "30", "891628467");
 ```
+
+It's highly recommended to first get the actions with the same parameters before deleting actions.
 
 #### Parameters
 ##### URI/Query Parameters
@@ -262,14 +253,16 @@ Metadata methods are for creating, getting, and deleting user, and item metadata
 Refer to [metadata](http://www.suggestgrid.com/docs/metadata) for an overview.
 
 ### Posts a User
-> `PostUser(Metadata<string,object> metadata)`
+> `MessageResponse suggestGridClient.Metadata.PostUser(Metadata user)`
 
 Posts a user metadata.
 Note that this operation completely overrides previous metadata for the id, if it exists.
 
 
 ```csharp
-	suggestGridClient.Metadata.PostUser(new Metadata<string, object> { { "id", "9394182" }, { "age", 28 }, { "name", "Avis Horton" } });
+string userString = "{ 'id': '9394182', 'age': 28, 'name': 'Avis Horton' }";
+Metadata user = JsonConvert.DeserializeObject<SuggestGrid.Metadata>(userString);
+suggestGridClient.Metadata.PostUser(user);
 ```
 
 #### Parameters
@@ -281,39 +274,34 @@ Name | Type |Required| Description
 --- | --- | --- | ---
 id|string|true|The id of the metadata of a user or an item. 
 ### Posts Users
-> `PostBulkUsers(List<Metadata<string, object>> users)`
+> `BulkPostResponse suggestGridClient.Metadata.PostBulkUsers(List<Metadata> users)`
 
 Posts user metadata in bulk.
 Note that this operation completely overrides metadata with the same ids, if they exist.
 
 
-
 There's a limit of lines, hence number of actions you can send in one requests. That's default to 10000.
 
 An example for bulk user request is the following:
-
 ```csharp
-
-List<Metadata<string, object>> users = new List<Metadata<string, object>>();
-
-users.Add(new Metadata<string, object> { { "id", "9394182" }, { "age", 28 }, { "name", "Avis Horton" } });
-users.Add(new Metadata<string, object> { { "id", "6006895" }, { "age", 29 }, { "name", "Jami Bishop" } });
-users.Add(new Metadata<string, object> { { "id", "6540497" }, { "age", 21 }, { "name", "Bauer Case" } });
-users.Add(new Metadata<string, object> { { "id", "1967970" }, { "age", 30 }, { "name", "Rosetta Cole" } });
-users.Add(new Metadata<string, object> { { "id", "6084106" }, { "age", 35 }, { "name", "Shaw Simon" } });
+List<SuggestGrid.Metadata> users = new List<SuggestGrid.Metadata>();
+users.Add(JsonConvert.DeserializeObject<SuggestGrid.Metadata> ( "{ 'id': '9394182', 'age': 28, 'name': 'Avis Horton' }" );
+users.Add(JsonConvert.DeserializeObject<SuggestGrid.Metadata> ( "{ 'id': '6006895', 'age': 29, 'name': 'Jami Bishop' }" );
+users.Add(JsonConvert.DeserializeObject<SuggestGrid.Metadata> ( "{ 'id': '6540497', 'age': 21, 'name': 'Bauer Case' }" );
+users.Add(JsonConvert.DeserializeObject<SuggestGrid.Metadata> ( "{ 'id': '1967970', 'age': 30, 'name': 'Rosetta Cole' }" );
+users.Add(JsonConvert.DeserializeObject<SuggestGrid.Metadata> ( "{ 'id': '6084106', 'age': 35, 'name': 'Shaw Simon' }" );
 
 suggestGridClient.Metadata.PostBulkUsers(users);
 ```
 
 #### Parameters
 ### Gets A User
-> `GetUser()`
+> `Metadata suggestGridClient.Metadata.GetUser(string userId)`
 
 Returns a user metadata if it exists.
 
-
 ```csharp
-var response = suggestGridClient.Metadata.GetUser("42");
+var user42 = suggestGridClient.Metadata.GetUser("42");
 ```
 
 #### Parameters
@@ -323,17 +311,17 @@ Name | Type |Required| Description
 --- | --- | --- | ---
 user_id|string|true|The user id to get its metadata.
 ### Gets Users
-> `GetUsers()`
+> `UsersResponse suggestGridClient.Metadata.GetUsers(long? size = null, long? mfrom = null)`
 
 Get items and total count of items.
 Page and per-page parameters could be set.
 
 
-
 ```csharp
 var response = suggestGridClient.Metadata.GetUsers();
-// get count of users
-response.Count;
+
+// The total count of users
+response.TotalCount;
 ```
 
 #### Parameters
@@ -344,12 +332,12 @@ Name | Type |Required| Description
 from|integer||The number of users to be skipped from the response. Defaults to 0. Must be bigger than or equal to 0. This parameter must be string represetation of an integer like "1". 
 size|integer||The number of the users response. Defaults to 10. Must be between 1 and 10,000 inclusive. This parameter must be string represetation of an integer like "1". 
 ### Deletes a User
-> `DeleteUser(string userId)`
+> `MessageResponse suggestGridClient.Metadata.DeleteUser(string userId)`
 
 Deletes a user metadata with the given user id.
 
 ```csharp
-suggestGridClient.Metadata.DeleteUser("6084106");
+suggestGridClient.Metadata.DeleteUser("42");
 ```
 
 #### Parameters
@@ -359,7 +347,7 @@ Name | Type |Required| Description
 --- | --- | --- | ---
 user_id|string|true|The user id to delete its metadata.
 ### Deletes All Users
-> `DeleteAllUsers()`
+> `MessageResponse suggestGridClient.Metadata.DeleteAllUsers()`
 
 Warning: Deletes all user metadata from SuggestGrid.
 
@@ -369,14 +357,16 @@ suggestGridClient.Metadata.DeleteAllUsers();
 ```
 
 ### Posts An Item
-> `PostItem(Metadata<string,object> metadata)`
+> `MessageResponse suggestGridClient.Metadata.PostItem(Metadata item)`
 
 Posts an item metadata.
 Note that this operation completely overrides previous metadata for the id, if it exists.
 
 
 ```csharp
-suggestGridClient.Metadata.PostItem(new Metadata<string, object> { { "id", "25922342" }, { "manufacturer", "Vicon" }, { "price", 348 } });
+string itemString = "{'id': '25922342', 'manufacturer': 'Vicon', 'price': 348}";
+Metadata item = JsonConvert.DeserializeObject<SuggestGrid.Metadata>(itemString);
+suggestGridClient.Metadata.PostItem(item);
 ```
 
 #### Parameters
@@ -388,39 +378,34 @@ Name | Type |Required| Description
 --- | --- | --- | ---
 id|string|true|The id of the metadata of a user or an item. 
 ### Posts Items
-> `PostBulkItems(List<Metadata<string, object>> items)`
+> `BulkPostResponse suggestGridClient.Metadata.PostBulkItems(List<Metadata> items)`
 
 Posts item metadata in bulk.
 Note that this operation completely overrides metadata with the same ids, if they exist.
 
 
-
 There's a limit of lines, hence number of actions you can send in one requests. That's default to 10000.
 
-An example for bulk item request is the following:
-
+An example for bulk user request is the following:
 ```csharp
-
-List<Metadata<string, object>> items = new List<Metadata<string, object>>();
-
-items.Add(new Metadata<string, object> { { "id", "25922342" }, { "price", 348 }, { "manufacturer", "Vicon" } });
-items.Add(new Metadata<string, object> { { "id", "80885987" }, { "price", 771 }, { "manufacturer", "Aquamate" } });
-items.Add(new Metadata<string, object> { { "id", "71746854" }, { "price", 310 }, { "manufacturer", "Exoplode" } });
-items.Add(new Metadata<string, object> { { "id", "53538832" }, { "price", 832 }, { "manufacturer", "Teraprene" } });
-items.Add(new Metadata<string, object> { { "id", "72006635" }, { "price", 832 }, { "manufacturer", "Ohmnet" } });
+List<SuggestGrid.Metadata> items = new List<SuggestGrid.Metadata>();
+items.Add(JsonConvert.DeserializeObject<SuggestGrid.Metadata> ( "{'id': '25922342', 'price': 348, 'manufacturer': 'Vicon'}" );
+items.Add(JsonConvert.DeserializeObject<SuggestGrid.Metadata> ( "{'id': '80885987', 'price': 771, 'manufacturer': 'Aquamate'}" );
+items.Add(JsonConvert.DeserializeObject<SuggestGrid.Metadata> ( "{'id': '71746854', 'price': 310, 'manufacturer': 'Exoplode'}" );
+items.Add(JsonConvert.DeserializeObject<SuggestGrid.Metadata> ( "{'id': '53538832', 'price': 832, 'manufacturer': 'Teraprene'}" );
+items.Add(JsonConvert.DeserializeObject<SuggestGrid.Metadata> ( "{'id': '72006635', 'price': 832, 'manufacturer': 'Ohmnet'}" );
 
 suggestGridClient.Metadata.PostBulkItems(items);
 ```
 
 #### Parameters
 ### Gets An Item
-> `GetItem(string itemId)`
+> `Metadata suggestGridClient.Metadata.GetItem(string itemId)`
 
 Returns an item metadata if it exists.
 
-
 ```csharp
-var response = suggestGridClient.Metadata.GetItem("42");
+var item42 = suggestGridClient.Metadata.GetItem("42");
 ```
 
 #### Parameters
@@ -430,17 +415,17 @@ Name | Type |Required| Description
 --- | --- | --- | ---
 item_id|string|true|The item id to get its metadata.
 ### Gets Items
-> `GetItems()`
+> `ItemsResponse suggestGridClient.Metadata.GetItems(long? size = null, long? mfrom = null)`
 
 Gets items and total count of items.
 Page and per-page parameters could be set.
 
 
-
 ```csharp
 var response = suggestGridClient.Metadata.GetItems();
-// get count of items
-response.Count;
+
+// The total count of items
+response.TotalCount;
 ```
 
 #### Parameters
@@ -451,12 +436,12 @@ Name | Type |Required| Description
 from|integer||The number of users to be skipped from the response. Defaults to 0. Must be bigger than or equal to 0. This parameter must be string represetation of an integer like "1". 
 size|integer||The number of the users response. Defaults to 10. Must be between 1 and 10,000 inclusive. This parameter must be string represetation of an integer like "1". 
 ### Delete An Item
-> `DeleteItem(string itemId)`
+> `MessageResponse suggestGridClient.Metadata.DeleteItem(string itemId)`
 
 Deletes an item metadata with the given item id.
 
 ```csharp
-suggestGridClient.Metadata.DeleteItem("25922342");
+suggestGridClient.Metadata.DeleteItem("25");
 ```
 
 #### Parameters
@@ -466,7 +451,7 @@ Name | Type |Required| Description
 --- | --- | --- | ---
 item_id|string|true|The item id to delete its metadata.
 ### Deletes All Items
-> `DeleteAllItems()`
+> `MessageResponse suggestGridClient.Metadata.DeleteAllItems()`
 
 Warning: Deletes all item metadata from SuggestGrid.
 
@@ -482,32 +467,30 @@ Recommnedation methods are for getting recommended items for users, or recommend
 Refer to [recommendations](http://www.suggestgrid.com/docs/recommendations) for an overview.
 
 ### Gets Recommended Users
-> `GetRecommendedUsers(GetRecommendedUsersBody body)`
+> `UsersResponse GetRecommendedUsers(GetRecommendedUsersBody query)`
 
 Returns recommended users for the query.
 
-examples:
-
 ```csharp
-var recommendedUsers = suggestGridClient.Recommendation.GetRecommendedUsers(new GetRecommendedUsersBody
+var recommendedUsersResponse = suggestGridClient.Recommendation.GetRecommendedUsers(new GetRecommendedUsersBody
 {
     Type = "views",
     ItemId = "42"
 });
-var users = recommendedUsers.Users; // [{id:"451"},{id:"456"}]
+var recommendedUsers = recommendedUsersResponse.Users; // [{id:"451"},{id:"456"}]
 ```
 
 ```csharp
-var recommendedUsers = suggestGridClient.Recommendation.GetRecommendedUsers(new GetRecommendedUsersBody
+var recommendedUsersResponse = suggestGridClient.Recommendation.GetRecommendedUsers(new GetRecommendedUsersBody
 {
     Type = "views",
     ItemIds = new List<string> { "42", "532", "841" }
 });
-var users = recommendedUsers.Users; // [{id:"121"},{id:"33"},{id:"12"},{id:"32"},{id:"49"},{id:"11"},{id:"23"},{id:"54"},{id:"62"},{id:"29"}]
+var recommendedUsers = recommendedUsersResponse.Users; // [{id:"121"},{id:"33"},{id:"12"},{id:"32"},{id:"49"},{id:"11"},{id:"23"},{id:"54"},{id:"62"},{id:"29"}]
 ```
 
 ```csharp
-var recommendedUsers = suggestGridClient.Recommendation.GetRecommendedUsers(new GetRecommendedUsersBody
+var recommendedUsersResponse = suggestGridClient.Recommendation.GetRecommendedUsers(new GetRecommendedUsersBody
 {
     Type = "views",
     ItemIds = new List<string> { "42", "532", "841" },
@@ -515,12 +498,11 @@ var recommendedUsers = suggestGridClient.Recommendation.GetRecommendedUsers(new 
     Except = new List<string> { "100" },
     Size = 5
 });
-var users = recommendedUsers.Users; // [{id:"1"},{id:"84"},{id:"9"},{id:"32"},{id:"45"}]
+var recommendedUsers = recommendedUsersResponse.Users; // [{id:"1"},{id:"84"},{id:"9"},{id:"32"},{id:"45"}]
 ```
 
-
 ```csharp
-var recommendedUsers = suggestGridClient.Recommendation.GetRecommendedUsers(new GetRecommendedUsersBody
+var recommendedUsersResponse = suggestGridClient.Recommendation.GetRecommendedUsers(new GetRecommendedUsersBody
 {
     Type = "views",
     ItemId = "42",
@@ -529,10 +511,10 @@ var recommendedUsers = suggestGridClient.Recommendation.GetRecommendedUsers(new 
     Filter = new { less_equal = new { age = 60 }}
 });
 
-var users = recommendedUsers.Users; // [{id:"11",name:"Robert"},{id:"848",name:"Mike"},{id:"2",name:"Jennifer"}]
+var recommendedUsers = recommendedUsersResponse.Users; // [{id:"11",name:"Robert"},{id:"848",name:"Mike"},{id:"2",name:"Jennifer"}]
 ```
 
-You can read [filters](http://suggestgrid.com/docs/advanced-features#filters-parameter) and [fields](http://suggestgrid.com/docs/advanced-features#fields-parameter) documentations for further reference.
+You can read [filters](https://suggestgrid.com/docs/advanced-features#filters-parameter) and [fields](https://suggestgrid.com/docs/advanced-features#fields-parameter) documentations for further reference.
 
 #### Parameters
 ##### Body Parameters
@@ -553,34 +535,32 @@ size|integer|false|The number of users requested. Defaults to 10. Must be betwee
 type|string|false|The type of the query. Recommendations will be calculated based on actions of this type.
 types|string|false|The types of the query. Exactly one of type or types parameters must be provided.
 ### Gets Recommended Items
-> `GetRecommendedItems(GetRecommendedItemsBody body)`
+> `ItemsResponse GetRecommendedItems(GetRecommendedItemsBody query)`
 
 Returns recommended items for the query.
 
-examples:
-
 ```csharp
-var recommendedItems = suggestGridClient.Recommendation.GetRecommendedItems(new GetRecommendedItemsBody
+var recommendedItemsResponse = suggestGridClient.Recommendation.GetRecommendedItems(new GetRecommendedItemsBody
 {
     Type = "views",
     UserId = "42"
 });
 
-var items = recommendedItems.Items; // [{id:"451"},{id:"456"}]
+var recommendedItems = recommendedItemsResponse.Items; // [{id:"451"},{id:"456"}]
 ```
 
 ```csharp
-var recommendedItems = suggestGridClient.Recommendation.GetRecommendedItems(new GetRecommendedItemsBody
+var recommendedItemsResponse = suggestGridClient.Recommendation.GetRecommendedItems(new GetRecommendedItemsBody
 {
     Type = "views",
     UserIds = new List<string> { "42", "532", "841" }
 });
 
-var items = recommendedItems.Items; // [{id:"121"},{id:"33"},{id:"12"},{id:"32"},{id:"49"},{id:"11"},{id:"23"},{id:"54"},{id:"62"},{id:"29"}]
+var recommendedItems = recommendedItemsResponse.Items; // [{id:"121"},{id:"33"},{id:"12"},{id:"32"},{id:"49"},{id:"11"},{id:"23"},{id:"54"},{id:"62"},{id:"29"}]
 ```
 
 ```csharp
-var recommendedItems = suggestGridClient.Recommendation.GetRecommendedItems(new GetRecommendedItemsBody
+var recommendedItemsResponse = suggestGridClient.Recommendation.GetRecommendedItems(new GetRecommendedItemsBody
 {
     Type = "views",
     UserIds = new List<string> { "42", "532", "841" },
@@ -588,11 +568,11 @@ var recommendedItems = suggestGridClient.Recommendation.GetRecommendedItems(new 
     Size = 3
 });
 
-var items = recommendedItems.Items; // [{id:"13"},{id:"65"},{id:"102"}]
+var recommendedItems = recommendedItemsResponse.Items; // [{id:"13"},{id:"65"},{id:"102"}]
 ```
 
 ```csharp
-var recommendedItems = suggestGridClient.Recommendation.GetRecommendedItems(new GetRecommendedItemsBody
+var recommendedItemsResponse = suggestGridClient.Recommendation.GetRecommendedItems(new GetRecommendedItemsBody
 {
     Type = "views",
     UserId = "42",
@@ -600,11 +580,11 @@ var recommendedItems = suggestGridClient.Recommendation.GetRecommendedItems(new 
     Filter = new { less_equal = new { price = 100 }  }
 });
 
-var items = recommendedItems.Items; // [{id:"930"},{id:"848"},{id:"102"},{id:"303"},{id:"593"}]
+var recommendedItems = recommendedItemsResponse.Items; // [{id:"930"},{id:"848"},{id:"102"},{id:"303"},{id:"593"}]
 ```
 
 ```csharp
-var recommendedItems = suggestGridClient.Recommendation.GetRecommendedItems(new GetRecommendedItemsBody
+var recommendedItemsResponse = suggestGridClient.Recommendation.GetRecommendedItems(new GetRecommendedItemsBody
 {
     Type = "views",
     UserId = "42",
@@ -612,10 +592,10 @@ var recommendedItems = suggestGridClient.Recommendation.GetRecommendedItems(new 
     Fields = new List<string> { "category" },
     Filter = new { exact = new { manufacturer = "Apple" }  }
 });
-var items = recommendedItems.Items; // [{id:"930",category:"notebook"},{id:"848",category:"keyboard"},{id:"102",category:"watch"}]
+var recommendedItems = recommendedItemsResponse.Items; // [{id:"930",category:"notebook"},{id:"848",category:"keyboard"},{id:"102",category:"watch"}]
 ```
 
-You can read [filters](http://suggestgrid.com/docs/advanced-features#filters-parameter) and [fields](http://suggestgrid.com/docs/advanced-features#fields-parameter) documentations for further reference.
+You can read [filters](https://suggestgrid.com/docs/advanced-features#filters-parameter) and [fields](https://suggestgrid.com/docs/advanced-features#fields-parameter) documentations for further reference.
 
 #### Parameters
 ##### Body Parameters
@@ -642,35 +622,33 @@ Similarity methods are for getting similar items, or similar users.
 Refer to [similarities](http://www.suggestgrid.com/docs/similarities) for an overview.
 
 ### Gets Similar Users
-> `GetSimilarUsers(GetSimilarUsersBody body)`
+> `ItemsResponse GetSimilarItems(GetSimilarItemsBody query)`
 
 Returns similar users for the query.
 
-examples:
-
 ```csharp
-var similarUsers = suggestGridClient.Similarity.GetSimilarUsers(new GetSimilarUsersBody
+var similarUsersResponse = suggestGridClient.Similarity.GetSimilarUsers(new GetSimilarUsersBody
 {
     Type = "views",
     UserId = "1"
 });
 
-var users = similarUsers.Users; // [{id:"1"},{id:"451"},{id:"456"}]
+var similarUsers = similarUsersResponse.Users; // [{id:"12"},{id:"451"},{id:"456"}]
 ```
 
 ```csharp
-var similarUsers = suggestGridClient.Similarity.GetSimilarUsers(new GetSimilarUsersBody
+var similarUsersResponse = suggestGridClient.Similarity.GetSimilarUsers(new GetSimilarUsersBody
 {
     Type = "views",
     UserId = "1",
-    Except = new List<string> { "1" }
+    Except = new List<string> { "12" }
 });
 
-var users = similarUsers.Users; // [{id:"451"},{id:"456"}]
+var similarUsers = similarUsersResponse.Users; // [{id:"451"},{id:"456"}]
 ```
 
 ```csharp
-var similarUsers = suggestGridClient.Similarity.GetSimilarUsers(new GetSimilarUsersBody
+var similarUsersResponse = suggestGridClient.Similarity.GetSimilarUsers(new GetSimilarUsersBody
 {
     Type = "views",
     UserIds = new List<string> { "42", "532", "841" },
@@ -679,10 +657,10 @@ var similarUsers = suggestGridClient.Similarity.GetSimilarUsers(new GetSimilarUs
     Size = 3
 });
 
-var users = similarUsers.Users; // [{id:"400", name:"Jason"},{id:"132", name:"Scarlett"},{id:"503", name:"Amy"}]
+var similarUsers = similarUsersResponse.Users; // [{id:"400", name:"Jason"},{id:"132", name:"Scarlett"},{id:"503", name:"Amy"}]
 ```
 
-You can read [filters](http://suggestgrid.com/docs/advanced-features#filters-parameter) and [fields](http://suggestgrid.com/docs/advanced-features#fields-parameter) documentations for further reference.
+You can read [filters](https://suggestgrid.com/docs/advanced-features#filters-parameter) and [fields](https://suggestgrid.com/docs/advanced-features#fields-parameter) documentations for further reference.
 
 #### Parameters
 ##### Body Parameters
@@ -701,35 +679,33 @@ types|string|false|The types of the query. Exactly one of type or types paramete
 userId|string|false|The user id of the query.
 userIds|array|false|The user ids of the query. Exactly one of user id or user ids parameters must be provided.
 ### Gets Similar Items
-> `GetSimilarItems(GetSimilarItemsBody body)`
+> `UsersResponse GetSimilarUsers(GetSimilarUsersBody query)`
 
 Returns similar items for the query.
 
-examples:
-
 ```csharp
-var similarItems = suggestGridClient.Similarity.GetSimilarItems(new GetSimilarItemsBody
+var similarItemsResponse = suggestGridClient.Similarity.GetSimilarItems(new GetSimilarItemsBody
 {
     Type = "views",
     ItemId = "1"
 });
 
-var items = similarItems.Items; // [{id:"1"},{id:"451"},{id:"456"}]
+var similarItems = similarItemsResponse.Items; // [{id:"12"},{id:"451"},{id:"456"}]
 ```
 
 ```csharp
-var similarItems = suggestGridClient.Similarity.GetSimilarItems(new GetSimilarItemsBody
+var similarItemsResponse = suggestGridClient.Similarity.GetSimilarItems(new GetSimilarItemsBody
 {
     Type = "views",
     ItemId = "1",
-    Except = new List<string> { "1" }
+    Except = new List<string> { "12" }
 });
 
-var items = similarItems.Items; // [{id:"451"},{id:"456"}]
+var similarItems = similarItemsResponse.Items; // [{id:"451"},{id:"456"}]
 ```
 
 ```csharp
-var similarItems = suggestGridClient.Similarity.GetSimilarItems(new GetSimilarItemsBody
+var similarItemsResponse = suggestGridClient.Similarity.GetSimilarItems(new GetSimilarItemsBody
 {
     Type = "views",
     ItemIds = new List<string> { "3", "5", "8" },
@@ -738,10 +714,10 @@ var similarItems = suggestGridClient.Similarity.GetSimilarItems(new GetSimilarIt
     Filter = new { greater = new { capacity = 60 } }
 });
 
-var items = similarItems.Items; // [{id:"451",category:"television"},{id:"656",category:"blu-ray-dvd-players"}]
+var similarItems = similarItemsResponse.Items; // [{id:"451",category:"television"},{id:"656",category:"blu-ray-dvd-players"}]
 ```
 
-You can read [filters](http://suggestgrid.com/docs/advanced-features#filters-parameter) and [fields](http://suggestgrid.com/docs/advanced-features#fields-parameter) documentations for further reference.
+You can read [filters](https://suggestgrid.com/docs/advanced-features#filters-parameter) and [fields](https://suggestgrid.com/docs/advanced-features#fields-parameter) documentations for further reference.
 
 #### Parameters
 ##### Body Parameters
