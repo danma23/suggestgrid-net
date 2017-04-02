@@ -1,5 +1,5 @@
 swagger: '2.0'
-
+# 
 info:
   title: SuggestGrid
   version: 0.1.31-SNAPSHOT
@@ -43,8 +43,8 @@ tags:
   - name: type
     description: Type Methods
     x-docs-text: |
-      Type methods are used for creating, inspecting, and deleting SuggestGrid types.
-      [Types documentation](http://www.suggestgrid.com/docs/types) is available for an overview.
+      Type methods are used for creating, getting, and deleting types.
+      Refer to [types](http://www.suggestgrid.com/docs/types) for an overview.
     x-methods:
       - create_type
       - get_type
@@ -54,8 +54,8 @@ tags:
   - name: action
     description: Action Methods
     x-docs-text: |
-      Action methods are for creating, inspecting, and deleting actions.
-      [Actions documentation](http://www.suggestgrid.com/docs/actions) is available for an overview.
+      Action methods are for creating, getting, and deleting actions.
+      Refer to [actions](http://www.suggestgrid.com/docs/actions) for an overview.
     x-methods:
       - post_action
       - post_bulk_actions
@@ -64,8 +64,8 @@ tags:
   - name: metadata
     description: Metadata Methods
     x-docs-text: |
-      Metadata methods are for creating, inspecting, and deleting metadata.
-      [Metadata documentation ](http://www.suggestgrid.com/docs/metadata) is available for an overview.
+      Metadata methods are for creating, getting, and deleting user, and item metadata.
+      Refer to [metadata](http://www.suggestgrid.com/docs/metadata) for an overview.
     x-methods:
       - post_user
       - post_bulk_users
@@ -82,16 +82,16 @@ tags:
   - name: recommendation
     description: Recommnedation Methods
     x-docs-text: |
-      Recommnedation methods are for getting recommended items, or recommended users from SuggestGrid.
-      [Recommendations documentation](http://www.suggestgrid.com/docs/recommendations) is available for an overview.
+      Recommnedation methods are for getting recommended items for users, or recommended users for items.
+      Refer to [recommendations](http://www.suggestgrid.com/docs/recommendations) for an overview.
     x-methods:
       - get_recommended_users
       - get_recommended_items
   - name: similarity
     description: Similarity Methods
     x-docs-text: |
-      Similarity methods are for getting similar items, or similar users from SuggestGrid.
-      [Similarities documentation](http://www.suggestgrid.com/docs/similarities) is available for an overview.
+      Similarity methods are for getting similar items, or similar users.
+      Refer to [similarities](http://www.suggestgrid.com/docs/similarities) for an overview.
     x-methods:
       - get_similar_users
       - get_similar_items
@@ -329,7 +329,7 @@ definitions:
   # Responses
   MessageResponse:
     type: object
-    description: A basic response.
+    description: Basic response with a message for success responses.
     properties:
       message:
         type: string
@@ -378,7 +378,7 @@ definitions:
         description: The URI of the error for more details.
       error_details:
         type: string
-        description: Specific details of the response.
+        description: Details of the response.
   LimitExceededErrorResponse:
     type: object
     description: Error response.
@@ -526,7 +526,7 @@ paths:
       tags:
         - type
       operationId: get_all_types
-      summary: Get All Types
+      summary: Gets All Types
       description: Returns all type names in an array named types.
       responses:
         200:
@@ -541,7 +541,7 @@ paths:
       tags:
         - type
       operationId: delete_all_types
-      summary: Delete All Types
+      summary: Deletes All Types
       description: Deletes ALL the types and ALL the actions.
       responses:
         200:
@@ -557,7 +557,7 @@ paths:
       tags:
         - type
       operationId: get_type
-      summary: Get Properties of a Type
+      summary: Gets Properties of a Type
       description: Returns the options of a type. The response rating parameter.
       parameters:
         - name: type
@@ -583,7 +583,7 @@ paths:
       tags:
         - type
       operationId: create_type
-      summary: Create a New Type
+      summary: Creates a Type
       description: Creates a new type.
       parameters:
         - name: type
@@ -623,7 +623,7 @@ paths:
       tags:
         - type
       operationId: delete_type
-      summary: Delete a Type
+      summary: Deletes a Type
       description: |
         Warning: Deletes the type with all of its actions and its recommendation model.
       parameters:
@@ -652,7 +652,7 @@ paths:
       tags:
         - action
       operationId: post_action
-      summary: Post an Action
+      summary: Posts an Action
       description: |
         Posts an action to the given type in the body.
         The body must have user id, item id and type.
@@ -689,7 +689,7 @@ paths:
       tags:
         - action
       operationId: get_actions
-      summary: Get Actions
+      summary: Gets Actions
       description: |
         Get actions. Defaut responses will be paged by 10 actios each.
         Type, user id, item id, or older than parameters could be provided.
@@ -697,27 +697,28 @@ paths:
       parameters:
         - name: type
           in: query
-          description: The type of the actions.
+          description: Get actions of a type.
           required: false
           type: string
           format: id
         - name: user_id
           in: query
-          description: The user id of the actions.
+          description: Get actions of a user id.
           required: false
           type: string
           format: id
         - name: item_id
           in: query
-          description: The item id of the actions.
+          description: Get actions of an item id.
           required: false
           type: string
           format: id
         - name: older_than
           in: query
           description: |
-            Maxium timestamp of the actions.
-            Valid times are in form of 1s, 1m, 1h, 1d, 1M, 1y, where 1 can be any integer, or a UNIX timestamp like 1443798195.
+            Get actions older than the given duration, or the given time number.
+            Could be a ISO 8601 duration, or a Unix time number.
+            Specifications are available at https://en.wikipedia.org/wiki/ISO_8601#Durations, or https://en.wikipedia.org/wiki/Unix_time.
           required: false
           type: string
         - name: size
@@ -764,27 +765,28 @@ paths:
       parameters:
         - name: type
           in: query
-          description: The type of the actions.
-          required: false
+          description: Delete actions of a type. This parameter and at least one other parameter is required.
+          required: true
           type: string
           format: id
         - name: user_id
           in: query
-          description: The user id of the actions.
+          description: Delete actions of a user id.
           required: false
           type: string
           format: id
         - name: item_id
           in: query
-          description: The item id of the actions.
+          description: Delete actions of an item id.
           required: false
           type: string
           format: id
         - name: older_than
           in: query
           description: |
-            Delete all actions of a type older than the given timestamp or time.
-            Valid times are in form of 1s, 1m, 1h, 1d, 1M, 1y, where 1 can be any integer, or a UNIX timestamp like 1443798195.
+            Delete actions older than the given duration, or the given time number.
+            Could be a ISO 8601 duration, or a Unix time number.
+            Specifications are available at https://en.wikipedia.org/wiki/ISO_8601#Durations, or https://en.wikipedia.org/wiki/Unix_time.
           required: false
           type: string
       responses:
@@ -817,7 +819,7 @@ paths:
       tags:
         - action
       operationId: post_bulk_actions
-      summary: Post Bulk Actions
+      summary: Posts Actions
       description: |
         Posts bulk actions to SuggestGrid.
         The recommended method for posting multiple actions at once.
@@ -860,19 +862,19 @@ paths:
             $ref: '#/definitions/ErrorResponse'
   # Metadata Paths
   /v1/users/{user_id}:
-    parameters:
-      - name: user_id
-        in: path
-        description: The user id to delete its metadata.
-        required: true
-        type: string
-        format: id
     get:
       tags:
         - metadata
       operationId: get_user
-      summary: Get A User
+      summary: Gets A User
       description: Returns a user metadata if it exists.
+      parameters:
+        - name: user_id
+          in: path
+          description: The user id to get its metadata.
+          required: true
+          type: string
+          format: id
       responses:
         200:
           description: Returns a user metadata.
@@ -890,8 +892,15 @@ paths:
       tags:
         - metadata
       operationId: delete_user
-      summary: Delete a User
+      summary: Deletes a User
       description: Deletes a user metadata with the given user id.
+      parameters:
+        - name: user_id
+          in: path
+          description: The user id to delete its metadata.
+          required: true
+          type: string
+          format: id
       responses:
         200:
           description: Deleted a user metadata.
@@ -906,8 +915,10 @@ paths:
         tags:
           - metadata
         operationId: post_user
-        summary: Post a User
-        description: Posts a user metadata.
+        summary: Posts a User
+        description: |
+          Posts a user metadata.
+          Note that this operation completely overrides previous metadata for the id, if it exists.
         parameters:
           - name: user
             in: body
@@ -932,7 +943,7 @@ paths:
       tags:
         - metadata
       operationId: get_users
-      summary: Get Users
+      summary: Gets Users
       description: |
         Get items and total count of items.
         Page and per-page parameters could be set.
@@ -968,7 +979,7 @@ paths:
       tags:
         - metadata
       operationId: delete_all_users
-      summary: Delete All Users
+      summary: Deletes All Users
       description: |
         Warning: Deletes all user metadata from SuggestGrid.
       responses:
@@ -981,19 +992,19 @@ paths:
           schema:
             $ref: '#/definitions/ErrorResponse'
   /v1/items/{item_id}:
-    parameters:
-      - name: item_id
-        in: path
-        description: The item id to delete its metadata.
-        required: true
-        type: string
-        format: id
     get:
       tags:
         - metadata
       operationId: get_item
-      summary: Get An Item
+      summary: Gets An Item
       description: Returns an item metadata if it exists.
+      parameters:
+        - name: item_id
+          in: path
+          description: The item id to get its metadata.
+          required: true
+          type: string
+          format: id
       responses:
         200:
           description: Returns an item metadata.
@@ -1013,6 +1024,13 @@ paths:
       operationId: delete_item
       summary: Delete An Item
       description: Deletes an item metadata with the given item id.
+      parameters:
+        - name: item_id
+          in: path
+          description: The item id to delete its metadata.
+          required: true
+          type: string
+          format: id
       responses:
         200:
           description: Deleted an item metadata.
@@ -1027,10 +1045,10 @@ paths:
       tags:
         - metadata
       operationId: post_item
-      summary: Post an Item
+      summary: Posts An Item
       description: |
         Posts an item metadata.
-        This metadata can be used to filter or to be included in recommendations and similars methods.
+        Note that this operation completely overrides previous metadata for the id, if it exists.
       parameters:
         - name: item
           in: body
@@ -1055,9 +1073,9 @@ paths:
       tags:
         - metadata
       operationId: get_items
-      summary: Get Items
+      summary: Gets Items
       description: |
-        Get items and total count of items.
+        Gets items and total count of items.
         Page and per-page parameters could be set.
       parameters:
         - name: size
@@ -1091,7 +1109,7 @@ paths:
       tags:
         - metadata
       operationId: delete_all_items
-      summary: Delete All Items
+      summary: Deletes All Items
       description: |
         Warning: Deletes all item metadata from SuggestGrid.
       responses:
@@ -1108,10 +1126,10 @@ paths:
       tags:
         - metadata
       operationId: post_bulk_users
-      summary: Post Bulk Users
+      summary: Posts Users
       description: |
-        Post user metadata in bulk.
-        This metadata can be used to filter or to be included in recommendations and similars methods.
+        Posts user metadata in bulk.
+        Note that this operation completely overrides metadata with the same ids, if they exist.
       consumes:
        - text/plain; charset=utf-8
       parameters:
@@ -1147,10 +1165,10 @@ paths:
       tags:
         - metadata
       operationId: post_bulk_items
-      summary: Post Bulk Items
+      summary: Posts Items
       description: |
-        Post item metadata in bulk.
-        This method is recommended for sharing stored data with SuggestGrid.
+        Posts item metadata in bulk.
+        Note that this operation completely overrides metadata with the same ids, if they exist.
       consumes:
        - text/plain; charset=utf-8
       parameters:
@@ -1187,7 +1205,7 @@ paths:
       tags:
         - recommendation
       operationId: get_recommended_users
-      summary: Get Recommended Users
+      summary: Gets Recommended Users
       description: Returns recommended users for the query.
       parameters:
         - name: query
@@ -1205,6 +1223,10 @@ paths:
           description: Request body is invalid.
           schema:
             $ref: '#/definitions/ErrorResponse'
+        404:
+          description: At least one type in the request does not exist.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
         422:
           description: Required parameters are missing.
           schema:
@@ -1218,7 +1240,7 @@ paths:
       tags:
         - recommendation
       operationId: get_recommended_items
-      summary: Get Recommended Items
+      summary: Gets Recommended Items
       description: Returns recommended items for the query.
       parameters:
         - name: query
@@ -1236,6 +1258,10 @@ paths:
           description: Request body is invalid.
           schema:
             $ref: '#/definitions/ErrorResponse'
+        404:
+          description: At least one type in the request does not exist.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
         422:
           description: Required parameters are missing.
           schema:
@@ -1250,7 +1276,7 @@ paths:
       tags:
         - similarity
       operationId: get_similar_users
-      summary: Get Similar Users
+      summary: Gets Similar Users
       description: Returns similar users for the query.
       parameters:
         - name: query
@@ -1268,6 +1294,10 @@ paths:
           description: Request body is invalid.
           schema:
             $ref: '#/definitions/ErrorResponse'
+        404:
+          description: At least one type in the request does not exist.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
         422:
           description: Required parameters are missing.
           schema:
@@ -1281,7 +1311,7 @@ paths:
       tags:
         - similarity
       operationId: get_similar_items
-      summary: Get Similar Items
+      summary: Gets Similar Items
       description: Returns similar items for the query.
       parameters:
         - name: query
@@ -1297,6 +1327,10 @@ paths:
             $ref: '#/definitions/ItemsResponse'
         400:
           description: Request body is invalid.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        404:
+          description: At least one type in the request does not exist.
           schema:
             $ref: '#/definitions/ErrorResponse'
         422:

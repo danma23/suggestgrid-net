@@ -51,7 +51,7 @@ namespace SuggestGrid.Controllers
         #endregion Singleton Pattern
 
         /// <summary>
-        /// Create a New Type
+        /// Creates a Type
         /// </summary>
         /// <param name="type">Required parameter: The name of the type.</param>
         /// <param name="settings">Optional parameter: Optional settings for the rating parameter.</param>
@@ -64,7 +64,7 @@ namespace SuggestGrid.Controllers
         }
 
         /// <summary>
-        /// Create a New Type
+        /// Creates a Type
         /// </summary>
         /// <param name="type">Required parameter: The name of the type.</param>
         /// <param name="settings">Optional parameter: Optional settings for the rating parameter.</param>
@@ -133,7 +133,7 @@ namespace SuggestGrid.Controllers
         }
 
         /// <summary>
-        /// Get Properties of a Type
+        /// Gets Properties of a Type
         /// </summary>
         /// <param name="type">Required parameter: The name of the type to get properties.</param>
         /// <return>Returns the Models.GetTypeResponse response from the API call</return>
@@ -145,7 +145,7 @@ namespace SuggestGrid.Controllers
         }
 
         /// <summary>
-        /// Get Properties of a Type
+        /// Gets Properties of a Type
         /// </summary>
         /// <param name="type">Required parameter: The name of the type to get properties.</param>
         /// <return>Returns the Models.GetTypeResponse response from the API call</return>
@@ -203,7 +203,7 @@ namespace SuggestGrid.Controllers
         }
 
         /// <summary>
-        /// Delete a Type
+        /// Deletes a Type
         /// </summary>
         /// <param name="type">Required parameter: The name of the type to be deleted.</param>
         /// <return>Returns the Models.MessageResponse response from the API call</return>
@@ -215,7 +215,7 @@ namespace SuggestGrid.Controllers
         }
 
         /// <summary>
-        /// Delete a Type
+        /// Deletes a Type
         /// </summary>
         /// <param name="type">Required parameter: The name of the type to be deleted.</param>
         /// <return>Returns the Models.MessageResponse response from the API call</return>
@@ -273,7 +273,7 @@ namespace SuggestGrid.Controllers
         }
 
         /// <summary>
-        /// Get All Types
+        /// Gets All Types
         /// </summary>
         /// <return>Returns the Models.GetTypesResponse response from the API call</return>
         public Models.GetTypesResponse GetAllTypes()
@@ -284,7 +284,7 @@ namespace SuggestGrid.Controllers
         }
 
         /// <summary>
-        /// Get All Types
+        /// Gets All Types
         /// </summary>
         /// <return>Returns the Models.GetTypesResponse response from the API call</return>
         public async Task<Models.GetTypesResponse> GetAllTypesAsync()
@@ -332,7 +332,7 @@ namespace SuggestGrid.Controllers
         }
 
         /// <summary>
-        /// Delete All Types
+        /// Deletes All Types
         /// </summary>
         /// <return>Returns the Models.MessageResponse response from the API call</return>
         public Models.MessageResponse DeleteAllTypes()
@@ -343,7 +343,7 @@ namespace SuggestGrid.Controllers
         }
 
         /// <summary>
-        /// Delete All Types
+        /// Deletes All Types
         /// </summary>
         /// <return>Returns the Models.MessageResponse response from the API call</return>
         public async Task<Models.MessageResponse> DeleteAllTypesAsync()
